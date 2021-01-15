@@ -1,0 +1,418 @@
+
+<html>
+<!-- FILL IN EVERYTHING SURROUNDED BY CURLY BRACES UNLESS OTHERWISE SPECIFIED -->
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6 &laquo; Data Visualization &raquo;</title>
+</head>
+
+<body>
+
+<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Assignment 6 <small>&laquo; Data Visualization &raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                <p>
+                    <ul>
+                        <li>Due date: 11:59pm 4/30/2020 </li>
+                        <li>Stencil: <code>cs1951a_install data_viz</code> or <code>cp -r /course/cs1951a/pub/data_viz/stencil ~/course/cs1951a/data_viz</code></li>
+                        <li>Handin: <code>cs1951a_handin data_viz</code></li>
+                        <li>Files to submit: <code>dashboard.html</code>, <code>main.js</code>, <code>main.css</code>, <code>README.txt</code></li>
+                    </ul>
+                </p>
+            <hr>
+
+        <h2>Overview</h2>
+                <p>Bad Data Viz is in fact the theme of our website.
+                    So, please let us indulge by listing just a few more examples here:
+                </p>
+            <img src="dataviz_meme.png" alt="bad visualization" style="width:auto; height: 220px">
+            <img src="economy.png" alt="bad visualization" style="width:auto; height: 220px">
+            <img src="strong_with_the_dataviz.jpeg" alt="bad visualization" style="width:auto; height: 220px">
+            <br>
+            <br>
+                <p>In this assignment, you will use <a href="http://d3js.org/">D3</a>, an interactive visualization library,
+                    to develop your own data dashboard. D3 is extremely powerful and can be used to make very specific,
+                    informative diagrams. We <strong>highly</strong> recommend that you complete the D3 + JavaScript
+                    lab before you attempt this assignment. We have a ton of explanation and introduction to D3
+                    in the lab.
+                    <br>
+                    <br>
+                To illustrate the capabilities of D3, here are some stunning examples of visualizations created with it:
+          </p>
+
+          <ul>
+              <li><a href="http://polygraph.cool/hamilton/">Every line in Hamilton, visualized</a></li>
+              <li><a href="http://projects.flowingdata.com/life-expectancy/">Life Expectancy</a></li>
+              <li><a href="http://air.nullschool.net/">Tokyo Wind Speeds</a></li>
+              <li><a href="http://www.koalastothemax.com/">Koala to the Max</a></li>
+          </ul>
+
+          <p>
+              We know that D3 code is easy to find online.
+              Even if we provide you with reference implementations, do not copy any code.
+          </p>
+
+            <hr>
+            <h2>Before you begin:</h2>
+            <p>
+                Many students find this assignment to be one of the most challenging in the class.
+                This is because JavaScript is a new language and framework for many, and we don't formally teach it.
+                We <strong>HIGHLY</strong> recommend you walk through the lab listed
+                <a href="https://drive.google.com/drive/folders/13VNpOtzhJQ57C3CjzoM7U4wXd_ZVXdIS" target="_blank">here</a> before you begin.
+                The solution code for the D3 lab is a great place for starter code on how to create your own graphs for this assignment.
+            </p>
+            <p>
+                Since this project is more free-form than previous assignment, there is no solution code for this assignment.
+                We will do our best to debug your dashboard during TA hours, but TAs at hours can only be so helpful
+                debugging your particular project.
+
+                A few tips:
+                <ul>
+                    <li>Start early!</li>
+                    <li>Review the D3 lab and refer to the solution code for certain features (i.e. colors, tooltips, etc.)</li>
+                    <li>Look for resources online <strong>(DO NOT COPY!)</strong> and do your best</li>
+<!--                    <li>Have fun with the assignment! </li>-->
+                </ul>
+                We hope for some this will be a fun assignment and closely resemble future data science work!
+            </p>
+
+            <hr>
+
+            <h2>Assignment</h2>
+            <p>
+                Your task is to create your own informative D3 dashboard! This assignment, in particular,
+                is very flexible. There are no strictly correct or incorrect answers since visualization is inherently
+                subjective. That said, we will evaluate your work on a number of requirements listed below.
+                Further, we expect that you incorporate concepts that Ellie has discussed in class like
+                color palettes, font types/sizing, orientation, clarity, organization, and informativeness.
+            </p>
+            <h3>Dashboard</h3>
+            <h5>68 points</h5>
+            <h4>Datasets</h4>
+            <h5>(5 points! Just for using the right data...)</h5>
+
+            <p>
+                You must use data from one of the following datasets.
+                Each dataset has a series of leading questions you may use as inspiration.
+                You should make sure that your dashboard answers these questions.
+                Imagine your boss gives you 2 weeks to build a dashboard on these issues.
+            </p>
+
+            <p>
+                <b>Note:</b> All 3 datasets are provided in the <code>data</code> directory under the <code>data_viz</code>
+                folder. Each topic includes a link to a Kaggle site with more information about the dataset.
+            </p>
+
+            <ol>
+                <li>
+                    <strong>Video Game Sales</strong> | <a href="https://www.kaggle.com/gregorut/videogamesales" target="_blank">Kaggle</a>
+                    <h5>Questions:</h5>
+                    <ol>
+                        <li>Your boss wants to know the top 10 video games of all time <i>or</i> top 10 for a specific year.</li>
+                        <li>Your boss wants to understand which genre is most popular. We'd like to see genre sales
+                        broken out per region. (This question can be answered by showing the top genre in each
+                        region if you want to implement a map, otherwise you should show genre sales broken down by
+                        region in bar/scatter/line/pie etc.)</li>
+                        <li>Lastly, your boss wants to know which publisher to pick based on which
+                        genre a game is. Your chart should provide a clear top publisher for each genre
+                            (could be interactive or statically show).</li>
+                    </ol>
+                </li>
+                <br/>
+                <li>
+                    <strong>International Football Results</strong> | <a href="https://www.kaggle.com/martj42/international-football-results-from-1872-to-2017" target="_blank">Kaggle</a>
+                    <h5>Questions:</h5>
+                    <ol>
+                        <li>Your boss wants to know the number of football games by year.
+                            You should show at minimum 5 years, but you can choose which years to show.</li>
+                        <li>Your boss wants to understand the top winning nations. We would like to
+                        see a winning percentage for the top 10 nations. You can show this in a map form if you
+                        would like to.</li>
+                        <li>Lastly, we are trying to bet on which team will win the world cup 2022.
+                        Over the last <strong>2</strong> world cups, which teams were top performing.
+                        You can decide how to interpret "top performing". A few approaches we would reccomend:
+                        winning percentage in the world cup, victory strength, strength of opponent. You
+                        may show any combination of those. We don't have a specific answer we expect,
+                        and you should explain your choice in the written questions.</li>
+                    </ol>
+                </li>
+                <br/>
+                <li>
+                    <strong>Neflix Collection</strong> | <a href="https://www.kaggle.com/shivamb/netflix-shows" target="_blank">Kaggle</a>
+                    <h5>Questions:</h5>
+                    <ol>
+                        <li>Your boss wants to know the number of titles per genre on Netflix.</li>
+                        <li>Your boss wants to understand the average runtime of movies by release year.</li>
+                        <li>Lastly, we want to learn about the cast and directors. You have two choices here:
+                            1) the top director + actor pairs by number of movies made
+                            2) a flow chart where each actor is a node, and a link refers to a movie they both acted in
+                                (just the connection, no need to specify number of movies made together or which movies those are)
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+
+            <h4>Dashboard Requirements</h4>
+            Please put your dashboard in <code>dashboard.html</code> with your JavaScript D3 code in <code>main.js</code>
+            and any custom styling in <code>main.css</code>. Feel free to add new JavaScript files if you want.
+
+            <h5>Graph Structure</h5>
+            <h5>(35 points)</h5>
+            <ul>
+                <li>
+                    You must have <strong>3</strong> graphs <b>(10 points each)</b>
+                </li>
+                <li>There must be <strong>2</strong> unique graphs <b>(5 points)</b>
+                    <blockquote>Unique graphs are bar, line, scatter plot, heatmap, density, area, etc.
+                    You can see examples <a href="https://www.d3-graph-gallery.com/">here</a>.
+                    In our stencil we have setup three boxes for you to place your graphs, but you can feel free to adjust
+                    these based on your graph selection.
+                    </blockquote>
+                </li>
+            </ul>
+
+            <h5>Interactivity</h5>
+            <h5>(10 points)</h5>
+            <ul>
+                <li>
+                    You must have <strong>1</strong> filter/toggle/interactive element of your dashboard. <b>(5 points)</b>
+                    <blockquote>We define this as a clickable/writeable element that updates the graphs/look of the
+                    dashboard.
+                    </blockquote>
+                </li>
+                <li>
+                    You must have <strong>1</strong> tooltip for a graph on your dashboard. <b>(5 points)</b>
+                    <blockquote>We define this as information which appears when users hover over a data point&hyphen; this can be
+                    combined with your clickable element, but a tooltip <strong>alone</strong> is
+                    <strong>not</strong> considered interactive.
+                    </blockquote>
+                </li>
+            </ul>
+
+            <h5>Style</h5>
+            <h5>(8 points)</h5>
+            <ul>
+                <li>
+                    Make sure to write graph/dashboard titles/units/axis/tooltips where appropriate.
+                </li>
+                <li>
+                    Your dashboard should properly use color.
+                    If it's all black, that's bad. If it's a rainbow that's bad.
+                    This is also an area to consider the accessibility of your dashboard.
+                    Picking color schemes that are color blind friendly is a great habit and something which is
+                    very easy. Online tools (e.g. https://coolors.co/) can help show if you colors are color blind
+                    friendly. This is not a requirement, but if your colors do not complement your visualization (distracting, unnecessary, confusing) we will deduct points.
+                </li>
+            </ul>
+
+            <h5>Communication</h5>
+            <h5>(15 points)</h5>
+            <ul>
+                <li>
+                    You use the provided data <b>(5 points)</b>
+                </li>
+                <li>
+                    Graphs address questions for each data set <b>(10 points)</b>
+                    <blockquote>We will evaluate your graph communication two-fold.
+                        Each graph will assessed 1) how well it communicates the information of the graph
+                        2) how well it answers the question.
+                    </blockquote>
+                </li>
+            </ul>
+
+            <p>
+            <h3>Extra Credit</h3>
+            <h5>(Up to +30 points!)</h5>
+            We think D3 is really cool, and some of you probably agree. We don't want to limit any of your
+            creative impulses and therefore are offering bonus points for this assignment. Simply put, your
+            final grade can be over 100% for this assignment.
+
+            Here are some ways to earn bonus points:
+            <ol>
+                <li>
+                    You implement some form of dynamic stats calculation. By dynamic, we mean that it updates
+                    depending on which data is being shown. Our example dashboard calculates a regression line,
+                    but you can show box plot whiskers, calculate percentiles, calculate a t-test.
+                    <br>
+                    <br>
+                    If you choose to add this, please add a note below your dashboard and written answers which
+                    in 1-3 sentences explains what you did and why it's statistical. <b>(10 points)</b>
+                </li>
+                <br>
+                <li>
+                    You may attempt one or both of these and get up to an additional 20 points!
+                    <br>
+                    <br>
+                    For some of the provided data sets and questions, we ask about geographic impact.
+                    One way to show this is with a bar/scatter/line graph.
+                    Another possibility is to show this on a geographic map!
+                    If one of your graphs is a "Map type" (https://www.d3-graph-gallery.com/) you earn an additional <b>10 points</b>.
+                    <br>
+                    <br>
+                    For other data sets we discuss the relationship between particular data points,
+                    particularly in a graph way. i.e. how many hops between 2 actors on Netflix.
+                    You can use D3 to make and visualize this graph!
+                    If one of your graphs is a a "Flow type" (https://www.d3-graph-gallery.com/) you earn an additional <b>10 points</b>.
+                    <br>
+                    <br>
+                    If you have any questions about whether a particular chart qualifies for either of these, please ask on piazza.
+                </li>
+            </ol>
+
+
+            <h3>Example Dashboard</h3>
+            Created by CS 1951A's Arvind Yalavarti, we have an example D3 dashboard <a href="dashboard/dashboard.html" target="_blank">here</a>.
+            using the TA dataset from the D3 lab. Our dashboard goes above and beyond our expectations for you, but we though it would be helpful for reference, especially for
+            those of you who want to go above and beyond.
+
+
+            <h3>Use of External Libraries</h3>
+            <p>
+                We've already included D3 and Bootstrap in the stencil code provided. To perform statistical calculations
+                take a look at <a href="https://github.com/jstat/jstat"><code>jStat</code></a> and <code>d3-regression</code>.
+
+                If you would like to use either of these libraries, add the following lines to your <code>dashboard.html</code>
+                file:
+                <ul>
+                    <li><code> &lt;script&gt; type="text/javascript" src="https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js">&lt;/script&gt;</code></li>
+                    <li><code>&lt;script&gt; type="text/javascript" src="https://unpkg.com/d3-regression@1.3.4/dist/d3-regression.min.js"> &lt;/script&gt;</code></li>
+                </ul>
+
+            If you would like to use other external libraries, please <b>ask on Piazza first</b>! There will be a deduction
+                for using not allowed JavaScript libraries which potentially trivialize the assignment.
+            </p>
+
+            <h3>Run Specifications</h3>
+            To view your visualization in the browser, we're going to load the webpage via a local web server. Navigate
+            to the directory containing your <code>dashboard.html</code> file, and run
+            <pre>python -m http.server 8000</pre>
+            You then can open a browser to the url <code>http://localhost:8000/dashboard.html</code> to view your
+            dashboard.
+
+            <h3>Working Locally</h3>
+            We highly recommend setting up FUSE/SSHFS for Linux and Mac OSX users (instructions found at the bottom of the
+            <a href="https://cs.brown.edu/courses/csci1951-a/assignments/ml.html">ML handout</a>).
+
+            <h4>Port Forwarding</h4>
+            <p>
+                Another alternative is to set up port forwarding. This will allow you to edit your code over SSH and view
+                your resulting dashboard locally.
+                <br/>
+                When port forwarding, have two terminal windows open.
+
+                <ul>
+                    <li>
+                        In the first terminal, SSH into a department machine normally. <b>Note:</b> record the name
+                        of the machine (i.e. <code>cslab6e</code>)
+                    </li>
+                    <li>
+                        Start a local webserver on the department machine with
+                        <pre>python -m http.server 8000</pre>
+                    </li>
+                    <li>
+                        On your local machine, run the following command
+                        <pre>ssh &lt;your login&gt;@ssh.cs.brown.edu -N -L 8000:[HOSTNAME]:8000</pre>
+                        Using <code>cslab6e</code> as the example, your command would be
+                        <pre>ssh &lt;your login&gt;@ssh.cs.brown.edu -N -L 8000:cslab6e:8000</pre>
+                    </li>
+                </ul>
+                Now, on your local machine, you can navigate to <code>http://localhost:8000/dashboard.html</code> to view your
+                dashboard, and edits you make on the department machine will be reflected on the dashboard you are
+                viewing on your local machine.
+            </p>
+            <h4>Actually Locally</h4>
+            <p>
+                This assignment is completely in javascript and html. This means that it does not
+                require packages or python to run! We recommend using the python http server to host the
+                page as that is responsive.
+
+                As such, if you install base python3 (or 2), have a text editor, and a web browser you can run this assignment natively on your machine.
+                You should confirm things work the same (we have no reason to believe they wouldn't) on the department before handing in, but we do encourage you to develop locally if that is easy for you.
+            </p>
+
+            <hr>
+
+            <h2>Written Questions</h2>
+            <h4>32 points</h4>
+            Write answers to the following questions below your dashboard in <code>dashboard.html</code> :
+            <ol>
+                <li>Describe how your dashboard answers the questions presented. You don't have to address
+                every question directly, but should at a high level address the main questions. (10 points)</li>
+                <li>List 3 reasons why D3 was helpful and improved your visualization (6 points)</li>
+                <li>List 3 reasons why D3 would <strong>not</strong> be the best tool for creating a visualization (6 points)</li>
+            </ol>
+            </p>
+
+            <p>
+                Hopefully through this exercise, you've all seen how data visualizations are powerful tools that we can leverage
+                to efficiently and easily communicate ideas. However, not all graphs/charts are made equal. Read this article on
+                <a href="https://venngage.com/blog/misleading-graphs/?fbclid=IwAR3QeCDEq59E8VSFL3nSxyUDr5qtDB4i5pk7pUsi09TBEMgYSr9qTJIHwiA">
+                    misleading graphs</a> and answer the
+                following questions underneath your dashboard in <code>dashboard.html</code> as well.
+            </p>
+            <ul>
+                <li> Give two different ways in which graphs may confuse or mislead viewers. What are ways to avoid this
+                    or fix these issues? (4 points)
+                </li>
+                <li>
+                    Data visualizations can be found everywhere. Find a real world example of a strong data graphic and explain
+                    what it does well. Next, find a not-as-good data graphic and explain what it does poorly and 
+                    how to improve it. Please include a photo or link of your examples alongside your answer. Some cool places
+                    to look for visualizations could be on Fivethirtyeight, the Economist, or perhaps even the course website! (6 points)
+                </li>
+            </ul>
+
+            <p>
+            If you enjoyed the reading or want to see some more real life examples of flawed visualizations (and how they could be
+            improved), feel free to read the following articles as well. However, these are not required.
+            </p>
+
+            <ul>
+                <li> <a href="https://qz.com/580859/the-most-misleading-charts-of-2015-fixed/?fbclid=IwAR3ZiPLVREpjVy5A4YhFYCIL8XEaIk13a4UHRZzXAi4s8F6_jf_a44X4XDM">
+                        The Most Misleading Charts of 2015, Fixed</a>
+                </li>
+                <li>
+                    <a href="https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368">
+                        Mistakes, we've drawn a few - The Economist</a>
+                </li>
+            </ul>
+            <hr>
+
+            <h2>Handing In</h2>
+                <p>
+                    Your <code>~/course/cs1951a/data_viz/</code>must contain at least the following:
+                    <ul>
+                        <li><code>dashboard.html</code></li>
+                        <li><code>main.js</code></li>
+                        <li><code>main.css</code></li>
+                        <li><code>README.txt</code> - containing anything you'd like the TAs to know about your handin</li>
+                    </ul>
+                Then run: <code>cs1951a_handin data_viz</code>.
+                <!-- don't worry about filling in handin command -->
+                </p>
+                <!-- keep the line above unless assignment requires students to get own data -->
+                <h4>Important!</h4>
+                <ul>
+                    <li>Make sure your code runs on the department machines before handing in.</li>
+                    <li>Make sure you're using the correct relative path when referencing any of the js/html files in your handin.
+                        There will be a deduction if there are problems viewing your visualization due to incorrect file paths.</li>
+                </ul>
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    This assignment was created in Spring 2020 by Arvind Yalavarti (ayalava2) and Joshua Levin (jlevin1).
+                </p>
+        <div class="col-md-2"></div>
+        <br><br>
+    </div>
+
+</body>
+</html>

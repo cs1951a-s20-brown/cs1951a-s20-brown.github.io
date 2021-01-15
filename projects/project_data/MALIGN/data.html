@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Instaprediction</title>
+</head>
+<body>
+	<p>
+		<strong>IMPORTANT</strong>
+The data we collected contains a comment field that may be multiline. Given that the csv format assumes each line is a unique entry, we will not be using csv files for the remainder of our project but rather json files. csv files are provided in this deliverable only for readability.
+	</p>
+	<section>
+		<h1>Data Spec</h1>
+		<p>
+			The data we scraped and cleaned is stored in csv and json files. Each entry contains a unique Instagram post. Below is an example:<br>
+ID=7169 username="postmalone" timestamp=2019-09-08 20:32:21+00:00 firstComment="@postyfest is going on sale:) Citicard pre sale begins Tuesday September 10th at 10 AM local time. Public on sale Saturday Sept. 14 @ 10 AM &#127867;&#127867;&#128153;&#128153; postyfest2019.com" locationName="AT&T Stadium" imageUrl=<a href="https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/e35/68681751_426086804932901_546256150984978581_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Y3PaE7LOwiMAX8hGeVO&oh=d9554fff06705b5b60b1b5c70cb0780c&oe=5E8D9D70" target="_blank">https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/e35/68681751_426086804932901_546256150984978581_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Y3PaE7LOwiMAX8hGeVO&oh=d9554fff06705b5b60b1b5c70cb0780c&oe=5E8D9D70</a> url=<a href="https://www.instagram.com/p/B2Ket6KF_f3" target="_blank">https://www.instagram.com/p/B2Ket6KF_f3</a> likesCount=403696.0 followersCount=21007327 followsCount=932 isBusinessAccount=False verified=True postsCount=952<br><br>
+ID : integer -- unique ID for the post entry in the dataset (automatically generated)<br>
+username : string -- the username of the person who made the post<br>
+timestamp : datetime -- datetime string representing when the post was made (UTC)<br>
+firstComment : string -- the post's caption. if the post has no caption, this will be null<br>
+locationName : string -- the location, set by the user, of where the post was taken<br>
+imageUrl : string -- the URL for the image/video contained in the post<br>
+url : string -- the URL for the post itself<br>
+likesCount : integer -- the number of likes the post received<br>
+followersCount : integer -- the number of followers the user who made the post has<br>
+followsCount : integer -- the number of accounts the user who made the post follows<br>
+isBusinessAccount : boolean -- true if the account is a business account, false otherwise<br>
+verified : boolean -- true if the user is verified, false otherwise<br><br>
+* NOTE * This structure may be later modified to contain indicator variable columns. For example, we may add spring, summer, and autumn columns if we wanted seasonality to be a parameter in future analysis. The same can be said for time of day posted, category of image, etc.
+		</p>
+	</section>
+	<section>
+		<h1>Data</h1>
+		<p>The data can be downloaded <a href="https://drive.google.com/drive/folders/1hTFu6g-DaEtm0vcCjtiGgs5Vn3t-HOmC?usp=sharing" target="_blank">here</a>.<br><br>
+		<i>final_data.csv/.json</i> contains the final dataset. <i>final_data_samp.csv/.json</i> contains a sample of thirty rows from our final dataset. <i>page_data.json</i> contains scraped account data, and <i>post_data.json</i> contains scraped post data. These two are intermediate datasets that were filtered and merged to create the final dataset.<br><br>
+		A sample of our data (size=30):<br>
+		<img height="500" src="sample.png">
+	</p>
+	</section>
+	<section>
+		<h1>Data Collection</h1>
+		<p>The data used in this project are Instagram posts gathered from the top 500 musicians with Instagram accounts, according to this <a href="https://hypeauditor.com/top-instagram-music/" target="_blank">website</a>.<br><br>
+		First, we needed usernames, so we scraped the above site for the musicians' Instagram handles by downloading each separate .html page ---- access required login, so downloading the pages' source was simpler ---- then coding a scraper that looped through each html document while extracting usernames using Beautiful Soup. The next step was converting that list of usernames to a list of direct URLs of Instagrams user pages, as this was the required input for the open-source Instagram Scraper from Apify that we ended up using. We prepended the Instagram base URL to each username in our script with list comprehension.
+<br><br>
+Before we could input this into Apify's Instagram Scraper, however, we had to clean our list of usernames. There were Instagram users in our list who did not meet the common-sensical standard for professional musicians, like YouTubers who've released a single diss track, actresses who have never done anything music-related, and, comically, UFC's official Instagram. So, in a divide-and-conquer fashion, we manually handpicked, using Google as a reference, the usernames belonging to people who are actually professional musical artists. After this was completed, we had 358 artists from which to scrape posts from.
+<br><br>
+We each fed a quarter of filtered usernames into the Instagram scraper on our four Apify accounts (to expedite the process), which scraped the 300 most recent posts, if available, from each artist's account. At this point, our unprocessed data was already looking pretty good, but there was one problem ---- the post data did not contain follower count data. We then did a separate scrape which scraped account data (page_data.json in the data folder). At this point, we had two datasets we could easily process and merge using pandas to get a resulting dataset with all the desired fields.
+<br><br>
+Using pandas, we read the json data into pandas dataframes, dropped columns irrelevant to our prediction model, and filtered on posts by timestamp (we only wanted posts from the last year). This is because we want our prediction model to use seasonality (image posted in the summer, winter, etc.?) as a parameter, but we also did not want posts too far in the past, when the account had fewer followers, as that might skew our conclusions.
+<br><br>
+After all the data processing we went through, we ended up with a total of 45328 posts from 358 artists. We believe this is enough data to train a prediction model that will produce somewhat accurate predictions.</p>
+	</section>
+	<section>
+		<h1>FAQ</h1>
+		<p>Q: Is the source (Instagram) reputable?<br>
+A: For the purposes of our project, Instagram is our primary source of data. For reputability, it is arguably the largest social media platform in existence, and we trust it contains accurate post data (like count, date/time posted, etc).<br><br>
+
+Q: How did you generate the sample? Is it comparably small or large? Is there sampling bias?<br>
+A: We used the sample method in Pandas, passing in the parameter of 30 for n, and outputted the sample data to files final_data_samp.json/.csv. The sample is comparably small (30 / 45328 ~ %0.06618 of all posts). We don't expect any sampling bias, as the sample was generated pseudo-randomly from the entire dataset.<br><br>
+
+Q: Are there missing values? Are those fields relevant?<br>
+A: There are missing values but rarely in the fields we care about. The exceptions are firstComment (the post's caption) and locationName, which can potentially be null. This will not impact our prediction model as, later on, we can simply choose to leave these fields out, or incorporate them in a way that it does not skew our conclusions.<br><br>
+
+Q: Are there duplicates?<br>
+A: There are no duplicates. We double checked by using the Pandas drop_duplicates method, passing in "url" as the subset criteria on which to drop duplicates. This ensures that each post instance in the table is unique.<br><br>
+
+Q: How is the data distributed? Uniform or skewed? Outliers?<br>
+A: We decided not to do any data distribution analysis, as such analysis is not relevant for our project. We checked for outliers and found nothing out of the norm.<br><br>
+
+Q: Were there any data type issues?<br>
+A: No, the data was all clean and in a standard format because we were using a well-established API to do the bulk of the scraping. Eventually, we will have to do some conversions from the pandas data types to Python data types (datetime64 → datetime, etc.).<br><br>
+
+Q: Did you need to throw away any data? Why?<br>
+A: Yes. As mentioned, we filtered out scraped results that did not fall into our specified timeframe of one year because not doing so may skew results later on (account in past with fewer followers implies fewer likes on posts). Dropping this data should not impact the predictions we will be able to make, as we expect to have enough data in just the past year to make meaningful predictions.<br><br>
+</p>
+	</section>
+	<section>
+		<h1>Challenges & Next Steps</h1>
+		<p>
+Moving on, we plan to create models that allow us to train on the data we have and create a prediction model for how many likes a popular musician will gain on their next post. In order to do this, we will need to reformat our data so it can be passed into a linear regression/machine learning model. That will most likely include splitting the datetime attribute into booleans and extracting the day of the week, time of day, time of year, etc. Also, we would like to find out whether the post contains a photo or a video (which we know based on the URL of the image), as well as what kind of information the media and caption can tell us.<br><br>
+With this in mind, some challenges we may face include:<br>
+Deciding what information we want from the image/video content that will help our prediction model (we have many options for this, such as colors in the image or image contents). Also, we may choose to include some sort of natural language processing mechanism to let us predict based on the caption of the post. This may pose a challenge as we decide how to categorize and quantify the content and length of the caption.</p>
+	</section>
+
+</body>
+</html>

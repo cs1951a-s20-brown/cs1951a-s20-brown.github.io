@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        h1{font-family: courier;}
+        body {font-family: courier}
+        p {text-align:justify}</style>
+
+        <h1>
+        Earth, Wind, Fire: Data Analysis </h1>
+    <hr></hr>
+    </head>
+    <body>
+        <h5 > HYPOTHESIS:</h5>
+        <p><small><b> The month with the most cold/hot days is the month with the highest (a) residential natural gas consumption and (b) residential electricity consumption. </b> </br></br>
+        <a href="https://colab.research.google.com/drive/1POf0KQ6LhLBI3Oie0apC0UIf58uOkWF4" style=color:red>Link to full code for data manipulation and statistical analysis</a></small>
+    </p>
+    <hr></hr>
+    <h5>RESTRUCTURING OUR DATA:</h5>
+    <p><small>Originally, our data consisted of daily <b>minimum/maximum</b> temperatures for all 6 states of New England over a 10 year time period. We decided to define what a "cold" or "hot" day is by state using the following approach: <br/><br/>
+        <ul>
+            <li> <b>Hot day:</b> For every state, we calculated the 75th percentile of all the maximum daily temperatures in that state over the 10 year period. Any maximum daily temperature above or at the 75th percentile is considered "hot"</li><br/>
+            <li><b>Cold day: </b> For every state, we calculated the 25th percentile of all the minimum daily temperatures in that given state over the 10 year period. Any minimum daily temperature below or at the 25th percentile is considered "cold"</li>
+        </ul>
+
+       Then, for every state, we summed up the number of hot and cold days in every month of the 10 year period. We used two different techniques for our statistical analysis: Multiple Linear Regression and Normalized Simple Linear Regression. 
+       For both of these regression types, the idea was to model the linear relationship between:
+       <ul>
+        <li>the number of hot days per month and monthly natural gas consumption (MCF)</li>
+        <li>the number of hot days per month and monthly electricity consumption (kWh)</li>
+        <li>the number of cold days per month and monthly natural gas consumption (MCF)</li>
+        <li>the number of cold days per month and  monthly electricity consumption (kWh)</li>
+    </ul>
+       For each technique, we had to restructure our data further. </br>
+       <b><a href="https://drive.google.com/file/d/18xMRUgFAtXAXulJ8nHzwdkkaEPvBbhrQ/view?usp=sharing" style=color:red>This is a link to our data before any restructuring for statistical analysis:</a></b>
+    </small></p>
+       <h5> RESTRUCTURING FOR MULTIPLE LINEAR REGRESSION (MLR):</h5>
+    <p><small>
+        For our MLR analysis, we decided to add the following dummy variables to our data: a variable for each state and a variable for each season.
+        For example, if a datapoint was representing the number of hot days in RI in January 2010, the "RI" and "Winter" dummy variables would take on a value of 1 whereas all the other states and seasons would take on a value of 0. 
+        The reason for doing this was to offset the discrepancies between different states, such as population size. For example, in January 2010, RI had 28 cold days and MA had 29 cold days. Gas consumption in RI that month was 3138 MCF whereas
+        in MA, it was 23,141 MCF. This is probably because MA has a larger population size than RI, therefore consumes for gas. 
+    </br></br>
+        When modeling the relationship between the number of monthly <b>hot</b> days and monthly natural gas or electricity consumption, we decided to exclude datapoints which had zero hot days.
+        Similarly, when modeling the relationship between the number of monthly <b>cold</b> days and monthly natural gas or electricity consumption, we excluded datapoints which had zero cold days. 
+        We thought this would be appropriate since we are anyways plotting the number of hot days/month and cold days/month on <i>separate</i> regressions. For example, if a month (e.g. January) has zero 
+        hot days, it probably has many cold days. Therefore, that datapoint should only be used in the regressions where the independent variable is number of cold days/month. 
+</br>
+        <b><a href="https://drive.google.com/file/d/1Pl9uSHOJxXo-heBVoXv4xmqSeImu2zRX/view?usp=sharing" style=color:red>This is a link to our data after adding dummy variables for MLR</a></b>
+    </small></p>
+    <h5>RESTRUCTURING FOR NORMALIZED SIMPLE REGRESSION:</h5>
+    <p><small>
+        For our simple regression model, we were only working with one independent variable at a time - either number of monthly hot days or number of monthly cold days - and therefore did not have any 
+        dummy variables. However, we decided to normalize our dependent variables: monthly natural gas/electricity consumption. For each state, we normalized the state's monthly natural gas/electricity consumption 
+        by using a min-max normalization function. Once again, we decided to exclude data points where the independent variable had a value of zero i.e. x=0 for the same reason mentioned above. </br>
+    <b><a href="https://drive.google.com/file/d/14aJhSQrZ-NqwcrQAVVjNZbxsLYACB5PI/view?usp=sharing" style=color:red>This is a link to our data after normalizing our dependent variables</a></b>
+    </small></p>
+    <hr></hr>
+<h5> RESULTS AND ANALYSIS</h5>
+<h5> 1. MULTIPLE LINEAR REGRESSION RESULTS</h5>
+<p><small> For MLR, we decided to plot our results on scatter plots of observed values compared to fitted values. We chose this graph type in order to easily observe trends and anomolies in our data.<br/>
+    <img src="MLR.png" width="1000" height="600"> </br></br>
+   <b><a href="https://drive.google.com/file/d/17EFDfmG_BVEY31qXICgQVXYaUxMzD5qD/view?usp=sharing" style=color:red> This is a link to the four OLS Regression Summaries </a></b> </br>
+</small></p>
+<h5>2. NORMALIZED SIMPLE LINEAR REGRESSION</h5>
+<p><small>
+    For the normalized simple regression, we decided to plot our results on scatter plots with a line of best fit to represent the correlation between the two variables. Underneath each graph, we put the coefficient (or slope) of the line, 
+    the intercept, Pearson's correlation coefficient, and the p-value. <br/>
+    <img src="simple_reg.png" width="950" height="600"> <br/>
+</small></p>
+<hr></hr>
+
+<h5> HOW WE MEASURED SUCCESS: </h5>
+<p><small>
+    <b>1. Multiple Linear Regression:</b> <br/>
+To measure the success of our MLR, we decided to look at the OLS Regression Summaries for each of the four graphs (linked above). 
+We specifically focused on the coefficient of the independent variable (either number of hot days or cold days per month), the r-squared value and the p-value.
+A p-value less than 0.05 is said to be statistically significant. R-squared is a measure of how well the model fits the data. The higher the r-squared, the smaller the difference between the observed data and the fitted values.
+<ul>
+    <li><b>Cold Days vs Gas Consumption: </b> The coefficient on the "number of cold days/month" variable is 139.468. This means that an increase in one cold day is associated with a 139.468 MCF increase in gas consumption. 
+        The r-squared value is 0.911. The p-value for the "number of cold days/month" variable is 0.000</li><br/>
+    
+    <li><b>Cold Days vs Electricity Consumption: </b>The coefficient on the "number of cold days/month" variable is 6.535. This means that an increase in one cold day is associated with a 6.535 kWh increase in electricity consumption.
+    The r-squared value is 0.978. The p-value for the "number of cold days/month" variable is 0.000</li> <br/>
+
+    <li><b>Hot Days vs Gas Consumption: </b>The coefficient on the "number of hot days/month" variable is -51.167. This means that an increase in one hot day is associated with a -51.167 MCF decrease in gas consumption.
+    The r-squared value is 0.762. The p-value for the "number of hot days/month" variable is 0.000</li> <br/>
+
+    <li><b>Hot Days vs Electricity Consumption: </b>The coefficient on the "number of hot days/month" variable is 11.212. This means that an increase in one hot day is associated with a 11.212 kWh increase in electricity consumption. 
+    The r-squared value is 0.956. The p-value for the "number of hot days/month" variable is 0.000</li>
+</ul><br/>
+
+<b>2. Normalized Simple Linear Regression:</b><br/>
+To measure the success of our simple regressions, we decided to look at the regression coefficient (slope), intercept, Pearson's correlation coefficient and p-value. 
+A p-value less than 0.05 is said to be statistically significant and a correlation coefficient that lies between ± 0.50 and ± 1 represents a strong correlation. 
+<ul> 
+    <li><b>Cold Days vs Gas Consumption:</b> The correlation coefficient is 0.854 and the p-value is 0.000 (3 s.f.). 
+    Therefore, we can conclude that there is a strong positive correlation between the number of cold days/month and monthly gas consumption</li> <br/>
+    <li><b>Cold Days vs Electricity Consumption: </b>The correlation coefficient is 0.776 and the p-value is 0.000 (3 s.f.).
+    Therefore, we can conclude that there is a strong positive correlation between the number of cold days/month and monthly electricity consumption</li> <br/>
+    <li><b>Hot Days vs Gas Consumption:</b> The correlation coefficient is -0.695 and the p-value is 0.000 (3 s.f.).
+    To our surprise, there is a strong negative correlation between the number of hot days/month and monthly gas consumption.
+    This could be because air-conditioning units are likely to be powered by electricity, not natural gas. </li> <br/>
+    <li><b>Hot Days vs Electricity Consumption: </b>The correlation coefficient is 0.790 and the p-value is 0.000 (3 s.f.).
+    Therefore, we can conclude that there is a strong positive correlation between the number of hot days/month and monthly electricity consumption. </li>
+</ul>
+</small></p>
+<hr></hr>
+
+<h5>CHALLENGES WITH VISUALIZING AND EVALUATING DATA</h5>
+<p><small>
+<ul>
+    <li>When we plotted our annual scatterplots, there were some months that had zero "hot" or "cold" days by our definition. This meant that in our regression, the independent variable would often have a value of zero. To work around this, we decided not to plot the natural gas/electricity consumption for those months i.e. we did not plot (x,y) pairs where x=0.</li><br/>
+    <li>We realize that there are uncontrolled variables that might have skewed our results, such as the relative prices of natural gas and electricity in these states. We tried to offset this by adding dummy variables in MLR and normalizing our dependent variables in simple regression. </li>
+</ul>
+</small></p>
+<hr></hr>
+
+<h5>CONCLUSION</h5>
+<small><p>
+We partially accept our hypothesis. We accept that the month with the most hot/cold days is the month with the highest electricity consumption.
+Moreover, we accept that the month with the most <b>cold</b> days is the month with the highest natural gas consumption. However, we reject that
+the month with the most <b>hot</b> days is the month with the highest natural gas consumption. This is because we observed an inverse relationship between 
+the number of hot days per month and monthly natural gas consumption. 
+<br/>
+</small></p>
+<hr></hr>
+<h5>FUTURE STEPS</h5>
+<p><small>
+Moving forward, we plan to further interpret the coffecients of our dummy variables in MLR.
+For our final poster, we plan to include the graphs above and samples of our data tables to show how data was collected and manipulated. 
+</small></p>
+<hr></hr>
+<small><b>Daniel Civita, Daniela Haidar, Sharon Alexander, Ascanio di Cellere</b></small>
+
+</body>
+</html>

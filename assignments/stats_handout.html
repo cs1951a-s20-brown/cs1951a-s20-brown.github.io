@@ -1,0 +1,195 @@
+
+<html>
+<!-- FILL IN EVERYTHING SURROUNDED BY CURLY BRACES UNLESS OTHERWISE SPECIFIED -->
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Assignment 4 &laquo; Statistics and Regression &raquo;</title>
+</head>
+
+<body>
+
+<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1> Assignment 4 <small>&laquo; Statistics and Regression &raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                
+                <p>
+                    <ul>
+                        <li>Due date: March 13, 2020</li>
+                        <li>Stencil: <code>cs1951a_install stats</code></li>
+                        <li>Data: <code>/course/cs1951a/pub/stats/data/</code>
+                            (will be automatically installed in: <code>~/course/cs1951a/data/stats</code>)
+                        </li>
+                        <li>Handin: <code> cs1951a_handin stats </code></li>
+                        <li>Files to submit: README.txt, simple_regression.py, multiple_regression.py</li>
+                    </ul>
+                </p>
+                <p>
+                    <img src="regression_meme.jpg" alt="Regression Joke">
+                </p>
+            <hr>
+
+            <h2>Overview</h2>
+                <p>In this assignment you will
+                implement simple linear regression and analyze multiple linear regression. Check out
+                <a href = "https://seeing-theory.brown.edu/"> Seeing Theory</a> for help understanding these concepts!</p>
+
+            <hr>
+
+            <h2>Assignment</h2>
+                <p>
+                    <!-- <br><br> -->
+
+                    You will modify <code>simple_regression.py</code> and <code>multiple_regression.py</code> using <code>bike_sharing.csv</code>. You will also submit <code>README.txt</code> with your answers to the questions for Part 3.
+                    </ol>
+                </p>
+<!--             make sure to use <hr> tags to separate each problem part -->
+            <hr>
+            <h2>Simple and Multiple Linear Regression</h2>
+            
+
+                <h4>Linear Regression </h4>
+                    <p>Regression is used to predict numerical values given inputs. Linear regression attempts 
+                        to model the line of best fit that explains the relationship between two or more variables 
+                        by fitting a linear equation to observed data. 
+                        One or more variables are considered to be the independent (or explanatory) variables, 
+                        and one variable is considered to be a dependent (or response) variable. 
+                        In simple linear regression, there is one independent variable
+                         and in multiple linear regression, there are two or more independent variables. 
+                    </p>
+
+                    <p>Before attempting to fit a linear model to observed data, a modeler should first determine whether or 
+                        not there is a linear relationship between the variables of interest. This does not necessarily imply 
+			that one variable causes the other. Remember, <i>correlation does not necessarily imply causation</i>.
+                        For example, moderate alcohol consumption is correlated to longevity. This doesn’t necessarily mean that 
+                        moderate alcohol consumption causes longevity. Another independent characteristic of moderate drinkers 
+                        (extrovert lifestyle) might be responsible for longevity. Regardless, there is some association between the two variables. 
+			The goal in linear regression is to tease apart whether a correlation is likely to be a causal relationship, by controlling for these other variables/characteristics that might be confounding the analysis.
+                    </p>
+
+                    <p>In simple linear regression, <a href = "http://www.stat.yale.edu/Courses/1997-98/101/scatter.htm"> scatter plot</a> can be a helpful 
+                        tool in visually determining the strength of the relationship between two variables. The independent variable is 
+                        typically plotted on the x-axis and the dependent variable is typically plotted on the y-axis. If there appears to be 
+                        no association between the proposed explanatory and dependent variables (i.e., the scatter plot does not indicate any 
+                        clear increasing or decreasing trends), then fitting a linear regression model to the data probably will likely not provide a useful model. (Note this is not always the case--just as confounding variables might lead a correlation to appear stronger than it is, it might also lead a relationship to appear weaker than it is.)
+                    </p>
+
+                    <p>Shown in the picture below, in simple regression, we have a single feature x and weights w0 for the intercept and w1 for slope of the line. Our goal is to find the line that minimizes the vertical offsets, otherwise known as residuals. 
+                        In other words, we define the best-fitting line as the line that minimizes the residual sum of squares (SSR or RSS) between our target variable y and our predicted output over all samples i in our training examples n. 
+                    </p>
+
+                    <img src="simple_regression.png">
+                    <p>A valuable numerical measure of association between two variables is the <a href = "http://www.stat.yale.edu/Courses/1997-98/101/correl.htm"> correlation coefficient </a>, which is a value between -1 and 1 indicating the strength of the association of the observed data for the two variables. A simple linear regression line has an equation of the form <b>Y = a + bX</b>, where <b>X</b> is the independent (explanatory) variable and <b>Y</b> is the dependent variable. The slope of the line is <b>b</b>, and <b>a</b> is the intercept (the value of y when x = 0). A multiple linear regression line has an equation of the form <b>Y = a + b_1X_1 + b_2 X_2 + … + b_n X_n</b> for n independent variables.</p>
+                    <p>Another useful metric is the <b>R-squared</b> value. This tells us how much of the variation in Y can be explained by the variation in X. The value for R-squared ranges from 0 to 1, and the closer to 1, the greater proportion of the variability in Y is explained by the variability in X. 
+                     For more explanation on R-squared and how to calculate it, read <a href = "https://online.stat.psu.edu/stat501/lesson/1/1.5/1.5.2"> here </a> (this will be very helpful in Part 2!) </p>
+
+                    <p>Do not confuse correlation and regression. Correlation is a numerical value that quantifies the degree to which two variables are related. Regression is a type of predictive analysis that uses a <b>best fit line (Y = a + bX)</b> that predicts Y given the value of X).</p>
+                <h4>Part I: Data </h4>
+                <h5> 18 Points</h5>
+                    <p>The <code>bike_sharing.csv</code> contains data of a two-year historical log corresponding to years 2011 and 2012 
+                        from Capital Bikeshare system, Washington D.C., USA. There are 11 different independent variables that you will use
+                        and one dependent variable (the Count of Use of Bike) you are attempting to predict. More information on the dataset can be found in <code>README_data.txt</code>. 
+                        The data functions described below are both in <code>simple_regression.py </code>and <code>multiple_regression.py</code> but most can be re-used from one to the other, 
+                        you'll only need to update which variables you are loading. The variables you need are described in each part.
+        
+                        </p>
+                        <p>
+                        First, open <code>simple_regression.py</code>  and load the data, into X, and y variables using pandas. Make sure to load the correct dependent and independent variables. 
+                        Take note to update this when implementing <code>multiple_regression.py</code> as you'll be using different variables.
+                        Then, fill in the functions <code>split_data</code> and <code>train_test_split</code> to split the data into train and test datasets. 
+                        You should create the following variables:<code>X_train</code>, <code>X_test</code>, <code>y_train</code>, <code>y_test</code>. 
+                       
+                         
+                        A common convention in data science is to make 80%  of the data the training data and 20% the test data. 
+                        We have provided <code>p = 0.2</code>; use it in your split_data function to obtain this 80/20 split. 
+                        You will train your model on the training data and test it on the test data. Furthermore, we expect you to distribute the data randomly, look into 
+                        how you can use <a href = "https://docs.python.org/3/library/random.html"> Python random.random </a> to do this. We set <code>random.seed(1)</code> to guarrantee that we obtain the same 
+                        split on every run.
+                        Lastly, when splitting data make sure that 
+                        X,y pairs remain intact, that is, every X and its corresponding Y should both be in the same list(either test or train) and at the same index to make sure your model 
+                        is accurate. To do this, we recommend using <a href = "https://docs.python.org/3.3/library/functions.html"> Python zip </a>to form pairs before splitting the data into train and test sets.
+                    </p>
+                <h4>Part II: Simple Linear Regression</h4>
+                    <h5>22 points</h5>
+
+                    <p> The management team of Capital Bikeshare system wants to know how much weather conditions can 
+                        predict bikesharing use. Please open <code>simple_regression.py</code> and implement simple 
+                        linear regression model that predicts the number of total rental bikes per day (cnt) given the 
+                        weather conditions (weathersit). 
+                        Fill in the helper functions for mean, variance and covariance. You cannot use numpy functions for these calculations.
+                        Use this in your train function to calculate the (a,b) of your regression model. 
+                        Lastly, fill in the test function which is used to evaluate your model. Here you should calculate and print your training
+                        and testing mean squarred error, and your testing r-squared. Refer to the link above on how to calculate r-squared.
+                        For reference, our testing-MSE is: <strong>3379151.988</strong> , our training-MSE is: <strong>3426970.40</strong> , and our R-squared is: <strong>0.0682.</strong>
+                        
+                    </p>
+                <h4>Part III: Multiple Regression</h4>
+                    <h5>20 points</h5>
+                    <!--p>Wait, the management team realized that there are many more variables that affect bikesharing use in addition to weather conditions. Let’s find out how much better we can predict bikesharing use, utilizing multiple independent variables available in our dataset. </p-->
+		    <p>Wait, the management team realized that there are many more variables that affect bikesharing use in addition to weather conditions. They are concerned that by ignoring these variables, your simple linear regression might be over or underestimating the effect of weather on useage.</p>
+                    <p>Please open <code>multiple_regression.py</code> and using <a href="https://www.statsmodels.org/stable/examples/notebooks/generated/ols.html">StatsModels </a>, implement a multiple linear regression. From the given 11 different independent variables(disregard registered count and casual user count), your job is to select the ones that could help the prediction model. See how the R-squared value changes as you include different independent variables to your regression model.</p>
+                    <p>Calling function <code>summary</code> on the results returned by the regression model will print out the report containing the value of each coefficient and its corresponding p-value. See the StatsModels docs for more details.</p>
+                <h4> Part IV: Written Questions </h4>
+                <h5>40 Points</h5>
+                    <p><b>Answer the following in <code>README.txt</code></b></p>
+                    
+		    <ol>
+                        <!--li>What do the p-values mean?</li-->
+			<li>Interpret the co-efficient for weathersit according to the simple linear regression. Using plain English, what does this coefficient mean?
+			<li>Compare the co-efficient on weathersit in the simple regression to the coefficient in the multiple regression that included all variables. Did the coefficient go up or down? Why do you think this is the case?
+			<li>In the multiple regression, which variable would you say is "most important" for predicting usage? Defend your choice.
+                        <li>What does the R-squared value imply about the multiple linear regression models when compared to the simple linear regression model? Do higher R-squared always mean that the model is better? How should you best utilize R-squared to examine the goodness of fit of your linear model?</li>
+                        <li>Is there a difference between training and testing MSE? Why is comparing this important?</li>
+
+
+                        <li>An interesting statistical phenomenom is Simpson's Paradox. Read <a href="https://towardsdatascience.com/simpsons-paradox-how-to-prove-two-opposite-arguments-using-one-dataset-1c9c917f5ff9"> this article </a> explaining Simpson's Paradox. 
+ 
+                            Explain how Simpson's Paradox occurs in the context of the exercise vs. disease example (the Correlation Reversal section). (2-4 sentences) </li>
+
+                        <li>Using the exercise vs. disease example, what does the article mean by "thinking causally" in order to resolve the Simpson's Paradox? Why should we choose to separate the data into 2 groups for this specific dataset/question? (3-5 sentences) </li>
+
+                        <li> Read <a href="https://www.huffpost.com/entry/corona-beer-coronavirus-poll_n_5e598955c5b6450a30be6b33">this article</a> on a recent poll done on people's perceptions of coronavirus and Corona beer. How did news outlets initially frame the "38%" statistic? What was the actual question asked by researchers? (2-3 sentences) </li>
+
+                        <li> How could the questions asked mislead survey respondents and/or the audience of the survey? (Think about both the content of the questions as well as the order in which they're asked) (2-4 sentences)
+                        <li> In addition to the questions asked, what is another flaw in the methodology/reporting of this study? (1 sentence) </li>
+
+
+                    </ol>
+            </hr>
+
+
+            <h2>Handing In</h2>
+                <p>
+                    The folder you hand in must contain the following:
+                    <ul>
+                        <li><code>simple_regression.py</code></li>
+                        <li><code>multiple_regression.py</code></li>
+                        <li><code>README.txt</code></li>
+                    </ul>
+                Then run: <code>cs1951a_handin stats</code>.
+                <!-- don't worry about filling in handin command -->
+                </p>
+                <p>Do not hand in the data files!</p>
+                <!-- keep the line above unless assignment requires students to get own data -->
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    This assignment was updated by Marcin Kolaszewski and Diane Mutako. The ethics questions were created by Huayu Ouyang and Ben Vu.
+                    Adapted from the previous TA staff for CS1951a.
+                </p>
+                <p>
+                    Bike Sharing Dataset: Fanaee-T, Hadi, and Gama, Joao, "Event labeling combining ensemble detectors and background knowledge", Progress in Artificial Intelligence (2013): pp. 1-15, Springer Berlin Heidelberg, doi:10.1007/s13748-013-0040-3.
+                </p>
+        <div class="col-md-2"></div>
+        <br><br>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    function swap(img) {
+        var old = img.attr('src');
+        img.attr('src', img.attr('hsrc'));
+        img.attr('hsrc', old);
+    }
+
+    $(document).ready(function() {
+        document.getElementById('staff-nav').className += ' active';
+        $('.profile')
+            .mouseenter(function() { swap($(this)); })
+            .mouseleave(function() { swap($(this)); });
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <link rel="shortcut icon" href="https://cs.brown.edu/courses/csci1951-a/favicon.ico" type="image/x-icon">
+  <title>CS1951A | Staff</title>
+</head>
+<body>
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Header image--><div id="header-img"></div>
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav"><a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">Home</a><a class="nav-item nav-link" id="prequiz-nav" href="https://cs.brown.edu/courses/csci1951-a/prequiz/">Pre-Quiz</a><a class="nav-item nav-link" id="schedule-nav" href="https://docs.google.com/spreadsheets/d/1-PxBTQKhUL7Uq3hPm9kfYtxHQGCQh6s45azg6r97kc4/edit?usp=sharing" target="_blank">Schedule</a><a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">Slides</a><a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">Assignments</a><a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">Staff</a><a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">Hours</a><a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">Resources</a><a class="nav-item nav-link" id="syllabus-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_syllabus.pdf" target="_blank">Syllabus</a><a class="nav-item nav-link" id="collab-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_collab.pdf" target="_blank">Collaboration Policy</a><a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/blogs/">Project Blogs</a><a class="nav-item nav-link" id="piazza-nav" href="https://piazza.com/brown/spring2019/cs1951a">Piazza</a></div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Staff</h1>
+        <p>You may contact the course staff using any of the following:</p>
+        <p>
+          HTA email:
+          <a href="mailto:cs1951aheadtas@lists.brown.edu">cs1951aheadtas@lists.brown.edu</a>
+        </p>
+        <p>
+          UTA email:
+          <a href="mailto:cs1951atas@lists.brown.edu">cs1951atas@lists.brown.edu</a>
+        </p>
+        <p>To email an individual TA, use
+          <tt>&lt;login&gt;@cs.brown.edu</tt>.
+          Please only email specific TAs for grade complaints.
+          For all other purposes please email the TA list.
+        </p>
+        <h2>Professor</h2>
+        <div class="row">
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/ellie-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/ellie-profile.jpg">
+            <p class="name">Ellie Pavlick</p>
+            <p class="login">(ellie)</p>
+          </div>
+        </div>
+        <h2>Head TAs</h2>
+        <div class="row">
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/gurnaaz-character.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/gurnaaz-profile.jpg">
+            <p class="name">Gurnaaz Kaur</p>
+            <p class="login">(gkaur4)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/maulik-character.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/maulik-profile.jpg">
+            <p class="name">Maulik Dang</p>
+            <p class="login">(mdang3)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/wennie-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/wennie-profile.jpg">
+            <p class="name">Wennie Zhang</p>
+            <p class="login">(yzhang46)</p>
+          </div>
+        </div>
+        <h2>UTAs</h2>
+        <div class="row">
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/alex-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/alex-profile.jpg">
+            <p class="name">Alex Jang</p>
+            <p class="login">(ajang)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/anna-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/anna-profile.jpg">
+            <p class="name">Anna Nakai</p>
+            <p class="login">(anakai)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/ashish-character.jpeg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/ashish-profile.jpg">
+            <p class="name">Ashish Rawat</p>
+            <p class="login">(arawat)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/david-character.png" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/david-profile.png">
+            <p class="name">David Wang</p>
+            <p class="login">(dwang33)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/erin-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/erin-profile.jpg">
+            <p class="name">Erin Bugbee</p>
+            <p class="login">(ebugbee)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/esteban-character.jpeg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/esteban-profile.jpg">
+            <p class="name">Esteban Safranchik</p>
+            <p class="login">(esafranc)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/haomo-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/haomo-profile.jpg">
+            <p class="name">Haomo Ni
+              <p class="login">(hni2)</p>
+            </p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/joon-character.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/joon-profile.png">
+            <p class="name">Hyunjoon Lee</p>
+            <p class="login">(hl70)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/iris-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/iris-profile.png">
+            <p class="name">Iris Lee</p>
+            <p class="login">(ilee8)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/jacob-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/jacob-profile.jpg">
+            <p class="name">Jacob Meltzer</p>
+            <p class="login">(jmeltze1)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/jens-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/jens-profile.jpg">
+            <p class="name">Jens Rischbieth</p>
+            <p class="login">(jrischbi)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/miles-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/miles-profile.png">
+            <p class="name">Miles Campbell</p>
+            <p class="login">(mmc1)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/mounika-character.png" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/mounika-profile.png">
+            <p class="name">Mounika Dandu</p>
+            <p class="login">(mdandu)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/paarul-character.jpeg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/paarul-profile.png">
+            <p class="name">Paarul Sukanya Arulappa</p>
+            <p class="login">(parulapp)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/palak-character.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/palak-profile.gif">
+            <p class="name">Palak Goel</p>
+            <p class="login">(pgoel1)</p>
+          </div>
+          <!-- <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/pavlo-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/pavlo-profile.png">
+            <p class="name">Pavlo Lyalyutskyy</p>
+            <p class="login">(plyalyut)</p>
+          </div> -->
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/shivani-character.png" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/shivani-profile.jpg">
+            <p class="name">Shivani Guturu</p>
+            <p class="login">(sguturu)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/shre-character.jpeg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/shre-profile.png">
+            <p class="name">Shre Kapoor</p>
+            <p class="login">(skapoor)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/tanvir-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/tanvir-profile.jpg">
+            <p class="name">Tanvir Shahriar</p>
+            <p class="login">(tshahria)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/Weiqi-disney.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/Weiqi.jpg">
+            <p class="name">Weiqi Pan</p>
+            <p class="login">(wpan4)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/Yiquan.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/Yiquan.jpg">
+            <p class="name">Yiquan Xu</p>
+            <p class="login">(yxu73)</p>
+          </div>
+          <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/zander-character.gif" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/zander-profile.png">
+            <p class="name">Zander Chase</p>
+            <p class="login">(achase)</p>
+          </div>
+           <div class="col-md-4 staff"><img class="profile img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/fumeng-character.jpg" hsrc="https://cs.brown.edu/courses/csci1951-a/res/img/fumeng-profile.JPG">
+            <p class="name"><a href = "http://www.fmyang.com" target="_blank">Fumeng Yang</p>
+            <p class="login">(fyang7)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2019 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</body>

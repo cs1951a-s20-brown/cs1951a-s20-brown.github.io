@@ -1,0 +1,93 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r/datascience</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>r/datascience</h1>
+        </div>
+        <h2>Data deliverable</h2>
+        <h3>SQL schema</h3>
+        For our data, we have 2 types of tables. First is the single table descriptions.
+        <h4>descriptions</h4>
+        <p>A table containing the columns ( r_&ltsubreddit&gt,  &ltsubreddit&gt, description). All fields but descriptions are required.<p>
+
+        <ul>
+        <li> r_&ltsubreddit&gt - a string where &ltsubreddit&gt is some subreddit name. Addition of  “r_” makes this more representative of the subreddit layout in reddit.
+</li>
+        <li>&ltsubreddit&gt - a string where  &ltsubreddit&gt is some subreddit name.</li>
+        <li>description - a string where it is a description of the subreddit as described as that subreddit’s sidebar. NULL if no description is written.</li>
+        </ul>
+        <h4>r_&ltsubreddits&gt</h4>
+        <p>A large number of tables where &ltsubreddits&gt is some subreddit name.  Each table has the columns (username, doc_count). <p>
+            <ul>
+                <li>username - a string containing between 3 - 20 characters of which are letters, numbers, dashes, and underscores only. We omit users that have made no comments in the corresponding subreddit. </li>
+                <li>doc_count - an integer representing the number of comments made by the corresponding username to <subreddit>. Required with the existence of Username value. </li>
+            </ul>
+
+        <h3>Actual data</h3>
+        <p>Here is a <a href="https://drive.google.com/drive/folders/13bBixOXs0j9NmA1T9CH-toLfJYSTWD8J?usp=sharing">link</a> to our data. You can find the small samples in csv form labeled 'small_...'. Double click on them to view in browser. :) </p>
+        <h3>Data Sources</h3>
+            <p>We collected our data from various extensions of the Reddit API, specifically, PRAW and pushshift. We also webscraped redditmetrics.com to easily get the subreddits with the highest number of subscribers. After collecting the top 100 subreddits from redditmetrics.com, we queried pushshift for the top 1000 users with the highest number of comments in each subreddit over the past 30 days. However, out of those 1,000 we only selected the bottom 50.
+</p>
+            <p>Then, of the 50*100 = approximately 5,000 users from those subreddits,  we queried pushshift again for the aggregate number of comments each of the users made in a subreddit over the past 30 days. From there, we queried the subreddit descriptions of each unique subreddit across all users.
+</p>
+            <p>The sources of our data are reputable and well trusted as supported extensions of the Reddit API.
+</p>
+            <p>Because our initial sampling was from the top 100 subreddits there was potential we would not see the full number of niche subreddits that exist. And although we have barely scratched the surface of the variety of subreddits, just by browsing we have noticed a surprisingly large number of explicit subreddits that, at least, appear to be very niche.
+</p>
+            <p>We would also like to acknowledge that although 30 days seems short, perhaps leaving our data more susceptible to trend in the favor of fads, we believe that this information will still provide interesting links across reddit users to discover links between communities. And considering that everything on the internet is based around fads, this conclusion only seems to make the most sense.
+</p>
+            <p>We also want to address the fact that the number of docs in our data will most definitely be skewed to the top 100 subreddits we collected our users from, and perhaps any existing links between those communities. However, we had no better way of guaranteeing ourselves a set of 1,000 unique users without directly collecting them form a list of subreddit comments, leading us to choose the top 100 subreddits.
+</p>
+            <h3>Data cleanliness</h3>
+
+            <p>The dirtiest parts of our data can be found in the subreddit descriptions. In some cases, the subreddit had no public description, which surprised us. However, perhaps some subreddit names like r/electrical speak for themselves. Additionally, PRAW doesn’t allow access to the descriptions of some subreddits that have closed communities - whether for privacy’s sake, such as r/lounge (which is exclusive to reddit users who have received “gold”) or closed communities like r/the_donald which are closed for quarantine.
+</p>
+            <p>We have over 15,000 unique subreddits represented, stemming from ~5,000 entries of users in each subreddit. We think this is a good launching point for a recommendation service but it does ultimately depend on what two algorithms we decide to compare.
+</p>
+            <p>The only missing values in our project can be found in the description field of the subreddits. Similarly, no duplicates, both thanks to the ease of using PRAW and pushshift.
+
+</p>
+            <p>Finally, in considering the privacy issues that may have arisen in our data collection, we think that we have been careful in not crossing any lines. The data is public and the usernames are anonymous, and we are not sharing any information on the users themselves.</p>
+            <h3>Data Distribution:</h3>
+            <img src='distribution.png' alt='distribution'>
+            <img src='distribution2.png' alt='distribution2'>
+            <img src='distribution3.png' alt='distribution'>
+            <p>We examined the total number of documents counted in each subreddit to examine the distribution. As, due to the limitations of the API’s we used, we were forced to collect data that likely overrepresented the top 100 subreddits. The data is extremely skewed right. The majority of data, ~9,600 out of ~15,000 subreddits, have between 0 and 10 documents in total. The minimum count we have is 1 from a subreddit, and the max is 94,261. The upper bound is from AskReddit -  a massively popular subreddit that unsurprisingly has far more posts than any other.
+
+</p>
+            <h3>Data Type issues</h3>
+            <p>Although our data was clean because of our use of API’s and a trustworthy webscraping site, we did encounter issues with entering the information into SQL tables. Thus, we already decided on the following when putting together the data:
+</p>
+            <p>SQL doesn’t allow dashes in the names or columns of their tables. Normally, neither do subreddits. However, reddits can makes posts to their own profile, in which case the post and any comments will appear under their username as the subreddit. This is typically used by advertisers and certain personalities. Unfortunately, we decided to cut out this data because there was no way to include it in the SQL table while guaranteeing that the key would remain unique. Given that people legitimately interested in using the service rarely use this feature, we found it non-trivial to cut that data out.
+</p>
+            <p>Additionally, SQL doesn’t allow you start a table name with a number, so we named all of our tables r_subreddit, to account for cases such as “r/3dprinting” which couldn’t have otherwise been entered as a unique entry into the table.
+</p>
+            <p>Already briefly mentioned, the subreddits that have below 5-10 users probably won’t be very relevant, for the exact same reason that we threw away items in similarities.py below the correlation_value threshold.
+</p>
+
+            <h3>Challenges and Next Steps:</h3>
+            <p>We faced a challenge on obtaining the data we needed at first. We believed the APIs contained more of the relevant information we needed, however, we ended up having to go through a round-a-bout way to obtain it. The next steps will be using the data to carry out our relevant analysis. If the data we have appears to be limited, we plan to use GCP to obtain more datapoints quicker. We used our personal machines for this task.</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>

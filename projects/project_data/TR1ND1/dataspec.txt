@@ -1,0 +1,70 @@
+The population database includes these:
+cities table:
+	country:
+	city:
+	location: concatenation of country and city for uniqueness 
+	date: YYYY-MM-DD string 
+	susceptible: int 
+	infected: int 
+	delta_infected: int 
+	recovered: int 
+	primary key (date, location)
+	
+
+
+----------------------------------------------------------------------------
+
+I. Where the cities are from
+
+The cities data were collected from population data from the UN. The infection data came from John Hopkins dataset. 
+
+II. Format of the cities
+
+Each line in the file contains one city data.  Below is an example:
+
+country = 'UK', city= 'London', location= 'London, UK', date='2020-02-20', susceptible=6, infected = 10, delta_infected= 3.5, recovered = 2
+
+a. country - country either abbreviated if it was given in that form in the infection data
+	All countries are string. 
+
+b. city - either a city, province , or state depending on what was given in the infections data
+	All cities are string. 
+c. location - concatenation of country, city 
+	All locations are strings. 
+
+d. date - date came from infection data
+	All dates are of the form YYYY-MM-DD.
+e. susceptible - number of people who can catch COV19
+	It is of the form of an int.
+
+f. infected - number of people who are infected with COV19
+	it is of the form of an int.
+g. delta_infected - the derivative of infection rates 
+	it is of the form of an int.
+h. recovered - number of people who are no longer susceptible to COV19 aka dead or immune
+	it is of the form of an int.
+----------------------------------------------------------------------
+Populations:
+	United Nations, Department of Economic and Social Affairs, Population Division (2019). World Population Prospects 2019, Online Edition. Rev. 1.
+
+Infection Data Sources:
+	World Health Organization (WHO): https://www.who.int/
+	DXY.cn. Pneumonia. 2020. http://3g.dxy.cn/newh5/view/pneumonia.
+	BNO News: https://bnonews.com/index.php/2020/02/the-latest-coronavirus-cases/
+	National Health Commission of the People’s Republic of China (NHC):
+	http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml
+	China CDC (CCDC): http://weekly.chinacdc.cn/news/TrackingtheEpidemic.htm
+	Hong Kong Department of Health: https://www.chp.gov.hk/en/features/102465.html
+	Macau Government: https://www.ssm.gov.mo/portal/
+	Taiwan CDC: https://sites.google.com/cdc.gov.tw/2019ncov/taiwan?authuser=0
+	US CDC: https://www.cdc.gov/coronavirus/2019-ncov/index.html
+	Government of Canada: https://www.canada.ca/en/public-health/services/diseases/	coronavirus.html
+	Australia Government Department of Health: https://www.health.gov.au/news/	coronavirus-update-at-a-glance
+	European Centre for Disease Prevention and Control (ECDC): https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases 
+	Ministry of Health Singapore (MOH): https://www.moh.gov.sg/covid-19
+	Italy Ministry of Health: http://www.salute.gov.it/nuovocoronavirus
+
+----------------------------------------------------------------------
+
+nrshaida
+March 10, 2020

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predictagram Analysis Deliverable Report</title>
+    <h1 style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)">Predictagram Analysis Deliverable Report</h1>
+    <h2>Group Name: MALIGN</h2>
+    <h2>Group Members: Matan Gans, Leon Jiang, Ishan Hasan, Nasheath Ahmed</h2>
+    <hr size="10">
+</head>
+<body>
+	<section>
+		<h3>Prediction Task</h3>
+		<p>We want to predict the number of likes for a given post made by a music influencer on Instagram.
+			We can evaluate our success by running our prediction model on a test set of existing posts by musicians on Instagram and compare 
+			the mean squared error for the testing data set to that of the training data.
+                    </p>
+	</section>
+	<section>
+		<h3>Statistical Test/ML Algorithms</h3>
+		<p> 
+		<ul>
+			<li>We chose to run a multiple regression as our ML algorithm since our goal was a prediction and our data consisted of multiple 
+			features and one output which was the number of likes. A multiple regression works best  for us in this case since we will be able 
+			to determine the line of best fit around the features we have as they correlate to the number of likes. The regression line will 
+			allow us to predict the future number of likes using the same feature variables that we passed into training. 
+			</li>
+			<li>
+			We measured success based on the mse that we got for the training data and the testing data. In addition, we used the R^2 value in order to 
+			determine the correlation between our features and the predicted number of likes. We used this metric as it was a good indication as to how 
+			far our regression line estimation of the predicted number of likes varied from the actual.
+			</li>
+			<li>
+			The initial challenges we faced when evaluating the model was interpreting the coefficients of the various features and the p-values that 
+			correlated with each of the features and their effect in making the predictions.
+			</li>
+			<li>
+			We had to clean the data a bit more by removing the outliers that were affecting the variation in the number of likes and was thus 
+			increasing the mse by a large margin. In addition, we had to restructure our data by transforming the timestamp used into usable features 
+			which included the month, day, and time of the respective day in utc time. In addition, we used the length of the string that was 
+			represented by the caption, and when a post didn't have a caption, we made its length 0 to make sure we didn't have null values. 
+			</li>
+		</ul>
+		</p>
+	</section>
+	<section>
+		<h3>Interpretation of Results:     </h3>
+		<p> Based on the inspection of the coefficients in the linear regression, we can make some assumptions about which features 
+			impacted the data more than others and in which direction it might push the number of likes. Based on image of the results below, we can see that posts 
+			in certain time frames, both within a day, within a week, and within a month, have the potential to affect the number of likes a post has 
+			by a considerable amount. In certain months, we can actually expect that if a post was made in January then it will increase the like count 
+			of the post by about 60,000 likes. The results summary below illustrates this point about the other features that we ended up deciding to include out of 
+			acknowledgement that they impacted total like count to a non negligible extent and the determination of this will be elaborated on later.
+			<br>
+			<br>
+			Examining these relationships piece by piece, we have the following results on the effects of time of day on number of likes in relation to the reference 
+			category (3:00pm-5:59pm) (all times are UTC):
+			<ul>
+			<li> 12:00am-2:59am - very highly positive coefficient
+			</li>	
+			<li> 3:00am-5:59am - very highly positive
+			</li>
+			<li> 6:00am-8:59am - fairly positive</li>
+			<li> 9:00am-11:59am - highly negative
+			</li>
+			<li> 12:00pm-2:59pm - fairly negative 
+			</li>	
+			<li> 3:00pm-5:59pm - <b>reference</b>
+			</li>
+			<li> 6:00pm-8:59pm - highly positive </li>
+			<li> 9:00pm-11:59pm - highly positive 
+			</li>
+			</ul>
+			This can more or less be seen in the relative peaks of Figure 5 and both graphs in this figure seem to make sense. It would seem 
+			rational that most likes occur when a post is posted at a time where most instagram users are online, and anecdotally, as a far 
+			greater percentage of social media users reside in the Western world <a href = "https://www.statista.com/statistics/578364/countries-with-most-instagram-users/">(source)</a>, 
+			it makes sense that this is the late evening UTC which corresponds to the period after the work day for most Americans. Similarly, the down tick where 
+			the coefficients are negative correspond to the dead of night and the early morning for most Americans, when people are either asleep or getting 
+			to work/at work for Europeans. Interestingly, this is not consistent with the patterns of Instagram usage amongst musicians who make more posts at 
+			different times than what results in the most likes. There might be something to be said about whether musicians could increase 
+			their total like count by posting at different times, although it is tough to make prescriptions without affecting the system in other ways. 
+			<br>
+			Fairly unsurprisingly the average like count variable is approximately 1 which semantically translates to the idea that as a user's average 
+			like count increases by 1, they can expect to receive 1 extra like on future posts. The vicinity of this coefficient to approaching the 
+			constant 1 might indicate the heavy influence a poster's history has on their future posts, suggesting that the number of likes on a photo 
+			is not so much a product of specific attributes of the post, but on the summarized total of a user's online profile
+		</p>
+	</section>
+	<section>
+		<h3>Visualizations: </h3>
+		<p> <b>Figure 1 Interpretation:</b>
+			The first figure shows the effect of the caption length on the number of normalized likes as well as average likes. The scatter plots with the linear regression model line shows that there is a negative correlation with the caption length and the number of average likes and number of normalized likes. This means that as the caption length increases, the number of likes with it should decrease. This was included in our multiple regression model since we saw that there seems to be a correlation between the caption length and the number of likes.
+			<br><br><b>Figure 2 Interpretation:</b>
+			The figure below shows the logarithmic effect of caption length on the number of normalized likes which was the likes divided by the number of followers. This figure again show the negative correlation that the caption length has with the likes count and was thus, another reason we thought we should include caption length as one of our features in the multiple regression. 
+			<br><br><b>Figure 3 Interpretation:</b>
+			This figure below shows the effect of the day of the week on the number of likes. The bar graph was the best choice since we are trying to show the number of likes within different groups and so this type of graph would portray the information best since you can see differences in different categories(the day of week in this case). From this bar graph, we can see that the weekend has bars that are slightly higher, but we wanted to confirm this using the multiple regression, so we added the day of the week as one of our features to predict the number of likes to see which day will actually be the better predictor. 
+			<br><br><b>Figure 4 Interpretation:</b>
+			The figure shows the effect of the month of the year on the number of normalized likes and the number of likes. The bar graph was the best choice since we are trying to show the number of likes within different groups and so this type of graph would portray the information best since you can see differences in different categories(in this case month of the year). This bar graph shows that the earlier months, specifically, January, February, March, and April have higher numbers of likes. We added this feature into our multiple regression since there seemed to be an effect that time of month had on the number of likes based on the graph. The multiple regression would be able to tell us what months correlated with the number of likes the most. 
+			<br><br><b>Figure 5 Interpretation:</b>
+			This visualization highlights a previously touched upon relationship between the number of likes a post garners and the time at which the post was made.
+			 As the histogram at the bottom shows, posters are more active between 3 pm and midnight UTC time which is a figure that makes a lot of sense due to the
+			  concentration of instagram users in the Western world, which is typically awake during these hours between Europe and the United States. 
+			  The histogram at the top however, does not indicate that these posts each receive an equal amount of attention - 
+			this might be read as the fact that people post when they want to but users are concentrated in either different time zones or have different usage 
+			times to influencers, appearing to "like" posts during what would be the night time of the Western World: this view is somewhat inconsistent with the 
+			global distribution of instagram users as touched upon earlier.
+			<br><br><b>Figure 6 Interpretation:</b>
+			This figure illustrates the casual relationship between the number of followers a user has and their like count. While a positive correlation is found,
+			the trend does not appear to be as significant as we may have thought at first, which helps us legitimize our reasoning for finding other variables
+			that may help explain the number of likes a user gets on a post. 
+			<br><br><b>Figure 7 Interpretation:</b>
+			This figure illustrates the relationship between the number of followers a user has and their normalized like count (likes/following size) 
+			to illustrate the point that as a user's following base grows larger, a smaller fraction of their followers are actually "liking" their posts. 
+			This is not very surprising and would make sense that as a musician's following grows to include the masses, they cannot maintain the same 
+			captivation over their audience: this is a point that is often made about musicians as they go "mainstream".
+			</p>
+	</section>
+	<section>
+		<h3>Full Results + Graphs: </h3>
+		<p>The results below show the results of our  multiple regression. We used the statsmodel library to run the multiple 
+			regression and we split our data into a training and test split with a split of 75% and 25% respectively. 
+			<figure>
+				<img src="Figures/Results.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Results Summary</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure1.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 1</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure2.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 2</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure3.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 3</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure4.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 4</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure5.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 5</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure6.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 6</figcaption>
+			  </figure>
+			  <br><br><br><br>
+			  <figure>
+				<img src="Figures/figure7.png" width=50% height=30%>
+				<figcaption style="text-align: left;">Figure 7</figcaption>
+			  </figure>
+			  <br><br><br><br>
+		</p>
+	</section>
+    <section>
+		<h3>Challenges:  </h3>
+		<p> It is difficult to interpret exactly what the coefficient of the timestamps tell us because every post is made at some point in 
+			time and so while the linear regression tells us that a post in January will get more likes than a post in other months based on its 
+			more positive coefficient, it could be the case that a post made in January but at 5 pm performs worse than a post in February at 5 pm. 
+			In this way, it is easy to misinterpret the coefficients and take away the wrong message: according to the linear regression a higher 
+			coefficient in a timestamp category, month, for instance, would imply that between two identical posts in ToD and DoW and the other 
+			categories, we would expect that if the only difference was the month, then the post in January would have a higher like count. 
+			This view of time in discrete sections is somewhat antithetical to how we perceive time in our own lives, and so the complete profile of 
+			each time section must be taken into account to produce a consistent argument for what the coefficients mean.
+		</p>
+    </section>
+	<section>
+		<h3>Next Steps + Poster Organization:</h3>
+		<p>Moving on with this project, we want to expand our predictive model to account for features in both post captions and image content. We will perform NLP tests to gather text features from post captions, and see if that can improve our predictive model. Similarly, we can use deep learning libraries to assist with image classification that can also support the prediction model. These tests will be helpful because caption and image content are definitely features that could help predict the number of likes a post will receive.
+			<br>As we think ahead about organizing our visualizations on a poster, we would like to generate plots that show relations between each of the features in our model from to the number of likes generated, many of which we have included with this deliverable. This will both help show relations between individual features, and explain any predictive power that the categorical features we generated may have in the model.
+		</p>
+	</section>
+
+</body>
+</html>

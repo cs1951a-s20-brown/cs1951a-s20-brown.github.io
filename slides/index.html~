@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById("slides-nav").className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <link rel="shortcut icon" href="https://cs.brown.edu/courses/csci1951-a/favicon.ico" type="image/x-icon">
+  <title>CS1951A | Slides</title>
+</head>
+<body>
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Header image--><div id="header-img"></div>
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav"><a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">Home</a><a class="nav-item nav-link" id="prequiz-nav" href="https://cs.brown.edu/courses/csci1951-a/prequiz/">Pre-Quiz</a><a class="nav-item nav-link" id="schedule-nav" href="https://docs.google.com/spreadsheets/d/1-PxBTQKhUL7Uq3hPm9kfYtxHQGCQh6s45azg6r97kc4/edit?usp=sharing" target="_blank">Schedule</a><a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">Slides</a><a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">Assignments</a><a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">Staff</a><a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">Hours</a><a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">Resources</a><a class="nav-item nav-link" id="syllabus-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_syllabus.pdf" target="_blank">Syllabus</a><a class="nav-item nav-link" id="collab-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_collab.pdf" target="_blank">Collaboration Policy</a><a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/blogs/">Project Blogs</a><a class="nav-item nav-link" id="piazza-nav" href="https://piazza.com/brown/spring2019/cs1951a">Piazza</a></div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Slides</h1>
+        <p>
+          Below are the links to all slides covered in class.
+          Slides will be posted as soon as they are available.
+        </p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Week #</th>
+              <th>Date</th>
+              <th>Topic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>24 January</td>
+              <td><a href = "files/2019-01-24-lecture0-overview.pdf" target="_blank">Introduction to Data Science</a></td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>29 January</td>
+              <td><a href="files/2019-01-29-lecture1-ER.pdf" target="_blank">Data Representation</a></td>
+            </tr>
+            <tr>
+              <th>3</th>
+          
+              <td>31 January</td>
+              <td><a href="files/2019-01-31-lecture2-sql1.pdf" target="_blank">SQL 1: Data Definitions & Basic Queries</a></td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>5 February </td>
+              <td><a href="files/2019-02-05-lecture3-sql2.pdf" target="_blank">SQL 2</a></td>
+            </tr>
+            <tr>
+              <th>5</th>
+	      <td>7 February </td>
+	      <td>Webcrawling: <a href="files/2019-02-07-lecture4-webcrawling.pdf" target="_blank">slides</a>, <a href="files/2019-02-07-webcrawling.ipynb" target="_blank">Python notebook</a></td>
+	    </tr>
+	    <tr>
+	      <th>6</th>
+	      <td>12 February </td>
+	      <td><a href="files/2019-02-12-lecture5-datacleaning.pdf" target="_blank">Data Cleaning</a></td>
+	    </tr>
+	    <tr>
+	      <th>7</th>
+              <td>14 February</td>
+              <td>Crowdsourcing: <a href="files/2019-02-14-crowdsourcing.pdf" target = "_blank">slides</a>, <a href = "files/crowdsourcing-demo-code.zip" target="_blank">demo code</a></td>
+            </tr>
+            <tr>
+              <th>8</th>
+              <td>21 February</td>
+              <td><a href="files/2019-02-21-lecture7-mapreduce.pdf" target = "_blank">Map Reduce</a></td>
+            </tr>
+            <tr>
+              <th>9</th>
+              <td>26 February</td>
+              <td><a href="files/2019-02-26-lecture8-introprob.pdf" target = "_blank">Introduction to Probability</a></td>
+            </tr>
+            <tr>
+              <th>10</th>
+              <td>28 February</td>
+              <td><a href="files/2019-02-28-lecture9-hypothesistesting.pdf"  target = "_blank">Hypothesis Testing</td>
+            </tr>
+            <tr>
+              <th>11</th>
+              <td>5 March</td>
+              <td><a target="_blanket" href="files/2019-03-05-lecture10-linearregression.pdf">Linear Regression</a></td>
+            </tr>
+            <tr>
+              <th>12</th>
+              <td>7 March</td>
+              <td> <a target="_blanket" href="files/2019-03-07-lecture11-linearregression2.pdf">Linear Regression 2</a></td>
+            </tr>
+            <tr>
+              <th>13</th>
+              <td>12 March</td>
+              <td><a target="_blanket" href="files/2019-03-12-lecture12-introml.pdf">Intro to Machine Learning</a>, <a target="_blanket" href="files/gradient-descent-demo.ipynb" >Gradient Descent Demo</a></td>
+            </tr>
+            <tr>
+              <th>14</th>
+              <td>14 March</td>
+              <td><a href="files/20190314lecture13unsupervisedlearning.pdf" target="_blank">Unsupervised Learning</a></td>
+            </tr>
+            <tr>
+              <th>15</th>
+              <td>19 March</td>
+              <td><a target="_blank"  href="files/20190319lecture14classification.pdf">Classification</a>,<a target="_blank" gref="files/20190319wine.txt">wine.txt</a> </td>
+            </tr>
+            <tr>
+              <th>16</th>
+              <td>21 March</td>
+              <td><a target = "_blank" href="files/20190321lecture15regularization.pdf">Regularization</a></td>
+            </tr>
+            <tr>
+              <th>17</th>
+              <td>2 April</td>
+              <td><a target="_blank" href="files/20190402lecture16dataviz.pdf">Data Visualization</a></td>
+            </tr>
+            <tr>
+              <th>18</th>
+              <td>4 April</td>
+              <td><a target="_blank" href="files/20190404lecture17phacking.pdf">p hacking</a>, <a target="_blank" href="files/20190404_p_hacking.ipynb">script</a>, <a target="_blank" href="files/20190404_total_bs_data.csv">dataset</a></td>
+            </tr>
+            <tr>
+              <th>19</th>
+              <td>9 April</td>
+              <td><a target="_blank" href="files/20190409lecture18nlp.pdf">NLP</a></td>
+            </tr>
+            <tr>
+              <th>20</th>
+              <td>10 April</td>
+              <td><a target="_blank" href="files/20190410lecture19mlfairness.pdf">Machine Learning Fairness</a></td>
+            </tr>
+            <tr>
+              <th>21</th>
+              <td>16 April</td>
+              <td><a target="_blank" href="files/20190416lecture20mf.pdf">Matrix Factorization</a></td>
+            </tr>
+            <tr>
+              <th>22</th>
+              <td>18 April</td>
+              <td><a target="_blank" href="files/20190418lecture21deeplearning.pdf">Deep Learning</a></td>
+            </tr>
+            <tr>
+              <th>14</th>
+              <td>23 April</td>
+              <td><a target="_blank"  href="files/20190423lecture22crowdsourcing2.pdf">Crowsourcing 2</a></td>
+            </tr>
+            <!--tr>
+              <th>14</th>
+              <td>20 April</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <th>15</th>
+              <td>25 April</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <th>15</th>
+              <td>27 April</td>
+              <td>TBD</td>
+            </tr>
+            <tr>
+              <th>16</th>
+              <td>2 May</td>
+              <td>Guest Lecture</td>
+            </tr>
+            <tr>
+              <th>16</th>
+              <td>4 May</td>
+              <td>Guest Lecture</td>
+            </tr>
+            <tr>
+              <th>17</th>
+              <td>9 May</td>
+              <td>N/A (No lecture)</td>
+            </tr>
+            <tr>
+              <th>17</th>
+              <td>10 May</td>
+              <td>Final project presentations</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2019 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</body>

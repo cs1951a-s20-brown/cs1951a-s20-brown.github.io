@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>The Wiggles<<< DELIVERABLE>>></h1>
+            </div>
+            <h3> Link to full data in downloadable form:</h3>
+            <a href="https://drive.google.com/open?id=1M3zAPB93c_SLeD_uWmU_QwHKxInx1Oyl"> Here's our data!</a>
+            <h3> Data Sample</h3>
+            <a href="https://drive.google.com/open?id=1fX6GMnkJRIZndcqoJxM6a-PwOSgdg2yU"> Here's a sample of our
+                data!</a>
+            <p>
+                Where is the data from?
+                <ul>
+                    <li> The data is from SportRadar (sportradar.us). We know it is reputable because it is an offical
+                        partner of the NFL for distributing game statistics. </li>
+                </ul>
+                How do we generate the sample?
+
+                <ul>
+                    <li> We generated the sample by taking the game statistics for one particular game from our whole
+                        dataset. The sample is comparatively small as our full dataset has hundreds of thousands of
+                        rows, while the sample has 100. The bias exists at the level of the game itself. That is, there
+                        is bias in the sense that the referees and the data analysts use their judgment to determine the
+                        markers of a play (ex. yard marker, fouls, etc).
+                    </li>
+                </ul>
+                How clean is the data?
+                <ul>
+                    <li>We expect the data to be relatively cleaned given that this is the official API associated with
+                        the NFL. This project has more than enough information we need for a Deep Learning algorithm, as
+                        it has more that 100 different data points to use.
+
+                    </li>
+                </ul>
+                How many data points are there in total?
+                <ul>
+                    <li>For one year, for each team, we had 16 data points (one for each game). For one year, for each
+                        player, we have 16 data points as well. This would be enough per year given that there are over
+                        200 values per player and team per game.
+
+                    </li>
+                </ul>
+                How many data points are there in total?
+                <ul>
+                    <li>For one year, for each team, we had 16 data points (one for each game). For one year, for each
+                        player, we have 16 data points as well. This would be enough per year given that there are over
+                        200 values per player and team per game.
+
+                    </li>
+                </ul>
+                Are there missing values? <ul>
+                    <li>No, there are no missing values.
+
+                    </li>
+                </ul>
+                Are there duplicates? <ul>
+                    <li>No, there are no duplicates because every team has a different name, and for each team, there
+                        are no two players of the exact same name. Despite the fact that theoretically they could have
+                        the same name, we looked through all the data an confirmed that there are no duplicatees per
+                        team. There may be duplicates across teams, but this does not matter as we are associating each
+                        player to a team.
+
+                    </li>
+                </ul>
+                How is the data distributed? <ul>
+                    <li>There will many 0 values in our data. NFL players are highly specialized to a role, so they
+                        will not produce nonzero values for most data metrics. For example, a quarterback will never
+                        produce interceptions. There is no definite max values, though we do not expect scores to exceed
+                        1000. We also expect the score to be somewhere between 0 and 100 inclusive, for a team in a
+                        game. For an offensive player, we expect the number of touchdowns to to range between 0 to 15
+                        inclusive. Defensively, we consider numerous data points such as sacks, which we expect to be
+                        between 0 and 20 inclusive per game.
+
+                    </li>
+                </ul>
+                Are there datatype issues? <ul>
+                    <li>Yes there are datatype issues. We will need to convert string values into integers.
+
+                    </li>
+                </ul>
+                Do you need to throw data away? <ul>
+                    <li>Yes. Depending on the position of the player, certain metrics are negligible. For example, we
+                        anticipate we can throw away sack statistics for an offensive player. This will affect our
+                        analysis as it will allow our deep learning model to better focus on significant and relevant
+                        data points.
+
+                    </li>
+                </ul>
+                Summarize any challenges or observations you have made since collecting your data. <ul>
+                    <li>A challenge we faced was determininng relevant data points for a player. We observed that some
+                        players possess significant values for data points we had previously anticipated to neglect. Our
+                        next step would be to begin constructing our deep learning model to learn based on the
+                        aggregated statistics. We will have to decide which type of deep learning model will work most
+                        effectively.
+
+                    </li>
+                </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

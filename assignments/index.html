@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById("assignments-nav").className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <title>CS1951A | Assignments</title>
+</head>
+<body>
+
+    <div id="page-container">
+
+        <div id="other-content-container">
+  <!-- Header-->
+  <div class="container-fluid" id="header">
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="https://cs.brown.edu/courses/csci1951-a/">cs1951a</a>
+
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+
+
+        <div id="assignments">
+            <h1>assignments</h1>
+            <p>
+              Assignments typically go out on a Thursday and are due the next Thursday.
+              Certain situations, like snow days, will change this pattern. Some assignments
+    	      are longer than 1 week and will also change the pattern.
+            </p>
+            <table class="table table-hover" id="assignments-table">
+              <thead>
+                <tr>
+                  <th>Assignment</th>
+                  <th>Out</th>
+                  <th>Due</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href = "./sql.html" target="_blank">SQL Syntax & Querying</a></td>
+		  <!-- <td>SQL Syntax & Querying</td> -->
+                  <td>January 24</td>
+                  <td>February 4</td>
+                </tr>
+                <tr>
+                <td><a href = "./scraping.html" target="_blank">Web Scraping & Data Cleaning</a></td>
+    		     <!--  <td>Web Scraping & Data Cleaning</td> -->
+                  <td>February 5</td>
+                  <td>February 13</td>
+                </tr>
+                <tr>
+                <td><a href = "./mapreduce.html" target="_blank">MapReduce</a></td>
+				<!-- <td>MapReduce</td> -->
+                  <td>February 20</td>
+                  <td>March 5</td>
+                </tr>
+                <tr>
+                 <td><a href = "./stats_handout.html" target="_blank">Stats</a></td>
+		 <!--<td>Stats</td> -->
+                  <td>March 6</td>
+                  <td>April 2</td>
+                </tr>
+                <tr>
+                 <td><a href = "./ml.html" target="_blank">Machine Learning</a></td>
+				 <!-- <td>Machine Learning</td> -->
+                  <td>March 31</td>
+                  <td>April 9</td>
+                </tr>
+                <tr>
+                <!-- <td><a href = "./data_viz.html" target="_blank">Data Visualization</a></td> -->
+		<td><a href="./data_viz.html" target="_blank">Data Visualization</a></td>
+                  <td>April 13</td>
+                  <td>April 30</td>
+                </tr>
+                <tr>
+                  <!-- <td><a href = "./nlp_factorization.html" target="_blank">NLP and Factorization</a></td> -->
+		  <td><a href= "./nlp.html" target="_blank">NLP and Factorization</a></td>
+                  <td>April 13</td>
+                  <td>April 30</td>
+                </tr>
+                <tr>
+		  <td><a href="./final_project.html" target="_blank">Final Project</a></td>
+                  <td>--</td>
+                  <td>TBD</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <h1>final project</h1>
+        <p>
+          Project groups will work closely with a TA Advisor throughout the semester.
+          The dates for checkins are approximate, and may vary depending on your group's
+          schedule and that of your advisor.
+<!--           We also have a
+          <a href="https://drive.google.com/drive/folders/0Bx0yxN8AefGRMEljT1VnMnMtWjA">Google Drive folder</a>
+          containing an overview of the project and some examples. -->
+        </p>
+        <table class="table table-hover" id="final-project-table">
+          <thead>
+            <tr>
+              <th>Project Checkpoint</th>
+              <th>Due</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pre-proposal Handin</td>
+              <td>February 6</td>
+            </tr>
+
+            <tr>
+              <td>Data Deliverable</td>
+              <td>March 10</td>
+            </tr>
+
+            <tr>
+              <td>Midsemester Feedback</td>
+              <td>April 14-16</td>
+	    </tr>
+	    <tr>
+              <td>Analysis Deliverable</td>
+              <td>April 14</td>
+	    </tr>
+	    <tr>
+		    <!-- <td><a href="https://cs.brown.edu/courses/csci1951-a/assignments/poster_presentation.html">Final Project Presentations</a></td> -->
+		    <td>Final Project Presentations</td>
+              <td>TBD</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          We will be providing a complete example project soon.
+          Likewise, we will be posting a number of data sources and project ideas.
+          If you'd like some ideas right now, take a look at
+          <a href="https://github.com/caesar0301/awesome-public-datasets">Awesome Public Datasets</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>

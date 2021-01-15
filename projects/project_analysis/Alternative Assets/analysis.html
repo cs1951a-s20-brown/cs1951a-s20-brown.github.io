@@ -1,0 +1,187 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Assets: Analysis</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1> <b>Alternative Assets <<< Analysis Deliverable >>></b></h1>
+        </div>
+        <h2> <b> Background </b> </h2>
+        <p> Have you ever looked at a baseball card and wondered, “Hey, I wonder how much this is worth?” Well the card could either be worthless or priceless. What you may be holding is in fact an alternative asset. </p>
+
+        <h4> <b> Question </b> </h4>
+        <p> What factors accurately predict a price for an alternative asset?</p>
+
+        <h4> <b>Prediction Task </b> </h4>
+        <p> What is the value of the alternate asset being questioned? </p>
+
+        <h4> <b>Metrics of Success </b></h4>
+        <p> Our primary metrics of success are the R^2 value and Mean Squared Error values that we received from the results of the multiple regression, and our accuracy of the results from the Random Forest machine learning algorithm. </p>
+
+        <h2><b> Multiple Regression </b> </h2>
+        <h5> Why did you use this statistical test or ML algorithm? </h5>
+        <p> We chose multiple regression as it is an extension of simple linear regression. It has the advantage of being able to compare a multitude of independent variables with one dependent variable. Essentially it extends the simple regression line formula and extend it to include additional parameters as seen in the common form of the equation: </p>
+        <img src = "https://i.imgur.com/DbqTzVQ.png" alt ='equation' </img>
+        <p> This allowed us to have a number of different factors in helping us determine the price of a given alternative asset (in the scope of our project, specifically sports cards). We had collected as much data as possible on different types of sports cards in the previous checkpoint. However, after outlining a series of variables that we believed would be most helpful in our multiple regression model, we performed another series of cleaning in order to give us valuable statistics such as average price and percent price change per year.
+        As a result, the independent variables for our multiple regression are as follows: </p>
+        <p> <center> 0: Year card was created
+            1: Current grade of the card (quality of the card from 0.0 - 10.0)
+            2: Is Hall of Fame (0 - was not Hall of Fame, 1 - was Hall of Fame)
+            3: Average Price of the card
+            4: Percent Price Change per Year of the card
+            5: Highest Price at which it was sold
+            6: Lowest Price at which it was sold
+            7: Count of number of times sold
+            8: The number of awards the player on the card won
+            9: The Oldest Price of the card
+            10: Oldest Trade Date of the card
+            11: Most Recent Trade Date of the card
+            12: Important Player Stat #1 (dependent on the sport)
+            13: Important Player Stat #2 (dependent on the sport)
+            14: Important Player Stat #3 (dependent on the sport)
+        </center> </p>
+
+        <p> These were all of the independent variables that were taken into account by our model in order to predict our dependent variable, the current price of a given sports card.
+	One issue that we ran into was that some of our data points were missing some of the above fields, but we were able to account for this issue by tweaking our data collection code and re-processing the data. We also threw out data points for cards that were only traded a single time, as many of the variables listed above are dependent on a given card being traded multiple times.
+Lastly, we thought that getting the statistics for the player on a given card would be helpful for predicting price, as it would make sense that a player’s skill would impact the price of their card. However, since the three sports that we looked at for predicting card prices (baseball, football, and basketball) have wildly different key statistics, we decided to collect different statistics for each sport. For baseball, we collected Wins over Replacement (WAR), Homeruns (HR), and Runs Batted In (RBI). For basketball, we collected Total Games Played, Points per Game (PPG), and Assists per Game (APG). For football, since statistics are completely different depending on a player’s position, we omitted the statistics section entirely.
+Since our variables were dependent on specific sports and since the sport itself could have a significant impact on the price of the card, we ended up running our multiple regression on each sport separately. As a result, our 3 separate models were better at predicting prices for their respective sports than our general model for all of the sports could.
+At first, all of these 14 independent variables were taken into account by our model. However, we ended up refining our model to include only the most important variables, something that is further discussed below.
+</p>
+
+<h3> <b> Results  </b> </h3>
+
+<h4> Multiple Regresiion </h4>
+
+<h5> How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data? What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</h5>
+<p> We measured success by carefully looking at the results from the multiple regression model. Originally, when we ran our model with all variables we got the following results:</p>
+<center><p>R2: 0.8297602066487583</p>
+<p>Train MSE: 143951.8118504295</p>
+<p>Test MSE: 344597.3476636408 </center></p>
+
+Although these results seem relatively normal at first glance, we were a bit concerned. First, even though our R2 value was relatively high, this could easily be accounted for by the large number of independent variables (14) that we used for the model. Additionally, there was a significant difference between our testing and training mean squared values. These values seemed to indicate that while our model fitted the training data relatively well, it did not seem to predict the current price values of our testing data very well. These factors led us to re-evaluate the variables that we used for our model and see if some of them could be modified or removed. We ended up implementing a function that helped us find the best combo of independent variables by running the regression over and over again with different combinations of variables.
+
+After this re-evaluation, we found the independent variables that are the most helpful in predicting a card’s current price. These were chosen as they were the variables that most efficiently increased  our model’s R2 value and most efficiently decreased training MSE, testing MSE, and the discrepancy between the two. These variables were:
+
+Is Hall of Fame  (isHOF)
+Average Price
+Percent Price Change per Year
+Oldest price
+
+    The OLS regression results of our baseball data is shown below:
+
+</p>
+
+<center><img src = 'https://i.imgur.com/Un3nXWw.png' height = "599px" width = "700" </img> </center>
+<p> When run with only these variables the results are:</p>
+<center><p>R2 0.758 </p>
+<p>Training MSE: 301352.0218738487 </p>
+<p>Testing MSE: 31082.034231573634 </p></center>
+
+
+<h5>
+What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results? </h5>
+<p>
+The results from multiple regression helped us analyze what we thought were going to be the most important variables in determining a price for an asset. After finding the top four variables we were able to run the random forest test and see to what accuracy could the price of the asset be found. We are generally satisfied with the prediction accuracy as assets are generally extremely hard to predict as many are not traded in large volumes, if at all. Most alternative assets tend to sit still and their values change at wildly differing rates so it is indeed quite difficult to predict the price of a given asset. This is why going into this project we expected to have a lower accuracy for these prediction models as unpredictability is in the very nature of these alternative assets. Our confidence in our results really lies on the amount of data we used, and that we confined our models to run on very specific types of assets (e.g. baseball cards, basketball cards, and football cards). To create a more general model, we would have to gather a large amount of data from a vast array of fields / industries. Although this is something that we would like to pursue in the future, we decided just to focus on this much smaller subset for the project.
+We are decently confident in these results as we have gathered data as efficiently as possible and made sure there were no weird entries that may make our regression insecure.
+</p>
+
+
+<h4><b> Visual</b>
+
+<h5> For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Were there any challenges visualizing the results, if so, then what were they? Will your visualization require text to provide context or is it standalone (either is fine, but it recognizes which type your visualization is)?  </h5>
+
+<p> For our visualization, we have a scatter matrix that would help us see how good our top four variables are. Originally, a scatter matrix was created for all the variables but this was just not helpful at all so it was better to hone down the best combination of variables and create a scatter plot for these four most important variables </p>
+
+<center><img src = 'Figure_1.png' height = "599px" width = "700" </img> </center>
+<p> We can see from the visual that oldest price seems to have the most correlation which naturally makes sense as we need to use the oldest price as a reference to create the new price.
+    The top four independent variables are tested vs price but by the nature of the scatter plot matrix, we also see other interesting combinations that are not entirely necessary, but it is better than just individually printing out each individual scatter plot.
+    The only major challenge in getting this visual is really figuring out if this was the best way to display our data since regression helps us confirms certain trends or predictions that we may have.
+</p>
+
+
+<h5> Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!
+</h5>
+
+<p> Process: From our previous Data Deliverable we had some data that we had
+cleaned. We further cleaned the data and resulted in the following table schema, which has already been outlined above: </p>
+
+<p><b>
+Baseball:</p></b>
+<p>Item Name, Most Recent Price, Year Created, Current Grade, IsHOF, Average Price, Percent Price Change Per Year, Highest Price, Lowest Price, Count, Number of Awards, Oldest Price, Oldest Trade Date, Most recent trade date, WAR, HR, RBI <p>
+<p> <b>Basketball: </p> </b>
+
+<p>Item Name, Most Recent Price, Year Created, Current Grade, IsHOF, Average Price, Percent Price Change Per Year, Highest Price, Lowest Price, Count, Number of Awards, Oldest Price, Oldest Trade Date, Most recent trade date, games played, PPG, APG</p>
+
+<p> <b>Football:</p> </b>
+<p>Item Name, Most Recent Price, Year Created, Current Grade, IsHOF, Average Price, Percent Price Change Per Year, Highest Price, Lowest Price, Count, Number of Awards, Oldest Price, Oldest Trade Date, Most recent trade date</p>
+
+The first thirteen columns are all similar. The only difference is that basketball has three different last columns as they relate to basketball, and football does not have these columns as there was no data on this.
+We started running the tests to see what would happen but ran into a lot of issues with errors and data not being cleaned enough, so we had to go back and clean it up and create preprocessing methods specifically for multiple regression.
+The final schema was neatly cleaned which would allow us to loop through our tests more easily: </p>
+<p> <b> Final Schema </p></b>
+<p> Year Created, Current Grade, IsHOF, Average Price, %change per year, Highest Price, Lowest Price, Count, Number of Awards, Oldest Price, Oldest trade date, most recent trade date, Important Stat #1, Important Stat #2, and Important Stat #3 </p>
+
+
+
+
+
+    <h2> <b> Random Decision Forest </b></h2>
+    <h4> Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data? </h4>
+    <p>
+
+        One of the machine learning algorithms that we used was the random forest regressor supervised learning algorithm. The random forest is a bagging technique in which numerous individual, uncorrelated decision trees run in parallel. The random forest regression algorithm was appropriate to get the best predictions of the price of our alternative assets for a few reasons. Firstly, random forests run very efficiently with large data sets and are robust at handling many input variables and features, as we have up to 12 different features we are looking to use as predictors for price. In addition, the random forest predictor is effective at accommodating for missing data, and some of our inputs had missing values for certain features; for example, if a baseball card is from a player from the early 1900s, there’s a possibility there is no data for specific baseball statistics such as war or rbi. To measure the success of the algorithm, we calculated the testing mean absolute percentage error (MAPE), which is essentially the absolute errors between the actual testing results versus the predictions divided by the actual results. Subtracting MAPE from 100 gives us the accuracy of the regression algorithm. We also calculated the average absolute error for every test data point.
+    </p>
+
+
+
+
+    <h4> Random Decision Forest </h4>
+
+    <h5> What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</h5>
+
+    <p> For each sport, we created different random forests to predict the price of the sport’s memorabilia. We had to set the random seed to the same so that our results would not vary drastically every time we ran the algorithm. Our results were:</p>
+<center>
+    <p>Football: Test Accuracy: 32.6 %, Average absolute error: 14.89 degrees </p>
+	<p>Baseball: Test Accuracy: 30.26 % , Average absolute error: 159.14 degrees.</p>
+	<p>Basketball: Test Accuracy: 15.44 %, Average absolute error: 77.34 degrees.</p>
+</center>
+
+<p>The random forest regression algorithm is based off the fact that it attempts to reduce the MSE. The algorithm gave us feature importances for every input feature that we gave. </p>
+<p> For football, the most important features were Average Price (0.3869), percent change per year in price (0.1626), and current grade (0.0596). For baseball, the most important features were Average Price (0.6484), percentage change per year in price (0.1363), and current grade (0.04964). For basketball, the most important features were Average Price (0.5083) and Lowest Price (0.3826). </p>
+
+<p>For both baseball and football, we are quite satisfied with the prediction accuracy. The basketball test accuracy we got was quite low and we were very unsatisfied with these results and are looking into getting more data points to get more robust results. The average absolute error for basketball predictions was also quite high. An accuracy of approximately 33% for baseball and football is quite robust in this scenario; however, for baseball, we had a very high average absolute error, showing that our model was not truly able to accurately predict the prices. For football however, the average absolute error was quite low. This is quite surprising to us because the football data did not contain any football specific statistics, and the basketball and baseball data did include baseball specific stats such as games played, points per game, and assists per game for basketball and for baseball, war, rbi, and hr. We thought that these factors would have a large effect on the price of the sports memorabilia, because players with better statistics are generally more popular players and would have more expensive sports cards. </p>
+
+<p>It was seen that the feature importances of the specific baseball statistics were also quite low, being [8.71747439e-03 2.18840660e-02 7.79280330e-03] for [war, hr, rbi]. The basketball statistics also had quite low feature importances: [0.00460041 0.00691987 0.00809981] for [games played, ppg, apg] We are quite surprised that the football sports memorabilia random forest regression had a lower average absolute error and almost similar overall accuracy to the other sports, as it did not include any metrics to evaluate the players who’s memorabilia we were predicting the price for. We are decently confident in the results and would like to run more tests by only narrowing down to features which we think are very important and then creating the random forest model.
+</p>
+
+<h4><b> Visual</b></h4>
+<center><img src = "https://i.imgur.com/k2fyrbv.png" alt = 'graph'  eight = "599px" width = "700" </img> </center>
+<p> We picked this graph for the visualization of the random forest regression to visually show the cumulative importance of all the features while predicting the price of the baseball cards. It shows a 95% importance threshold, which goes to approximately the 6th sorted feature. This graph is good to see which features are important and the ones that aren’t important at all; as we can see, none of the baseball statistics seem to be important at all and all the “important” features are related to the history of the selling of the memoribillia. Some challenges were sorting the features along with the names. The visualization could be a standalone, but some context would be very helpful.  </p>
+<h5> If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model? </h5>
+<p> We chose the random forest regression technique for a few of its advantages. Firstly, it reduces variability and bias because of the ensemble of decision tree classifiers which are individual and uncorrelated. It is a good algorithm to run on large data sets and it can handle many input variables and features, as we had 12 features. The random forest regression attempts to minimize the mean squared error, consistent with our multivariate regression model, and gives estimates of what variables are important in the regression. Overall, the RF regression model generates an unbiased estimate of the error of the forest and is good to work for large, even slightly unclean datasets.
+</p>
+
+
+<h3> Future/Poster </h3>
+
+<p>
+For multiple regression we will gladly include more scatter matrices, and the OLS summary for our poster. Possibly along with other metrics to help support our model.
+For the decision forest, the visualization of feature importances could be one of the main visualizations on the poster. In addition, we could also plot predicted values for prices versus the actual values for each sport and analyze visually why the accuracy is what it is and why the mean absolute error is high in some cases though the accuracy is quite robust.
+</p>
+
+
+
+
+    </div>
+</div>
+
+</body>
+</html>

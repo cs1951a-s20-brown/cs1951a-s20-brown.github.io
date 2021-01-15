@@ -1,0 +1,95 @@
+<!-- saved from url=(0064)https://cs.brown.edu/courses/csci1951-a/assignments/stencil.html -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./stencil_files/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link type="text/css" rel="stylesheet" href="chrome-extension://ckhifbinlmakgeidlbbmplikmcofaedf/mm.css">
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="page-header center">
+        <h1>SaaS - Data Deliverable</h1>
+      </div>
+      <h2>Where is the data from?</h1>
+        <h5>How did you collect your data?</h5>
+        The data was collected from
+        <a href='https://webhose.io/free-datasets/political-news-articles/'>here</a>. Webhose.io is a Data as a Service platform that provides crawled web data sets.
+
+        <a href="https://drive.google.com/open?id=1b9BWqnrZch-GyVri5ABNzVdWZdGhSQje">Full Data</a>
+        <a href="https://drive.google.com/open?id=18Snyeg6WCOFRt-aLN9UffCxs1SabdPgW">Data Snippet</a>
+
+        <h5>Is the source reputable?</h5>
+        Yes, the sources reflect articles published within the specific organizations.
+
+        <h5>
+          How did you generate the sample? Is it comparably small or large? Is it representative or is it likely to exhibit some kind
+          of sampling bias?
+        </h5>
+        The sample was generated randomly and is comparably small compared to the total number of articles which is approximately
+        5000.
+
+        <h5>
+          Are there any other considerations you took into account when collecting your data? This is open-ended based on your data;
+          feel free to leave this blank. (Example: If it's user data, is it public/are they consenting to have their data
+          used? Is the data potentially skewed in any direction?)
+        </h5>
+        We wanted to ensure that we obtained articles that were politically diverse in order to effectively run our hypothesis tests.
+
+        <h2>How clean is the data?</h2>
+        We believe the data from webhose contain the information necessary for us to complete the proposed project. However, the
+        organization tab was mostly empty so we inferred their organization from the domain mname of the url.
+        <h5>
+          How many data points are there total? How many are there in each group you care about (e.g. if you are dividing your data
+          into positive/negative examples, are they split evenly)? Do you think this is enough data to do what you hope to
+          do?
+        </h5>
+        There are 5803 articles and each group.
+        <h5>Are there missing values? Do these occur in fields that are important for your project's goals?</h5>
+        There were a lot of missing values in the authors and organizations but these are not important for our projects goal as
+        we do not use the author or organization to reflect political leaning.
+
+        <h5>Are there duplicates? Do these occur in fields that are important for your project's goals?</h5>
+        There are no duplicate articles in this list.
+
+        <h5>
+          How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values? (focus on the fields
+          that are most relevant to your project goals)
+        </h5>
+        The data is distributed among the 10 organizations fairly equally. Outliers and min/max values will be determined when we
+        have obtained the term frequency numbers.
+        <h5>Are there any data type issues (e.g. words in fields that were supposed to be numeric)? Where are these comingfrom?
+          (E.g. a bug in your scraper? User input?) How will you fix them?</h5>
+
+        There are no data type issues as each article contains the text to be analyzed.
+        <h5>
+          Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the
+          conclusions you are able to draw?
+        </h5>
+        We threw away data from articles not from the organizations that were not listed in our original list of organizations with
+        suspected political leaning. We also removed extraneous columns like location, external links and date crawled. This
+        data was removed because we did not believe we were capable of objectively classifying the remaining organizations
+        with a political leaning. We believe this to be unlikely to affect our analysis.
+
+        <h2>Challenges and Observations Summary</h2>
+        The main challenge came with the categorical classification of the articles. Additionally, it was also a challenge to find
+        a good balance of both left and right organizations was also a challenge as some of the organizations that we were
+        expecting from the data set were not there. We then used a media bias checker based on the domain name of the urls
+        of the articles.
+
+        <h2>Next Step Discussion</h2>
+        We will begin tokenizing and stemming the words from the articles to create a frequency of terms for each article. From this
+        we will be able to conduct our statistical tests by using the term frequencies of each article and an established
+        category of words that are associated with specific emotions.
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+
+
+Columns:
+WAGP: Wages or salary income in the past 12 months. Formatted as a number and capped at 999,999.
+REGION: Code for region of the U.S. the person resides in:
+	1 .Northeast
+	2 .Midwest
+	3 .South
+	4 .West
+ST: Code for the state the person resides in; States are indexed alphabetically.
+SCHG: Current grade level. Null if the person is not attending school.
+SCHL: "educational attainment", 
+	15 .12th grade - no diploma   
+	16 .Regular high school diploma
+	17 .GED or alternative credential
+	18 .Some college, but less than 1 year
+	19 .1 or more years of college credit, no degree
+	20 .Associate's degree                           
+	21 .Bachelor's degree
+	22 .Master's degree
+	23 .Professional degree beyond a bachelor's degree
+	24 .Doctorate degree
+WHKP:hours worked per week over past year.
+WKW: Weeks worked over past 12 months:
+	1 .50 to 52 weeks worked during past 12 months
+	2 .48 to 49 weeks worked during past 12 months
+	3 .40 to 47 weeks worked during past 12 months
+	4 .27 to 39 weeks worked during past 12 months
+	5 .14 to 26 weeks worked during past 12 months 
+	6 .less than 14 weeks worked during past 12 months
+YOEP: year of entry
+FOD1P: Code for degree type
+FOD2P: Code for secondary degree type
+OCCP: Code for occupation type
+
+

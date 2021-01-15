@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById("prequiz-nav").className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <title>CS1951A | Programming Pre-Quiz</title>
+</head>
+<body>
+
+    <div id="page-container">
+        <div id="other-content-container">
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+
+       <div>
+           <h1>python pre-quiz</h1>
+            <p>
+              This quiz is designed to assess your Python coding ability.
+              You are not necessarily expected to know Python when starting the course,
+              but you should be able to pick it up quickly.
+            </p>
+
+        <p>
+          If you have never programmed in Python before, we recommended going to the
+          resources page and exploring some of the Python resources provided there.
+        </p>
+        <p>
+          All of the code for this assignment is stored locally in your browser.
+          If you wish to explore it on your own machine, we recommend saving the code
+          to a
+          <tt>.py</tt> file as well as saving the associated
+          <tt>.txt</tt> documents.
+        </p>
+        <p>
+          In order to measure your progress, we have provided a function named
+
+          <tt>tests</tt>.
+          <strong>Do not modify these or else we cannot test your progress. </strong>
+          These will be used to ensure that your code runs correctly.
+        </p>
+        <p>
+          There are additional specifications for each question written as comments.
+          If you have questions, please post a question on Piazza or email the TA list
+          (but please post a question <em>first</em>).
+        </p>
+        <p>
+          During this quiz, you will be working up to a small program that will be able to
+          read <a href="https://genius.com/Lin-manuel-miranda-dear-theodosia-lyrics">lyrics</a>
+          and parse them by who is singing.
+        </p>
+        </div>
+
+        <div class="example">
+            <h3>example</h3>
+            <p>
+              Here is a quick and easy example to get you started and see how our code runs.
+              If you click the
+              <tt>run</tt> button right now, you'll receive an
+              <tt>AssertionError</tt>.
+              To fix this, follow the comments!
+            </p>
+            <iframe frameborder="0" width="100%" height="500px" src="https://repl.it/FOZK/1?lite=true"></iframe>
+        </div>
+
+        <div class="problem1">
+            <h3>problem 1</h3>
+            <p>
+              First, write a function that finds the maximum value in a list.
+              You can assume that all of the elements in the list are numbers.
+            </p>
+            <iframe frameborder="0" width="100%" height="750px" src="https://repl.it/FOZi/1?lite=true"></iframe>
+        </div>
+
+        <div class="problem2">
+            <h3>problem 2</h3>
+            <p>
+              Next, write a function that returns the number of words in a given string.
+              Look at the
+              <tt><a href="https://docs.python.org/3/library/stdtypes.html#str.split">split</a></tt>
+              method for how to split strings in Python.
+            </p>
+            <iframe frameborder="0" width="100%" height="750px" src="https://repl.it/FO0K/1?lite=true"> </iframe>
+        </div>
+
+        <div class="problem3">
+            <h3>problem 3</h3>
+            <p>
+              Now you're going to work with files.
+              Write a function that, when given the path to a file, opens the file and reads its contents
+              into a list.
+              Next, you'll write a function that, given a list of strings, returns the highest wordcount
+              from all of the strings.
+              You may optionally strip whitespace using the
+
+              <tt><a href="https://docs.python.org/3/library/stdtypes.html#str.strip">strip</a></tt>
+              function, but this is not needed.
+            </p>
+            <p>
+              You can read about working with files in Python
+              <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">here</a>.
+              Additionally, for the second function we're using multiple returns by wrapping the return
+              value in a tuple.
+              You can read more about that
+              <a href="https://www.safaribooksonline.com/library/view/python-cookbook-3rd/9781449357337/ch07s04.html">here</a>.
+            </p>
+            <iframe frameborder="0" width="100%" height="750px" src="https://repl.it/FO0w/1?lite=true"></iframe>
+        </div>
+
+        <div class="problem4">
+            <h3>problem 4</h3>
+            <p>
+              Now you'll be writing a function that identifies whether a line from a lyrics file is
+              a lyric or a heading, like <strong>&#91;HAMILTON&#93;</strong>
+              Using that, we'll make a list of all the cast members in our two files.
+              Try to avoid duplicates, perhaps using a
+
+              <tt><a href="https://docs.python.org/3/tutorial/datastructures.html#sets">set</a></tt>.
+              (Although it isn't strictly necessary to do so to pass the tests, it will help you in the
+              next part.)
+            </p>
+            <iframe frameborder="0" width="100%" height="750px" src="https://repl.it/FOb5/3?lite=true"></iframe>
+        </div>
+
+        <div class="problem5">
+            <h3>problem 5</h3>
+            <p>
+              Now you'll build our final program.
+              Building off of what we did previously, you'll be building a dictionary (hash table)
+              that maps from character to a list of all the lines they sing.
+            </p>
+            <iframe frameborder="0" width="100%" height="750px" src="https://repl.it/FOh8/8?lite=true"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</div>
+</body>

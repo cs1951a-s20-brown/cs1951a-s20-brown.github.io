@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Roboto, helvetica, sans-serif;
+    color: #333;
+    line-height: 24px;
+}
+
+.container {
+    display: inline-block;
+    max-width: 840px;
+    width: 100%;
+    padding: 150px 20px 300px;
+    padding-top: 80px;
+}
+
+.chart-container {
+    width: 500px;
+}
+
+.section {
+    text-align: left;
+    margin-bottom: 50px;
+    font-size: 14px;
+}
+
+.section-header {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 28px;
+    padding-top: 12px;
+}
+
+ul {
+    line-height: 22px;
+}
+ul {
+  list-style: none; /* Remove default bullets */
+}
+
+ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: #555; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+
+.code {
+    text-align: left;
+    padding: 24px;
+    background: #f7f8fa;
+    /*background: #444;*/
+    /*color: white;*/
+    border: 1px solid #BBB;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 20px;
+    margin: 30px 40px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.figure-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.figure {
+    max-width: 450px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.datas .figure {
+    max-width: 550px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.caption {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #777;
+    line-height: 18px;
+    display: flex;
+}
+
+.caption strong {
+    color: #333;
+    width: 200px;
+    display: block;
+    text-align: right;
+    padding-right: 12px;
+}
+.caption div {
+
+}
+
+
+
+.chart-with-labels {
+    display: flex;
+    align-items: center;
+}
+
+.chart-with-label2 {
+    text-align: center;
+}
+
+
+.header {
+    font-size: 70px;
+    font-weight: bold;
+    line-height: initial;
+}
+
+.subheader {
+    font-size: 30px;
+    margin-top: 20px;
+    color: #888;
+    margin-bottom: 60px;
+}
+
+@media (max-width: 900px) {
+    .header {
+        font-size: 50px;
+    }
+    .subheader {
+        font-size: 20px;
+    }
+}
+
+
+.questions-answers b {
+    font-weight: 900;
+}
+
+
+
+
+
+
+
+
+
+
+

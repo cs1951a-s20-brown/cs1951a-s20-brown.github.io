@@ -1,0 +1,359 @@
+
+<html>
+<!-- FILL IN EVERYTHING SURROUNDED BY CURLY BRACES UNLESS OTHERWISE SPECIFIED -->
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5 &laquo; Machine Learning&raquo;</title>
+</head>
+
+<body>
+
+<div class="row" style="margin-bottom: 30px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Assignment 5 <small>&laquo; Machine Learning&raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                <p>
+                    <ul>
+                        <li>Due date: April 9, 2020 11:59PM</li>
+                        <li>Stencil: <code>cs1951a_install ml</code></li>
+                        <li>Data: <code>/course/cs1951a/pub/ml/data</code></li>
+                        <li>Handin: <code>cs1951a_handin ml</code></li>
+                        <li>Files to submit: <code>README.txt</code>, <code>kmeans.py</code>, <code>song_clustering.py</code>, <code>img_compression.py</code>, <code>written_solutions.txt</code> </li>
+                    </ul>
+                </p>
+            <hr>
+
+            <h2>Overview</h2>
+                <img src="bad_viz.png" alt="bad visualization" style="width:auto; height: 400px">
+                <p>Boomers have decided to explore machine learning because they are VERY tech-savvy and willing to learn. In this assignment you will help them accomplish various tasks and stay one step ahead of their mortal enemies, the bag ban and participation trophies. The goal of this assignment is to introduce basic machine learning concepts and provide a foundation for how to cluster data.</p>
+
+            <hr>
+
+            <h2>Assignment</h2>
+                <p>In this assignment we will begin to explore the power data has in informing machine learning decisions. These boomers require an effective way to manipulate data attributes. Numpy is a python package that will help accomplish this. You will use the knowledge gained to help these boomers implement a K-means clustering algorithm. You will run this algorithm on two different datasets and implement sklearn's clustering algorithm on both data sets. Finally, you will make an elbow curve plot to discover the optimal number of centroids.</p>
+
+
+            <h2>Part 1: K-means Algorithm</h2>
+            <!-- <h3>60 points</h3> -->
+            <h4>40 points</h4>
+                <p>K-means clustering is an algorithm designed to sort data into groups based on similarity. To determine the groups, K-means repeatedly performs an update step, detailed by the following pseudocode:</p>
+                <pre>
+For each data_point:
+    Determine closest centroid
+For each centroid:
+    Determine centroid location as average of data_points which are closest to that centroid  </pre>
+            <p>To determine the closest centroid, you will be using a variation of <code>Euclidean distance: distance = ∑<sub>i</sub>(a<sub>i</sub> - b<sub>i</sub>)^2</code> where <i>a<sub>i</sub></i>, <i>b<sub>i</sub></i> are the different features of data_point <i>a</i> and data_point <i>b</i> (hint: refer to the numpy way to calculate euclidean distance). To determine the centroids' new locations, you average together the data points for which that was the closest centroid. This means that a centroid is defined by its own feature set.
+            <br><br>
+            The real power of K-means comes from measuring distance with meaningful features of a dataset. For example, some meaningful features of a song might include its acousticness, danceability, and tempo. By applying K-means to a collection of songs, where the distance function between songs is based on these features, our resulting clusters will divide our songs into genres.
+            <img src="kmeans.png" alt="kmeans" style="width:800px; height: 400px">
+            <br><br>
+            <h4>Part 1.1: K-means Class</h4>
+            In this assignment you will be implementing your own version of K-means. We have provided you with stencil code located in <code>kmeans.py</code> and specific instructions about the methods you will need to fill in. Your first step is to fill in the outlined methods which will later be used on two data sets to test your code.
+            </p>
+            <p>
+                <b>Note: </b>Please follow the input output specifications for each class member functions in the <code>Kmeans</code> class.
+            </p>
+
+            <h4>Part 1.2: Image Compression with K-Means</h4>
+            <p>In this part <code>img_compression.py</code> takes in an image and breaks it up in RGB pixel values. It then uses these three values as features in your K-means algorithm to cluster by color similarity to compress the provided image. You do not need to change any code for this section, but run the file to see what clusters it returns.
+
+            For this problem, use the <code>tiger.jpg</code> image as the input to your program. To run the file, execute the following command:
+
+            <pre>$ python img_compression.py [-d PATH/TO/tiger.jpg]</pre>
+
+            where <code>PATH/TO/tiger.jpg</code> is the path to the image file. By default, without the <code>-d</code> flag, the data file path is <code>../data/ml/tiger.jpg</code>. Successfully running the script will create files named <code>centroids.txt</code> and <code>tiger.jpg</code> in a new folder named <code>output</code>, which will contain the saved clusters and the compressed image.
+            </p>
+
+            <b>Note: </b>This part should take no longer than 30 minutes to run for 50 iters if your k-means is implemented correctly.
+            We have written a function <code>img_distance</code> which calculates an element-wise (pixel-by-pixel) difference. We won't be grading this difference, but to check if your k-means is implemented correctly, note that with <code>K=16</code>
+            and <code>max_iters = 50</code>, our distance is around <b>62</b>. This is purely for your reference.
+            </p>
+            <br>
+
+            <h2>Part 2: Song Clustering</h2>
+            <h4>30 points</h4>
+            <h4>Part 2.1: Task Overview</h4>
+            <p>
+                Once you have filled out <code>kmeans.py</code> you can proceed to use your k-means class on clustering
+                songs by latent audio features. This data can be found in <code>spotify.csv</code> in the data directory
+                and consists of 600 top Spotify songs from 2010-2019.
+
+            </p>
+            <p>
+                We have included <kbd>TODO</kbd> comments in <code>song_clustering.py</code> to help with completing
+                this part of the assignment. You should only
+                have to edit functions in this file, and please note the input/output specifications of the functions,
+                as well as the expected output behavior (<kbd>Part 2.6</kbd> below).
+
+                You will have to complete the following parts in the <code>cluster_songs</code> function, completing
+                additional functions as specified.
+            </p>
+            <h4>Part 2.2: Data Preprocessing</h4>
+            <p>
+                The original dataset consists of 13 features
+                (Beats per Minute, Danceability, Acousticness, etc), but we will be using a subset of the features for
+                the purposes of this assignment. We have written preprocessing code to extract three features from this
+                dataset, specifically "acousticness", "speechiness", and "liveness". Your task is to use these three
+                features to cluster the songs into clusters of similar songs.
+            </p>
+            <p>
+                Our preprocessing code removes outliers from the dataset. Please fill out the <code>min_max_scale</code>
+                function. Performing MinMax scaling prevents different scales of the data feature columns from
+                influencing distance calculations. Each column of the dataset should be standardized by the formula
+                found in the function's docstring.
+            </p>
+
+            <h4>Part 2.3: Visualizing the Data</h4>
+            <p>
+                This dataset can be visualized in 3D, and we have written a function <code>visualize_songs_clusters</code>
+                to do so. You will use this same function to visualize the raw data as well as the cluster centroids
+                for both your custom <code>kmean</code> object and the library <code>sklearn.cluster.KMeans object</code>
+                (more details in <kbd>Part 2.5</kbd>).
+            </p>
+            <p>
+                By passing in optional <code>centroids</code> and <code>centroid_indices</code> arguments, you can visualize
+                each datapoint and which cluster it belongs to. Please note the optional <code>is_lib_kmean</code> argument
+                which should be set to <code>True</code> when visualizing results in <kbd>Part 2.5</kbd>.
+            </p>
+
+            <h4>Part 2.4: Elbow Curve</h4>
+            <p>
+                Once you have written your k-means clustering algorithm, you might be wondering how many clusters should
+                you use for a dataset. The number of clusters is called a hyperparameter of the machine learning
+                algorithm and hyper parameter tuning is an important part of machine learning. One method to computing
+                the number of clusters is plotting out the number of clusters and the <i>inertia</i> of the cluster
+                assignments.
+            </p>
+            <p>
+                <i>Inertia</i> is defined as as the sum of the squared distances between each data point and the
+                centroid of its assigned cluster.
+            </p>
+            <p>
+                As more clusters are added, inertia decreases. However, there are diminishing returns to this. The ideal
+                number of clusters is a judgement call by looking at the “elbow point” of this graph where adding the
+                next cluster does not significantly reduce inertia.
+            </p>
+            <p>
+                In <code>song_clustering.py</code> we have provided an <code>elbow_point_plot()</code> function that takes
+                in an np array of the number of clusters (x-axis) and an np array of inertia values (y-axis). The output
+                graph will be saved to the <kbd>output</kbd> directory as <code>elbow_plot.png</code>.
+                Analyze the graph and determine the ideal number of clusters. Below is an <b>example</b> of an
+                elbow point curve of a <b>different</b> dataset.
+                <br/>
+                <img src="elbow.png" alt="kmeans" style="width:auto; height: 300px">
+            </p>
+
+
+            <h4>Part 2.5: <code>scikit-learn</code></h4>
+            <p>
+                Programming machine learning algorithms is a good way to internalize concepts and get a better understanding
+                for how they work. However, in practice, machine learning libraries are often used to speed up data analysis.
+                For this part of the assignment, we will perform K-means clustering using <code>scikit-learn</code>, a popular machine learning library.
+                Click <a href="https://scikit-learn.org/stable/documentation.html"> here </a> to learn more about <code>scikit-learn</code>
+                and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">here</a>
+                for the documentation on its <code>KMeans</code> class
+            </p>
+
+            <p>
+                Fill in the <code>sk_learn_cluster</code> function using <code>sklearn.cluster.KMeans</code> object.
+                The function takes in <code>X</code> - the dataset of Spotify data, and
+                <code>K</code> - the number of clusters and should output an np array where every index contains the
+                cluster of the corresponding vector as well as the coordinates of the cluster centers.
+                <i>Hint: This can be done in just 3 lines of code!</i>
+            </p>
+            <p>
+                You should also visualize your cluster results with the same <code>visualize_songs_clusters</code> used
+                previously, except this time with <code>is_lib_kmean=True</code>.
+            </p>
+
+            <h4>Part 2.6 Run Specifications</h4>
+            <p>
+            To run the file, execute the following command:
+
+            <pre>$ python song_clustering.py [-d PATH/TO/spotify.csv]</pre>
+            By default, without the <code>-d</code> flag, the data file path is <code>../data/ml/spotify.csv</code>.
+            </p>
+
+            <p>
+            Calling <code>visualize_songs_clusters</code> will save the generated plot to the <code>output</code> folder.
+            You should call this function <b>3</b> times to generate plots of the <b>raw data</b>, <b>clustered data
+            with your <code>kmeans</code> object</b>, and <b>clustered data with the <code>sklearn.cluster.KMeans</code>
+            object</b>.
+            </p>
+
+            <p>
+                The cluster centers and centroid indices for each datapoint for both your model and the <code>scikit-learn</code> model
+                will be exported to a file named <code>song_clusters.json</code>. Note you must return these 4 items
+                from your <code>cluster_songs</code> function.
+            </p>
+
+            <p>
+            Successfully running the script will create the following files in your <code>output</code> directory <i>based on
+            running solely <code>song_clustering.py</code></i>:
+            <ol>
+                <li><code>data_raw.png</code></li>
+                <li><code>data_clusters.png</code></li>
+                <li><code>data_clusters_sklearn.png</code></li>
+                <li><code>elbow_plot.png</code></li>
+                <li><code>song_clusters.json</code></li>
+            </ol>
+            </p>
+
+
+            Make sure that when we run your code, it plots the <b>4</b> graphs outlined above.
+            </p>
+
+            <b>Important:</b> Please be sure to follow the inputs and outputs as specified in the stencil code.
+            Be careful in <i>not</i> changing the portions of the stencil we specify.
+            </p>
+
+            <h2>Working Locally</h2>
+            If you are working over ssh on a CS department computer, there are a few options for viewing the generated images from <code>img_compression.py</code> and <code>song_clustering.py</code>.
+
+            <h3>FUSE/SSHFS (Linux and Mac OSX)</h3>
+            SSHFS lets you mount a remote filesystem locally using SFTP. You'll be able to view, create, edit, and delete files
+            on your local machine, and those changes will persist on a remote filesystem (in our case, the department machine
+            filesystem). With FUSE, you can access all the files on your department machine in the file browser/terminal
+            of your local computer.
+
+            <h4>Download and Installations</h4>
+            <h5>Mac OSX </h5>
+            <ol>
+                <li>
+                    Download and install <a href="https://github.com/osxfuse/osxfuse/releases/tag/osxfuse-3.10.3">FUSE</a>
+                    (choose the <kbd>osxfuse-3.10.3.dmg</kbd> link)
+                </li>
+
+                <li>
+                    Download and install <a href="https://github.com/osxfuse/sshfs/releases/download/osxfuse-sshfs-2.5.0/sshfs-2.5.0.pkg">SSHFS</a>
+                </li>
+            </ol>
+            <h5>Linux</h5>
+            <ol>
+                <li>If you don't already have <code>sshfs</code>, run <code>sudo apt-get install sshfs</code></li>
+            </ol>
+            <h4>Mount Filesystem</h4>
+            <ol>
+                <li>
+                    Open up the configuration file for your terminal (ex. <code>vim ~/.bash_profile</code>) and add the
+                    following lines to the end
+                    <pre>alias myfuse='sshfs &lt;your login&gt;@ssh.cs.brown.edu:/gpfs/main/home/&lt;your login&gt; ~/browncs && cd ~/browncs'
+alias fixfuse='diskutil unmount force ~/browncs && myfuse'</pre>
+                    <b>Note: </b> replace <kbd>&lt;your login&gt;</kbd> with your CS login i.e. <code>alias myfuse='sshfs ayalava2@ssh.cs.brown.edu:/gpfs/main/home/ayalava2 ...</code>
+                </li>
+
+                <li>
+                    Run <code>source ~/.bash_profile</code> then restart your terminal.
+                </li>
+
+                <li>
+                    Now, you should be ready to use FUSE/SSHFS. Run <code>myfuse</code> in a terminal window and you should be
+            prompted to enter your login as if you were running ssh. After authenticating, you should be in the <code>~/browncs</code>
+            directory on your local machine where you should find all your content from the home directory (<kbd>~/</kbd>) of a department machine. If you
+                    receive an error message with FUSE or when running <code>myfuse</code>, enter <code>fixfuse</code> to
+                    forcibly remount the filesystem.
+                </li>
+            </ol>
+
+            You can now edit any files locally with your choice of text editors, and the changes will be made on the
+            department machines.
+            <br/><br/>
+            <b>Note: </b> We recommend editing your files locally and running them on the department machines. When you
+            are ready to run your files, you can SSH onto a department machine and run the code in the course virtual environment,
+            like in previous assignments.
+
+
+            <h3>SCP</h3>
+            If you prefer working locally or remotely with a text editor like vim, you can use <kbd>scp</kbd> to transfer your files between your local machine
+            and the department machines.
+
+            Open up a terminal window and <kbd>cd</kbd> into the <kbd>ml</kbd> directory (either locally or in the home directory on
+            a department machine.
+
+            <br/><br/><b>Note: </b> Both of these <kbd>scp</kbd> commands assumes you are currently in the <b><kbd>ml</kbd>
+            directory on your local machine</b> and that you have not edited the file structure generated by the install script, that is,
+            <code>~/course/cs1951a/&lt;project&gt;</code>.
+
+            <h4>Sending Files</h4>
+            To send files, run
+            <pre>scp -r ./* &lt;your login&gt;@ssh.cs.brown.edu:~/course/cs1951a/ml/</pre>
+
+            <h4>Receiving files</h4>
+            To receive files, run
+            <pre>scp -r &lt;your login&gt;@ssh.cs.brown.edu:~/course/cs1951a/ml/. ./</pre>
+            Ex. <code>scp -r ayalava2@ssh.cs.brown.edu:~/course/cs1951a/ml/. ./</code> You will be prompted to enter your password
+            (the same password for when you are trying to SSH into a department machine).
+            <br/><br/>
+            Windows users will have to install <a href="https://www.putty.org/">PuTTY</a> and might have additional setup steps.
+            Follow the directions <a href="https://cs.brown.edu/about/system/connecting/ssh/windows/">here</a> for Windows
+            users.
+
+
+            <h3>Other Resources</h3>
+            Here are more resources for connecting to the department machines. Feel free to reach out on Piazza if you have issues.
+            <ol>
+                <li>
+                    <a href="https://cs.brown.edu/about/system/connecting/ssh/">Brown SSH</a>
+                </li>
+                <li>
+                    <a href="https://cs.brown.edu/about/system/connecting/fastx/">FastX</a>
+                </li>
+                <li>
+                    <a href="https://cs.brown.edu/about/system/connecting/ssh/osx/">XQuartz</a>
+                </li>
+            </ol>
+
+            <hr>
+
+            <h2>Part 3: Written Questions</h2>
+            <h3>30 points</h3>
+            <p>Answer the following questions and save them to a file called <code>written_solutions.txt</code>.<p>
+            <ol>
+                <li>Explain how you structured your solution. What were the key parts of your K-means algorithm? Include any challenges you faced or shortcomings of your algorithm.
+                    Explain your <code>closest_centroids</code> and <code>compute_centroids</code> implementations.
+                </li>
+                <li>What do the clusters mean in the context of image compression? How does changing the number of clusters impact the result of the song dataset and the image compression dataset?</li>
+                <li>What is the difference between supervised and unsupervised learning? Give an example of an algorithm under each and an explanation for why they can be classified as a supervised or unsupervised algorithm.</li>
+		        <li>Read <a href="https://hbr.org/2019/11/how-machine-learning-pushes-us-to-define-fairness">this article.</a> Explain why the article argues that there's not one single concrete definition of "fairness." (2-4 sentences) </li>
+		        <li> Do you agree or disagree with this claim? Why or why not? (2-4 sentences).  </li>
+            </ol>
+
+            <hr>
+
+            <h2>Handing In</h2>
+                <p>
+                    Your <code>~/course/cs1951a/ml</code> folder must contain the following:
+                    <ul>
+                        <li><code>README.txt</code> containing anything about the project that you want to tell the TAs. DO NOT INCLUDE YOUR CS LOGIN.</li>
+                        <li><code>kmeans.py</code></li>
+                        <li><code>song_clustering.py</code></li>
+                        <li><code>img_compression.py</code></li>
+                        <li><code>written_solutions.txt</code></li>
+
+                    </ul>
+                Then run <code>cs1951a_handin ml</code> to hand in the files in that directory. Do not hand in the data files.
+                <!-- don't worry about filling in handin command -->
+                </p>
+                <!-- keep the line above unless assignment requires students to get own data -->
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    Made by your favorite TAs: Karlly, Huayu, and Arvind. Adapted from the previous TA staff for CS1951A.
+
+                    Spotify dataset sourced from <a href="https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year">Kaggle</a>.
+                </p>
+        </div>
+
+        <div class="col-md-2"></div>
+        <br><br>
+</div>
+
+</body>
+</html>

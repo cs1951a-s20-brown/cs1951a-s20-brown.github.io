@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Once Upon a Time | Data Deliverable</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Work+Sans&display=swap');   
+
+        * {
+            font-family: 'Work Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: bolder;
+        }
+        h1 {
+            font-size: 80px;
+        }
+        main {
+            margin-top: 50px;
+        }
+        section {
+            margin-bottom: 35px;
+        }
+        section > section {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <section style="margin-bottom: 50px; border-bottom: 1px solid #eee">
+            <h1>Once Upon a Time</h1>
+            <h2>Data Deliverable</h2>
+        </section>
+        <section>
+            <h3 style="border-color: #0083e5">Goal</h3>
+            <p>Stock forecasting using current news based on historical correlation between business news and the movement of companies’ stocks.</p>
+        </section>
+        <section>
+            <h3>Data Sources</h3>
+            <ul>
+                <li>
+                    <b>Stock data:</b> Our stock data is downloaded from Yahoo Finance (<a href="https://finance.yahoo.com/quote/AAPL/history?p=AAPL">example with Apple</a>), a site that provides financial news and data and is often used for stock data collection. For each company, the CSV that Yahoo Finance provides includes the date, opening price, low, high, closing price, adjusted closing price, and volume from early 2016 to late 2017.
+                </li>
+                <li>
+                    <b>News data:</b> We scraped headlines from <a href="https://www.marketwatch.com/investing/stock/aapl">MarketWatch</a>, an American financial information site that provides business news, and <a href="https://www.reuters.com/companies/AAPL.OQ/news">Reuters</a>, an international news agency known for consistently reporting with minimal bias. Headlines were queried using the symbol or name of the company as the key word and were collected for articles with the same dates as the stock data. Headlines were then lowercased, filtered for stopwords, and lemmatized using NLTK in python. 
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Data Collection</h3>
+            <p>
+                We collected data on the stocks and news of 44 companies. These 44 stocks were chosen from an initial 100 stocks based on the amount of news generated about each company in a year. We found that the data is only effective when each stock has over 100 days of news data and filtered out those that didn’t meet this criteria. 
+            </p>
+            <ul>
+                <li>
+                    <b>Stock data:</b> For each company, the CSV that Yahoo Finance provides for downloading includes the date, opening price, low, high, closing price, adjusted closing price, and volume from early 2016 to late 2017.
+                </li>
+                <li>
+                    <b>News data:</b> Articles were queried using the symbol or name of the company as the key word. Using Beautiful Soup, headlines for articles with the same dates as the stock data were scraped . Headlines were then lowercased, filtered for stopwords, and lemmatized using NLTK in python. 
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Sample Generation</h3>
+            <p>
+                ##############
+            </p>
+        </section>
+        <section>
+            <h3>Data Cleanliness</h3>
+            <section class="container">
+                <h4>Data Points</h4>
+                <p>
+                    In this project, the everyday close point and news headlines of 44 stocks within the period from Jan 4, 2016 to Dec 29, 2017 are analyzed to help predict ups and downs in the stock market. There are totally 503 x 44 = 22132 lines of data for stock price. Each line contains date, open point, highest point, lowest point, close point, change, relative change, and a column of 1 and -1 to indicate up or down. There are 53742 in total, 1221 in average lines of data for news headlines. Each line contains date and headline. I think this is sufficient for us to conduct our project.
+                </p>
+            </section>
+            <section class="container">
+                <h4>Missing Values</h4>
+                <p>
+                    Sometimes there is no news headline corresponding to some stocks on some day so we have to ignore the price data for these stocks on these days.
+                </p>
+            </section>
+            <section class="container">
+                <h4>Duplicates</h4>
+                <p>
+                    Sometimes two websites may post news headlines about the same thing. This is actually a challenge for us to decide whether two headlines are telling the same news because different websites will use different words even though they are describing the same thing.
+                </p>
+            </section>
+            <section class="container">
+                <h4>Distribution</h4>
+                <p>
+                    Since our data is about the stock price, they do not match a certain distribution. The largest increase in stock price is +29.81%, achieved by NVIDIA(NVDA) on Nov 11, 2016. On that day, we captured 15 news with keyword “NVIDIA” while the average number for this stock is 1.5/day. The largest decrease in stock price is -19.02%, achieved by Kohl’s(KSS) on Jan 5, 2017. There are 24 news with the keyword “Kohl” on that day while the average number is 1.3/day.
+                </p>
+            </section>
+            <section class="container">
+                <h4>Type Issues</h4>
+                <p>
+                    We changed every character into lower case and removed meaningless words such as “a” and  “the” using nltk library. 
+                </p>
+            </section>
+            <section class="container">
+                <h4>Data Removal</h4>
+                <p>
+                    We haven’t removed any data away. However, we think if there is no news about a stock on one day, we have to ignore the stock price data for this stock on that day. This is because we cannot conclude change in stock price without information from the news media.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3>Challenges and Next Steps</h3>
+            <p>
+                One of the challenges that we faced in our data collecting was sometimes not being able to find enough news about the stocks on a single website. To deal with this, we scraped headlines from multiple sources but this had other consequences such as duplicate headlines from different sources representing the same story. For next steps, we plan to vectorize the headlines that we collected in preparation for model training. 
+            </p>
+        </section>
+    </main>
+
+<!-- <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>[Team Name]<<< DELIVERABLE >>></h1>
+        </div>
+        <h1> Big header</h1>
+        <h6> Small header</h6>
+        <p>
+        Some text
+        <ul>
+        <li> A bullet point </li>
+        </ul>
+    </div>
+</div> -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

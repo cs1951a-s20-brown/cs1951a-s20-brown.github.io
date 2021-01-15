@@ -1,0 +1,220 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Wiggles Analysis Deliverable</title>
+</head>
+
+<body>
+
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<div class="page-header center">
+				<h1>The Wiggles Analysis Deliverable</h1>
+			</div>
+			<h3> Link to project drive:</h3>
+			<a href="https://drive.google.com/drive/folders/0AEgRwFRU-NOBUk9PVA">Click here!</a>
+
+			<h3> A defined hypothesis or prediction task, with clearly stated metrics for success.
+			</h3>
+			<p>
+				Our objective was to accurately predict the result of an NFL game given the results of past games and
+				the corresponding
+				team statistics. Our metric for success was the accuracy with which our deep learning model predicted
+				game results. That
+				is, whether the home or away team would win. We consider our prediction task to be successful if our
+				model is able to
+				predict the results of games given game data with an accuracy of 0.7 on the test data.
+
+			</p>
+			<h3> Why did you use this statistical test or ML algorithm?
+
+			</h3>
+			<p>
+				We chose to use a feed-forward neural network with two dense layers because it was one of the simplest
+				models in terms
+				of complexity apart from logistic regression, which would be similar to a single dense layer neural
+				network.
+
+				So far, we have implemented a two dense layer neural network using the tensorflow library. We split our
+				data into train,
+				validation, and test data sets. Our train and validation data came from the 2012 through 2018 NFL
+				seasons and we used a
+				80-20 split to split between train and validation respectively. Our testing data came from the 2019 NFL
+				season.
+
+			</p>
+			<h3>Which other tests did you consider or evaluate?
+			</h3>
+			<p>
+				We are also considering (and plan on implementing) a simple logistic regression. We also considered an
+				LSTM (Longer
+				Short Term Memory) model.
+			</p>
+			<h3>How did you measure success or failure? Why that metric/value?</h3>
+			<p>
+				We measured success to be about 70% accuracy on the test set, and we used that value as a baseline based
+				on past papers
+				which have implemented machine learning to predict NFL game results.
+
+
+				We measured our success based on how the model performed on the test set, or the data from the 2019 NFL
+				season.
+				Initially, our model had high accuracies for the train and validation data sets, but very low accuracies
+				for the set;
+				the model was sometimes guessing with accuracies around fifty percent. Then, when the train and
+				validation data was
+				shuffled via the “np.random” function, the model performed significantly better on both the validation
+				and test sets,
+				scoring above 80% on the validation set and above 90% on the test set.
+			</p>
+			<h3>What challenges did you face evaluating the model?</h3>
+			<p>
+				We faced challenges in structuring our data to be passed into our neural network. We further outline
+				these challenges in
+				the next section. We also had difficulty in how to properly evaluate how “good” our model is. As
+				mentioned before, we
+				simply used a baseline of 70% in reference to past research, but are still unsure as to what a “good” or
+				accurate
+				measure of success would be. </p>
+			<h3>Did you have to clean or restructure your data?</h3>
+			<p>
+
+
+				We had to clean and restructure the data, somewhat thoroughly. First, our data was a JSON file with
+				multiple nested
+				dictionaries of a game’s statistics (yardage, attempts, etc) . However, we wanted the input of our model
+				to be vectors
+				where each is a game. So, we needed to get these dictionaries of dictionaries into a 1D vector. We
+				decided to convert
+				the JSON to a CSV, where we flattened the games into an array. Then, this gave us a vector
+				representation for a game.
+
+
+				At this point, our data contains n vectors, where n is the number of regular season games played in the
+				NFL from 2012 up
+				to and including 2019. Here, we then removed any features which contained any null values, because we
+				worried about the
+				lack of variation in features and having too many NaNs in the data. These would be features that were
+				introduced in
+				subsequent games and may not be present for earlier ones. We then needed to clean our data by creating
+				labels for each
+				input. Contained in a vector were the home team’s and away team’s scores. We extracted this from the raw
+				data and used
+				this to create the labels: 1 if the home team won or if there was a tie, 0 otherwise. We also removed
+				team names and
+				dates from the data so as to not influence the prediction.
+
+
+				At this point, we have clean data with 1912 data points, each representing a game. We then had to decide
+				how to split
+				the data. We settled on setting aside the entire 2019 season (256 games) for testing our model. On the
+				remaining data we
+				split 80% for training and 20% for validation.
+
+
+				We also added an extra element where rather than using the game stats from the games from the test set,
+				we averaged the
+				stats from the previous games from the previous season, since for future predictions, we would not have
+				the game stats
+				for that game ahead of time, so we would need different inputs to base the prediction off of. This
+				required us to
+				calculate the averages for each team for each year.
+			</p>
+			<h3>Analysis</h3>
+			<p>
+				Currently, we are skeptical of the results because our testing accuracy is fairly high and higher than
+				the validation
+				accuracy (which contains data from the same years as the data the model trained on, though different
+				data points). We
+				figured that since the model would not have seen any data from games in 2019, it should do worse on the
+				test set.
+				Additionally, for the predictions based on the averages of the past season, accuracy remains fairly low,
+				hovering
+				between 60 to 70%, so future predictions do not seem to be very accurate.
+				Additionally, we tried implementing an LSTM model, which allowed us to look back ‘n’ number of games so
+				that we could
+				take into account how teams performed recently in order to predict the result of a game. However, when
+				setting ‘n’ to
+				five games, the LSTM model performed very poorly and had a test accuracy which hovered around fifty
+				percent, so the
+				model was simply guessing the results of games. While we thought an LSTM may perform better since it
+				takes into account
+				recent trends of teams, it still does not factor in specific matchups. So, for example, while a team may
+				be trending
+				well, it may be due to an easy schedule where the opposition is worse rather than the team playing
+				better. Consequently,
+				without being able to include data concerning specific matchups the LSTM seems to simply skew
+				predictions.
+
+
+
+
+			</p>
+			<ul>
+				<li>
+					Feed Forward Final Testing: 0.8912134170532227
+				</li>
+				<li>
+					Feed Forward Final Testing (average of previous season): 0.6317991614341736
+
+				</li>
+
+				<li>
+					LSTM Final Test: 0.5169491767883301
+
+				</li>
+
+			</ul>
+			<img src="epoch_v_accuracy.png" alt="LSTM Model" style="width:700px;height:500px;">
+			<img src="epoch_v_accuracy_ffnn.png" alt="Feed Forward Model" style="width:700px;height:500px;">
+
+			<p>
+				Here we can see how the accuracy varies for the training and validation sets. Generally as the number of
+				epochs
+				increases, so does the training accuracy and to some extent, the validation accuracy. Overall, though,
+				the increase is
+				minimal for the validation set and the accuracy tends to fluctuate. For these reasons, we decided on a
+				smaller number of
+				epochs to avoid overfitting.
+
+			</p>
+
+			<h3>Visualization</h3>
+			<p>
+				We picked a graph of training and validation accuracy over the number of epochs, so we can try to look
+				for overfitting
+				and thus the optimal number of epochs for training. No our graph should not require text to be able to
+				understand.
+				We were also thinking about doing a graph/table where we could list the line ups, the predicted outcome,
+				and then the
+				actual outcome with colors (red if wrong, green if correct). We think this would be more visually
+				pleasing while still
+				allowing viewers to see at quick glance how good our model is based on the colors.
+			</p>
+
+			<h3>Why we chose a Deep Learning Model</h3>
+			<p>
+				We chose to do a feed forward neural network with two dense layers because it was one of the simplest
+				models in terms of
+				complexity apart from logistic regression, which would be similar to a single dense layer neural
+				network. Our data does
+				not have any sensitive/protected attributes. However, we believe that part of the reason for why the
+				model is performing
+				“too” well is because we may be training our model on attributes which may be highly correlated with the
+				final outcome
+				(for example, our input still includes touchdowns and generally the more touchdowns a team scores, the
+				more points they
+				have and from that, the model can gauge who wins).
+			</p>
+
+
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+------------------
+    Data Spec
+------------------
+
+>>>>> Kaspersky source (kapersky.db)
+Data Overview: This database encompasses the different mobile threat types, malicious malware packages, top android malware programs, and rates of mobile personal data attacks.
+
+Source: https://securelist.com/mobile-malware-evolution-2019/96280/
+
+Python Data Script: kapersky.py
+
+Schema:
+- mobile_malicious_installation_packages(year integer, num_packages)
+	- num_packages: number of mobile malicious installation packages for Android devices
+- mobile_malware_attacks(year integer, month text, num_users_attacked integer)
+	- num_users_attacked: number of users attacked by mobile malware
+- mobile_threat_types(threat_type text, year integer, percentage real)
+	- threat_type: type of mobile threat
+	- percentage: percent of mobile attacks
+- personal_data_attacks(year integer, month text, num_attacks integer)
+	- num_attacks: number of attacks on personal data of mobile device users
+- top_android_malware_programs(malware_type text, rank integer, percentage real)
+	- malware_type: type of malware used in mobile device attacks
+	- rank: rank out of 20 of how much a malware is used for attacks
+	- percentage: share of users attacked by a type of malware out of all attacked users
+
+>>>>> GreyNoise source (greynoise.db)
+Data Overview: Collected data to get statistics on the frequency of attacks on mobile devices running different operating systems across web scanners. We (aka David and Hana) focused on the following mobile OS’s: Android, Chrome OS, iOS, and Windows OS.  From this API, two tables were created: operating_system_stats and android_vulnerability. The first table (operating_system_stats) contains information relevant to the number of devices that appear on web scanners around the globe which include all mobile devices and compromised mobile devices running a given OS. The second smaller table android_vulnerability contains statistical information relevant to the two most commonly used methods of attacking a mobile Android OS device: port 5.5.5.5 and ADB (Android Developer Bridge). These are relevant to note and collect data on since we are hypothesizing that the most compromised mobile device runs Android OS. Thus, it would be important to see any relevant information on data returned from querying the API for devices with the tags ‘ADB’ or ‘5555’. For background, ADB provides a wireless connection to an Android device for developers to run their applications and test real-time. However, the flaw with this universal Android design is that every bridge connects through the port 5.5.5.5 making attacks frequent and simpler than guessing which port to use.
+
+API: Greynoise API (https://docs.greynoise.io/#greynoise-api)
+
+Python API Script: greynoise.py
+
+Database file: greynoise.db
+
+Schema:
+- operating_system_stats(operating_system text primary key not null, total_num_devices int, mobile_devices_count int, compromised_mobile_device_count int, compromised_ratio float)
+	- operating_system: OS type (e.g. iOS)
+	- total_num_devices: number of devices running the correspond OS that 	are being detected across web scanners
+	- mobile_devices_count: number of mobile devices running the 		correspond OS that are being detected across web scanners
+	- compromised_mobile_device_count: number of detected compromised 	mobile devices
+- compromised_ratio: ratio of the number of compromised mobile devices 	to the total number of mobile devices showing up on web scanners android_vulnerability(operating_system text primary key not null, total_num_devices int, mobile_devices_count int, compromised_mobile_device_count int, compromised_ratio float)
+	- vulnerability_type: type of android vulnerability
+	- total_num_devices: number of devices running the correspond OS that 	are being detected across web scanners
+	- mobile_devices_count: number of mobile devices running the 		correspond OS that are being detected across web scanners
+	- compromised_mobile_device_count: number of detected compromised 	mobile devices
+	- compromised_ratio: ratio of the number of compromised mobile devices to the total number of mobile devices showing up on web scanners
+
+>>>>> Nokia source (nokia.db)
+Data Overview: Derived from Nokia's 2019 Threat Intelligence Report, this database captures information related to device type, malware infection percentages, and android malware samples.
+
+Source: https://onestore.nokia.com/asset/205835?did=d0000000016z&utm_campaign=threatintelligence18&utm_source=marketo&utm_medium=email&utm_content=report&utm_term=awareness&mkt_tok=eyJpIjoiTjJRek9HRmlaamhoTVRkayIsInQiOiI2d1JaQ2R5WGY0NmRNUUdBRnVHNTZEMjQ3NTFHeUJrd29QbU1ldjFTSjFyS1N0WWdyQzBqZWY0aVhDVnBjVlNjU1wvcGFcL0dSdFBTRU9YNE5CcmJmZWh6Q2NSNFZ3bkN1SHpiWm02bDNpeHFlSlZadmNONVU1XC9OWXBuY0k3cFBhSCJ9
+
+Python Data Script: nokia.py
+
+Schema:
+- android_malware_samples(year integer, month text, num_malware_samples integer)
+	- num_malware_samples: number of mobile malware samples
+- mobile_infection_rates(year integer, month text, percentage real)
+	- percentage: percentage of infected Nokia mobile devices
+- targeted_android_devices(device_type text, percentage real)
+	- device_type: mobile devices running Android, iOS, Windows OS, or other
+	- percentage: percentage of how many devices of a given type were infected
+
+>>>> Image Source (sample_image_data)
+Data Overview:
+Currently contains unlabeled image data partitioned by if the image is taking a photo, or is not taking a photo. We’ll be labeling these as a group, and utilizing the manpower of acquaintances who are interested in seeing the image network progress.
+We plan on having all of the data labeled before generating more image data by mirroring and rotating the images to give a much larger image set.
+There are currently ~2000 images that we have, and we see the potential to generate ~10000 images which should be a good size to create a train/test set for the simple binary classifier of, “Is this image taking a picture of me or not?”
+Ideally, this classifier will be scanning for the presence of a trained phone camera in the photo which is our true objective for the image network. 
+
+Source:
+Google Images
+Generating images through burst photos on a variety of iPhones.

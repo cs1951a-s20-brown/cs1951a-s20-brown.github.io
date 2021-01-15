@@ -1,0 +1,75 @@
+SAMPLE DATA
+
+The following file contains 10 rows of sample data from each csv file. 
+
+"nba_team_performance.csv"
+     Unnamed: 0  abv  year               name  points  opp_points  rank  \
+561         561  SAS  2018  San Antonio Spurs    8424        8187    27   
+94           94  MEM  2003  Memphis Grizzlies    7995        8260     8   
+169         169  IND  2005     Indiana Pacers    7626        7564    25   
+292         292  DET  2009    Detroit Pistons    7727        7767    28   
+435         435  BRK  2014      Brooklyn Nets    8079        8161    21   
+     win_ratio  
+561   0.573171  
+94    0.341463  
+169   0.536585  
+292   0.475610  
+435   0.536585 
+
+
+"mlb_team_performance.csv"
+     Unnamed: 0  abv  year                 name  points  opp_points  rank  \
+97           97  MIN  2003      Minnesota Twins     4.9         4.7     8   
+224         224  TOR  2007    Toronto Blue Jays     4.6         4.3    15   
+546         546  LAD  2018  Los Angeles Dodgers     4.9         3.7     7   
+220         220  SEA  2007     Seattle Mariners     4.9         5.0    11   
+32           32  NYY  2001     New York Yankees     5.0         4.4     3   
+     win_ratio  
+97       0.556  
+224      0.512  
+546      0.564  
+220      0.543  
+32       0.594
+
+
+"nfl_team_performance.csv"
+     Unnamed: 0  abv  year                  name  points  opp_points  rank  \
+148         148  TAM  2004  Tampa Bay Buccaneers     301         304    23   
+178         178  OTI  2005      Tennessee Titans     299         421    21   
+395         395  MIN  2012     Minnesota Vikings     379         348    14   
+314         314  CLE  2009      Cleveland Browns     245         375    29   
+88           88  CHI  2002         Chicago Bears     281         379    27   
+     win_ratio  
+148      0.313  
+178      0.250  
+395      0.625  
+314      0.313  
+88       0.250 
+
+
+"nba_salary.csv"
+      Unnamed: 0         id  year team               name position   salary
+1101        1101  mclemma01  2002  SEA      Mark McLemore       2B  3150000
+2051        2051  vottojo01  2009  CIN         Joey Votto       1B   437500
+1863        1863  ortizda01  2005  BOS        David Ortiz       DH  5250000
+828          828  mientdo01  2005  NYM  Doug Mientkiewicz       1B  3750000
+5115        5115  zimmery01  2010  WSN     Ryan Zimmerman       1B  6350000
+
+
+"mlb_salary.csv"
+      Unnamed: 0         id  year team               name position   salary
+1101        1101  mclemma01  2002  SEA      Mark McLemore       2B  3150000
+2051        2051  vottojo01  2009  CIN         Joey Votto       1B   437500
+1863        1863  ortizda01  2005  BOS        David Ortiz       DH  5250000
+828          828  mientdo01  2005  NYM  Doug Mientkiewicz       1B  3750000
+5115        5115  zimmery01  2010  WSN     Ryan Zimmerman       1B  6350000
+
+
+"nfl_salary.csv"
+      Unnamed: 0    id  year team            name position   salary
+6194        6194  6195  2007  DET  Langston Moore       DT   600400
+5543        5543  5544  2007  DEN  Patrick Ramsey       QB  2000000
+2138        2138  2139  2003   GB     Joe Johnson       DE  2148958
+1208        1208  1209  2001  NYJ     Eric Ogbogu       DE   394000
+4531        4531  4532  2005   NO   Sedrick Hodge       OL   565000
+

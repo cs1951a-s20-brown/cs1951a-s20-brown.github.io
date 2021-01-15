@@ -1,0 +1,24 @@
+img{
+  width: 530px;
+}
+
+.image{
+  width: 300px;
+  height: auto;
+  margin-right: 200px;
+
+}
+
+.imagegrid{
+  display: flex;
+  margin-left: -25mm;
+  vertical-align: inherit;
+  border-color: inherit;
+  padding: 10mm;
+}
+.image-text{
+  width: 500px;
+  height: auto;
+  margin-right: 50px;
+
+}

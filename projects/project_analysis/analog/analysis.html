@@ -1,0 +1,82 @@
+﻿<h3 id="a-defined-hypothesis-or-prediction-task-with-clearly-stated-metrics-for-success">A defined hypothesis or prediction task, with clearly stated metrics for success</h3>
+<ul>
+<li>
+<p>Our objective is to predict the number of traffic accidents in an hours (potentially also number of traffic injuries and deaths) in each of the five boroughs of New York given time of day, weather conditions in the borough, and average speed of traffic in the borough at the given time (based on model performance, we may construct other features using the speed data as well)</p>
+</li>
+<li>
+<p>For the multiple linear regression model, our metric for success will be determined by comparing the model’s mean square error with the mean square error of a benchmark model (predicts numbers of accidents in an hour by computing the average number of accidents per hour across New York). If the mean squared error of our model is less than 50% of that of the benchmark model, we will consider the model to be successful.</p>
+</li>
+</ul>
+<h3 id="why-did-you-use-this-statistical-test-or-ml-algorithm-which-other-tests-did-you-consider-or-evaluate-how-did-you-measure-success-or-failure-why-that-metricvalue-what-challenges-did-you-face-evaluating-the-model-did-you-have-to-clean-or-restructure-your-data">Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data?</h3>
+<ul>
+<li>We decided to utilize a multiple linear regression model to predict the number of traffic accidents that occur in a given hour. We decided to use this model because we are trying to predict a continuous value given sample features. We are also considering using lasso regression, ridge regression, or support vector machines to see if they yield any better results. Originally, we also considered framing this project as a hypothesis task, comparing traffic accident frequency across boroughs in New York with a chi-squared test or t-test. Using this model, we chose the quantitative columns in our database of precipIntensity, windSpeed, visibility, and avgSpeed as independent variables with the accident column as the dependent variable that we would like to predict. Success and failure of the model was determined by comparing our regression model with a benchmark model that doesn’t consider any of the sample features. When evaluating this model, we had difficulty identifying features that actually provide meaningful information. Before creating our regression model, we had to restructure our tables by joining the accidents, weather, and speed tables together.</li>
+</ul>
+<h3 id="what-is-your-interpretation-of-the-results-do-accept-or-deny-the-hypothesis-or-are-you-satisfied-with-your-prediction-accuracy-for-prediction-projects-we-expect-you-to-argue-why-you-got-the-accuracysuccess-metric-you-have.-intuitively-how-do-you-react-to-the-results-are-you-confident-in-the-results">What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</h3>
+<ul>
+<li>With our current model, it is not clear exactly how much better the model performs than the benchmark as performance varies across boroughs. Therefore, we cannot yet deem our model a success. Rather, we will continue to experiment with features and consider different regression models. Figure 1A shows the result summary of a model where the accidents are not split up by borough. It is clear that this model is not very successful as the model’s MSE compared to the baseline MSE (a model that predicts using the average number of accidents per hour) only decreased by 16.31% on the test samples. Furthermore, the model’s R-squared value is only 0.139. However, we are optimistic that we can improve our model by accounting for categorical variables such as borough, day of the week, weather type, and other variables from our database, such as hour of the day. The results of this are shown in Figure 1B, where the model strictly considers only accidents in Queens; there was a 43.96% decrease from Baseline MSE to the model’s MSE, and the model’s R-squared value was 0.391.</li>
+</ul>
+<h3 id="for-your-visualization-why-did-you-pick-this-graph-what-alternative-ways-might-you-communicate-the-result-where-there-any-challenges-visualizing-the-results-if-so-then-what-where-they-will-your-visualization-require-text-to-provide-context-or-is-it-standalone-either-is-fine-but-its-recognize-which-type-your-visualization-is">For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Where there any challenges visualizing the results, if so, then what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it’s recognize which type your visualization is)?</h3>
+<p>These graphs are all included in Figures 2A-2F</p>
+<ul>
+<li>
+<p>We started by making a few simple bar charts to explore and evaluate our data. We looked at the total number of accidents per borough, and then we looked at this per capita, which shows that Staten Island has significantly fewer accidents per capita than the other boroughs.</p>
+</li>
+<li>
+<p>We then did an analysis for 7 different types of weather to judge our weather data and see how much adding weather categories might improve the next model we implement. While more mild weather types lead to a similar average number of accidents in an hour in a borough, more extreme weather yields the maximum (snow) and minimum (heavy rain) accidents. However, these are rarer weather types, so it remains to be seen how much factoring in weather type will improve our predictions.</p>
+</li>
+<li>
+<p>To explore our data surrounding average speed, we aggregated in 5mph intervals and first produced a histogram that showed that average speed is usually 30-50 mph. We then used line graphs to see how speed changes accidents, injuries, and deaths, which yielded some important insights. First, slower average speeds significantly increase crash frequency, but these crashes are much less severe. This explains why average speed was a good predictor, and it also implies that injuries will be harder to predict. Lastly, it shows that there are significantly fewer reported deaths than injuries. Further analysis and shows that our data includes fewer than 300 deaths in the given time period, which is consistent with research we did on NYC car crash fatalities.</p>
+</li>
+</ul>
+<p>Our visualizations are mostly self-explanatory, except that we must keep in mind that the data is divided both by boroughs and hours.</p>
+<h3 id="full-results--graphs-at-least-1-statsml-test-and-at-least-1-visualization.-depending-on-your-modeltestproject-we-would-ideally-like-you-to-show-us-your-full-process-so-we-can-evaluate-how-you-conducted-the-test">Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!</h3>
+<p>To see how we went about training our model see:</p>
+<ul>
+<li>
+<p>Our model script: <a href="https://drive.google.com/a/brown.edu/file/d/1bBsLUft2FAGjiVWxN1kRbKErNifrBXsJ/view?usp=sharing">https://drive.google.com/a/brown.edu/file/d/1bBsLUft2FAGjiVWxN1kRbKErNifrBXsJ/view?usp=sharing</a></p>
+</li>
+<li>
+<p>Our visualization script: <a href="https://drive.google.com/a/brown.edu/file/d/1f4TG9ff2VxJkW3WIV0yVOMEipVeZTPnF/view?usp=sharing">https://drive.google.com/a/brown.edu/file/d/1f4TG9ff2VxJkW3WIV0yVOMEipVeZTPnF/view?usp=sharing</a></p>
+</li>
+<li>
+<p>Our database: <a href="https://drive.google.com/a/brown.edu/file/d/1iSJbha6YJXRv-5czAFyfw8aMU1jf5daI/view?usp=sharing">https://drive.google.com/a/brown.edu/file/d/1iSJbha6YJXRv-5czAFyfw8aMU1jf5daI/view?usp=sharing</a></p>
+</li>
+</ul>
+<p>Figure 1A: Aggregate Borough Regression Model</p>
+<p><img src="Aggregate_Borough_Regression_Model.png" alt=""></p>
+<p>Figure 1B: Queens Regression Model</p>
+<p><img src="Queens_Regression_Model.png" alt=""></p>
+<p>Figure 2A: Number of Accidents by Borough</p>
+<p><img src="Figure_1.png" alt=""></p>
+<p>Figure 2B: Number of Accidents by Borough per Capita</p>
+<p><img src="Figure_2.png" alt=""></p>
+<p>Figure 2C: Frequency of a Selection of Weather Types</p>
+<p><img src="Figure_3.png" alt=""></p>
+<p>Figure 2D: Average Accidents per Hour in a Borough by Weather Type</p>
+<p><img src="Figure_4.png" alt=""></p>
+<p>Figure 2E: Average Speed for a Given Borough and Hour</p>
+<p><img src="Figure_5.png" alt=""></p>
+<p>Figure 2F: Average Accidents, Injuries, And Deaths by Average Speed in the Borough and Hour</p>
+<p><img src="Figure_6.png" alt=""></p>
+<h3 id="if-you-did-a-machine-learning-model-why-did-you-choose-this-machine-learning-technique-does-your-data-have-any-sensitiveprotected-attributes-that-could-affect-your-machine-learning-model">If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model?</h3>
+<ul>
+<li>
+<p>We want to predict the number of accidents in New York City at different hours of the day based on a number of different factors (such as wind speed, precipitation, average traffic speed, etc.). We chose to go with a multilinear regression model because we wanted to execute a continuous regression task (to predict the number of accidents in NYC) using a number of different features. In addition, multilinear regression gives flexibility with regards to trying out different combinations of features and seeing how MSEs changed - this can allow us to observe relationships in the data that would have otherwise been missed. We are also considering switching to Lasso or Ridge regression as we suspect that adding regularization may improve our model.</p>
+</li>
+<li>
+<p>This model is limited because it only includes our quantitative data. In the future, we will use a more sophisticated model that will factor in things like borough, weather type, and day of the week.</p>
+</li>
+</ul>
+<h3 id="discussion-of-visualizationexplaining-your-results-on-a-poster-and-a-discussion-of-future-directions">Discussion of visualization/explaining your results on a poster and a discussion of future directions</h3>
+<h3 id="really-ah-thats-a-typo-we-want-you-to-describe-how-you-think-you-will-present-this-on-your-poster-will-you-include-a-table-text-a-graph-etc.">Really: Ah that’s a typo, we want you to describe how you think you will present this on your poster! Will you include a table, text, a graph etc.</h3>
+<p>As we will be using Mean Squared Error to measure how well our model can predict the number of accidents in New York City at different hours of the day, we will primarily use bar graphs to display the MSEs of our models using different features and across boroughs. At the moment, we think that the graphs that we will add to our poster include:</p>
+<ul>
+<li>
+<p>A bar graph showing how MSE values change depending on how many and which features we use to train our model.</p>
+</li>
+<li>
+<p>A bar graph showing how MSE values change depending on which borough of New York City we look at, and how these differences change as we use different features to train our model.</p>
+</li>
+</ul>
+<p>We may consider adding a bar graph to predict the number of people injured but there may not be enough variation in the number of injuries for us to train our model.</p>
+

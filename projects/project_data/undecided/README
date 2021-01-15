@@ -1,0 +1,95 @@
+Full data format:
+
+We want to dive into the relationship between people’s saving rate, and some other attributes, such as their country, the continent of the country, age section, total population, GDP, GDP per capital, etc.  Each csv.file contains the a column of country’s name and country’s code, and the feature’s data along each year. Then we set Country’s name and as primary key and bind them together. The name of all countries are in Alphabetical order.
+
+
+Data types:
+
+Savings rate
+	- in %
+	- Ratio of savings to nominal GDP
+	- For each country
+	- Relevant year from 2000 to 2018
+
+Unemployment rate
+	- in %
+	- Ratio of unemployed population to labor force
+	- For each country
+	- Relevant year from 2000 to 2018
+
+Male-to-population ratio
+	- in %
+	- Ratio of male population to the overall population
+	- For each country
+	- Relevant year from 2000 to 2018
+
+Female-to-population ratio
+	- in %
+	- Ratio of female population to the overall population
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source:
+
+Total population
+	- Number of people
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: https://data.worldbank.org/indicator/SP.POP.TOTL
+	- Last updated: 2020-02-27
+
+Population density
+	- Number of people per square kilometres of land area
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: https://data.worldbank.org/indicator/EN.POP.DNST
+	- Last updated: 2020-02-27
+
+Nominal GDP
+	- in current local currency units relative to the U.S. dollar
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: https://data.worldbank.org/indicator/NY.GDP.MKTP.CN
+	- Last updated: 2020-02-27
+
+Nominal GDP per capita
+	- in current local currency units relative to the U.S. dollar
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: https://data.worldbank.org/indicator/NY.GDP.PCAP.CN
+	- Last updated: 2020-02-27
+
+GDP growth
+	- in %
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG
+	- Last updated: 2020-02-27
+
+Age dependency ratio, working age
+	- in %
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: World Development Indicators
+	- Last update: 2020-02-27
+
+Age dependency ratio, young
+	- in %
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: World Development Indicators
+	- Last update: 2020-02-27
+
+Literacy rate
+	- in % of population ages 15 and above
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: World Development Indicators
+	- Last update: 2020-02-27
+
+Education
+	- in % of population 25 and above
+	- Educational attainment of Doctoral or equivalent
+	- For each country
+	- Relevant year from 2000 to 2018
+	- Source: World Development Indicators
+	- Last update: 2020-02-27

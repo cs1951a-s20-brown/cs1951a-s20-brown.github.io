@@ -1,0 +1,61 @@
+Our data is stored entirely in 6 SQL tables, with the following specs:
+
+newspapers
+    handle VARCHAR(50) (PRIMARY KEY) -- newspaper handle
+    name VARCHAR(50) -- name of newspaper
+
+This table contains the names and twitter handles of hand selected news sources to analyze. We are focusing on a news sources of a variety of sizes that are relevant in the RI area.
+The news sources we are analyzing are:
+The Boston Globe
+The Pawtucket Times
+Uprise RI
+Providence Journal
+Brown Daily Herald
+The American Spectator
+AlterNet
+
+We plan to expand this list as time allows.
+
+followers
+    id VARCHAR(30) -- follower id
+    handle VARCHAR(15) (PRIMARY KEY) -- follower handle (unique)
+    name VARCHAR(50)
+    location VARCHAR(50) - (Can be NULL)
+    url VARCHAR(100) -- url (if follower provided one) - (Can be NULL)
+    num_friends INT -- number of people they follow
+    num_followers INT
+    num_lists INT
+    num_favorites INT -- number of tweets they have favorited
+    num_statuses INT -- number of status updated
+    created_at DATETIME -- date they created account
+    protected INT -- whether their account data is protected
+    verified INT -- whether their account is verified (celebrity)
+    description VARCHAR(200) -- twitter bio - (Can be NULL)
+
+This table contains information about all of the twitter followers of the newspapers listed above, collected using the twitter API. Most of this information will only be used to try to filter out which accounts are real people, with valuable information, since it is very time intensive to search a person using the API.
+
+followeds
+    handle VARCHAR(15) (PRIMARY KEY) -- handle of someone being followed
+
+This table contains only the handle of accounts that are followed by followers of newpapers. This table is not expressly neccessary, but serves to ensure that all the followed_handles from the acccount_following table link to a value in this table.
+
+newspaper_following
+    newspaper_handle VARCHAR(15) (FOREIGN KEY -> newspapers(handle))
+    follower_handle VARCHAR(15) (FOREIGN KEY -> followers(handle))
+    PRIMARY KEY (newspaper_handle, follower_handle)
+
+This table contains links between newspapers and followers, with both pieces of information representing foreign keys to their respective tables. The Primary Key is the combination of the two.
+
+account_following
+    followed_handle VARCHAR(15) (FOREIGN KEY -> followeds(handle))
+    follower_handle VARCHAR(15) (FOREIGN KEY -> followers(handle))
+    PRIMARY KEY (followed_handle, follower_handle)
+
+This table contains links between newspaper followers and the accounts they follow. Similar to the newspaper_following table, both pieces of information are foreign keys to their respective tables.
+
+politicians
+    handle VARCHAR(15) (PRIMARY KEY) -- handle of a political account
+    name VARCHAR(50) -- name of politician/account
+    score REAL -- score of how liberal/conservative someone is compared to the average twitter user - (Can be NULL)
+
+This table contains the twitter handle, name, and political leaning of politicians and other political twitter accounts. This data was imported from three csv's containing information on RI political accounts, US political accounts, and a scored set of accounts from research by Pablo Barbera (http://pablobarbera.com/static/barbera_twitter_ideal_points.pdf). Ultimately we will try to use his method to add scores to the political accounts that don't have scores yet.

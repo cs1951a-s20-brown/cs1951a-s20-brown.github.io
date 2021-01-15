@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        let error = document.getElementById('error');
+        error.innerHTML += ' Make sure you wanted to get to <tt>' + window.location.href + '</tt>.'
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <link rel="shortcut icon" href="https://cs.brown.edu/courses/csci1951-a/favicon.ico" type="image/x-icon">
+  <title>CS1951A | Page Not Found</title>
+</head>
+<body>
+  <!-- Header-->
+  <div class="container-fluid" id="header">
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center;">
+        <h1>Great. You broke it.</h1><img class="img-fluid" src="https://cs.brown.edu/courses/csci1951-a/res/img/error.png">
+        <p id="error">
+          This page doesn't exist or something has gone very, very wrong.
+          If you're expecting something to be here, please send us an email and we'll
+          try to get it fixed as soon as we can.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</body>

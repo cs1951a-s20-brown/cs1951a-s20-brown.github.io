@@ -1,0 +1,128 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Alternative Assets: STATS DELIVERABLE</h1>
+        </div>
+        <h1> Data Tech Report</h1>
+        <p> Our data is split into a couple of sections. For the first section we have sports memorabilia. The second is player data
+
+        </p>
+
+
+        <h3> Sports Memorabilia </h2>
+        <p> Our data is split into two parts: the item and the player. We got our data for the sports memorabilia from two sites: <a href ='https://www.psacard.com'> PSA Card </a> and <a href = 'https://www.pricerealized.com/#!/'> PricedRealized. </a>
+        </p>
+
+        <h4> PSACard </h4>
+
+
+        <b><p> Is the source reputable?</p></b>
+            PSA is the leading sports card authentication service and stores data of cards that were sold from millions of auctions. We compared the data on their website to data on other auction sites, and was able to confirm that it was accurate. This website was very helpful compared to other sites because it stored the price history for each item, while most of the other sites only listed the price the item was sold at just one auction
+
+
+        <p> How did you generate the sample? Is it small or large? Is there sampling bias</p>
+        <b> <p> How did you collect your data? Any challenges? </p></b>
+
+
+        We scraped it. However, there were a few challenges in scraping data from this site. Unfortunately, when switching pages on the website, the url did not change since it was a dynamic website. So we had to use the selenium package to simulate clicks on the page. Also, it seemed like the website was designed to prevent web scraping and would prevent access to the page after multiple continuous clicks.
+
+
+    <b>    <p> Are there any considerations you took into account?</p></b>
+        In order to work around the problem above, we had the web scraper wait at random intervals. Even after doing this, we still sometimes had trouble accessing the data so we rotated through a list of proxy servers, which allowed us to finally scrape data from the website without any errors.
+
+
+
+        <h4> PrizedRealized </h4>
+
+
+
+        <b><p> Is the source reputable?</p></b>
+        <p> PricedRealized is a research database that ecompasses plenty of sports memorabilia with a nifty search bar. There is over billions amount of data in terms of monetary value. The data from this website was collected by scraping the items by categories, for example the search feature as an “ALL” items category but it only shows 400 pages. So, we had to improvise and search by specific categories. </p>
+
+         The source is very reputable as it pulls from other auction websites and always makes sure to check their information before uploading on the website. The sample that I have generated is small compared to the large amount of raw data that is collected.
+
+        <b><p> How did you generate the sample? Is it small or large? Is there sampling bias? How did you collect your data?</p></b>
+
+        <p>This data was generating through scraping.It is very large as there are over 40k datapoints, with most likely more needed based on the sport being used.</p>
+
+        <p> There is no sampling bias. This is because each dataset that was created has their own unique category and has the price, title, and date of sell. We are collecting all the data on the website based on the specific sport and we are not trying to collect data that will manipulate our answers in any way. Also it is all over the place from cards, to floors, to even seats that players sat on.
+
+        <b><p> Are there any considerations you took into account? Any challenges?</p></b>
+
+
+        <p> Time was a huge consideration when scraping as scraping all at once took hours, so it had to be done over multiple notebooks.  </p>
+        <p> There is also the challenge of making this automatic but it requires a lot of input to make it run so it has to be done semi-automatically. </p>
+
+
+
+
+        <h2> Player Data </h2>
+
+
+        <h4> Stats and Awards</h4>
+        <b><p>How did you collect your data? </p></b>
+
+        <p> We used Beautiful Soup to scrape the various sports reference websites and collect our data. More specifically, we wrote a unique python function for each sport that takes in a player’s name and then scrapes the respective reference site to return a list of important information for that player.  </p>
+
+        <b><p> is the source reputable? </p></b>
+
+        <p> The source seems to be both reputable and accurate. All of the data that we checked by hand aligned with the data from official sources such as the NBA, NFL, etc.  </p>
+
+        <b><p> How did you generate the sample? Is it comparably small or large? Is it representative or is it likely to exhibit some kind of sampling bias? </p></b>
+
+        <p>    We generated the sample by scraping the website for every unique athlete tied to a piece of sports memorabilia we encountered. Since we scraped over 20,000 pieces of sports memorabilia, many of which having unique athletes tied to them, this data set is relatively  large. Since this website collected stats on almost every single player in the respective sport, regardless of skill or fame, this particular sample doesn’t seem too likely to exhibit some kind of sampling bias.           </p>
+        <b><p> Are there any other considerations you took into account when collecting your data? </p></b>
+        <p>    The biggest consideration taken into account when collecting this data was deciding which pieces of information would be most relevant to attributing “significance” to a certain player. We decided that only the key career stats and awards would be relevant to significance, so that is the information we parsed for. Since the data is almost entirely objective sports statistics, we did not really have any ethical concerns or concerns that the data was skewed.         </p>
+
+
+        <h2> General Data Questions </h2>
+
+        <b><p> How clean is the data? Does this data contain what you need in order to complete the project you proposed to do? </p></b>
+
+        <p> (Player Stats and Awards): The data is generally very clean and in the correct format. However, occasionally some of the format of the names are inconsistent. While most of the names are FirstName LastName, some are formatted differently like T. Brady. In addition, there are some cases where in the player name field, two names are shown like Gil Hodges/Pee Wee Reese. Statistics are floats and not strings while names and awards are strings. The only missing values occur when a player has not received any awards, but we implemented error checking for this that allows our program to continue running. If a player didn’t receive any awards, the list in the corresponding column will just be empty.
+        </p>
+        <p> (Priced Realized): The data is also generally clean however, there are some encoding issues due to the formatting of the website. This needs to be further cleaned but this only affected a small portion of the datasets.
+
+        <b> <p> How many data points are there total? How many are there in each group you care about (e.g. if you are dividing your data into positive/negative examples, are they split evenly)? Do you think this is enough data to do what you hope to do? </p></b>
+        <p>    We have around 20000 data points total. We currently have 14000 points for baseball items, and 6000 for basketball and football. Though we do believe that this is enough data, we may look into collecting more to evenly distribute the data points across the sports. We haven’t scraped all the data from the websites, so getting additional data should not be too much of an issue. </p>
+
+        <b> <p> Are there missing values? Do these occur in fields that are important for your project's goals? </b></p>
+            Because we only were able to get statistics for players, for memorabilia that belonged to whole teams, we were not able to get statistics for them. However, we still believe that the history of prices that they were sold at would be just enough to generate an accurate prediction model. In addition, we have some collectibles that were sold at $0. We will most likely remove data like this.
+
+        <b> <p> Are there duplicates? Do these occur in fields that are important for your project's goals? </b> </p>
+        <p> No </p>
+
+        <b> <p> How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values? (focus on the fields that are most relevant to your project goals) </b></p>
+        <p>  There are a few collectibles that were only sold once, while the maximum amount of times an item was sold was as high as 1564. We may have to exclude the data that have been sold just once since we cannot see how those prices have changed over time. In addition, the price at which the items were sold at are skewed towards the smaller side, with the minimum price being 0 (which we may remove) and the maximum being in the millions.            </p>
+
+        <b><p>  Are there any data type issues (e.g. words in fields that were supposed to be numeric)? Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them?</b></p>
+        <p>   No       </p>
+
+        <b> <p> Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the conclusions you are able to draw?</b> </p>
+
+        <p>We plan on disregarding prices that are equal or near 0. We believe that this number may have been inputted when a price was not revealed or not accessible by the website we scraped. This will most likely increase the price predictions our model will generate, but will definitely make them more accurate. In addition, we also will throw away items that were only sold once. It’s difficult to analyze a pattern and predict a price from these items, so hopefully by eliminating these points, our model will be more accurate in the end.</p>
+
+        <p> <b> Summarize any challenges or observations you have made since collecting your data. Then, discuss your next steps and how your data collection has impacted the type of analysis you will perform.  </p> </b>
+
+        <p>  (Player Stats and Awards): The biggest challenge regarding scraping for player stats and awards was that each sports website had a unique url structure and information layout, so a different function had to be written for each sport. However, since there is no single website that has information on players from every sport and since each sport has its own distinct set of key stats and awards, this is something that we’re just going to have to deal with when adding more sports.
+		           </p>
+        <p> Items:We have mentioned challenges above, but obervations we have seen is that it is going to be needing a way to filter the data further to prevent any mixups when doing our analysis.   </p>
+
+        <b> <p> Next steps in general </b></p>
+        <p> For next steps in general we are going to use this data by preformming statisticaL analysis that we will master by the time the stats project is due. We are considering z-testing some of our data points based on the age of the item for example. </p>
+    </div>
+</div>
+
+</body>
+</html>

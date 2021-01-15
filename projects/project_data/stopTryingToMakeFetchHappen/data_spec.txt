@@ -1,0 +1,19 @@
+Daniel de Castro, Augie Ge, David Romano, Daniel Smits
+
+The twitter, reddit, and Urban Dictionary downloaded datasets are taken from these three sources:
+
+Twitter Shallow Stream Grab: https://archive.org/details/twitterstream
+Reddit: http://files.pushshift.io/reddit/
+Urban Dictionary: http://urbanscraper.herokuapp.com
+
+The format of the data for our database is such that each row contains an individual tweet/post/comment (text), a unique id (id), and date (date).
+
+There are two tables in the SQL database- one for each Twitter and Reddit. Both tables contain the same components with differences in data type to store different sizes of text. 
+
+text - the text of a tweet/post/comment. Reddit has a character limit of 40,000 characters. Thus
+       text will be stored as VARCHAR(40000) in the Reddit table. For Twitter, we will use VARCHAR(288).
+
+date - DATE type -- YYYY-MM-DD
+
+id - an auto-incremented unique identifier for each individual tweet/post/comment.
+

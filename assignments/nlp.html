@@ -1,0 +1,242 @@
+<html>
+<!-- FILL IN EVERYTHING SURROUNDED BY CURLY BRACES UNLESS OTHERWISE SPECIFIED -->
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7 &laquo; Natural Language Processing &raquo;</title>
+</head>
+
+<body>
+
+<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Assignment 7 <small>&laquo; Natural Language Processing &raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                <p>
+                    <ul>
+                        <li>Due date: April 23, 2020 at 11:59pm</li>
+                        <li>Stencil: <code>cs1951a_install nlp</code></li> or <code>cp -r /course/cs1951a/pub/nlp/stencil ~/course/cs1951a/nlp</code>
+            <li>Data: <code>cp -r /course/cs1951a/pub/nlp/bbc ~/course/cs1951a/nlp</code></li>
+                        <li>Handin: <code>cs1951a_handin nlp</code></li>
+                        <li>Files to submit: <code>nlp.py</code> and <code>README.txt</code></li>
+                    </ul>
+                </p>
+            <hr>
+            
+            <img src="nlp_joke.png" alt="NLP Joke">
+
+            <h2>Overview</h2>
+                <p>Oftentimes, we will have to work with a text-based dataset instead of a numerical one. Being able to make sense of this data is of great interest to us for such tasks such as sentiment analysis (determining whether a review was positive or negative), text summarization, and translation between languages. This collection of methods is called Natural Language Processing (NLP).</p>
+
+
+                <p>In this assignment, we’ll be going over topic modeling, which is an algorithm that analyzes a collection of documents (also known as a <i>corpus</i>) to determine what each document is about.</p>
+            <hr>
+
+            <h2>Assignment</h2>
+
+                <p>In this assignment, we will be sorting different documents according to 5 categories: business, entertainment, politics, technology, and sports. In order to sort them, you will implement a topic modeling algorithm to group documents based on these categories.</p>
+
+                <p><b>Note that in this assignment, we'll be using many library functions that rely on randomness such as shuffling and KMeans. In order to preserve the "randomness" of these algorithms while still making the results deterministic (meaning that you'll get the same results every time), you should always set <code>random_state=0</code> whenever you can. The stencil code will let you know when you should be setting a random state, and failure to do so will result in a point deduction. You can read more about this <a href='https://en.wikipedia.org/wiki/Random_seed'>here</a>.</b></p>
+
+                <p><b>In addition, the libraries that we'll be using (NLTK and scikit-learn) are extremely well documented and also have a lot of examples on use them. As a result, this handout will not go over how to use the NLTK/scikit-learn functions for the sake of brevity.</b></p>
+                <hr>
+
+            <h2>Part 1: Data Cleaning</h2>   
+                <h3>5 points</h3>
+                    <p>
+                        Text data usually requires more preprocessing than numerical data. This section will outline several techniques used to process text. Even though there are many steps, the <a href='http://www.nltk.org/api/nltk.html'>NLTK</a> (Natural Language Toolkit) library thankfully does most of the work for us. 
+                    </p>
+
+                    <p>For this part of the assignment, you'll be filling out a function called <code>process_document</code> which performs the following operations on a document:</p>
+
+                <h3>Consistent Casing</h3>  
+                <p>When dealing with text data, it’s important to convert our text to either all lower case or all upper case (though typically lower cased is used for legibility). This is to ensure that we don’t mistakenly treat two words with different casing but with the same characters as distinct.</p>
+                <p>For instance, we want to treat “Data”, "DATA", and “data” all as the same word, which we can do by converting all of our text to lower case.</p>
+
+                <h3>Tokenization</h3>
+                <p>Tokenization refers to the act of breaking up a document into discrete words. This is more complicated than simply splitting on all whitespace.</p>
+                <p>If we just split on whitespace, then the document (with all words converted to lower case) “i like to sleep. sleep is good.” won’t be tokenized correctly since “sleep.” and “sleep” will be treated as two distinct words.</p>
+                <p>There are many other edge cases that can come up during tokenization. NLTK comes with tokenizers that we can use, but we’ll be using the <code>RegexpTokenizer</code> to remove any non-alphanumeric characters, such as punctuation and whitespace.</p>
+
+                <h3>Removing Common Words</h3>
+                <p>When working with text data, we oftentimes want to remove common words that don’t contribute much to the meaning of sentences such as “the” and “is”. These words are referred to as <i>stop words</i>.</p>
+                <p>This is especially important for topic modeling, which relies on using word frequencies to generate the topics (more on this later). Since stop words appear so often, if we didn’t remove them, all of our topics may be determined by stop words, which isn’t helpful since these words don’t have much semantic meaning and typically aren’t specific to a certain topic.</p>
+
+                <h3>Stemming</h3>
+                <p>Consider words like “warmer” and “warmest.” Even though they’re technically distinct words, they share a common root: “warm”, so it makes sense to consider them all the same in NLP.</p>
+                <p>This process of removing word suffixes is referred to as stemming. Just like with tokenization, NLTK comes with <a href='http://www.nltk.org/howto/stem.html'>built-in stemmers</a>. For this assignment, we’ll be using the <code>SnowballStemmer</code>, which algorithmically removes word suffixes based on orthography (spelling). </p>
+
+            <hr> 
+
+            <h2>Part 2: Data Loading</h2>
+            <h3>40 points</h3>
+
+            <p>Using the <code>process_document</code> function written in Part 1, we can now read in all of our documents. Fill out the <code>read_data</code> function, which returns four things:</p>
+
+            <ol>
+                <li><b>documents:</b> a mapping from document IDs to a bag of words (see the "Bag of Words Representation" subsection below)</li>
+                <li><b>document_word_counts:</b> a mapping from words to number of documents it appears in, NOT the total number of times it appears across all documents</li>
+                <li><b>word_ids:</b> a mapping from words to unique integer IDs</li>
+                <li><b>labels:</b> a mapping from document IDs to labels (one of 'e', 'p', 't', 's', or 'b', for entertainment, politics, technology, sports, or business, repsectively). You can get this label from the <code>filename</code> variable.
+
+                Each file is named using following scheme: <code>L_XXX.txt</code> where <code>L</code> is a one character label and <code>XXX</code> is a three digit ID. Do <b>NOT</b> use these IDs when calculating <code>documents</code> though, since these IDs are not guaranteed to be unique across the different labels (i.e. we can have both a <code>b_001.txt</code> and <code>s_001.txt</code></li>
+            </ol>
+
+            <h4>Bag of Words Representation</h4>
+            <p>For this algorithm, we can disregard syntax (word order) and treat each document as a <i>bag of words</i>, meaning that after preprocessing our text, we can represent each document as a dictionary mapping words to their counts.</p>
+
+            <p>For example, if we had this document:</p>
+
+            <blockquote>Belle likes to read. Beast likes to throw tantrums.</blockquote>
+
+            <p>Our bag of words (disregarding preprocessing) would look like this:</p>
+
+            <pre>{
+    'Belle': 1,
+    'likes': 2,
+    'to': 2,
+    'read': 1,
+    'Beast': 1,
+    'throw': 1,
+    'tantrums': 1
+}</pre>
+
+            <hr>
+
+
+            <h2>Part 3: Topic Modeling</h2>
+            <h3>20 points</h3>
+
+            <p>To complete this part, follow the TODOs in the LSA function to fill it in.</p>
+
+            <p>Topic modeling allows us to classify a text document into a certain topic. To give a concrete example, consider this piece of text: </p>
+            
+            <blockquote>It is called high-definition - HD for short - and it is already hugely popular in Japan and the US. It is set, according to analysts, to do for images what CDs did for sound. Different equipment able to receive HD signals is needed though and is expensive. But Europe's gamers may be the early adopters to drive demand. Europeans will have to wait until at least 2006 until they see mainstream HDTV.</blockquote>
+ 
+            <p>If asked what this piece of text is about, you may say it's about TVs or technology but not about food or fashion. This is in essence the heart of what we are trying to do in topic modeling.</p>
+
+            <p>We will group documents from a corpus of BBC (British Broadcasting Corporation) news articles into 3 of 100 different possible topics each. Keep in mind that we specify that our model should generate 100 topics, but since computers don’t have an innate understanding of language, there’s no easy way for us to specify what these 100 topics should be. The model will instead figure out 100 general categories that the words fall under, and looking at the words in each category can give you a sense of what each topic might be. There’s no way for us to truly know what each topic represents, however. In other words, instead of giving us concrete topics like “sports” and “animals,” we just end up with 100 abstract topics: topic0, topic1, …, topic 99.</p>
+
+            <p>While there are several ways performing of topic modelling, we are going to be implementing one called <i>Latent Semantic Analysis</i>.</p>
+
+            <h3>Latent Semantic Analysis (LSA)</h3>
+
+            <h4>tf-idf Scores</h4>
+
+            <p>Once we have each document represented as a bag of words, we need to calculate <i>term frequency-inverse document frequency</i> (tf-idf) scores, which is a metric to measure how important each word is in a document.</p>
+
+            <p>We can store our tf-idf scores in a matrix (<i>W</i>) in which the number of rows (<i>r</i>) is equal to the total number of documents and the number of columns (<i>c</i>) is equal to the number of words that we have across all of our documents. This means that we need to assign each document a unique integer id between 0 and <i>r-1</i>, inclusive, and each word a unique integer id between 0 and <i>c-1</i>, inclusive.</p>
+
+            <p>tf-idf scores are composed of two parts: the term frequency (tf) score and the inverse document frequency (idf) score. Given a document <i>i</i> and word <i>j</i>, <b>the tf score for <i>W<sub>i,j</sub></i> is equal to the number of times word <i>j</i> appears in document <i>i</i> divided by total number of words in document <i>i</i></b>. As the name <i>term frequency</i> implies, this just measures how often word <i>j</i> appears in document document <i>i</i>, relative to the other words in document <i>i</i>.</p>
+
+            <p>However, just because a word appears frequently doesn't necessarily mean that it's important to the meaning of the document. While we want to find the words that appear frequently in a document from the tf score, we also want to give more weight to words that appear infrequently in other documents. For example, if we had an article about avocado prices in the US, words like "avocado" and "US" might both have high tf scores, but we want to weigh "avocado" higher since it's a rarer word overall (less likely to appear in any given document) and thus is more likely to contribute to the overall meaning of the document.</p>
+
+            <p>This is why we also need to calculate an inverse document frequency (idf) score to figure out which words are rare across our entire set of documents. The idf score of a word <i>j</i> is equal to <b>log(total number of documents / number of documents containing <i>j</i>)</b>. Note that <code>log</code> here refers to natural log, not base-10 log.</p>
+
+            <p>We then multiply the tf and idf scores to calculate the tf-idf score for <i>W<sub>i,j</sub></i>.</p>
+
+            <h4>Matrix Factorization</h4>
+
+            <p>Now that we have our matrix of tf-idf scores, we can transform it using matrix factorization (hint: refer to the matrix factorization lab!). This will give us a new matrix in which the rows represent documents and the columns represent topics from which you can use the elements with the highest values to figure out which topics correspond to which documents.</p>
+
+            <p>In other words, the shape of the matrix is (number of documents, number of topics) and the topic that most strongly corresponds to a document <i>d</i> will be the argmax of the row of <i>d</i>.</p>
+
+            <p>Since linear algebra is not a pre-requisite for this class, we will not be going over the math behind this, nor will you be expected to understand how it works, but you can read more <a href='https://en.wikipedia.org/wiki/Latent_semantic_analysis#Derivation'>here</a> if you're interested!</p>
+
+            <p>Finally, we want to assign each document's top "topics_per_document" topics to that document's ID, according to our new matrix, using a dictionary.</p>
+            
+            <hr>
+
+            <h2>Part 4: Classification</h2>
+            <h3>15 points</h3>
+
+            <p>Now that we've processed our data and assigned topics to each document, we can finally train a classifier! We'll be exploring four different classification algorithms: <a href='https://scikit-learn.org/stable/modules/neighbors.html'>k-Nearest Neighbors</a> (KNN), <a href='https://scikit-learn.org/stable/modules/tree.html'>decision trees</a>, <a href='https://scikit-learn.org/stable/modules/svm.html'>support vector machines</a> (SVM), and <a href='https://scikit-learn.org/stable/modules/neural_networks_supervised.html'>multi-layer perceptrons</a> (a basic form of a neural network). </p>
+
+            <p>We won't be asking you to implement any of these algorithms from scratch. Instead, we'll be using the scikit-learn (sklearn) library's implementations.</p>
+
+            <h4>More Data Processing</h4>
+
+            <p>Since classification is a supervised machine learning algorithm, we'll need training data and testing data. sklearn has a function called <code>train_test_split</code> that will split our data for us. Please use a split of 90% training and 10% testing. It also conveniently can also shuffle our data for us, which you should do with a random state of 0.</p>
+
+            <h4>Training and Evaluation</h4>
+
+            <p>Once we have training and testing data, we can finally train our models and see how they do. Train an instance of each of the four different algorithms listed above, and see how well they do on the testing data.</p>
+
+            <p>For KNN, set the number of neighbors used to classify to be 3. You can use the default parameters for the other three classifiers (with the exception of <code>random_state</code>).</p>
+
+            <p>Follow the instructions and complete the classify function.</p> The scores of these classifiers are printed in the main function. You will not be graded on these scores, however, if your score is too far off, it might
+               be from an error in an another portion of the assignment that you will be graded on. For reference, this is the performance of the TA solution:
+            <code>K-Nearest Neighbors Accuracy: 0.673</code>, 
+            <code> Decision Tree Accuracy: 0.771</code>,
+            <code>SVM Accuracy: 0.422</code>,
+            <code>Multi-Layer Perceptron Accuracy: 0.395</code>
+            
+
+            <hr>
+            <h2>Part 5: Clustering</h2>
+            <h3>10 points</h3>
+
+            <p>What if we didn’t know which categories our documents fell into? If we wanted to put our documents into 4 groups (without using any labels), we need to come up with a new way to organize them.</p>
+
+            <p>Because we no longer have labels for our data, we need to switch from classification, which is a supervised algorithm, to clustering, which is unsupervised.</p>
+
+            <p>Recall from your previous assignment that you can use the k-means algorithm in order to group together similar inputs. We’ll be using k-means again in order to cluster our documents based on their topics in order to figure out which documents are similar to each other.</p>
+            <p>We’ll be using the <a href='https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html'>KMeans</a> class from the sklearn library to do this. Use k-means in order to predict which cluster each of the documents is in, as well as to calculate the center of each cluster. Then use the provided <code>plot_clusters</code> function to visualize your clusters.</p>
+
+            <br> 
+
+            <hr>
+            <h2>Part 6: Written Questions</h2>
+            <h3>10 points</h3>
+
+            <p> In February 2019, OpenAI created a transformer-based language-generator
+                model called <a href="https://openai.com/blog/better-language-models/">GPT-2</a> that is capable of generating near human-level writing ability. 
+            </p> 
+            
+            <p> There has been continuous debate on whether releasing this model was irresponsible since it could be able to auto-generate fake news. However in November,
+                OpenAI decided to publish the full version of the model (previously, only much smaller model architectures were released).
+                Read the following <a href="https://www.theverge.com/2019/11/7/20953040/openai-text-generation-ai-gpt-2-full-model-release-1-5b-parameters">article</a>
+                and respond to the written questions in the file README.txt.
+            </p>
+            
+            <ul>
+                <li> You can try out the model <a href="https://talktotransformer.com">here.</a> Try inputting in different types of 
+                    paragraphs - poems, emails, news articles, etc. How good is the model at generating new text?
+                    Are there any mistakes? (2 points).
+                </li>
+                <li> What types of positive and negative effects might come from use of
+                    this algorithm? Do you think that OpenAI should have released this model? Why or why not? (8 points)
+                </li>
+            </ul>
+            <br> 
+
+            <h2>Handing In</h2>
+                <p>
+                    The folder you hand in must contain the following:
+                    <ul>
+                        <li><code>nlp.py</code></li>
+                        <li><code>README.txt</code> - containing anything you'd like the TAs to know about your handin as well as the answers to the written questions.</li>
+                    </ul>
+                Then run: <code>cs1951a_handin nlp</code>.
+                </p>
+                <p>Do not hand in the data files!</p> 
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    This is a new assignment created by Alex Jang (ajang) in Spring 2019, and updated by Nam Do (ndo3) and Maggie Wu (mwu27) in Spring 2020!
+                </p>
+                <p>
+                    <p><a href='http://mlg.ucd.ie/datasets/bbc.html'>Source</a> for the BBC News dataset: D. Greene and P. Cunningham. "Practical Solutions to the Problem of Diagonal Dominance in Kernel Document Clustering", Proc. ICML 2006.</p>
+                </p>
+        <div class="col-md-2"></div>
+        <br><br>
+    </div>
+
+</body>
+</html>

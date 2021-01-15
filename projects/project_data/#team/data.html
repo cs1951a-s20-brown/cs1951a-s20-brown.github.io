@@ -1,0 +1,79 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+
+            <a href="https://ichef.bbci.co.uk/news/320/cpsprodpb/486D/production/_99314581_gettyimages-491487278-1.jpg">
+         <img src="https://ichef.bbci.co.uk/news/320/cpsprodpb/486D/production/_99314581_gettyimages-491487278-1.jpg" >
+            </a>
+        <h1 style="color:#5cadff; text-shadow: 2px 2px #0d3c69;">#team</h1>
+        <h4 style="color:gray">Analyzing how events impact hashtag activism</h4>
+        </div>
+          <br>
+        <h2 style="color:#459ef5"> #Links </h2>
+          <a href="https://drive.google.com/open?id=1jIyu5WSF04ghcbdSZlyNYLZrHGMrhML9">
+          Link to entire data directory (Google Drive)</a><br>
+          <a href="https://drive.google.com/file/d/1Ak05U1WFqoDGE47guxYISiljOyWcVClx/view?usp=sharing">
+            Link to data sample</a><br>
+          <a href="https://drive.google.com/file/d/1izpILAiR26luiBWJ_1JGXrfaRqMCEvzk/view?usp=sharing">
+          Link to events.csv</a><br>
+          <a href="https://drive.google.com/file/d/14Ho4P5HDQK0ukShXcAYxxNZNyItoyoAO/view?usp=sharing">
+          Link to movements.csv</a><br>
+          <a href="https://drive.google.com/file/d/1F1NEgSf9NGKjUHk4TC5ubez5vSippcx3/view?usp=sharing">
+          Link to tweet_scrape.py (tweet scraping script)</a><br>
+<br>
+        <h2 style="color:#459ef5"> #DataSources </h2>
+        <h4> How did you collect the data? </h4>
+          <ul>
+          <li> <b>Counts:</b> We are using the counts endpoint of the Twitter Full Archive Search API to collect the number of tweets per day that contain one of the given hashtags.</li>
+          <li> <b>Events:</b> To create our Events dataset, we selected 20 events for each movement from our research, 10 of which are categorized as “triggering” (shootings, scandals, etc) and the other 10 categorized as “activism” (marches, protests).</li>
+          <li> <b>Movements:</b> We selected three social movements to focus our project on and created a table including data (such as the time range and associated hashtags) about each one. </li>
+          </ul>
+        <h4> Are the sources reputable? </h4>
+            <ul>
+            <li> <b>Events:</b> We recognize that the selection of events included in our events database is biased, as there is not a truly unbiased way to find events for the social movements. We conducted our own research on the web to find significant events for each movement. </li>
+            <li> <b>Counts:</b> Yes, we are using data given directly from Twitter's API which accurately represents Twitter data.</li>
+            <li> <b>Movements:</b> We recognize that the selection of movements is biased, but considering the scope of our project, choosing three movements ensures that our project is feasible.</li>
+            </ul>
+        <h4> How did you generate the sample? </h4>
+            <ul>
+              <li>Our events database is relatively small and contains samplias, as we manually selected events, and our reasoning is explained below. </li> </ul>
+        <h4> Are there any other considerations you took into account when collecting your data? </h4>
+            <ul>
+            <li> <b>Events:</b> We considered using quantitative metrics to select the events for the events database and looked into using the New York Times API to select the events with the highest number of articles within three days after the event. However, in this case, we would still have to compile a list of events from which to choose a sample of events, and this list of events would still be biased due to its manual selection. Thus we decided against using this API and opted to use 20 events per movement, which is a higher number than our original plan to use three events per movement, since analyzing more events may be able to counteract some of the bias resulting from manual selection. </li>
+            <li> <b>Counts:</b> Private or deleted tweets are not included in the count totals, which could potentially skew the data by focusing on public users (and their behavior), rather than all users. </li>
+            </ul>
+<br>
+        <h2 style="color:#459ef5"> #DataCleaning </h2>
+        <h4> How clean is the data? Does this data contain what you need in order to complete the project you proposed to do? </h4>
+        <p> Our Events data is organized in a .csv file, which contains all the data we need pertaining events. We expect the output from the counts endpoint from the Twitter Full Archive Search API to be sufficiently clean for our purposes, as the output field will contain the counts, which we can just extract.</p>
+
+        <h4>How many data points are there total? How many are there in each group you care about (e.g. if you are dividing your data into positive/negative examples, are they split evenly)? Do you think this is enough data to do what you hope to do?</h4>
+        <p>There will be 60 data points total, as we have 20 events per movement, and we will be analyzing a total of three movements. Of the 20 events for each movement, 10 are classified as triggering and 10 are classified as activism events (e.g. protests, marches, campaigns). This is a relatively small set of data points, but we plan to use t-tests to compute our statistics, so this size of data should be sufficient.</p>
+
+        <h4>Are there missing values? Do these occur in fields that are important for your project's goals?</h4>
+        <p>We are missing the count values for the tweets per event. For now, we have collected temporary counts per day using the Full Archive Search API, which returns a maximum of 100 tweets. </p>
+
+        <h4>Are there any data type issues (e.g. words in fields that were supposed to be numeric)? Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them?</h4>
+        <p>We have not run into this issue.</p>
+
+        <h4>Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the conclusions you are able to draw?</h4>
+        <p>The Full Archive Search API returns all of the relevant data for a given tweet, however, we are throwing away data that is not relevant to our project. This data includes information about the user and information about interactions with the tweet. This should not affect our data analysis because these fields are not relevant.</p>
+<br>
+        <h2 style="color:#459ef5"> #Challenges </h2>
+        <p>One major challenge we faced is the limitations of the Twitter API, which we realized (after much research) only gave a limited number of tweets that were posted within the last seven days. Per our project goals, we want all the tweets within specific time spans of movements and have a count for all these tweets, so not having access hinders our data collection tremendously. We are currently in the process of working with Ellie to get access to the Twitter Premium API. Once we have this access, we will be able to retrieve the daily counts of tweets for a period of several years using a script that we have already written. Also, this will help us overcome the challenge of only having a limited number of API calls since the counts endpoint from the Full Archive Search API enables us to gather the number of relevant tweets with a single call.</p>
+    </div>
+</div>
+
+</body>
+</html>

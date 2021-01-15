@@ -1,0 +1,30 @@
+Structure:
+There are three data sets: df_football, df_basketball, df_baseball
+
+
+Structure:
+There are three data sets: df_football, df_basketball, df_baseball
+
+df_football contains information about football memorabilia. It contains 7 columns: item, name, price, grade, awards, last_year
+ - item: the name of the item
+ - name: the name of the player
+ - price: item price
+ - grade: the grade of the item
+ - awards: the list of awards the player has won
+ - last_year: the last year the player played in a season
+
+df_basketball contains information about basketball memorabilia. It contains 10 columns: item, name, date, price, grade, awards, last_year, game, points, assists
+ - game: the number of games the player has played
+ - points: the number of points the player has scored
+ - assists: the number of assists the player has
+
+df_baseball contains information about baseball memorabilia. It contains 10 columns: item, name, date, price, grade, awards, last_year, war, hr, rbi
+ - war: the player's career WAR (baseball stat)
+ - hr: the number of homeruns
+ - rbi: the number of RBI
+
+Each of these columns are required fields. If stats are not available for a player, None would be inputted into the field.
+There are duplicate in 'item' column since items can be sold multiple times. As a result, the key for each row is (item, date).
+
+
+The link to the full dataset: https://drive.google.com/open?id=1Htz_8UE9PWffvjrK9rLN09AYkcFpFhWI

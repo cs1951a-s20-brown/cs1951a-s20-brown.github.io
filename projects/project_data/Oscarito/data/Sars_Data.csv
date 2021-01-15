@@ -1,0 +1,32 @@
+﻿Country,SARS Cases,SARS Number of deaths,SARS Case fatality ratio
+Australia,6,0,0
+Canada,251,43,0.171314741
+China,5327,349,0.065515299
+"China, Hong Kong Special Administrative Region",1755,299,0.17037037
+"China, Macao Special Administrative Region",1,0,0
+"China, Taiwan",346,37,0.106936416
+France,7,1,0.142857143
+Germany,9,0,0
+India,3,0,0
+Indonesia,2,0,0
+Italy,4,0,0
+Kuwait,1,0,0
+Malaysia,5,2,0.4
+Mongolia,9,0,0
+New Zealand,1,0,0
+Philippines,14,2,0.142857143
+Republic of Ireland,1,0,0
+Republic of Korea,3,0,0
+Romania,1,0,0
+Russian Federation,1,0,0
+Singapore,238,33,0.138655462
+South Africa,1,1,1
+Spain,1,0,0
+Sweden,5,0,0
+Switzerland,1,0,0
+Thailand,9,2,0.222222222
+United Kingdom,4,0,0
+United States,27,0,0
+Viet Nam,63,5,0.079365079
+,,,
+Total,8096,774,

@@ -1,0 +1,162 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the_sql_was_worse Analysis Deliverable</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>the_sql_was_worse ANALYSIS DELIVERABLE</h1>
+        </div>
+    <h2>Hypothesis</h2>
+        <br>
+        <p>
+          We hypothesize that actors who are white, male, straight, and from the
+          coasts will reach success in their careers faster than other actors.
+
+          To test our hypothesis, we will examine the careers (in terms of film credits)
+          of all actors who have received an Oscar nomination, meaning they all
+          eventually achieved the same level of success at some point in their careers
+          and can qualitatively be considered the same caliber as each other.
+
+	  <h2>Methodology</h2>
+        <p>
+        <b> Why did you use this statistical test or ML algorithm?</b> <br>
+        We used multiple linear regression since we hypothesized that multiple variables
+        would affect the success of an actor. By using multiple regression, we were
+        able to evaluate the extent to which race, gender, sexual orientation, and birth place
+        explained the number of credits it took an actor to hit their big break.
+
+        For the dependent variable that captures the "success" of an actor,
+        we calculated the “credits to success”. This is the number of films an actor
+        was cast in before appearing in a film that was rated 7.5/10 or higher
+        (this point is their “big break”).  An actor with a lower number of
+        “credits to success” reached success more quickly than an actor with a
+        higher number of “credits to success.”
+
+        <p>
+        <b> Which other tests did you consider or evaluate?</b> <br>
+        We did not use any other tests for evaluation, but we consider
+        attribute clustering as a possible method to see similarities between
+        actors.
+
+        <p>
+        <b> How did you measure success or failure? Why that metric/value?</b> <br>
+        We measured success by the magnitude of the R-squared value because
+        this metric would tell us how much of the "credits to success" variable
+        was explained by any of the demographic variables of interest.
+
+
+        <p>
+        <b> What challenges did you face evaluating the model?</b> <br>
+        When evaluating the model, we faced the challenge of not being able to
+        produce linear plots of our regression because our independent variables
+        of interest were qualitative in nature and we could not convert them
+        into quantitative data without prescribing meaning or bias to one
+        category of race, region, or sexual orientation over another.
+
+        <p>
+        <b> Did you have to clean or restructure your data?</b> <br>
+        In order to use a multiple linear regression to attempt to produce meaningful results,
+        we had to bucket the qualitative data of the individual birthplace cities into
+        regions within the United States and a bin for international (see below for map used to bucket birthplace cities).
+        For the regression, we had to convert our independent variables of interest, race, region, and sexual orientation
+        into dummy variables, as they are categorical/discrete and not continuous.
+        <br>
+        <img src="BEA_regions.png" width="80%" margin="10%">
+
+
+    <h2>Regression Results</h2>
+        <p>
+       <img src="race_results.png" width="80%" margin="10%">
+       <img src="region_results.png" width="80%" margin="10%">
+       <img src="sexuality_results.png" width="80%" margin="10%">
+
+		<h2>Interpretation</h2>
+        <p>
+        <b>What is your interpretation of the results?</b> <br>
+          Based on the regression analysis, given the low R-squared values and
+          confidence intervals that straddle 0, we cannot conclude that any of the
+          demographic independent variables had a causal relationship with
+          the number of credits to success for Oscar-nominated actors.
+        <p>
+        <b> Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy?</b> <br>
+          We cannot accept or deny our hypothesis using these results.
+        <p>
+        <b> Intuitively, how do you react to the results? Are you confident in the results?</b> <br>
+        Intuitively, we were not surprised that our results showed there is not necessarily a
+        causal relationship between demographic characteristics and career pace to success because
+        our data set is skewed actors who did reach a high level of success within the industry at some point
+        (as opposed to the many other people who attempt a career in acting) and there are a myriad of other
+        factors that may have contributed to why an actor was cast or not cast in a film beyond their
+        race, sexual orientation, or birthplace region.
+
+		<h2>Visualization</h2>
+      <p>
+        The following bar charts visualize the data based on the three demographic characteristics we examined.
+      </p>
+      <img src="region-count.png" width="80%" margin="10%">
+      <img src="sex-count.png" width="80%" margin="10%">
+      <img src="race-count.png" width="80%" margin="10%">
+      <img src="multibar_awardxrace.png" width="80%" margin="10%">
+      <p>
+          The three box plots below portray the range of the number of credits to
+          success for actors of different demographic backgrounds.
+          The lower the block on the y-axis means that on average, it took actors in that group fewer film credits
+          to be cast in a highly-rated movie and thus reach success more quickly.
+        <br>
+        <img src="region-threshold.png" width="80%" margin="10%">
+        <img src="sex-threshold.png" width="80%" margin="10%">
+        <img src="race-threshold.png" width="80%" margin="10%">
+        <img src="jitterplot_race_to_success.png" width="80%" margin="10%">
+    <p>
+    <b>	For your visualization, why did you pick this graph?</b> <br>
+        We chose box plots and jitter plots because they show variation within
+        a specific sub-category despite the overall size of that group. For example,
+        even though the number of Asian actors in that data set is fairly small,
+        it is still meaningful to note the close clustering of the individual
+        data points and the narrow range of the box plot because this shows that
+        those actors all generally experienced a similar career growth pace.
+
+    <p>
+    <b> What alternative ways might you communicate the result?</b> <br>
+        We did not have a primary means of communicating the regression
+        results visually, the details of which are discussed below.
+    <p>
+		<b> Were there any challenges visualizing the results, if so, then what where they? </b> <br>
+        To visualize the data, we used seaborn, an extension of matplotlib. The
+        initial challenge was learning how to use matplotlib and seborn. After
+        we figured out that those libraries could count each attribute (for example,
+        in the sexual_orientation graph, it would count each instance of "Straight"),
+        it was much easier to generate the graphs.
+        <br>
+        As mentioned in the Methodology section, we could not create a
+        visualization of the regression results because of the qualitative
+        nature of the data.
+    <p>
+    <b>Will your visualization require text to provide context or is it standalone
+      (either is fine, but it's recognize which type your visualization is)? </b> <br>
+      Some context for the meaning of actor_success_threshold would be useful
+      to be able to the interpret the graph's meaning and compare the success of
+      actors from different demographic backgrounds.
+
+    <h2>Next Steps</h2>
+      <p>
+      Based on our first initial statistical test, we do not have sufficient evidence
+      to accept or deny our hypothesis. We would like to conduct additional regressions
+      based on other ways to define success, such as commercial success, based on box office revenue,
+      and critical success in terms of award nominations for films that actors have been in.
+      We also want to consider the demographic variable of age and how this impacts an actor's career.
+
+      </p>
+    </div>
+</div>
+
+</body>
+</html>

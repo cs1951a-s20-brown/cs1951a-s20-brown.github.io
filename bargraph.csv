@@ -1,0 +1,8 @@
+Topic,Number,Color,desc1,desc2
+SQL Databases,1,Red,databases,queries
+Web Scraping,2,Orange,web crawling,data cleaning
+MapReduce,3,Yellow,parallel processing,gcp
+Stats,4,Green,linear regression,hypothesis testing
+ML Algorithms,5,Mint,clustering,classification
+Data Viz,6,Blue,d3,matplotlib
+NLP,7,Purple,matrix factorization,word embeddings

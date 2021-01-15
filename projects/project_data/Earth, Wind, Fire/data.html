@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1 style="font-family:courier;"> Earth, Wind, Fire: Data Deliverable Tech Report </h1>
+<hr> </hr>
+</head>
+<body>
+<h5 style="font-family:courier;"> Hypothesis: </h5>
+
+<p style="font-family:courier;"><small><b> The month with the most consecutive cold/hot days is the month with the highest (a) residential natural gas consumption and (b) residential electricity consumption. </b> </small>
+<p style="font-family:courier;"><small><a href="https://drive.google.com/open?id=1bDwDeFI-Z2Y65EfO7xt7fRcnhOqpdX5p"> Link to full data in downloadable form </a></small></p>
+</p>
+<hr></hr>
+
+<h5 style="font-family:courier;"> Overview: </h5>
+<small>
+<ul style="font-family:courier;">
+<li>We will define what constitutes a "cold" or "hot" day based on our data</li>
+<li>The region we are focusing on are the states of New England: Rhode Island, Connecticut, Massachusetts, Maine, Vermont, New Hampshire</li>
+<li>Time frame: January 1, 2010 - December 31, 2019
+</ul>
+</small>
+
+<h5 style="font-family:courier;"> Data Sources: </h5>
+<p style="font-family:courier;"><small>
+  We collected our data from the following government agencies:
+<ul style="font-family:courier;">
+<li> Temperatures: United States National Centers for Environmental Information (NCEI)</li>
+<li> Residential natural gas consumption & electricity consumption: United States Energy Information Administration (EIA)</li>
+</ul>
+
+
+<h4 style="font-family:courier;"> How we collected our data:</h4>
+<p style="font-family:courier;"> We manually downloaded the following csv files:
+<ul style="font-family:courier;">
+<li> Daily min/max/average temperature for each of the 6 states. Each csv file contains daily temperatures from different weather stations across the state over the course of 1 year i.e. we downloaded 10 files for each state since we are looking at 2010-2019. </li>
+<li> Monthly residential natural gas consumption for each of the 6 states. </li>
+<li> Monthly residential retail sales of electricity for each of the 6 states. </li>
+</ul>
+
+<h4 style="font-family:courier;"> How we generated our sample:</h4>
+<ul style="font-family:courier;">
+<li> We decided to focus on New England - RI, CT, MA, ME, VT, NH - over a time frame of 10 years (2010-2019). We decided that 10 years would allow us to gather enough data points for a representative sample. </li>
+<li> We are aware that temperatures differ across different weather stations within a state. We decided to use temperatures from the station located in the largest city (population-wise) in every state. For example, the Massachusetts temperatures are taken from a weather station located in Boston.  </li>
+<li> We thought that gathering data for all 50 states over a 10-year time frame would be excessive, which is why we decided to focus on New England. </li>
+</ul>
+
+<h4 style="font-family:courier;"> How clean is the data:</h4>
+<ul style="font-family:courier;">
+<li> The weather data did consist of several null values. We worked around this by gathering temperatures from the nearest station to fill in missing values.  </li>
+<li> The data regarding monthly energy/electricity consumption by state was complete.  </li>
+</ul>
+
+<h4 style="font-family:courier;"> Data type issues:</h4>
+<ul style="font-family:courier;">
+<li> One data type issue is that we are comparing daily temperatures with monthly energy/electricity consumption. Since we are merging our datasets by date, we decided to include the monthly energy/electricity consumption on the first day of each month. </li>
+</ul>
+
+<h4 style="font-family:courier;"> Data we disregarded:</h4>
+<ul style="font-family:courier;">
+<li> The weather csv files included temperatures from many different weather stations across each state. Since we (mostly) only used temperatures from one station in each state, we disregarded temperatures from other stations. We believe this will not significantly skew our analysis because the weather in New England is relatively temperate and we don’t think temperatures will significantly differ amongst stations in the same state.  </li>
+</ul>
+
+<h4 style="font-family:courier;"> Challenges we encountered: </h4>
+<ul style="font-family:courier;">
+<li> When collecting weather data, there were some unreported daily temperatures from the specific weather stations we were looking at, which resulted in null values. We completed these missing values by using temperatures from the nearest weather station. </li>
+<li> After collecting all of our data, we realized that merging the datasets would be challenging since temperatures are reported daily whereas energy/electricity consumption are reported monthly. When merging our datasets by date, we decided to include the energy/electricity consumption for each state on the first day of each month. </li>
+</ul>
+
+<hr></hr>
+<h4 style="font-family:courier;">Daniel Civita, Daniela Haidar, Sharon Alexander, Ascanio di Cellere </h4>
+</p>
+
+
+</body>
+</html>

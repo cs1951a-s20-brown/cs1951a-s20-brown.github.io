@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Data Deliverable</title>
+  <meta name="description" content="Analog Data Deliverable">
+  <meta name="author" content="Analog">
+</head>
+
+<body>
+<h1>Data Deliverable</h1>
+<h2>Project Team: Analog</h2>
+<h3><a href="https://drive.google.com/a/brown.edu/file/d/1ohg0mHxNrJC0nb-Aig82dDaRNJa96stE/view?usp=sharing">Full Database Download</a></h3>
+<h3>Project Goal</h3>
+<p>We aim to predict the number of traffic accidents in each of the five boroughs of New York given time of day, time of week, time of month, time of year, weather conditions, and stock market conditions.</p>
+
+<h3>Data Spec</h3>
+<p>Our data is stored in a sqlite database containing 13 tables (1 table for traffic accidents in New York, 1 table for traffic speeds in New York, 10 tables for weather, and 1 table for NASDAQ’s ticker price. The information in the database mainly starts from January 1st, 2018. The data was compiled from a combination of api calls and existing datasets. While we will relate the tables in our database by their timestamp, we didn’t make the timestamps foreign keys because they are not going to be the exact same across each table. For example, if we are considering 8:00AM, we may need to take data from 7:59AM for the traffic accident data and 8:01 for the weather data. For each of the tables, the timestamp is required. For the traffic accident data, a location is required. For the traffic speed data, speed is required. For the weather data, precipitation, temperature, and more are required. For the NASDAQ data, the price of the index is required.</p>
+
+<h3>Tech Report</h3>
+<ol>
+  <li>
+    <h4>Historical Weather</h4>
+    <h5><a href="https://drive.google.com/a/brown.edu/file/d/16pm94UVjDRC9TpxCSsBeQUYFXJ-i7Z7X/view?usp=sharing">Sample</a></h5>
+    <p>We collected our weather data from <a href="https://darksky.net">Dark Sky’s API</a>. Dark Sky is a reputable weather forecasting company that has historical weather data available for latitude/longitude coordinates. The free account allows for 1000 API calls per day; each call gives a summary of daily weather plus 24 hourly weather summaries. That means that for collecting weather data for 5 boroughs of New York, we can get all of our data for free in 4 days.
+    <p>The sample is just the first 10 daily summaries and the first 10 hourly summaries of 2018. The sample is not representative of hourly precipitation as there is none in the first 10 hours. There are 797 * 5 = 3985 rows of daily data and 797 * 24 * 5 = 95640 rows of hourly data total, each divided into 5 boroughs.</p>
+    <p>Due to the nature of the API calls, the data is very clean. There are null values for columns like precipType when there is no precipitation, but other than that the data is complete. Since the calls are based on time, there are no duplicate rows. For the same reason, there are no data type errors and we won’t need to throw any data away.</p>
+    <p>An analysis of the extrema shows that the data is reasonable. For example, the max and min temperatures in the time period are 98.34 and 1.58 degrees respectively. Wind speed ranges from 0 to 23.14 mph, meaning wind never reached more than a strong breeze where “Large branches sway, umbrellas difficult to use”.</p>
+  </li>
+  <li>
+    <h4>Traffic Accidents in NYC</h4>
+    <h5><a href="https://drive.google.com/a/brown.edu/file/d/152yswYK7tAu7Y_9pc1es-LKrpjsxMmzr/view?usp=sharing">Sample</a></h5>
+    <p>We collected NYC accident data from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95"> NYC OpenData</a>. The data set reports motor accident data between 2012 and 2020. The problem was that the file downloaded was in CSV form, and we wanted all our data to be connected in database files. As a result, we wrote a script to convert the CSV file into a database file, both of which are uploaded to our Google Drive folder (see NYC_accidents_CSVtoDB.py and accidents_NYC.db). In addition, some of the rows had an inconsistent number of columns and empty values. This was cleaned and reformatted in the script mentioned above. The data was published on NYC open data, and collected by the NYPD, both of which are reliable sources that consistently make data about the City of New York publicly available.</p>
+    <p>The sample includes the first 30 rows of the data set. In total, our database file contains 55366 pages (where one page contains 30 rows), resulting in 55366*30 = 1660980 rows of data. The data is relatively clean, in that there is no data in a weird format. However, some rows have empty values for some columns. This means that we may have to discard some data. Specifically, we may have to throw away rows that have missing locations. Because each accident has a unique collisionID, there are no duplicate rows. There are no datatype issues, because all data was reformatted by the script as needed.</p>
+  </li>
+  <li>
+    <h4>NASDAQ Price</h4>
+    <h5><a href="https://drive.google.com/a/brown.edu/file/d/1rzjkXTeHWlAswKYWZEM_3v9p5SUi4DQS/view?usp=sharing">Sample</a></h5>
+    <p>We collected daily NASDAQ price data between 2016 and 2019 from <a href="https://finance.yahoo.com/quote/%5Eixic/history?ltr=1">Yahoo Finance</a>. The data is posted directly by Nasdaq on Yahoo Finance, both of which are reliable sources of information that are well respected in the financial world. The website allowed us to sort by date and download data pertinent to a certain time frame, which we decided was from 2016 to 2019. As the data was released from the Nasdaq, it was very clean and had not missing or invalid values. Therefore, this portion of the data did not require intense cleaning or reformatting. The data was downloaded as a CSV file, meaning that we had to write a python script to convert it into a database file.</p>
+    <p>The dataset is composed of 1506 rows, each of which has seven columns (date, open, high, low, close, adjusted close, and volume). Since the data is very clean, we will not need to throw data away. However, we are not certain that this data will make a significant difference to our model. We think that the stock market will reflect general sentiment amongst New Yorkers, and perhaps relate to how many people decide to go out (and drive) and how they drive (perhaps linking to stress levels). This is something that we aren’t certain about, and that we may tweak as we go.</p>
+    <p>Analysis of extrema shows that the data is reasonable. The maximum Open is of $8094, which makes sense as the index currently trades at $7950.  Similarly, the minimum is at $4218, which is consistent with historical records found online.</p>
+  </li>
+  <li>
+    <h4>Traffic Speed</h4>
+    <h5><a href="https://drive.google.com/a/brown.edu/file/d/1LXXVdJGla1dVrlM2bPr4Q4i_cPb6bXo8/view?usp=sharing">Sample</a></h5>
+    <p>This database is created from information gathered from <a href="https://data.cityofnewyork.us/Transportation/Real-Time-Traffic-Speed-Data/qkm5-nuaq">Open NYC</a>. The data was obtained in a CSV format, which we converted into a sqlite database using a python script. Data from NYC Open Data should be reasonably reliable as it is gathered by New York’s Mayor’s Office of Data Analytics and Department of Information Technology and Telecommunications. Open NYC allows anyone to use their data for educational or developmental purposes.</p>
+    <p>The datatable consists of five columns (date, speed, time, borough, point). The table contains average speeds of road traffic on New York’s roadways for different times of the day. In total, there are 35,044,223 rows mainly concentrated between 2018 and 2020. The database we created from the downloaded CSV file was very clean. There are no null values for any of the entries. Across all five boroughs, the average speed is 33.89mph, the min speed is 0mph, and the max speed is 186.41mph. The average speed of the datatable seems reasonable, but there are likely outliers towards the max speed that could be eliminated during analysis.</p>
+    <p>There are no duplicates in the datatable since each entry has a unique timestamp. When converting the CSV file to a database, we had to do some string parsing to get the datetime entry into the correct format. Depending on the final date range we choose to look at, we will eventually only need to take the data that falls within our selected range.</p>
+  </li>
+</ol>
+
+<h3>Challenges and Next Steps</h3>
+<p>When starting the Data Deliverable, we were planning to utilize Uber Movement data to analyze transportation trends in metropolitan cities.</p>
+<p>First, we were attempting to analyze Uber and Taxi data to attempt to identify blind spots in public transportation; however, this idea never got past its infancy stage due to a lack of overall structure and data.</p>
+<p>Next, we decided to integrate Uber travel time data in addition to weather, stock market, sports schedules, and other factors to implement an efficient and effective ETA determiner in the city of San Francisco; to do this, approximately 30 CSV files (totaling 20 GB) were downloaded, manually reformatted, and compressed for data dating back to 2016 from Uber Movement and was joined into a combined SQL database. This idea was eventually scrapped because we determined that we wanted to deal with accident data instead.</p>
+<p>Last, we wanted to use Uber movement data for Speed in New York City that actually totaled 140 GB of CSV files which were compiled down to a 50 GB .sql database, yet we ultimately found a better database for New York City traffic data that was more comprehensive.</p>
+<p>Since we spent a lot of time reevaluating and refining our data collection processes, we are now confident and satisfied with the type of analysis that we will perform. Specifically, we will aggregate the 4 databases we have in New York City traffic/speed data, weather data, stock market data, and accident data to predict the number of accidents per borough in an hour in New York City. To do this, we will set up a model. Additionally, according to the specifications shown in the Stats assignment, we will use 80 percent of the accident data to train this model, and we will leave 20 percent of this accident data to test.</p>
+</body>
+</html>

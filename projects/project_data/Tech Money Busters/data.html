@@ -1,0 +1,86 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Tech Money Buster<<< DELIVERABLE >>></h1>
+        </div> <h1>Tech report </h1>
+
+        <h3> Hypotheses </h3>
+        <p> 
+        After evidence that Facebook could have prevented election interference in the 2016 election, and the subsequent Cambridge Analytica Data Breach in early 2018, the practices of data collection and targeted advertising by tech companies in general were made more visible to the general public. As a result of this bad press during and after the 2016 election cycle, our general question is: How, if at all, did tech companies’ role in political fundraising change after the 2016 election cycle? To do this, we are examining the donations by the PACs associated with tech companies.
+        <ul>
+            <li> <h5> Did tech companies become “more politically active” post- 2016?</h5>
+            <ul>
+                <li> Hypothesis: Tech companies became “more politically active” post-2016, in that their donations increased across the board.
+                </li>
+            </ul>
+            </li>
+            <li>
+            <h5> Do tech companies’ PAC donations skew by party and did their party distribution change post-2016? </h5>
+            <ul>
+            <li>
+                Hypothesis: Tech companies’ PAC donations skew conservative, and their donations skewed rightwards post-2016.
+            </li>
+            </ul>
+            </li>
+        </ul>
+        </p>
+
+        <h3> Link to GitHub repo</h3>
+        <a href = https://github.com/ragnaag/Data-Science-Final> Link to our GitHub that contains our data.db and our data spec (README.md) </a>
+
+        <h3> Link to Sample Data </h3>
+        <a  href= https://docs.google.com/spreadsheets/d/18hOUO8Pj5KuFky8RJOJ9Z0tHWb-3exsNHR3-6glSC-0/edit?usp=sharing> Link to our Sample Data </a>
+
+        <h3> Sources </h3>
+        <p> We have scraped our data from pages on opensecrets.org, a site that aggregates campaign finance and lobbying data from various sources (including the Federal Election Commission and lobbying reports). OpenSecrets is part of the Center for Responsive Politics, which researches and tracks money in US politics with the goal of “produc[ing] and disseminat[ing] peerless data and analysis on money in politics to inform and engage Americans, champion transparency, and expose disproportionate or undue influence on public policy.” This is considered one of the best sources of money in American politics and has been cited by The New York Times, The Washington Post, WBUR, and the Boston Globe.
+        Because we’re interested in big tech companies’ money in politics, we had to filter PACs by sector. OpenSecrets provides two categories for what we defined as “Tech Companies”: Electronics Manufacturing and Equipment and Internet.</p>
+
+        <h3> Database </h3>
+        <p>
+        Our data is divided into 2 tables, stored together in a SQL database. There are 152 rows in the pac_donations tables and 13473 rows in the candidate_donations table, which combined is 13625 total rows. All of the data in both tables is relevant because we are doing analysis on campaign donations, including what candidates the PACs donated to, and so all of the data in both tables are applicable for this analysis.
+        </p>
+
+        <h3> Sample </h3>
+        <p>
+        We generated this sample selecting all the data from the first table and then we used the RANDOM() function to randomize it and lastly we used LIMIT 50, to limit it to 50 rows for each table. Then we did the same thing for the second table. We now have 100 rows altogether from the pac_donations and candidate_donations tables.
+        </p>
+
+        <h3> Missing Data</h3>
+        <p>
+        <ul>
+        <li> Pac donations - There are data that are not present from earlier years for some companies because they started donating only in later years or vice versa. Other PAC maybe only donated once and not in any other years. This shouldn’t influence the project goals. </li>
+        <li> Affiliate - Most PAC donations do not have an affiliate organization which is specified as “Null”. It is not necessarily that the value is missing.</li>
+        <li> Presidential candidates - People who are presidential candidates do not have a documented state. But there are only five presidential candidates, so the influence is negligible on our analysis. </li>
+        </ul>
+        </p>
+
+        <h3> Data Cleanliness </h3>
+
+        There are no data type issues in our database since before inserting into the database, we cleaned the data and made sure that it was of the correct type. For example, we removed the dollar sign and commas for the amounts and converted them to integers before adding them to the database. 
+        Some candidate donations are listed as 0. We are confused about why this information is being stored as it seems quite irrelevant to the purpose of the website (which tracks donations – if there is no donation, why is it in the data?). However, we are likely to throw away this data, since it is either an error or simply irrelevant to our anticipated analysis.
+
+        <h3> Challenges and Observations</h3>
+        An issue we encountered was that there was some discrepancy in the total of money spent by each PAC when compared to the amount it said for the Democratic party and Republican party. This occured three times and we ended up going into each individual page to fix this issue. A challenge that we may find going forward is whether our numbers and analysis will yield good results. Our data has impacted the type of analysis we will perform because it has made us realize that there are several things we can focus on such as PAC donations and donations to candidates, as well as look at numbers in terms of money spent and percentages in terms of political party affiliations.
+        
+
+        <h6>
+
+            Jacob DiSpirito (jdispiri), Lauren Yang (kyang28), Ragna Agerup (ragerup), Shira Abramovich (sabramo1)
+        </h6>
+    </div>
+</div>
+
+</body>
+</html>

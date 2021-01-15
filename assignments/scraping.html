@@ -1,0 +1,240 @@
+<html>
+<!-- FILL IN EVERYTHING SURROUNDED BY CURLY BRACES UNLESS OTHERWISE SPECIFIED -->
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 &laquo; Data Scraping and Cleaning &raquo;</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Assignment #2 <small>&laquo; Data Scraping and Cleaning &raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                <p>
+                    <ul>
+                        <li>Due date: February 13, 2019 at 11:59pm</li>
+                        <li>Stencil: <code>cs1951a_install scraping</code></li>
+                        <li>Handin: <code>cs1951a_handin scraping</code></li>
+                        <li>Files to submit: <code>assignment.py</code>, <code>written_questions.txt</code>, and all SQL queries</li>
+                    </ul>
+                </p>
+            <hr>
+
+            <h2>Overview</h2>
+            <img src="images/aa.png" alt="stonks" align="middle" width="400">
+            <hr>
+
+            <h2>Assignment</h2>
+                <p>First, you'll need to collect some stock data. We'll make use of investing.com to collect information on the most active stocks in the market, collecting this data through web scraping. We'll supplement this with historical data about these stocks gathered through API requests.</p>
+
+                <p>You'll then be responsible for cleaning the data, creating a database from it, and analyzing stocks by querying your database.</p>
+
+                <p>If you are developing from a department machine, you will need to use the course virtual environment to import the <code>requests</code> and BeautifulSoup <code>bs4</code> libraries. The venv can be activated by typing <code>source /course/cs1951a/venv/bin/activate</code>. To deactivate this virtual environment, simply type <code>deactivate</code>.</p>
+
+                <p>If you are working remotely, your final handin should still work in the course virtual environment.</p>
+                <hr>
+                <h2>Part 1: Web Scraping </h2>
+                <h3>35 points</h3>
+                    <p>
+                        To get started, we’re going to want to collect some data on the most active stocks in the market. Conveniently, investing.com <a href="https://www.investing.com/equities/most-active-stocks">publishes this exact data</a>. To collect this data, you’ll make use of web scraping.
+                    </p>
+                    <p>
+                        For purposes of this assignment, we've made a copy of this page to keep the data static. Note, some of the data in our static copy is intentionally modified from real stock data to ensure you've cleaned your data and handled edge cases. As such, you will scrape from this URL: <a href="https://cs.brown.edu/courses/csci1951-a/resources/stocks_scraping_2020.html">https://cs.brown.edu/courses/csci1951-a/resources/stocks_scraping_2020.html</a>
+                    </p>
+
+                    <p>Before scraping, you'll need your code to access this webpage.
+                    You should make use of the <code>requests</code> library to make an HTTP request and collect the HTML. If you're not familar with the <code>requests</code> library, you can read about it <a href="https://2.python-requests.org/en/master/">here</a>.<p>
+
+                    <p>Once you have accessed the HTML and assigned it to some variable, you'll want to scrape it, collecting the following for each stock in the table.
+                        <ul>
+                            <li>company name</li>
+                            <li>stock symbol</li>
+                            <li>price</li>
+                            <li>change percentage</li>
+                            <li>volume</li>
+                            <li>HQ state</li>
+                        </ul>
+                    </p>
+                    <p>You'll use Beautiful Soup, a Python package, to scrape the HTML. This will require looking at the HTML structure of the investing.com page. You can select various HTML elements on a page by tag name, class name, and/or id. Using <a href="https://zapier.com/blog/inspect-element-tutorial/">inspect element</a> on your web browser, you can check what HTML tags and classes contain the relevant information.</p>
+                    <p><strong>Note:</strong> You should collect information from the 50 most active stocks in the investing.com table. This is what the investing.com HTML will contain by default.</p>
+
+		    <p><strong>Hint:</strong> All extracted information will be strings. You’ll want to make sure the price and percent change are floats (i.e., "24.5%" should become the float 24.5), and volume is an integer. You should also parse the percent change to be a decimal, rather than a percentage.</p>
+		    <p><strong>Another Hint:</strong> You will probably want to look ahead to the queries you will ultimately ask in Part 4--this will affect the type of cleaning you need to do.
+                    </p>
+
+                <h3>A web scraping example</h3>
+                    <p>Consider the following simple HTML page with an unordered lists:</p>
+<pre>
+&lthtml>
+    &ltbody>
+        &lth1>Welcome to My Website</h1>
+        &ltul>
+            &ltli>Coffee</li>
+            &ltli>Tea</li>
+            &ltli>Coke</li>
+        &lt/ul>
+    &lt/body>
+&lt/html>
+</pre>
+                <p>Imagine we want to get the items in the list. The <code>ul</code> tag indicates an unordered list. We’ll then want to get each list item (list items are in <code>li</code> tags). Specifically, we’ll want to extract the text inside each list item. To do this, we’ll use the following code, where <code>page.text</code> is the HTML of the page.</p>
+
+<pre>
+soup = BeautifulSoup(page.text, 'html.parser')
+items = soup.find(ul).find_all("li")
+</pre>
+
+                <p>You’ll notice that <code>items</code> is a list of three items, since there are three list items in the unordered list. You’ll also see that <code>items[0].text</code> will give you the text of the first list item!</p>
+
+            <hr>
+<!--             make sure to use <hr> tags to separate each problem part -->
+
+            <h2>Part 2: API Requests</h2>
+
+            <h3>30 points</h3>
+
+            <p>Rather than using web scraping to collect this data, we’ll make use of an API.
+              You’ll make requests to this API using Python’s <code>requests</code> library.
+              IEX Trading offers an API with various endpoints that offer information about stocks.
+              <a href="hw_create_account.html">Click here for a walkthrough</a> on creating a free account.</p>
+              <p><strong>Note: </strong>You have a limited number of API calls you can make with a free account. You'll start receiving 402 errors if you reach the limit - if this happens, use a different email address to make a new (free) account (A sneaky trick is to add a suffix to your email address using a "+". For example, if your email is ellie_pavlick@brown.edu, you can sign up with ellie_pavlick+1@brown.edu, ellie_pavlick+2@brown.edu, and so on. This means you don't have to make any new email accounts for this, you can just use the one you already have to generate infinitely many new free accounts.). You probably won't reach the limit, but to check if you're close, you can click the "Message Use" tab on the left side of the API console site. Free accounts give you 50,000 messages - 1 API call usually costs more than 1 message.</p>
+
+            <p>We’re going to want to collect two pieces of information for each stock in investing.com's most active stock table:</p>
+
+            <ul>
+                <li>the average closing price of each of the most active stocks over the last 5 days</li>
+                <li>the number of articles recently written about each stock</li>
+            </ul>
+
+            <p>To do this, you’ll want to make use of the <a href="https://iexcloud.io/docs/api/#historical-prices">chart endpoint</a> to collect the historical stock pricing.
+              Then, you will want to parse through the data and average the closing price for each day.
+            <strong>IMPORTANT:</strong> Set the parameter "chartCloseOnly" to <code>True</code> when you request from the chart endpoint to avoid immediately reaching your API call limit! (Read about URL parameters <a href="https://en.wikipedia.org/wiki/Query_string">here</a>.)</p>
+
+            <p>Using the <a href="https://iexcloud.io/docs/api/#news">news endpoint</a>, you should get the articles for a specific stock. Then, you should count how many articles were returned by the API.
+                We will define recently as <strong>since February 1, 2020 00:00:00 </strong>. The news API includes
+                the unix epoch time for each article in <strong>milliseconds</strong>. You should calculate the epox time of February 1, 2020 00:00:00 and convert to milliseconds (multiply by 1000).
+                Feel free to hardcode this value and use websites to calculate it rather than calculate it by hand.
+            </p>
+
+            <p><strong>Hint:</strong> Some stocks from investing.com are not listed on major stock exchanges, and thus the IEX Trading API does not have data on them. In this case, the IEX Trading API will return a <a href="https://en.wikipedia.org/wiki/HTTP_404">404 status code</a>. Your program should handle this error by disregarding stocks from investing.com if they are not present in the IEX Trading API. That is, these stocks should not be added to the database. You can check the status code of a request by checking <code>requests.get(...).status_code</code></p>
+
+
+
+            <h2>Part 3: Databases</h2>
+            <h3>15 points</h3>
+
+            <p>You now realize that to truly harness the data, you need to turn it into a database you can query. Using the provided stencil, create a database with these tables:</p>
+
+            <ul>
+              <li><strong>companies</strong>
+                <ul>
+                  <li><code>symbol</code>, a string of the stock symbol that is the primary key of this table</li>
+                  <li><code>name</code>, a string of the company name</li>
+                  <li><code>location</code>, a string of the company's HQ location</li>
+                </ul>
+              </li>
+              <li><strong>quotes</strong>
+                <ul>
+                  <li><code>symbol</code>, a string of the stock symbol that is the primary key of this table</li>
+                  <li><code>price</code>,  the current stock price, a number</li>
+                  <li><code>avg_price</code>, the average closing price over the last five days, a number</li>
+                  <li><code>num_articles</code>, the number of recent articles about this stock</li>
+                  <li><code>volume</code>, the volume of this stock as a number</li>
+                  <li><code>change_pct</code>, the percent change in the stock’s price today, as a decimal</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3>Working with databases in Python</h3>
+            <p>To create a connection to the database, and a cursor, we include the following lines in the stencil:</p>
+<pre>
+# Create connection to database
+conn = sqlite3.connect('data.db')
+c = conn.cursor()
+</pre>
+            <p>We also prepare the database for you by clearing out relevant tables if they already exist. This allows you to run your code multiple times and replace your old version of data.</p>
+
+<pre>
+# Delete tables if they exist
+c.execute('DROP TABLE IF EXISTS "companies";')
+c.execute('DROP TABLE IF EXISTS "quotes";')
+</pre>
+
+            <p>To create a database table, you'd do something like this:</p>
+<pre>
+c.execute('CREATE TABLE person(person_id int not null, name text')
+conn.commit()
+</pre>
+
+
+
+            <p>To insert a row into a table, you'd do something like this:</p>
+<pre>
+c.execute('INSERT INTO person VALUES (?, ?)', (some_variable, another_variable))
+</pre>
+
+            <h2>Part 4: Queries</h2>
+            <h3>20 points</h3>
+            <p>Each SQL statement should be stored in its own file: <code>query1.sql</code>, <code>query2.sql</code>, etc.
+
+            <ul>
+                <li>Write a SQL statement to return the symbol and name of the stock with the biggest percent gain relative to its five day average price. This should be calculated as the current price divided by the average price.</li>
+                <li>Write a SQL statement to return the name of the stock with the highest price that has less than 5 articles.</li>
+                <li>Write a SQL statement to return the symbol and name of all stocks with prices above $35 and where the absolute difference between the current price and 5 day average price is less than $1. Your results should be sorted by the absolute difference between current price and 5 day average price, in ascending order. </li>
+                <li>Write a SQL statement to return each state and number of companies headquartered in that state (no need to include states not in your dataset). Order alphabetically by state (A -> Z).</li>
+            </ul>
+
+            <h2>Part 5: Written Questions</h2>
+            <h3> 10 points </h3>
+            Read these two articles and use them to answer the following questions in <code>written_questions.txt</code>
+            <ul>
+                <li><a href="https://www.fastcompany.com/40456140/bots-are-scraping-your-public-data-for-cash-amid-murky-laws-and-ethics-linkedin-hiq">LinkedIn vs. hiQ</a> </li>
+                <li><a href="https://www.michaelzimmer.org/2010/02/12/is-it-ethical-to-harvest-public-twitter-accounts-without-consent/">Is it ethical to harvest public twitter accounts without consent?</a></li>
+
+            </ul>
+
+            <ol>
+                <li>What do you think could be seen as a positive use of web scraping? What do you think could be seen as a negative use of web scraping? (2-4 sentences) </li>
+                <li>What was hiQ’s argument on why they should be allowed to scrape Linkedin? What was LinkedIn’s argument on why hiQ should not be able to scrape LinkedIn? (1-2 sentences)</li>
+                <li> In September 2019, a U.S. court ruled in favor of hiQ, stating that <a href="https://www.theverge.com/2019/9/10/20859399/linkedin-hiq-data-scraping-cfaa-lawsuit-ninth-circuit-ruling"> "Scraping data from a website likely doesn’t violate anti-hacking laws as long as the data is public."</a> Essentially, <a href="https://www.cpomagazine.com/data-privacy/what-the-hiq-vs-linkedin-case-means-for-automated-web-scraping/">"the Ninth Circuit’s ruling would appear to affirm that it is us that owns our data. Any platforms we share that data with are merely licensed to use it, they don’t own it outright." </a>
+                <br>
+                Do you agree or disagree with this decision? Why or why not? (2-4 sentences)</li>
+                <li> In the case of public social media accounts like LinkedIn, Twitter, or Yik Yak, do you think it’s ethical to scrape public user posts/data and use it for either data science research, for-profit, or law enforcement purposes? Why or why not? Does it matter what purpose the data is used for? (3-5 sentences) </li>
+            </ol>
+
+            If you're interested in reading more on this topic, here's <a href="https://www.nytimes.com/2020/01/18/technology/clearview-privacy-facial-recognition.html"> a recent news article </a> related to web scraping! (This is completely optional)
+
+
+            <h2>Handing In</h2>
+                <p>
+                    Your <code>~/course/cs1951a/scraping</code> directory must contain the following:
+                    <ul>
+                        <li><code>assignment.py</code></li>
+                        <li><code>data.db</code></li>
+                        <li><code>query1.sql</code></li>
+                        <li><code>query2.sql</code></li>
+                        <li><code>query3.sql</code></li>
+                        <li><code>query4.sql</code></li>
+                        <li><code>written_questions.txt</code></li>
+                    </ul>
+                Then run: <code>cs1951a_handin scraping</code> to submit the files in that directory.
+                <!-- don't worry about filling in handin command -->
+                </p>
+                <!-- keep the line above unless assignment requires students to get own data -->
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    Made with &hearts; by Jacob Meltzer and Tanvir Shahriar (2019 TAs), updated by Natalie Delworth and Nazem Aldroubi (2020 TAs)
+                </p>
+        <div class="col-md-2"></div>
+        <br><br>
+    </div>
+
+</body>
+</html>

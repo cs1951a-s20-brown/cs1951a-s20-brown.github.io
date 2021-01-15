@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Databnb: Analysis Deliverable</title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="page-header center">
+                    <h1>[Databnb]<<< ANALYSIS DELIVERABLE >>></h1>
+                </div>
+<p>The main purpose of our project is to understand the relationship between Airbnb listings and the real estate market in selected cities in the U.S. Specifically, our project looks at data from January 2015 to January 2020 from the following cities: Asheville, Austin, Boston, Chicago, Denver, Los Angeles, Nashville, New York, San Francisco and Seattle.</p>
+<p><b>Our Hypothesis</b>: We hypothesize that when the real estate market is successful in a particular neighborhood, the Airbnb market will also be successful.</p>
+<p>The first step we took when addressing this hypothesis was to define what it means to be “successful” in a particular neighborhood. In terms of the Airbnb market, we defined “success” by the number of Airbnbs that are rented in a particular zip code (or, on a larger scale, city).  In terms of the real estate market, we used the average price of homes per zip code to define a “successful” real estate market. That is, we interpret more expensive houses in a given zip code (or city) as an indicator of a successful neighborhood.</p>
+<p>Using these definitions of success, our next step was to determine what type of test we wanted to run. We did research about t-tests, z-tests, chi-squared tests, correlation coefficients, and linear regressions. We ultimately decided against a t-test, z-test and chi-squared test because they did not fit well with our data. T-tests and z-tests are used to determine if there is a significant difference between the mean value of two groups, which does not make sense when comparing the number of Airbnbs with the average housing price. Chi-squared tests are used to test the relationship between two categorical variables, which does not apply to the variables we wanted to look at. Ultimately, we chose to run a correlation between our two variables: the number of Airbnbs and the average price of homes.</p>
+
+<h2>Statistical Test</h2>
+<p>We calculated the Pearon’s correlation between the number of Airbnbs and the average housing price in each city for each year of data that we have. The correlation metric gives us an idea of how related these two measurements are. If there is a strong correlation (meaning that, for a given city, a higher average price of a house is correlated with a higher number of Airbnbs rented), then it provides some evidence supporting our hypothesis. Since our hypothesis is about the relationship between two metrics, we chose to look at correlation.</p>
+<p>Before we could calculate the correlation coefficient or create any visualizations, we had to restructure our data. First, we had to restructure our Zillow data (i.e. data regarding the average house values) such that the data in the table was the housing prices for each zip code by year, as opposed to by month. Then, we had to clean our Zillow and Airbnb data such that the columns corresponding to the city names could be matched. This means we had to make sure that the city names were formatted in the same way in both tables (i.e. making sure that for New York, both tables listed the city name as “New York”, as opposed to “new york” or “newyork”). Lastly, we had to remove “Nan” values in the Zillow data. There were “Nan” values in this table because there is not any data for housing prices in several zip codes for some of the earlier years.</p>
+<p>Once we restructured and cleaned the data, we were able to calculate the correlation coefficient. For each year of data that we have, we ran the correlation between the number of Airbnbs and the average price of houses by city and obtained the following output:</p>
+<p><figure style="text-align: center;">
+    <table align="center" style="width:50%"  span=3>
+    <colgroup>
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+    </colgroup>
+    <tr><th>Year</th><th>Correlation</th><th>P-Value</th></tr>
+    <tr><td>2015</td><td>0.15955</td><td>0.7059</td></tr>
+    <tr><td>2016</td><td>0.2743</td><td>0.5109</td></tr>
+    <tr><td>2017</td><td>0.3094</td><td>0.4558</td></tr>
+    <tr><td>2018</td><td>0.2099</td><td>0.5606</td></tr>
+    <tr><td>2019</td><td>0.2297</td><td>0.5233</td></tr>
+    <tr><td>2020</td><td>0.2709</td><td>0.4491</td></tr>
+    </table>
+    <figcaption><i>Table.1 Pearson Test Result for Avg. Home Price vs Number of Airbnbs, Aggregated by City</i></figcaption>
+</figure></p>
+
+<p>When considering confounding trends or variables, we have to be mindful of the data that we are not including in this analysis. In other words, this analysis only looks at the correlation between the number of Airbnbs and the average housing price by city per year. There are many other factors that could impact or influence this relationship, such as the number of beds in the house (or, more generally, the size of the house).</p>
+<h2>Visualization</h2>
+<p>When determining the type of visualization that we wanted to do, our first step was to look at the distribution of the entire data set. First, we wanted to understand, generally, how the housing prices were distributed by year. We chose to create a line graph because this type of visualization has time on the x-axis, which allows us to understand how the metric of interest (in this case, average housing price) changes over time.</p>
+<p><figure style="text-align: center;">
+    <img src="./city_hv_byyear.png" width="50%">
+    <figcaption><i>Fig.1 Average City Home Price for Years 2015-2020</i></figcaption>
+</figure></p>
+<p>From this visualization, we can better understand the change in housing prices by year. Some cities, like San Francisco and Los Angeles, have a trend of increasing prices of homes over the course of these years. On the other hand, some cities, like New York, have a very stable and flat curve, which indicates that prices of homes are not changing that much.</p>
+<p>Next, we wanted to look at the relationship between housing prices and Airbnbs and understand the distribution of these data sets. We chose to graph a scatter plot because scatter plots help to visualize the correlational relationship between two variables, as well as report the values of data points. Scatter plots are a good tool for visualizing the distribution of the data and allow us to determine the existence of outliers. As a first visualization we graphed the number of Airbnbs with the average housing price for each zip code:</p>
+<p><figure style="text-align: center;">
+    <img src="./hv_airbnbNum_byzip_byyear.png" width="100%">
+    <figcaption><i>Fig.2 Avg. Home Price vs. Number of Airbnbs For each Zip Code, for Years 2015-2020</i></figcaption>
+</figure></p>
+<p>After creating this visualization, we calculated the correlation for each of the plots above (i.e. the correlation between the number of Airbnbs and the average housing price by year) and obtained the following results:</p>
+<p><figure style="text-align: center;">
+    <table align="center" style="width:50%"  span=3>
+    <colgroup>
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+    </colgroup>
+    <tr><th>Year</th><th>Correlation</th><th>P-Value</th></tr>
+    <tr><td>2015</td><td>0.4392</td><td>3.999e-22</td></tr>
+    <tr><td>2016</td><td>0.4979</td><td>1.64e-25</td></tr>
+    <tr><td>2017</td><td>0.5126</td><td>1.03e-31</td></tr>
+    <tr><td>2018</td><td>0.4375</td><td>7.28e-24</td></tr>
+    <tr><td>2019</td><td>0.4267</td><td>7.76e-23</td></tr>
+    <tr><td>2020</td><td>0.4046</td><td>2.26e-20</td></tr>
+    </table>
+    <figcaption><i>Table.2 Pearson Test Result for Avg. Home Price vs Number of Airbnbs, Aggregated by Zip Code</i></figcaption>
+</figure></p>
+
+<p>Taking the correlation coefficients and the graphs together, we thought that we would see a more meaningful presentation of the information when we group the data by city. In other words, we would be evaluating the relationship between average home price and the number of airbnbs in each city (as opposed to in each zip code). We thought that this would be a more meaningful metric because the average home price of each zip code can be heavily influenced by different characteristics of individual cities - such as the city’s population density and competition in the housing market - and grouping the zip codes by city isolates our analysis from these external factors.</p>
+<p><figure style="text-align: center;">
+    <img src="./hv_airbnbNum_bycity_byyear.png" width="50%">
+    <figcaption><i>Fig.3 Avg. Home Price vs. Number of Airbnbs For each City, for Years 2015-2020</i></figcaption>
+</figure></p>
+<p>An alternative way to present this information would be to create a bar plot. We could have created a bar plot that graphed the average housing price (on one side of the y-axis) and the number of Airbnbs (on the other side of the y-axis) and then colored the bars by city. However, this graph would not be as information or intuitive to understand as our above scatter plots.</p>
+<p>One challenge we had when creating our visualizations was making sure that each of the plots had the same scale (i.e. the x-axis and the y-axis reflected the same numbers in each graph). Ultimately, we were able to figure it out after researching the topic! Another challenge we have is figuring out how to color the points by city. When constructing these visualizations, our data is formatted in a Pandas dataframe. We are having trouble figuring out how to use a column in the dataframe to color the scatter plot points.</p>
+<p>We believe that our visualizations are standalone. With that said, we think they can be enhanced with the inclusion of our correlation analysis and with some text.</p>
+<h2>Interpretation of Results</h2>
+<p>From our correlation analysis comparing the number of Airbnbs with the average housing price by city, we did not find evidence to support our hypothesis. The correlation coefficient in a given year is between 0.15 and 0.30, which indicates a non existent (or very weak) correlation between the number of Airbnbs and the average price of homes in each city. Therefore, we did not find that a successful housing market may be correlated with a successful Airbnb market in a given city.</p>
+<p>Interestingly, when we calculate the correlation between the number of Airbnbs and the average housing price for each zip code, the correlation values are between 0.4 and 0.5. These values indicate a slightly better (or stronger) correlation than when the data was aggregated by zip code. The p-value is also very low with values less than 10<sup>-19</sup>, indicating strong evidence against null hypothesis. However, these correlations still do not provide enough evidence for us to confidently claim that our hypothesis is supported.</p>
+<p>It is important to discuss our confidence in our results so far. From our correlation analyses we found a very weak correlation among the number of Airbnbs with the average price of homes on both a city and zip code level. When we group the data by the city, we have less data to work with (i.e. only 10 data points) and the variation between the data points contributes significantly to the correlation value. When we group the data by zip code, we are able to pass in many more data points. However, our analysis demonstrates that there is a very weak correlation. These results make sense because the number of Airbnbs does not singularly influence the average housing price.</p>
+<h2>Future Directions</h2>
+<p>Moving forward, we want to look at and run a multiple variable linear regression. This would allow us to determine if adding in more variables to the analysis could inform a relationship between Airbnb and housing prices. For example, we could create a model that takes in the average home price, the average rental price, the time of year (and any other selected variables) and uses these variables to predict the number of Airbnbs that will be available in that location. All in all, there is some potential for using a multiple variable linear regression to try to explain how successful and prevalent Airbnbs will be in an area using our housing data.</p>
+<p>Also, recall that the correlation we found between the number of Airbnbs with average home prices of each city was weak. Although this allows us to analyze the relationship between the average price of homes and number of Airbnbs on city level, it may not have been the best way to isolate the effect of city-specific characteristics on home values from our analysis using zip code. Therefore, we also want to look at how the correlation tests would differ if we separate the zip codes by different cities, and then run correlation tests with average home value for zip codes and the number of Airbnbs for each city.</p>
+
+
+            </div>
+        </div>
+
+
+    </body>
+</html>

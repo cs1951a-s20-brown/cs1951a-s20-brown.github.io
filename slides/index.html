@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById("slides-nav").className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <title>CS1951A | Slides</title>
+</head>
+<body>
+
+  <div id="page-container">
+
+      <div id="other-content-container">
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="https://cs.brown.edu/courses/csci1951-a/">cs1951a</a>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>lecture slides</h1>
+        <p>
+          Below are the links to all slides covered in class.
+          Slides will be posted as soon as they are available.
+        </p>
+        <table class="table table-hover" id="slides-table">
+          <thead>
+            <tr>
+              <th>Lecture #</th>
+              <th>Date</th>
+              <th>Topic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>23 January</td>
+              <td><a href = "2020/lecture1.pdf" target="_blank">Introduction to Data Science</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>28 January</td>
+              <td><a href="2020/lecture2.pdf" target="_blank">ER Diagrams + Intro to SQL</a></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>30 January</td>
+              <td><a href="2020/lecture3.pdf" target="_blank">More SQL, Optimization</a></td>
+              
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>4 February </td>
+	      <td><a href="2020/lecture4.pdf" target="_blank">Webscraping Slides</a><br>
+		      <a href="2020/soln_webcrawling.ipynb"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>5</td>
+    	      <td>6 February </td>
+    	      <td><a href="2020/lecture5.pdf" target="_blank">Data Cleaning</a></td>
+            </tr>
+    	    <tr>
+    	      <td>6</td>
+    	      <td>11 February </td>
+    	      <td><a href="2020/lecture6.pdf" target="_blank">Crowdsourcing</a></td>
+    	    </tr>
+    	    <tr>
+	          <td>7</td>
+              <td>13 February</td>
+              <td><a href="2020/lecture7.pdf" target = "_blank">Map Reduce</a></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>20 February</td>
+              <!-- <td><a href="files/2019-02-21-lecture7-mapreduce.pdf" target = "_blank">Map Reduce</a></td> -->
+	      <td><a href="2020/lecture8.pdf" target = "_blank">Hypotheses and Hypothesis Testing Intro</a></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>25 February</td>
+              <!-- <td><a href="files/2019-02-26-lecture8-introprob.pdf" target = "_blank">Introduction to Probability</a></td> -->
+	      <td><a href="2020/lecture9.pdf" target = "_blank">Hypothesis Testing: pvalues, t-tests, chi-squared</a></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>27 February</td>
+              <td><a href="2020/lecture10.pdf" target = "_blank"> Hypothesis Testing: Linear Regression </a></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>3 March</td>
+              <!-- <td><a target="_blanket" href="files/2019-03-05-lecture10-linearregression.pdf">Linear Regression</a></td> -->
+	      <td><a href="2020/lecture11.pdf" target = "_blank">Linear Regression Continued; p-Hacking </a><br>
+		      <a href="2020/soln_phacking.ipynb"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>5 March</td>
+              <!-- <td> <a target="_blanket" href="files/2019-03-07-lecture11-linearregression2.pdf">Linear Regression 2</a></td> -->
+	      <td><a href="2020/lecture12.pdf" target = "_blank">Nonparametric Methods; Bootstrapping</a><br>
+		      <a href="2020/soln_nonparametric.ipynb"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>10 March</td>
+	      <td><a href="2020/lecture13.pdf" target = "_blank">Introduction to Machine Learning </a><br>
+		      <a href="2020/soln_gd.ipynb"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>12 March</td>
+              <!-- <td><a href="files/20190314lecture13unsupervisedlearning.pdf" target="_blank">Unsupervised Learning</a></td> -->
+	      <td> <a href="2020/lecture14.pdf" target = "_blank">Supervised vs. Unsupervised Learning; Clustering </a></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>17 March</td>
+              <!-- <td><a target="_blank"  href="files/20190319lecture14classification.pdf">Classification</a>,<a target="_blank" href="files/20190319wine.txt">wine.txt</a> </td> -->
+	      <td> <a href="2020/lecture15.pdf" target = "_blank">Matrix Factorization + Recommendation Systems</a><br>
+		      <a href="2020/soln_mf.ipynb"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>19 March</td>
+	      <td><a href="2020/lecture16.pdf" target = "_blank"> Classification </a><br>
+		      <a href="2020/soln_lecture16.tar.gz" target="_blank"> Class Code</a></td>
+	      </td>
+              <!-- <td><a target = "_blank" href="files/20190321lecture15regularization.pdf">Regularization</a></td> -->
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>31 March</td>
+              <!-- <td><a target="_blank" href="files/20190402lecture16dataviz.pdf">Data Visualization</a></td> -->
+	      <td> <a href="2020/lecture17.pdf" target = "_blank">Overfitting, Regularization, and Feature Selection </a><br>
+             <a href="2020/soln_regularization.ipynb" target="_blank"> Class Code</a></td>
+	      </td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>2 April</td>
+              <!-- <td><a target="_blank" href="files/20190404lecture17phacking.pdf">p hacking</a>, <a target="_blank" href="files/20190404_p_hacking.ipynb">script</a>, <a target="_blank" href="files/20190404_total_bs_data.csv">dataset</a></td> -->
+	      <td><a href="2020/lecture18.pdf" target = "_blank"> Data Visualization</a><br>
+             <a href="2020/soln_viz.ipynb" target="_blank"> Class Code</a></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>7 April</td>
+              <!-- <td><a target="_blank" href="files/20190409lecture18nlp.pdf">NLP</a></td> -->
+	      <td> <a href="2020/lecture19.pdf" target = "_blank"> Natural Language Processing </a><br>
+             <a href="2020/soln_lecture19-20.tar.gz" target="_blank"> Class Code</a> (NLP Parts 1 and 2)</td>
+	      </td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>9 April</td>
+              <!-- <td><a target="_blank" href="files/20190410lecture19mlfairness.pdf">Machine Learning Fairness</a></td> -->
+	      <td> <a href="2020/lecture20.pdf" target = "_blank"> Natural Language Processing Cont.</a></td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>14 April</td>
+              <!-- <td><a target="_blank" href="files/20190416lecture20mf.pdf">Matrix Factorization</a></td> -->
+              <td> Deep Learning </td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>16 April</td>
+              <td> ML Fairness </td>
+              <!-- <td><a target="_blank" href="files/20190418lecture21deeplearning.pdf">Deep Learning</a></td> -->
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>21 April</td>
+              <!-- <td><a target="_blank"  href="files/20190423lecture22crowdsourcing2.pdf">Crowsourcing 2</a></td> -->
+              <td> Time Series (?) </td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>23 April</td>
+              <td> Graphical Models/Causal Inference (?)</td>
+              <!-- <td><a target="_blank"  href="files/20190423lecture22crowdsourcing2.pdf">Crowsourcing 2</a></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ </div>
+
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>

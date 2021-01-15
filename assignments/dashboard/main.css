@@ -1,0 +1,115 @@
+html {
+    /*overflow-x: hidden;*/
+}
+
+html, body, text, button, label, h3, h5 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+button:focus {
+    outline: 0 !important;
+}
+svg {
+    display: block;
+    margin: 0 auto;
+    font: 10px sans-serif;
+}
+
+body {
+}
+
+text {
+    font-size: 10px;
+}
+
+path {
+    fill: none;
+    stroke: #aaa;
+}
+
+
+#y_bar_label > .domain {
+    display: none;
+}
+
+.col-lg-6 {
+    padding: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header > h3, h5 {
+    margin: 0;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.row {
+    text-align: center;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.header {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 2px 1px 5px #969696;
+}
+
+.tooltip {
+    position: absolute;
+    font-size: 13px;
+    min-width: 100px;
+    padding: 10px;
+    pointer-events: none;
+    background-color: white;
+    /*font-weight: bold;*/
+    text-align: center;
+    border-radius: 5px;
+}
+
+.links line {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+
+.nodes circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.controls > button {
+    margin: 0 20px;
+}
+
+.focus line {
+    stroke: rgb(255, 0, 0);
+    stroke-dasharray: 1,1;
+    shape-rendering: crispEdges;
+}
+
+#attrInput {
+    width: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#yearLabel {
+    padding: 0 30px;
+}
+
+rect[id^=rect-]:hover {
+    cursor: pointer;
+}

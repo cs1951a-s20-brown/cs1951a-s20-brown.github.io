@@ -1,0 +1,312 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 &laquo; SQL &raquo;</title>
+</head>
+
+<body>
+
+<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Assignment 1 <small>&laquo; SQL &raquo;</small></h1>
+            </div>
+
+            <h2>Brief</h2>
+            <!-- don't worry about filling in this part yet! -->
+                <p>
+                    <ul>
+                        <li>Due date: 11:59pm 02/04/2020 </li>
+                        <li>Stencil:<code> cs1951a_install sql</code></li>
+            <li>Data: <code>/course/cs1951a/pub/sql/stencil/data/</code></li>
+                        <li>Handin: <code>cs1951a_handin sql</code></li>
+                        <li>Files to submit: Part 1 SQL Files, Part 2 SQL Files, writeup.txt</li>
+                    </ul>
+                </p>
+            <hr>
+
+            <p>
+                <img src="sql_clause.jpeg" alt="SQL Joke">
+            </p>
+            <hr>
+          <h2>Setting Up</h2>
+              <p>
+                The <code>cs1951a_install sql</code> script installs all the stencil code you will need to your cs1951a course directory, which is <code>~/course/cs1951a/</code>.
+              </p>
+                To get the data files, you can either navigate to <code>/course/cs1951a/pub/sql/stencil/data/</code> and copy them, or you can run:
+              <pre>cp -r /course/cs1951a/pub/sql/stencil/data ~/course/cs1951a/sql/</pre>
+
+          </p>
+
+          <hr>
+          <h2> Part 0: Intro to Data Ethics </h2>
+                <h3>10 points</h3>
+            <p> Throughout the course, we will be learning techniques that allow us to better
+              understand and work with Big Data. These tools are extremely powerful and can be
+              used in a myriad of ways, spanning from collecting user data online to creating
+              predictive machine learning models. As a result, many professionals have felt the
+              need to create ethical standards that all data scientists should follow. For example,
+              the ACM (Association for Computing Machinery), which is the world's largest education and
+              scientific computing society, recently updated their Code of Ethics to address recent
+              advances in technology that have allowed computing to spread to all aspects of life.
+              Read the following articles and respond to the questions in <code>writeup.txt</code>. </p>
+
+          <h3> Articles </h3>
+          <p>
+          <ul>
+          <li><a href = "https://www.wired.com/story/should-data-scientists-adhere-to-a-hippocratic-oath/">
+            Should Data Scientists adhere to a Hippocratic Oath? </a></li>
+          <li><a href = "https://www.acm.org/code-of-ethics#"> ACM Code of Ethics</a></li>
+          </ul>
+          </p>
+
+          <h3> Questions </h3>
+            <p>
+              <ol type="1">
+                <li>
+                  (3 points) How do you think data is currently being used (both in industry and research)?
+                  What are positive and negative applications of data science? (3-4 sentences total)
+                </li>
+                <li> (4 points) Do you think that a universal code of ethics is necessary to create for data scientists?
+                  Why or why not? Who should be responsible for upholding data standards - the government, tech companies, users, etc? Should the government create legislation to hold them accountable? (4-5 sentences total)
+                </li>
+                <li> (3 points) What do you like or dislike about the ACM code of ethics?
+                  What are areas that you would like to change or improve? (4-5 sentences total)
+                </li>
+              </ol>
+            </p>
+
+          <hr>
+            <h3>SQLite</h3>
+                <p>
+                    SQLite is installed on all department machines. It can be accessed from the command line using <code>sqlite3</code>.
+                    Running <code>sqlite3 somedb.db</code> from your terminal will launch an environment that will allow you to type your SQL queries directly into the terminal. You can exit this environment by pushing Ctrl+D or by typing <code>.exit</code> and pressing enter.</p>
+                <p>
+                    As a more explicit example, to open a sql environment where you can query the <code>movies.db</code> database, you can type:
+                </p>
+                <p>
+                <code>$ sqlite3 movies.db</code>
+                </p>
+                <p>To execute a SQL statement that you have saved in a solution file, you can run the following command:</p>
+                    <code>$ sqlite3 movies.db &lt; sql_solutions.sql</code><br><br>
+
+                    For more information on using SQLite from the command line, see <a href="http://www.sqlite.org/sqlite.html">http://www.sqlite.org/sqlite.html</a>. Additionally, we have provided very helpful hints for most of the problems; you should be able to use these as a starting point if you get stuck before looking up additional information online.
+                </p>
+
+                <hr>
+                <h2>Part 1: Starting Off!</h2>
+                <h3>20 points</h3>
+
+                    <p>This part of the assignment builds off the exercises you completed in the lab. If you have not yet completed the first half of the lab, please do so before starting this assignment. The database and schema are described again below, but are the same from the lab.</p>
+
+                    <p>
+                        We have provided a database named <code>people.db</code> with the name, age, ID, and occupation of some Brown students and alumni.
+                        Here is the schema: </p>
+                        <pre>people_main(<strong>ID</strong> INTEGER, <strong>name</strong> TEXT, <strong>occupation</strong> TEXT, <strong>age</strong> INTEGER)
+people_likes(<strong>ID1</strong> INTEGER, <strong>ID2</strong> INTEGER)
+people_friends(<strong>ID1</strong> INTEGER, <strong>ID2</strong> INTEGER)</pre>
+
+                    <p>In the <strong>people_main</strong> table, <strong>ID</strong> is a unique identifier for a particular student or alumni. <strong>name</strong>, <strong>occupation</strong> and <strong>age</strong> correspond to the person's first name, occupation and age.
+                    <p>In the <strong>people_friends</strong> table, each (<strong>ID1</strong>, <strong>ID2</strong>) pair indicates that the particular person with <strong>ID1</strong> is friends with the person with <strong>ID2</strong> (and vice versa). The friendship is mutual, and if (<strong>ID1</strong>, <strong>ID2</strong>) is in the table, it is guaranteed that (<strong>ID2</strong>, <strong>ID1</strong>) exists in the table.</p>
+                    <p>In the <strong>people_likes</strong> table, each (<strong>ID1</strong>, <strong>ID2</strong>) pair indicates that the student or alumni with <strong>ID1</strong> likes the person with <strong>ID2</strong>. The (<strong>ID1</strong>, <strong>ID2</strong>) pair in the table does not guarantee that the (<strong>ID2</strong>, <strong>ID1</strong>) pair also exists in the table.</p>
+
+                    <p>
+                      Your job is to write SQL queries for the data being requested:
+                    </p>
+                    <ol type="1">
+                      <li>
+                          (4 points) Write a SQL statement that returns the  <strong>name</strong> and number of people that like each person. Results should be ordered by count (descending), and then by name (A-Z). Save the query to <code>part1_problem1.sql</code>
+                          <p>
+                              Hint: Use a <code>LEFT JOIN</code>… the following website is quite useful: <a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/">http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/</a>
+                          </p>
+                      </li>
+                      <li>
+                              (4 points) Write a SQL statement that returns the two <strong>occupations</strong> that have the lowest count of popular people. Consider popular people as people who are liked by at least one other person. Return the two occupations and the counts. Results should be ordered by <strong>occupation</strong> (A-Z). Save the query to <code>part1_problem2.sql</code>                          <p>
+                              Hint: The <code>LIMIT</code> statement will come in handy!
+                          </p>
+                      </li>
+
+                      <li>
+                          (4 points) Write a SQL statement that returns the  <strong>name</strong> and  <strong>occupation</strong> of all people who have more than 3 friends. Results should be ordered by  <strong>name</strong> (A-Z). Save the query to <code>part1_problem3.sql</code>
+                          <p>
+                              Hint: You'll need to take a look at the <code>HAVING</code> function.
+                          </p>
+                      </li>
+
+                      <li>
+                          (4 points) Write a SQL statement that returns the distinct  <strong>name</strong> and <strong>age</strong> of all people who are liked by anyone younger than them. Results should be ordered by <strong>name</strong> (A-Z). Save the query to <code>part1_problem4.sql</code>
+                          <p>
+                              You can do this problem without using two <code>SELECT</code> statements, but doing so makes sure that all your answers are distinct. Also, future problems will require using two <code>SELECT</code> statements, so practicing here isn't a bad idea!
+                          </p>
+                      </li>
+
+                      <li>
+                          (4 points) Write a SQL statement to find pairs (A, B) such that person A likes person B, but A is not friends with B. The query should return 4 columns:  <strong>ID</strong> of person 1, <strong>name</strong> of person 1, <strong>ID</strong> of person 2 and <strong>name</strong> of person 2. Results should be ordered by <strong>ID1</strong> (ascending), then <strong>ID2</strong> (ascending). Save the query to <code>part1_problem5.sql</code>
+                          <p>
+                              Time to join stuff!
+                          </p>
+                      </li>
+                  </ol>
+
+                  <p>
+                      <img src="bar_joke.jpeg" alt="SQL Joke" height="600" width="330">
+                  </p>
+
+            <hr>
+<!--             make sure to use <hr> tags to separate each problem part -->
+
+            <h2>Part 2: Getting Harder!</h2>
+            <h3>60 points</h3>
+              <p>
+                For this part of the assignment, you will be using the TMDB Movie Dataset, which has been exported to the <code>movies.db</code> database. The database
+                schema is as follows:</p>
+                <pre>movies(<strong>budget</strong> INTEGER, <strong>homepage</strong> TEXT, <strong>id</strong> INTEGER, <strong>original_language</strong> TEXT, <strong>original_title</strong> TEXT, <strong>overview</strong> TEXT, <strong>popularity</strong> REAL, <strong>release_date</strong> TEXT, <strong>revenue</strong> REAL, <strong>runtime</strong> INTEGER, <strong>status</strong> TEXT, <strong>tagline</strong> TEXT, <strong>title</strong> TEXT, <strong>vote_average</strong> REAL, <strong>vote_count</strong> INTEGER)
+scores(<strong>review</strong> TEXT, <strong>min_score</strong> INTEGER, <strong>max_score</strong> INTEGER)</pre>
+
+              <p>
+                We encourage you to use the <code>WITH</code> operator, which lets you divide your query into separate queries. As an example, we can define a subquery and
+                use it in another query as follows:
+                <pre>WITH subquery AS (
+SELECT
+  original_title, vote_average
+FROM
+  movies
+)
+
+SELECT
+  original_title
+FROM
+  subquery
+);</pre>
+              </p>
+
+                <p>
+                  <ol type="1">
+                    <li>
+                      (10 points) Write a SQL query to find the <strong>original_title</strong>, <strong>budget</strong> and  <strong>release_date</strong> of the movie "John Carter"
+                      and append to that the movie  <strong>original_title</strong>,  <strong>budget</strong> and  <strong>release_date</strong> of the movie that was released
+                      9 days after "John Carter" (This movie should also be a Disney movie!).
+                      <p>
+                        You can add days to a particular day
+                        by using the <code>date</code> function.
+                        For example, in order to add 3 days to to '2012-07-16', you can use <code>date('2012-07-16', '+3 days')</code>
+                      </p>
+                    </li>
+                    <p>
+                      Hint: The <code>UNION</code> statement should come in handy.
+                    </p>
+                    <li>
+                      (10 points) Write a SQL query to count the number of movies that start with "The", end with a "2" or contain the word "shark".
+                      Your query should be case insensitive and return one column with one entry. You should return a single value.
+                    </li>
+                    <p>
+                      Hint: You may want to look into <code>CASE</code> statements and the <code>LIKE</code> operator.
+                    </p>
+                    <li>
+                      (10 points) Write a SQL query to select the <strong>original_title</strong> of all movies and a column where there is a 1 if there exists another movie that has the
+                      same vote average and the same runtime as that movie, and a 0 otherwise. Results should be ordered by <strong>original_title</strong> (A-Z).
+                    </li>
+                    <p>
+                      Hint: You may want to look into the <code>EXISTS</code> operator. Additionally, think about possible edge cases.
+                    <li>
+                      (10 points) Write a SQL query that returns the <strong>original_title</strong>, <strong>vote_average</strong> and <strong>review</strong> of every movie. The reviews depends on the vote_average
+                      as described described in the <code>scores</code> table. For example, movies with a vote average between 2 and 3.9 (inclusive) are reviewed as 'poor',
+                      whereas movies with a vote average between 9 and 10 (inclusive) are reviewed as 'excellent'.
+
+                      If a movie is reviewed as 'awful' or 'poor' then <strong>original_title</strong> should read 'do not watch'.
+                      Results should be ordered by <strong>id</strong> (ascending).
+
+                      For example, the output should have the following format:
+                      <pre>
+'Snow White'   | 8.7 | 'great'
+'Toy Story'    | 9.3 | 'must see'
+'do not watch' | 2.3 | 'poor'
+</pre>
+                    <p>
+                      Hint: Look into the <code>BETWEEN</code> statement and how it can be used in a join.
+                    </p>
+
+                    <li>
+                      (10 points) Write a SQL query that finds the <strong>original_title</strong>, <strong>release_date</strong> and <strong>revenue</strong>
+                      of all the movies whose revenue exceeded the average revenue of all the movies released on the same day (including itself). Results should be ordered by <strong>release_date</strong> (ascending), and then <strong>revenue</strong> (descending).
+                    </li>
+                  </br>
+                    <li>
+                      <p>
+                        (10 points) Write a SQL query that, <strong>for each original_language</strong> that has <strong>more than 2 movies </strong> , finds the number of movies that were reviewed as 'poor' and the number of movies that were reviewed as 'good'.
+                      </p>
+                      <p>
+                        Like in the 4th question, you will need to look at the <code>scores</code> table to see what the review categories are and use the <strong>vote_average</strong> field of a movie to determine which review category it falls under. Your query should return 3 columns (<strong>original_language</strong>, <strong>num_poor</strong> which is the number of 'poor' movies for that language and <strong>num_good</strong> which should be the number of 'good' movies for the language. Your results should be <strong>ordered</strong> by number of 'good' movies (descending) and then number of 'poor' movies (ascending). Remember to only include languages that have more than 2 movies!
+                      </p>
+                    </li>
+
+                  </ol>
+                </p>
+
+            <hr>
+            <h2> Part 3: Optimization </h2>
+            <h3> 10 points </h3>
+            <p>
+              We have provided you with the <code>athletes.db</code> database, although querying it is not necessary at all. The schema is as follows:
+              <pre>school_athletes(<strong>ID</strong> INTEGER, <strong>name</strong> TEXT, <strong>school</strong> TEXT, <strong>performance_score</strong> INTEGER, <strong>team</strong> TEXT)</pre>
+            </p>
+           </br>
+            <p>
+              <strong>For the query below</strong>, explain why the given query might not be the most efficient way to accomplish the task. Write out an optimized version of the query in <code>writeup.txt</code>. Explain what steps you took to optimize it and why your version would be more efficient.
+            </p>
+
+            <ol type="1">
+              <li>
+                <p>
+                  (6 points) The SQL query to optimize is as follows:
+                </p>
+
+                <pre>SELECT ID, name
+      FROM school_athletes AS athletes
+      WHERE school = 'Brown' and performance_score > (
+        SELECT AVG(performance_score)
+        FROM school_athletes
+        WHERE team = athletes.team
+      ); </pre>
+
+        <li>
+                <p>
+                    (4 points) Consider two tables. Table A is very long with 1 billion rows and
+                    5 columns. Table B is very wide with 1000 rows and 10,000 columns. If we
+                    were to join the two tables and want to make sure the join is performant,
+                    how should we best filter the tables? Assume that we can select
+                    from each table and then join the results. Specifically, state the table
+                    in which we should use WHERE heavily and the table in which we should be careful
+                    about what values we use in our SELECT.
+                </p>
+          </li>
+          </ol>
+            <hr>
+            <h2>Handing In</h2>
+                <p>
+                    The assignment directory present in your course directory, which is <pre>~/course/cs1951a/sql</pre> would be the one used to hand in the solution files. Please make sure that this directory contains the following:
+                    <ul>
+                      <li>Part 1 SQL Files (5 in total)</li>
+                      <li>Part 2 SQL Files (6 in total)</li>
+                      <li>writeup.txt</li>
+                    </ul>
+                Once you are sure of all the files, please run the handin script  <code>cs1951a_handin sql</code> to turn in your assignment.<br>
+                </p>
+                <p>Please do not hand in the data files!</p>
+            <hr>
+            <h2>Credits</h2>
+                <p>
+                    Made with &hearts; by Jens and Esteban, updated for Spring 2020 by Mounika
+                </p>
+                <p>
+                    Movie Database from: <a href="https://www.kaggle.com/tmdb/tmdb-movie-metadata">https://www.kaggle.com/tmdb/tmdb-movie-metadata</a>
+                </p>
+        <div class="col-md-2"></div>
+        <br><br>
+    </div>
+
+</body>
+</html>

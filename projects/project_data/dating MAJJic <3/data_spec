@@ -1,0 +1,140 @@
+﻿Data Spec
+Dataset 1: Kaggle Speed Dating Data
+Description:
+The data was collected by a research group led by Professors Ray Fisman and Sheena Iyengar from Columbia University Business School. The research team performed a speed dating experiment to determine what factors influence an individual’s degree of attraction for another individual during a date and the likelihood of the two individuals going on a second date. Following the conclusion of the study, the research group made the collected data publicly available on Kaggle (https://www.kaggle.com/annavictoria/speed-dating-experiment), where we downloaded it in hopes of performing our data science project.
+
+
+After downloading the data from Kaggle, the data was consolidated into a format that makes our intended analyses possible. Without modifications, the data is presented so that each row is a “speed date experience”. Therefore, 8,378 total speed dates occurred between 551 individuals. Because we want to know how each of those 551 individuals rated a specific category/demographic (undergraduate field of study and intended career), we wanted to consolidate the data so that each row represented an individual and the entries corresponded to the overall scoring of another undergraduate field of study and intended career. 
+
+
+To perform the consolidation, we developed a data processing script in Python where we first created a key dataset that details the age, race, undergraduate field of study, and intended career of every individual. Using that key dataset, we then iterated through every single date, matching an individual’s partner ID to whatever field of study or intended career they are involved in via the key dataset. After determining the field of study or intended career, we then added it to that specific career’s growing score average for that specific individual. Because it is guaranteed that each individual did not meet with an individual from every possible field of study or intended career, if an individual did not meet with a field of study or intended career, the scores for that field of study/career were set to NULL values. At the conclusion of the consolidation, three tables were created in our dataset titled “kaggle_clean.db”. These tables are named: “demographics”, “field_of_study”, and “career”.
+
+
+Data Format:
+Each line in each table represents an individual who participated in the Columbia Speed Dating Experiment. The table dimensions for each table is as follows:
+
+
+demographics: 551 rows by 5 columns
+field_of_study: 551 rows by 181 columns
+career: 551 rows by 171 columns
+
+
+Example Row for “demographics”:
+iid = 1; field_cd; = 1; career_c = 1; age = 21; race = 4
+
+
+Key for “demographics”:
+1. iid: Unique number between 1 and 552 (inclusive) for identification of an individual.
+2. field_cd: Number between 1 and 18 (inclusive) for coding participant’s field of study.
+   1. 1= Law 
+   2. 2= Math
+   3. 3= Social Science, Psychologist
+   4. 4= Medical Science, Pharmaceuticals, and Bio Tech
+   5. 5= Engineering 
+   6. 6= English/Creative Writing/ Journalism
+   7. 7= History/Religion/Philosophy
+   8. 8= Business/Econ/Finance
+   9. 9= Education, Academia
+   10. 10= Biological Sciences/Chemistry/Physics
+   11. 11= Social Work
+   12. 12= Undergrad/undecided
+   13. 13= Political Science/International Affairs
+   14. 14= Film
+   15. 15= Fine Arts/Arts Administration
+   16. 16= Languages
+   17. 17= Architecture
+   18. 18= Other
+3. career_c: Number between 1 and 17 (inclusive) for coding participant’s intended career.
+   1. 1= Lawyer 
+   2. 2= Academic/Research 
+   3. 3= Psychologist 
+   4. 4= Doctor/Medicine 
+   5. 5= Engineer 
+   6. 6= Creative Arts/Entertainment 
+   7. 7= Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin 
+   8. 8= Real Estate 
+   9. 9= International/Humanitarian Affairs 
+   10. 10= Undecided 
+   11. 11= Social Work
+   12. 12= Speech Pathology
+   13. 13= Politics
+   14. 14= Pro sports/Athletics
+   15. 15= Other
+   16. 16= Journalism
+   17. 17= Architecture
+4. age: Number representing the age of the individual.
+5. race: Number between 1 and 6 (inclusive) for coding participant’s race.
+   1. 1= Black/African American
+   2. 2= European/Caucasian-American
+   3. 3= Latino/Hispanic American
+   4. 4= Asian/Pacific Islander/Asian-American
+   5. 5= Native American
+   6. 6= Other
+
+
+Abbreviated Example Row for “field_of_study”:
+iid = 1; 1_decision = 1.0; 1_attractive = 6.0; 1_sincere = 7.0; 1_intelligent = 7.75; 1_fun = 7.5; 1_ambitious = 5.5; 1_share = 6.75; 1_like = 6.75; 1_probability = 5.67; 1_total = 4.0;
+2_decision = …; 2_attractive = …; 2_sincere = …; ………………………………………...; 18_share = …; 18_like = …; 18_probability = …. 
+
+
+Key for “field_of_study”:
+*Note: Each of the possible “field of studies” category (refer to Key for “demographics” section) possess the following categories: 
+[ _decision, _attractive, _sincere, _intelligent, _fun, _ambitious, _share, _like, _probability], where before the “_” should be a number corresponding to the code of the field of study (1-18).
+1. iid: Unique number between 1 and 552 (inclusive) for identification of an individual.
+2. _decision (i.e. 1_decision, 2_decision, 3_decision...etc.): Number between 0 and 1 representing the average decision the ‘iid’ rated all individuals in the field of study
+3. _attractive (i.e. 1_attractive, 2_attractive, 3_attractive...etc.): Number between 0 and 10 representing the average attractiveness the ‘iid’ rated all individuals in the field of study
+4. _sincere (i.e. 1_sincere, 2_sincere, 3_sincere...etc.): Number between 0 and 10 representing the average sincerity the ‘iid’ rated all individuals in the field of study
+5. _intelligent (i.e. 1_intelligent, 2_intelligent, 3_intelligent...etc.): Number between 0 and 10 representing the average intelligence the ‘iid’ rated all individuals in the field of study
+6. _fun (i.e. 1_fun, 2_fun, 3_fun...etc.): Number between 0 and 10 representing the average funniness the ‘iid’ rated all individuals in the field of study
+7. _ambitious (i.e. 1_ambitious, 2_ambitious, 3_ambitious...etc.): Number between 0 and 10 representing the average ambition the ‘iid’ rated all individuals in the field of study
+8. _share (i.e. 1_share, 2_share, 3_share...etc.): Number between 0 and 10 representing the average degree of shared interests the ‘iid’ rated all individuals in the field of study
+9. _like (i.e. 1_like, 2_like, 3_like...etc.): Number between 0 and 10 representing how much the ‘iid’ liked all individuals in the field of study
+10. _probability (i.e. 1_probability, 2_probability, 3_probability...etc.): Number between 0 and 10 representing the average probability the ‘iid’ would go on a second date with all individuals in the field of study
+
+“career” Table:
+The table for career is identical to field_of_study, except this time it is based on the intended career and not the field of study. Because there are only 17 intended careers, the columns only span from (1_decision … 17_decision) instead of (1_decision … 18_decision) like it was in “field_of_study”. Besides that, the thought and premise of the career table remains the same, so we did not add another description because we believed it would be redundant for the reader.
+
+
+Dataset 2: US Census Data
+Description:
+The data was collected from the ACS (American community survey) PUMS (public use microdata sample) files. We retrieved the data from IPUMS (https://usa.ipums.org/usa/), which allows you to extract custom rows and columns from the census data. This data comes from the 2009 and 2010 census data for the state of New York. 
+
+
+After the data was extracted from IPUMS, the data was cleaned by removing rows for individuals with no recorded spouse, rows for individuals who did not obtain a degree beyond a bachelor’s, and rows where the individual’s spouse did not obtain a degree beyond a bachelor’s. The rows where the DEGFIELD or DEGFIELD_SP categories were 0 (N/A) were also removed. In addition, 4 columns were added (kagEDUC, kagEDUC_SP, kagOCC, and kagOCC_SP) that categorizes the individual and their spouse’s degree field and career field under the categories used in the Kaggle dataset.
+
+
+In summary, the data contains 2009 and 2010 U.S. census data information for married individuals from the state of New York who have both obtained a degree beyond a bachelor’s. 
+
+
+Data Format:
+Each line in the file represents an individual who has a recorded spouse and has obtained a degree beyond a bachelor’s.  
+
+
+Example Row: 
+YEAR = 2009; SAMPLE= 200901;  SERIAL = 816416; PERNUM = 1; BIRTHYR = 1930 ; EDUCD = 114; DEGFIELD = 52; OCC= 2850 ; BIRTHYR_SP = 1935; EDUCD_SP = 115; DEGFIELD_SP = 23 ; OCC_SP  = 4700; SEX = 1 ; SEX_SP = 2
+
+
+KEY (Note: all field are required and no NULLS allowed): 
+   1. YEAR: 4 digit year when the household was included in the census 
+   2. SAMPLE: identifies the IPUMS sample from which the case is drawn (The first four digits are the year of the census/survey; the next two digits identify the sample within the year)
+   3. SERIAL: identifying number unique to each household record in a given sample
+   4. PERNUM: numbers all persons within each household consecutively in the order in which they appear on the original census or survey form. When combined with SAMPLE and SERIAL, PERNUM uniquely identifies each person within the IPUMS.
+   5. BIRTHYR: 4-digit number representing year of birth
+   1. 9996 = not classified
+   2. 9997 = illegible
+   3. 9998 = unknown
+   4. 9999 = missing/blank
+   6. EDUCD: 3-digit education code indicating individual’s degree completed. 
+   1. 114 (Master’s)
+   2. 115 (professional degree beyond bachelor’s)
+   3. 116 (doctoral)
+   7. DEGFIELD: 2-digit number representing field in which the person received a Bachelor's degree
+   1. The codes are detailed here: https://usa.ipums.org/usa-action/variables/DEGFIELD#codes_section
+   8. OCC: 4-digit number representing person's primary occupation
+   1. The codes are detailed here:https://usa.ipums.org/usa/volii/occ_acs.shtml 
+   9. BIRTHYR_SP: same as BIRTHYR, but for the individual’s spouse 
+   10. EDUCD_SP: same as EDUCD, but for the individual’s spouse 
+   11. DEGFIELD_SP: same as DEGFIELD, but for the individual’s spouse 
+   12. OCC_SP: same as OCC, but for the individual’s spouse 
+   13. SEX: 1 (male) , 2 (female) 
+   14. SEX_SP: same as SEX, but for the individual’s spouse

@@ -1,0 +1,87 @@
+﻿Country,covid19 Sum of Deaths,covid19 Sum of Recovered,covid19 Sum of Confirmed,covid19 Mortality Rate
+ Azerbaijan,0,0,1,0
+Afghanistan,0,0,9,0
+Algeria,0,0,14,0
+Andorra,0,0,2,0
+Argentina,0,0,1,0
+Armenia,0,0,3,0
+Australia,3,260,847,0.003541913
+Austria,0,0,72,0
+Azerbaijan,0,0,9,0
+Bahrain,0,0,312,0
+Belarus,0,0,5,0
+Belgium,0,16,56,0
+Brazil,0,0,11,0
+Cambodia,0,23,57,0
+Canada,0,64,410,0
+Chile,0,0,1,0
+Colombia,0,0,0,0
+Croatia,0,0,41,0
+Czech Republic,0,0,11,0
+Denmark,0,0,19,0
+Dominican Republic,0,0,3,0
+Ecuador,0,0,19,0
+Egypt,0,5,21,0
+Estonia,0,0,7,0
+Finland,0,24,70,0
+France,28,140,1160,0.024137931
+Georgia,0,0,13,0
+Germany,0,222,1235,0
+Greece,0,0,33,0
+Hong Kong,51,303,2335,0.021841542
+Iceland,0,0,22,0
+India,0,51,132,0
+Indonesia,0,0,4,0
+Iran,368,1051,6432,0.05721393
+Iraq,0,0,111,0
+Ireland,0,0,5,0
+Israel,0,6,53,0
+Italy,267,537,10233,0.026092055
+Ivory Coast,0,0,1,0
+Japan,47,503,3614,0.013004981
+Jordan,0,0,1,0
+Kuwait,0,0,328,0
+Latvia,0,0,2,0
+Lebanon,0,0,51,0
+Lithuania,0,0,5,0
+Luxembourg,0,0,4,0
+Macau,0,139,535,0
+Mainland China,65325,539448,2369152,0.027573157
+Malaysia,0,302,873,0
+Mexico,0,1,20,0
+Monaco,0,0,4,0
+Morocco,0,0,2,0
+Nepal,0,23,62,0
+Netherlands,0,0,60,0
+New Zealand,0,0,5,0
+Nigeria,0,0,5,0
+North Ireland,0,0,1,0
+North Macedonia,0,0,7,0
+Norway,0,0,99,0
+Oman,0,5,46,0
+Others,53,74,12845,0.004126119
+Pakistan,0,0,23,0
+Philippines,43,23,122,0.352459016
+Portugal,0,0,4,0
+Qatar,0,0,14,0
+Romania,0,0,17,0
+Russia,0,46,94,0
+San Marino,1,0,22,0.045454545
+Saudi Arabia,0,0,2,0
+Senegal,0,0,3,0
+Singapore,0,969,2626,0
+South Korea,156,397,25723,0.006064611
+Spain,1,36,536,0.001865672
+Sri Lanka,0,31,56,0
+Sweden,0,0,117,0
+Switzerland,0,2,161,0
+Taiwan,17,102,1028,0.016536965
+Thailand,3,630,1592,0.001884422
+UK,0,141,418,0
+Ukraine,0,0,1,0
+United Arab Emirates,0,82,437,0
+United States,0,0,1,0
+US,15,120,1239,0.012106538
+Vietnam,0,286,615,0
+(blank),,,,0
+Grand Total,66378,546062,2446342,0.027133573

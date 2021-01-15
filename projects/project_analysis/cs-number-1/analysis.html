@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="./vendor/jquery-3.5.0.js"></script>
+    <script src="./vendor/Chart.bundle.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script src="./averages.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto@400;700&display=swap" rel="stylesheet">
+    <!--<script src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML"></script>-->
+    <title>cs-number-1 Analysis</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="section">
+        <div class="header">
+            Data Analysis
+        </div>
+        <div class="subheader">
+            cs-number-1
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-header">Hypothesis</div>
+
+        <ul>
+            <li>Minimum study time (X: minhours) is associated with grade received (Y: grade) while controlling the difficulty level (Z: difficult) of course.</li>
+            <li>This hypothesis can be tested using partial correlation coefficient:</li>
+            <li>
+                \(H_0: \rho_{XY|Z} = 0 \)
+
+            </li>
+            <li>
+                \(H_A: \rho_{XY|Z} \neq 0 \)
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-header">Methods</div>
+        <ul>
+            <li>
+                Preprocessing the raw dataset (removing class records that do not have the features selected or that contain invalid entries such as "a lot of time, 3-4") resulted in the records of 2774 courses (note that the number of students responses are far greater than 2774 since, in each course, there were mostly far more than 10 students responses).
+            </li>
+            <li>
+                For each element of feature vector per course, average value of students responses were used.
+            </li>
+        </ul>
+        <div class="code">
+            features = ['readings', 'class-materials', 'difficult', 'learned', 'loved', 'grading-speed', 'grading-fairness', 'effective', 'efficient', 'encouraged', 'passionate', 'receptive', 'availableFeedback', 'grade', 'minhours', 'maxhours', 'class_size']
+        </div>
+        <div class="code">
+            areas = ["AFRI", "ANTH", "APMA", "ARAB", "ARCH",
+            "BIOL", "CHEM", "CLAS", "CLPS", "COLT",
+            "CSCI", "DEVL", "EAST", "ECON", "EDUC",
+            "EGYT", "ENGL", "ENGN", "ENVS", "ETHN",
+            "FREN", "GEOL", "GNSS", "GRMN", "HIAA",
+            "HIST", "INTL", "ITAL", "JUDS", "KREA",
+            "LITR", "MATH", "MCM",  "MDVL", "MES",
+            "MUSC", "NEUR", "PHIL", "PHP",  "PHYS",
+            "PLCY", "POBS", "POLS", "RELS", "REMS",
+            "SLAV", "SOC",  "SPAN", "TAPS", "URBN",
+            "VISA"]
+        </div>
+        <ul>
+            <li>
+                For grade, only "A", "B", and "C" were converted into integers "4", "3", and "2", respectively; "S" and other entries were ignored (not used).
+            </li>
+            <li>
+                For class_size, the numbers of freshmen, sophomores, juniors, seniors, and graduates were summed.
+            </li>
+            <li>
+                Since the number of enrolled students (class_size) were different for different courses weighted statistics were used (class_size as weights).
+            </li>
+            <li>
+                Correlation coefficients were estimated using Pearson sample correlation coefficient (\(\rho_{xy}\)) calculated from a weighted covariance matrix
+            </li>
+            <li>
+                Ha was tested against \(H_0\) at the significance level of alpha = 0.05 (two-tailed, t-distribution)
+            </li>
+            <li>
+                All calculations and figure preparations were done using Python (numpy, scipy, matplotlib, and seaborn).
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            Rationale / Motivation :
+        </div>
+        <ul>
+            <li>
+                In the preliminary analysis, correlation coefficients were calculated between all the features and found that minhours and  grade showed a weak negative correlation (r = -0.16), which was interesting.
+            </li>
+            <li>
+                Further inspection of the correlation heat map (Figure 1) revealed that grade showed the highest negative correlation with difficulty (r = -0.40) and in turn, difficulty showed the highest positive correlation with minhours (r = 0.62).
+            </li>
+            <li>
+                Then, it was thought that these three variables (minhours, grade, and difficulty) are inter-related and that difficulty could be a confounding variable that resides between (minhours and grade); the simple correlation coefficient between minhours and grade might not reflect a true relationship between them.
+            </li>
+            <li>
+                It could be natural to think that study time correlates with grade, but the preliminary analysis showed opposite results. Thus, the partial correlation between minhours and grade while controlling difficulty was focused on.
+            </li>
+        </ul>
+
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/correlations.png">
+                <div class="caption">
+                    <strong>Figure 1.</strong>
+                    <div>
+                        Preliminary correlation analysis (n = 2774). Heat map is based on simple correlation coefficients (Pearson r) calculated from raw data. Blue: positive correlation, red: negative correlation. Note that outliers have not been removed and weights have not been applied.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            Distribution of data points
+        </div>
+
+        <ul>
+            <li>
+                Since the simple correlation assumes that data points are normally distributed (at least not highly skewed), the distribution of three variables (minhours, grade, and difficult) using weighted histograms (Figure 2) were examined.
+            </li>
+            <li>
+                Raw dataset showed highly skewed distributions for (minhours and  grade).
+            </li>
+            <li>
+                Outliers were first removed; outliers were defined as those values less than Q1 - 1.5 IQR or Q3 + 1.5 IQR, where Q1, Q3, and IQR are first quantile (25 percentile), third quantile (75 percentile), and interquartile range (Q3 - Q1).
+            </li>
+            <li>
+                After removing the outliers, minhours did not show severe skew but grade still showed skew. In grade variable values, there was a peak at '4', which implies that there are some courses in which all students received 'A' (hereafter referred to as 'all-A courses'). Manual inspection of data showed that the class sizes of most all-A courses are very small.
+            </li>
+            <li>
+                After applying Box Cox transformation, the skew of grade was in part removed but the peak caused by all-A courses remained.
+            </li>
+        </ul>
+
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/figure2.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="section datas">
+        <div class="section-header">
+            Correlation and Partial Correlation (outliers removed)
+        </div>
+        <ul>
+            <li>
+                Correlation analysis on outlier-removed dataset was performed (Fig. 3 and 4 and Table 1) and Box Cox transformed dataset (see Table 2) with or without all-A courses. For scatter plots, datasets with all-A courses were used.
+            </li>
+        </ul>
+
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/figure3.png">
+            </div>
+        </div>
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/table1.png">
+            </div>
+        </div>
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/figure4.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">Discussion</div>
+        <ul>
+            <li>
+                As shown in Table 1, the correlation analysis results were similar whether including all-A courses or not. This may be due to the use of "weighted correlation" and the class-size being small for the all-A courses (see the size of markers in the top of scatter plots showing grade in Fig 1).
+            </li>
+
+            <li>
+                As shown in raw data, correlations between difficult and minhours and between difficult and grade are strong, and negative correlations (-0.29) between minhours and grade are weak but significant (\(p < 0.05\)).
+            </li>
+
+            <li>
+                After controlling difficult, minhours and grade showed positive partial correlation (+0.16), which is also weak but significant (\(p < 0.05\)).
+            </li>
+            <li>
+                ★ Thus, \(H_0\) was rejected in favor of \(H_A\).
+            </li>
+            <li>
+                This result implies that the negative correlation between minhours and grade could be due to students spending more time to study difficult courses. The positive partial correlation between  minhours and grade suggests that, when the effect of course difficulty is excluded, the more students study the better they can achieve good grades.
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="section">
+        <div class="section-header">
+            Correlation Analyses per course areas
+        </div>
+        <ul>
+            <li>
+                When BoxCox transformation was applied, correlation coefficients are slightly strengthened but overall correlation patterns did not considerably differ from those obtained using outlier-removed datasets. Similarly, exclusion of all-A courses only slightly increased the correlation coefficient. They also did not affect the result of hypothesis test.
+            </li>
+            <li>
+                Thus,outlier-removed dataset with all-A courses were used for the subsequent analyses.
+            </li>
+            <li>
+                The reason for including all-A courses was that values from these courses are actually not outliers and the effects of these courses could be negligible because the class-size of these courses are very small as shown in scatter plots (Fig. 1) and the use of "weighted" correlations.
+            </li>
+            <li>
+                The reason for not using BoxCox transformation (in spite of that it slightly improves normality of datasets) was due to intention of remaining the scales of the original dataset for the convenience of result interpretations.
+            </li>
+            <li>
+               Correlation and partial correlation for the groups of courses were investigated to see if overall pattern changes (Simpson's paradox). For this purpose, outlier-removed dataset with all-A courses were used. The course grouping was done according to Brown's Critical Review database.
+            </li>
+            <li>
+                To obtain reliable results, course areas with more than 100 courses were included in this study; they are BIOL (biology), CLPS (Cognitive Linguistic and Psychological Sciences), CSCI (computer science), ECON (economics), ENGN (engineering), HIST (history), MATH (mathematics).
+            </li>
+        </ul>
+
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/figure9.png">
+            </div>
+        </div>
+
+        <ul>
+            <li>
+                For BIOL and CSCI courses, \(H_0\) cannot be rejected. This result implies that in BIOL and CSCI courses, minimum study hours are not associated with grade received. Such results could be due to that BIOL and CSCI courses showed very strong positive correlations (\(\rho > 0.8\)) between difficult and minhours.
+            </li>
+            <li>
+                ENGN courses showed a very exceptional pattern. For ENGN courses, \(H_0\) was rejected  but negative partial correlation was significant.
+            </li>
+            <li>
+                Considering that significant partial correlation can be either positive or negative, it could be better to use one-tailed test. However, in any cases (including all BROWN courses) where \(H_0\) was rejected, \(H_0\) was rejected with big margin. Thus, one-tailed test would not alter our results.
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            Discussion / Suggestions
+        </div>
+        <ul>
+            <li>
+                Correlation does not explain causal relationship. However in our case, grade received could be the response/dependent variable and difficult and minhours could be the explaining/independent variable.
+            </li>
+            <li>
+                Partial correlation coefficient can be calculated while controlling more than two variables. In this study, only one variable (difficult) was controlled. Further studies controlling more variables could provide more comprehensive insight into the relationships between them.
+            </li>
+            <li>
+                Correlation explains 'linear' relationships between variables. In this study, by looking at the scatterplots, the variables that showed significant correlation appeared to have linear relationships (Fig 3). However, although not tested thoroughly, it is suspected that the relationship between difficulty and minhours might not be linear but possibly exponential.
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="section-header">
+            Effect of confounding variable "difficult"
+        </div>
+        The correlation that we observe could be due to the effect of several confounding variables stemming from our use of self reported results. For instance, it could be the case that students who are more focused on a course tend to overreport the number of hours spent on the course and also perform better because of that focus. As another example, students who get higher grades may retroactively justify these grades with higher hours spent (the hours reported is given when the students already have a good idea of what grade they will be receiving).
+        Since this is not an experiment, we cannot draw any causal relationship between the two variables. We can only make correlations between self-reported hours spent and difficulty instead of more absolute measures. It is nevertheless interesting that this data suggests that students are independently able to converge on a somewhat consistent definition of difficulty such that at the same difficulty level we can observe that students report higher hours when they have better grades.
+    </div>
+
+    <div class="section questions-answers">
+        <div class="section-header">
+            Questions and Answers
+        </div>
+        <ul>
+            <li>
+                <b>A defined hypothesis or prediction task, with clearly stated metrics for success.</b><br/>
+                See the <i>Hypothesis</i> section.
+            </li>
+            <li>
+                <b>Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data?</b>
+                <br/>
+                Our objective is to test for partial correlation coefficient as explained in detail in the
+                <i>Hypothesis</i> section; statistical test as opposed to ML algorithm seemed to be an obvious choice. We considered linear regression as well; however our main interest was not causal relationship. Success or failure was measured by significant p-value. The metric was chosen because Ha is tested against H0 at significance level of alpha = 0.05 (two tailed, t-distribution). Some challenges included preprocessing the data as discussed in <i>Methods</i>; decisions such as how to preprocess invalid data (NaN vs. Imputation) and how to normalize data (Box Cox transformation vs. log transformation, whether to remove all-A-courses were difficult to make). Yes, we cleaned our data as discussed in <i>Methods</i>.
+            </li>
+            <li>
+                <b>What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</b>
+                <br/>
+                Please refer to <i>Discussion</i> section. Overall, we are confident in the results.
+            </li>
+            <li>
+                <b>
+                    For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Where there any challenges visualizing the results, if so, then what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it's recognize which type your visualization is)?
+                </b>
+                <br/>
+                The choice of graphs were quite obvious. Graphical representation such as Figure 4 was designed best to communicate the result. An alternative way to communicate the result would be graphical comparisons of only the partial correlation coefficients. No, there weren’t any challenges. It could be standalone but text is provided to be precise.
+            </li>
+            <li>
+                <b>
+                    Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!
+                </b>
+                <br/>
+                See figures and tables, <i>Discussion</i> <i>Suggestion</i> sections.
+            </li>
+            <li>
+                <b>
+                    If you did a statistics test, are there any confounding trends or variables you might be observing?
+                </b>
+                <br/>
+                We tested on difficulty being a confounding variable; however there can be more than one confounding variables.
+            </li>
+            <li>
+                <b>If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model?</b>
+                <br/>
+                We did not do ML.
+            </li>
+            <li>
+                <b>
+                Discussion of visualization/explaining your results on a poster and a discussion of future directions.
+                </b>
+                <br/>
+                See figures and tables, <i>Discussion</i> <i>Suggestion</i> sections.
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            Interactive Data Viewer
+        </div>
+        Below is an interactive interface for viewing the data. Click on the select boxes to change the variables of
+        the two axes. The area of the circle is proportional to the number of critical review responses for that
+        department. The color of the circle corresponds to whether the department is a STEM department.
+
+        <div style="height: 40px;"></div>
+
+        <div class='chart-with-labels'>
+            <select id="prop2"></select>
+
+            <div class="chart-with-label2">
+                <div id="chart-container">
+                    <canvas id="myChart" width="500" height="500"></canvas>
+                </div>
+                <select id="prop1"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            Miscellaneous
+        </div>
+
+        <div class="figure-container">
+            <div class="figure correlation">
+                <img src="./images/hours.png">
+                <div class="caption" style="padding-left: 50px;">
+                    The top 10 departments, sorted by the mean reported max hours. The error bars represent the standard
+                    error of the mean.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    $(function() {
+        console.log($('.section'));
+        console.log(data);
+
+        var averages = data['averages'];
+        var errors = data['errors'];
+        var counts = data['counts'];
+
+        var prop1 = 'difficult';
+        var prop2 = 'loved';
+
+        var departments =  ['ENGN', 'HIST', 'CSCI', 'BIOL', 'MATH', 'ECON', 'APMA', 'CLPS', 'ENGL', 'PHYS', 'GRMN', 'GEOL', 'SOC', 'POBS', 'MUSC', 'ANTH', 'PHIL', 'PHP', 'POLS', 'NEUR', 'COLT', 'VISA', 'PLCY', 'ENVS', 'CHEM', 'CLAS', 'ARCH', 'INTL', 'TAPS', 'AFRI', 'HIAA', 'RELS', 'EDUC', 'EAST', 'JUDS', 'URBN', 'EGYT', 'MES', 'FREN', 'LITR', 'ITAL', 'GNSS', 'DEVL', 'ETHN', 'MCM', 'ARAB', 'MDVL', 'SLAV', 'KREA'];
+        var stemDepartments = ['ENGN', 'CSCI', 'BIOL', 'MATH', 'ECON', 'APMA', 'CLPS', 'PHYS', 'CHEM', 'PHP', 'NEUR', 'GEOL', 'SOC'];
+        var allFields = Object.keys(data['errors']);
+        var chart = null;
+
+        allFields.forEach(function(field) {
+            if (field === 'difficult') {
+                $('#prop1').append($(`<option selected="selected" value="${field}">${field}</option>`));
+            } else {
+                $('#prop1').append($(`<option value="${field}">${field}</option>`));
+            }
+
+            if (field === 'loved') {
+                $('#prop2').append($(`<option selected="selected" value="${field}">${field}</option>`));
+            } else {
+                $('#prop2').append($(`<option value="${field}">${field}</option>`))
+            }
+        });
+
+        $('#prop1').change(function(d)  {
+            prop1 = $('#prop1').val();
+            createGraph(prop1, prop2);
+        });
+        $('#prop2').change(function(d)  {
+            prop2 = $('#prop2').val();
+            createGraph(prop1, prop2);
+        });
+
+
+        createGraph(prop1, prop2);
+        function createGraph(prop1, prop2) {
+            console.log(`Prop 1 is: ${prop1}, Prop 2 is ${prop2}`);
+            var graphDataStem = [];
+            var graphDataNotStem = [];
+            for (let department of departments) {
+                if (stemDepartments.indexOf(department) !== -1) {
+                    graphDataStem.push({
+                        x: averages[prop1][department],
+                        y: averages[prop2][department],
+                        r: Math.sqrt(counts[prop1][department]) * 3,
+                        name: department
+                    });
+                } else {
+                    graphDataNotStem.push({
+                        x: averages[prop1][department],
+                        y: averages[prop2][department],
+                        r: Math.sqrt(counts[prop1][department]) * 2 + 2,
+                        name: department
+                    });
+                }
+            }
+
+            var datasets = [
+                {
+                    label: 'Stem Departments',
+                    data: graphDataStem,
+                    backgroundColor: 'rgba(0, 152, 163, 0.4)',
+                },
+                {
+                    label: 'Non-Stem Departments',
+                    data: graphDataNotStem,
+                    backgroundColor: 'rgba(161, 0, 0, 0.4)'
+                }
+            ];
+            var ctx = document.getElementById('myChart').getContext('2d');
+            if (chart === null) {
+                chart = new Chart(ctx, {
+                    type: 'bubble',
+                    data: {
+                        datasets: datasets
+                    },
+                    options: {
+                        tooltips: {
+                            callbacks: {
+                                title: function(tooltipItem, chart) {
+                                    return "";
+                                },
+                                label: function(tooltipItem, chart) {
+                                    var dataPoint = datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                    return dataPoint.name;
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                chart.data.datasets = datasets;
+                chart.update();
+            }
+        }
+    });
+</script>
+</html>
+

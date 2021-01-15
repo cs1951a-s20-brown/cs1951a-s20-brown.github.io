@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Public Transportation Access and Usage Analysis Deliverable</h1>
+<h5>By Dad Science</h5>
+
+<h3>Question 1: Do people who have easier access to public transport use it more often?</h3>
+
+<h4>Defined Hypothesis</h4>
+<p>Our null hypothesis is that there is no meaningful relationship between percent of people who have access to quality public transport in a county and percent of people who use public transportation to get to work in that county.</p>
+<h4>Statistical Test</h4>
+<p>To answer this question we decided to use a linear regression analysis. We chose this statistical test because we wanted to see if the population percentage with nearby access to public transport has a significant effect on the total population percentage of those who use public transportation. Linear regression was the first test we considered to answer this question. We chose linear regression because we wanted to calculate the correlation to describe the strength of the relationship between two continuous variables. We chose linear regression instead of just performing a correlation test because we wanted to analyze the coefficient of the regression equation to understand how a change in access percentage affects on average the change in usage percentage. We used the R-value and P-value to measure the success of the test because the R-value is a good measure of correlation and the P-value tells us if this is significant. We chose to use a significance value of 0.05 for our p-value. If our p-value is less than 0.05, the data provides enough evidence to reject the null hypothesis the percentage of a county with access to public transport has no correlation with the percent of the country who uses public transport to get to work. After combining our databases in the data deliverable we did not have to clean the data, however we only have 16 counties, so 16 data points. Ideally we would have a larger sample size. </p>
+<h4>Full Results</h4>
+<p>
+<u>Linear Regression Test:</u>
+<br><br>R-value: 0.81, P-value 0.00014, Coefficient 0.21
+</p>
+<img src="regression.png" alt="regression">
+<h4>Interpretation of Results</h4>
+<p>Our p-value was very small at 0.00014 so we reject the null hypothesis. The low p-value means that there is only a .014% chance of mistakenly rejecting the null hypothesis. The r-value is a ratio of the strength of correlation between the independent and dependent variables, and our r-value was 0.81, so a high correlation. The coefficient is 0.21, this means for every percent population nearer to public transport .21 percent more of the population will use public transport (with an intercept of .9). This strong linear relation suggests that the more access people have to quality public transport the more often they will use public transport.
+<br><br>Our intuitive reaction is that these results make sense, rejecting the null hypothesis such that places with more quality transit would have higher usage, which gave us confidence, but was an important baseline to establish before looking at the same trends across different races, which is our next step.</p>
+<h4>Visualization Explanation</h4>
+<p>We chose a scatterplot with a regression line to show the correlation of these discrete variables, because this allows us to see both individual data points and the overall relationship between them. There were no challenges in making this visualization. This visualization will not require accompanying text, since the axes are clearly labeled. Also, to see summary histograms depicting the total percentage of people living within a ½ mile of a quality public transportation stop, and the total percentage of people who use public transportation to get to work, see below.</p>
+<h4>Confounding Variables</h4>
+<p>A confounding variable is a variable that influences both the independent and dependent variables of the analysis. There exist too many confounding variables to name when analyzing variables as general as transport usage. A few examples are: income (drastically affects public transit usage and living location), age demographics, population density, physical safety, etc.</p>
+
+<h3>Question 2: How do public transport access and usage vary across races? Is there a significant difference between races for the percent of people who use public transportation to work? Is there a significant difference between races for the percent of people who live within a ½ mile of a quality public transportation stop?</h3>
+
+<h4>Defined hypothesis</h4>
+<p>The first null hypothesis is that no relationship exists between race and the percentage of people living within a half mile of a quality public transportation stop. The second null hypothesis is that no relationship exists between race and the percentage of the population that uses public transportation to get to work.
+</p>
+
+<h4>Statistical Test</h4>
+<p>We chose to do a chi-squared test because it is able to tell us if there is a relationship between categorical variables. Both race and access/usage (count that has access/uses versus count that does not have access/use) are categorical variables, so this test was ideal to explore the strength of those relationships. We considered doing a linear regression for each race with the independent variable as percent that have access to public transit and the dependent as percent that use public transit to see if how the coefficient differed, but we moved this to be a next step as we thought it was more important to see first if there was a difference across races in the observed data. The success was measured by the p-value returned by the test, because this is the standard way to determine the results of a chi-squared test. If our p-value is less than 0.05, the data provides enough evidence to reject the null hypothesis that different races show the same trends of access and usage to public transit.<br><br>
+The major challenge was restructuring the data to feed into the chi-squared test. We had to restructure our data in python from being data points of the counts of people using each type of transportation for each type of transit for each race in each place that includes the accessibility counts, to being the total count of people of each race that use public transit versus don’t for the usage test, and the total count of people of each race that have access to public transit versus don’t for the access test. This needed some cleaning to remove all types of transit except public and subtracting from the total mean to get the count of those that don’t use it (as there is overlap between types), and to subtract the count of people who do have access to quality public transit from the total population to get those who don’t have that access.
+</p>
+
+<h4>Full Results</h4>
+<p>
+    <u>Chi squared test for access:</u>
+    <br><br>
+    Null hypothesis: Race and access to public transit are independent<br><br>
+Alternative hypothesis: Race and access to public transit are not independent<br><br>
+chi-squared=732930.3661834318, p-value=0.0, degrees of freedom=7
+<br><br>
+
+    <u>Chi squared test for usage:</u>
+        <br><br>
+    Null hypothesis: Race and usage of public transit are independent<br><br>
+Alternative hypothesis: Race and usage of public transit are not independent<br><br>
+chi-squared=117534.729956089, p-value=0.0, degrees of freedom=7
+</p>
+
+<h5>Access Histograms:</h5>
+<img src="access_hist.png" alt="access histograms">
+
+<h5>Usage Histograms:</h5>
+<img src="usage_hist.png" alt="usage histograms">
+
+<h4>Interpretation of Results</h4>
+<p>
+    Our p-value was very small at 0.0 for both tests so we reject the null hypothesis. The low p-value means that there is a 0% chance of mistakenly rejecting the null hypothesis. This suggests that the variables are not independent and that there is a significant association between both race and how much an individual uses public transit, and race and access to public transit.
+<br><br>
+Intuitively, based on the visualizations we had made, rejecting the null hypothesis made sense, as those charts show different trends across races, which also made us confident in the results. However, we were skeptical that for both tests the reported p value was 0.0, which is extraordinarily low, and says that there is absolutely 0 chance that the trends seen are just chance.
+</p>
+<h4>Visualization explanation</h4>
+<p>One of our visualizations is a set of histograms showing the percentage of people who use public transportation to get to work, separated by race, and the other is a set of histograms showing the percentage of people who have quality access to public transit, separated by race. The histograms also include a red line indicating the mean percentage, across all counties, of people of that race who use public transportation to get to work. We chose to use histograms because we felt this was a clear way to summarize the distribution across races of what proportion of the population uses public transport to get to work and who has access. One challenge we faced was deciding whether or not to include confidence intervals for the mean percentage in each histogram, but we ultimately decided to not include them because, in order to calculate confidence intervals, our data needs to follow a normal distribution or have a sufficiently large number of observations (generally 30 or more) in order to use a t-distribution, and our data does not fit either of these requirements. Therefore, we thought that including inaccurate confidence intervals would take away from the interpretation of the visualization. Accompanying text is not required for the visualization per se, although adding that frequency (the y axis) indicates the number of counties could be useful. We could also add text showing the number that the mean line represents. However, we’re not sure if this mean is a meaningful statistic. We are wondering when we should use the mean of county access/usage percentages vs. the access/usage of percentage of the total population (combining county populations). The mean of county access/usage percentages weights large and small counties evenly. We should also add descriptions of the race/ethnicity for each histogram because we just took the race_ethn label from the dataset.
+</p>
+<h4>Confounding Variables</h4>
+<p>
+    The confounding variables for these tests are the same as those for the previous test. Income, age demographics, population density, and safety (such as whether or not residents feel safe waiting at public transportation stops after dark) could all be correlated with race, the percentage of people living with a ½ mile of a quality public transportation stop, and the percentage of people who use public transportation to get to work.
+</p>
+<h4>Poster discussion</h4>
+<p>We plan to have the images created above on our poster, along with a brief description of the corressponding results of the tests. We plan to add a final third section to the poster, combining question one and question 2, that explores how the linear relationship seen from question one differs for each race, likely with a different linear regression for each race, so that we can compare the coefficient values.</p>
+<h4>Next steps</h4>
+<p>
+    We’re considering several different next steps:
+<ul>
+    <li> Remove the outlier in our data (San Francisco, with an extremely high percentage of the population with access to and which uses public transportation to get to work, across all races) to determine whether this affects our findings. It could be the case that, because this unusually high rate of usage and access is present across all races, our findings remain the same, but we will rerun our tests to determine whether this is the case. </li>
+    <li> Can we gain any insights by analyzing the counties whose points are above or below the regression line? Are there similarities between counties that have relatively lower usage of public transport but high access (and vice versa)?</li>
+    <li>We will see if the relationship between access and usage varies across races. We can compare the correlation and coefficient of access vs. usage linear regression across races. We are not sure how to tell if the difference between relationships is significant.
+</li>
+<li>We may add income data. How does income impact access to and usage of public transport? We’re not sure what other tests we can run once we add this data.
+</li>
+<li> We had some ideas for multilinear regression (adding income, age demographics, etc.) but since we only have 16 datapoints, we don’t think it’s possible. How many datapoints do we need to do multilinear regression?
+
+</li>
+</ul>
+</p>
+
+<h4>Links to code for tests</h4>
+<p>
+    <a href="https://drive.google.com/a/brown.edu/file/d/1-t7jQZiLcZXlc4WqFH_X8s02ueKgYgFf/view?usp=sharing">Linear regression</a>
+
+    <br><br>
+    <a href="https://colab.research.google.com/drive/1ZxTPkDK1Yn_B91uKrHwEB_NVCRaf_2Mx?usp=sharing">Chi-squared test</a>
+
+</p>
+
+</body>
+</html>

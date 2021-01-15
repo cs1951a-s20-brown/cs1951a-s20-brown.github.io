@@ -1,0 +1,253 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Tech Money Buster<<< DELIVERABLE >>></h1>
+        </div> <h1>Analysis</h1>
+
+        <h3> Hypotheses </h3>
+        <p>
+        After evidence that Facebook could have prevented election interference in the 2016 election, and the subsequent Cambridge Analytica Data Breach in early 2018, the practices of data collection and targeted advertising by tech companies in general were made more visible to the general public. As a result of this bad press during and after the 2016 election cycle, our general question is: How, if at all, did tech companies’ role in political fundraising change after the 2016 election cycle? To do this, we are examining the donations by the PACs associated with tech companies.
+        <ul>
+          <li>Our hypothesis was that, after negative press in 2016, tech
+            companies became “more politically active” in order to save their
+            image, in that the average amount donated by PACs to various campaigns
+            increased. We will be able to reject the null hypothesis if there is a
+            significant difference in donation trends before and after 2016,
+            controlling for other possible confounding factors.
+          </li>
+          <p></p>
+          <li>Our secondary hypothesis was that companies’ donations would
+            skew conservative on average, especially after discussions of regulating
+            tech companies after the Cambridge Analytica breach. If this were the case,
+            we would see that party affiliation of specific candidates would be a
+            significant effect on donation amount.
+          </li>
+          </ul>
+        </p>
+        <h3> Statistical Tests </h3>
+        <p>
+          We used multiple linear regression to test our hypothesis, because we
+          felt it was the best way to take into account multiple possibly confounding
+          variables and also to take time into account, since our data has a strong time component.
+          We considered a correlation analysis but ultimately felt it would be too simplistic
+          for the data we have.
+        </p>
+        <p>
+          We measure success or failure of our analysis by whether or not we were
+          able to observe significant effects in our data without over- or
+          under-fitting our data. We consider significant effects to be those
+          with P values below 0.05, especially those with large coefficients.
+          This would mean that given a confidence level of 95%, the results
+          would be significant.
+        </p>
+          <p>
+          In evaluating the model, one challenge was that we collected 2020 data
+          in our table, but this data is incomplete and was therefore skewing our
+          results. We decided to leave this data out of our final analysis and
+          use it only for visualization and total donation calculation purposes.
+          We had to significantly restructure our data – for example, we had to
+          split state data into regions (we chose census regions), control for
+          various different races (i.e. House, Senate, and Presidential), and
+          reformat the year. We also had to import our data into a CSV file,
+          which made it easier to use pandas to read it in.
+        </p>
+        <h3> Results and interpretation </h3>
+
+        <div class=imagegrid>
+          <div class=image style="height:300px">
+            <img src=./images/mr1.png> Table 1</img>
+          </div>
+          <div class=image style="margin:auto">
+            <img src=./images/mr2.png> Table 2</img>
+            </div>
+        </div>
+
+            <p>
+            For Table 1, We incorporated 5 independent variables("year", "is_after_2016",
+             "senate", "democratic", "west" corresponding to x1-x6 in the table above.)
+              and a constant to explain the dependent variable(“donation amount”).
+              We found the variable “is_after_2016”, “senate”,”democratic”, and “west”
+              to be statistically significant with a p-value of 0.011, 0.000, 0.003,
+               and 0.000 respectively, given a confidence level of 95%. This means
+               if the donation year is after 2016, the donation amount decreases
+               by 205.4760 dollars, this seems to be working against our hypothesis.
+               If the race is senate instead of house or national, the donation
+               amount increases by 415.7236 dollars. If the candidate is a democrat,
+               the donation is likely to decrease by 137.7657 dollars. If the donation
+               is given to a candidate located in the West(Alaska, California, Hawaii,
+                Oregon, Washington. Arizona, Colorado, Idaho, Montana, Nevada, New Mexico,
+                 Utah, and Wyoming),  the donation amount increases by 328.5509 dollars. </p>
+
+            <p>
+              However, when we include a variable to account for whether the donation
+              is in an election year in Table 2, the new variable makes “is_after_2016”
+              insignificant, with a p-value of 0.890, which is greater than 0.05, given
+               our confidence level of 95%. The addition of the election year variable
+               showed us that it makes our ability to predict the effect of bad press
+               on donations to be inconclusive. Perhaps incorporating more data after
+               2018 would help strengthen this statistical model.
+
+            </p>
+            <p>
+              We want to improve our prediction accuracy by incorporating future
+              donation data perhaps from 2020, this may give us a statistically
+              significant p-value to conclude about the effect of pre/post 2016.
+              However, we also can see from both Table 1 and visualization of
+              democratic and republican party donation trends over time that
+              there is a decrease if not an increase in donation amount. These
+              data make us believe that we lean toward rejecting our hypothesis.
+            </p>
+
+          <h3> Visualization </h3>
+          <p> 1. This graph shows total donations by each PAC. This is useful
+            because it gives us a better overview of the “biggest spenders”
+            in terms of how much money they spend every 2nd year for either
+            presidential election or mid-term elections to influence the outcome.
+
+            <div class=large_img >
+              <img src=./images/Total-PA.png style="width:1000px; margin-left:-50px"> </img>
+            </div>
+          </p>
+
+          <p> 2. This graph shows Combined Total Donations of All PACs for Each Election
+            Cycle. This chart is useful because it shows how the
+            donations have increased since 2010 and people can visually see which
+            election cycles the amount increased the most.
+            <div class=image style="margin-left:150px">
+            <img src=./images/pac_donations.png> </img>
+            </div>
+          </p>
+          <p>
+            3. This graph showd the Combined Total Donations of All PACs to Republicans or
+            Democrats for Each Election Cycle. The reason that
+            this visualization is useful is because it shows the trends in
+            how PACs donated to a specific party over time has changed.
+            <div class=image style="margin-left:150px">
+            <img src=./images/pac_donations_by_party.png> </img>
+            </div>
+          </p>
+
+          <p> 4. This is a representation of the Democratic and Republican
+            breakdown for the top 5 spending PACs.
+            This is important because then we can focus on spending differences in
+            terms of amount spent as well as trends for Democratic vs. Republican party
+            affiliations. It is particularly interesting when we can compare the
+            different years in terms of spending and changes over time.</p>
+        <div class=imagegrid>
+          <div class=image>
+            <img src=./images/Amazon.png> </img>
+          </div>
+          <div class=image>
+            <img src=./images/Facebook-Inc.png> </img>
+            </div>
+          </div>
+          <div class=imagegrid>
+            <div class=image>
+            <img src=./images/Google_Inc.png> </img>
+            </div>
+            <div class=image>
+            <img src=./images/Intel_Corp.png> </img>
+            </div>
+          </div>
+          <div class=imagegrid>
+            <div class=image style="margin-left:250px">
+            <img src=./images/Microsoft-Corp.png> </img>
+            </div>
+          </div>
+
+          <p>
+            5. This pie chart shows Combined Total Donations of All PACs by Party for Each
+            Election Cycle. This chart is useful because it
+            allows people to easily see how much the PACs donated to each
+            party in comparison to another for each election cycle.
+            <p>
+
+            </p>
+            <div class=image style="margin-left:150px">
+            <img src=./images/pac-electioncycle.png> </img>
+            </div>
+          </p>
+
+          <h3> Process </h3>
+        <p>
+          We used various methods to conduct our multiple regression. We first
+          imported the data into a CSV file. Because our data wasn’t precisely in
+          the form we wanted to use for analysis, we had to do some preprocessing.
+          We tried both modifying the CSV file directly [not changing the data, but
+          adding columns such as is_after_2016 or region] and doing it through code
+           and reached similar results, which was a helpful sanity
+        </p>
+
+        <h3> Reflection </h3>
+        <ul>
+          <li>If you did a statistics test, are there any confounding trends or variables you might be observing?
+            <ul>
+              <li>Our test shows that there is not a significant relationship
+                between whether or not the election was after 2016 and the
+                amount of each donation. However, this could be explained by
+                the fact that we only have one midterm year’s worth of data
+                post-2016, and therefore do not have a large enough quantity
+                 of data to see any trends.
+               </li>
+               <li> Further, we conducted our analysis on the entire dataset of
+                 donations, which means we are analyzing based on each individual
+                 donation, rather than summing a company’s total donations. This
+                 means that our analysis actually looks at average donation size
+                 and whether or not companies donate larger amounts to given
+                 candidates at one time. This does not take into account the sum
+                 of tech companies’ donations or the total amount given to a
+                 candidate in a given year.</li>
+                   <ul>
+                     <li> We may try to control for this by doing company-specific
+                       tests (e.g. for the “big five” or top ten companies), and
+                       we may do a few further broader stats tests for our final
+                       presentation and poster.
+                     </li>
+                   </ul>
+              </ul>
+              <p></p>
+              <li>Discussion of visualization/explaining your results on a poster
+                and a discussion of future directions.</li>
+                <ul>
+                  <li> Our visualizations offer a more broader analysis of the
+                    trends as our analysis is more fine-grained since for our
+                    visualizations we were using the pac_donations table while
+                    for the analysis we used the candiate_donations table. Our
+                    visualizations were able to show that there was not the most
+                    significant increase in spending after the 2016 election and
+                    that when combined donations were combined, pacs donated more
+                    equally to both parties than in comparison to before 2016.
+                  </li>
+                  <li> On the poster: Include our hypothesis, part of our sample
+                    data so that viewers can understand what the data looked like,
+                    a brief summary of our data, all our visualizations with
+                    clear explanations, stats result and conclusions.
+                  </li>
+                </ul>
+              </ul>
+
+              <h3> Link to GitHub repo</h3>
+                <a href = https://github.com/ragnaag/Data-Science-Final> Link to our GitHub that contains our data.db and our data spec (README.md) </a>
+
+        <h6>
+
+            Jacob DiSpirito (jdispiri), Lauren Yang (kyang28), Ragna Agerup (ragerup), Shira Abramovich (sabramo1)
+        </h6>
+    </div>
+</div>
+
+</body>
+</html>

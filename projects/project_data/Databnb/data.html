@@ -1,0 +1,105 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>[Databnb]<<< DELIVERABLE >>></h1>
+        </div>
+
+        <p> GITHUB: https://github.com/estherkim99/cs1951a-final </p>
+        <p>Data sample at data/database_sample.txt</p>
+
+        <h4> Where is the data from? How did you collect your data?</h4>
+        <p>Our data is from two sources: Insider Airbnb and Zillow. Insider Airbnb scrapes Airbnb’s website on certain dates for a selected number of cities and posts this data to their website (linked at: http://insideairbnb.com/get-the-data.html). To get the data from Insider Airbnb, we had to download various CSV files that were linked on their website. For our project, we determined ten cities we wanted to look at and downloaded the associated CSV files from the Insider Airbnb website. To determine the ten cities that we wanted to gather data for, we focused on maximizing the geographic spread across the country. Each of the cities that we collect data for has listings data for approximately 20 web scrapes across 4 years. We aggregated all of this data into one table for Airbnb data. As for the Zillow data, we downloaded the data from Zillow using their API (linked at: https://www.zillow.com/research/data/).  There is one file for the entire country, so we did not have to pick and choose the files relevant to our cities.</p>
+
+        <h4>Are the sources reputable?</h4>
+        <p>Both of these data sources are reputable sources. Insider Airbnb directly scrapes information from Airbnb. It is widely used as the main source for Airbnb data because Airbnb does not have a publically available API. Zillow is a reputable source because it is the most popular and widely used service for listing houses in the country. Given the number of users it has, Zillow has a large amount of data for us to use to calculate its housing/rental value estimates.</p>
+
+        <h4>How did you generate the sample? Is it comparably small or large? Is it representative or is it likely to exhibit some kind of sampling bias?</h4>
+        <p>To generate our sample (stored in the Github under data/database_sample.txt), we ran the following query:</p>
+        <ul>
+            <li> sqlite> SELECT * FROM zillow_zhvi ORDER BY RANDOM() LIMIT 50; </li>
+            <li> sqlite> SELECT * FROM zillow_zri ORDER BY RANDOM() LIMIT 50; </li>
+            <li> sqlite> SELECT * FROM airbnb ORDER BY RANDOM() LIMIT 100; </li>
+        </ul>
+        <p> The sample for the Airbnb table is relatively small compared to our full dataset, as our full data set has 347440 rows and this sample is only 100 entries. The sample for the Zillow_zhvi table is relatively large compared to our full dataset, as our full data set has 507 rows and this sample is 50 entries. The sample for the Zillow_zri table is relatively large compared to our full dataset, as our full data set has 466 rows and this sample is 50 entries.</p>
+
+
+        <h4>Are there any other considerations you took into account when collecting your data?</h4>
+        <p>One consideration we took into account when collecting our data is the privacy concerns users may have. The Airbnb data contains the latitude and longitude, as well as street name, city and zipcode, for a particular listing. The Zillow data is less of a concern because the most specific location data it contains about listings is on a zip code level. To address these privacy concerns, we are going to look at information from both sources using zip code (and possibly the street name), which we believe is less intrusive than latitude and longitude.</p>
+        <p>Another consideration we had about this data is that both the Airbnb and Zillow data may be skewed towards younger users. We believe that these platforms tend to attract younger generations and we may be missing out on older individuals completely.</p>
+        <p>Another consideration that we have to consider is that there is some bias in our data since we are only using Zillow data. While Zillow is the most widely used service and should be largely representative of the housing market for the cities we are looking at, we have to be aware of the fact that not all listings of a city will have appeared on Zillow and may have been posted to other services.</p>
+
+        <h4>How clean is the data? Does this data contain what you need in order to complete the project you proposed to do? How many data points are there total? How many are there in each group you care about (e.g. if you are dividing your data into positive/negative examples, are they split evenly)? Do you think this is enough data to do what you hope to do?</h4>
+        <p>As our data comes from two distinct sources, the above questions are best answered individually for each data source.</p>
+        <p>The Zillow data is relatively clean. Both numeric and text fields are all identically formatted, and very few values are missing. Zillow_zhvi has 507 rows and Zillow_zri has 466 rows. The rows are in one-to-one correspondence with zip codes, and each row contains all the information about a single zipcode.</p>
+        <p>The Airbnb data is less clean than the Zillow data, but it’s much larger. The Airbnb is significantly larger because there is one row per individual Airbnb listing per time it was scraped. In other words, each individual Airbnb listing has multiple rows in the database, with each row corresponding to one time the Airbnb website was scraped. Also, given that the data was scraped (rather than officially published), the data is slightly more messy. For example, when we were parsing the data in Pandas we encountered trouble with zip codes being formatted differently (i.e. as strings, not numbers). There are other fields with some irregular formatting (such as calendar_updated), but these are less essential to our analysis than zip code. Also, some fields are missing in many listings, such as city name. Although, despite the missing fields, the most important fields (price, zip code, last_scraped) are never null.</p>
+        <p>This should be enough to test our hypotheses, especially considering the size of the Airbnb dataset and the completeness/cleaness of the Zillow dataset.</p>
+
+
+        <h4>Are there missing values? Do these occur in fields that are important for your project's goals?</h4>
+        <p>The Zillow dataset has almost no NA values. (Note: although there are NA values in the original Zillow CSV files, we filter out most of these rows because we only need information about the major cities we have chosen to study, which happen to have much fewer NA values). </p>
+        <p>When we cleaned the Airbnb data, we made sure that there are no null values for the zip code and price columns. These are the two most important columns in the Airbnb table because the zip code variable will be used to join or connect the Airbnb table with the Zillow table and the price variable is one of our primary measures. There are occasional null values in rows of the Airbnb dataset, such as city name, but we can either disregard that information or use other information to extract the meaning of the missing information, such as using zip code to determine what city the listing is in.</p>
+        <p>Any missing values in the Zillow data set correspond to particular months that don’t have any data. We are not missing any values corresponding to complete rows in the Zillow dataset.</p>
+
+        <h4>Are there duplicates? Do these occur in fields that are important for your project's goals?</h4>
+        <p>There are no duplicates in either of the Zillow tables, as can be seen by running the following queries in SQLite.</p>
+        <ul>
+            <li> sqlite> SELECT zipcode, city, state, COUNT(*) FROM zillow_zhvi GROUP BY zipcode, city, state HAVING COUNT(*) > 1; </li>
+            <li> sqlite> SELECT zipcode, city, state, COUNT(*) FROM zillow_zri GROUP BY zipcode, city, state HAVING COUNT(*) > 1; </li>
+        </ul>
+        <p>There are no duplicates in Airbnb table, as we can see from running the following query to check if there is any repeating entry using id and last scraped date fields.</p>
+        <ul>
+            <li> sqlite> SELECT count(*) as c FROM airbnb GROUP BY id, last_scraped ORDER BY c DESC LIMIT 1;</li>
+        </ul>
+ 
+        <h4>How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values? (Focus on the fields that are most relevant to your project goals)</h4>
+        <p>Distribution of number of zip codes per city</p>
+        <ul>
+            <li> sqlite> SELECT city, AVG(“2020-01”), COUNT(*) as c FROM zillow_zhvi GROUP BY city ORDER BY c;</li>
+            <li>Seattle|758008.666666667|24</li>
+            <li>Nashville|351688.52|25</li>
+            <li>San Francisco|1435759.36|25</li>
+            <li>Denver|484057.321428571|28</li>
+            <li>Boston|860672.4|30</li>
+            <li>Austin|445221.325581395|43</li>
+            <li>Chicago|294695.660714286|56</li>
+            <li>Los Angeles|873369.9|100</li>
+            <li>New York|723475.977272727|176</li>
+        </ul>
+ 
+        <p>The data is fairly uniformly distributed across the cities, with the exception of Los Angeles and New York. These cities have a slightly higher number of zip codes given that they are much larger cities. Also, taking the average price of housing in January, 2020, we can note that value of San Francisco homes are notably high, while Chicago has the minimum average home value among these cities. </p>
+        <p>Distribution of home values in a given city (Chicago, Boston)</p>
+        <ul>
+            <li>sqlite> SELECT city, MAX("2020-01"), MIN("2020-01"), AVG("2020-01") from zillow_zhvi where city == "Boston" or city == "Chicago" group by city;</li>
+            <li>Boston|3605784.0|417057.0|860672.4</li>
+            <li>Chicago|639152.0|59309.0|294695.660714286</li>
+        </ul>
+        <p>The above query the max, min, and average values of home values in two cities - Boston and Chicago. Note that the difference between the minimum and maximum home values in these two cities are quite significant. This will be relevant to analyzing the correlation between home values and airbnb listing values, since we have a wide range of prices for listings available for us to analyze.</p>
+ 
+ 
+        <h4>Are there any data type issues (e.g. words in fields that were supposed to be numeric)? Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them?</h4>
+        <p>We ran into a couple of data type issues. Our first data type issue had to do with the zip code variable. We needed the zip code variable to be numeric, but when we downloaded the data, the zipcode was stored as a string. Further, some of the listings had zipcodes like “02904 MA”. Therefore, we had to filter out white space and non-numeric characters. Then we had to change the data type from a string to an integer.</p>
+        <p>Another data issue we have is that our csv files for NYC and LA are too large for Github. We tried to put them into GDrive and pull them into our database through the link (as the TA suggested) but we still couldn’t get it to work. We also tried using git lfs but have been unable to get that to work as well. For now, our database does not include this data but it will need to.</p>
+
+        <h4>Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the conclusions you are able to draw?</h4>
+        <p>We needed to drop the rows where there is no zip code associated with a particular listing because our analysis is based on the geographic location of the listings. When we do our comparisons, we will compare the data by joining the Zillow and Airbnb tables on zip code. The zip code is the primary key for the Zillow data. Similarly, the zip code is part of the primary key for the Airbnb data, along with the last_scraped and city name variables.</p>
+
+        <h4>Summarize any challenges or observations you have made since collecting your data. Then, discuss your next steps and how your data collection has impacted the type of analysis you will perform. (approximately 3-5 sentences)</h4>
+        <p>We encountered challenges with oversized CSV files in our Airbnb data. For Los Angeles and New York City, the CSV files for each scrape are larger than 50 MB, which makes them too large to upload to our Github. We attempted to use Google Drive to store the files and then read the contents into a Pandas dataframe from the URL at runtime of the preprocess_airbnb.py module. However, this has not been possible so far either. We are aware this is an issue we will need to resolve before we can attempt to do any thorough analysis on the data.</p>
+        <p>Our next steps include performing a preliminary analysis that combines the Airbnb data with the Zillow data to determine patterns and trends among the cities across these tables.</p>
+
+</div>
+</div>
+
+</body>
+</html>

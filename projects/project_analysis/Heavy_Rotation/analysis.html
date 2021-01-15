@@ -1,0 +1,213 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heavy_Rotation Analysis</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Heavy_Rotation Analysis</h1>
+        </div>
+        <h1>Hypothesis</h1>
+        <p>
+            Our hypothesis is as follows: <i>particular song features that correspond to virality 
+            in the United States will propagate to other countries; that is, viral song features 
+            in the United States will be viral song features in other countries</i>.
+        </p>
+
+        <h1>Methods</h1>
+        <p>
+            We tested our hypothesis using a survival analysis, which predicts the likelihood that a 
+            song will remain on the viral charts given some feature set. The intuition behind this is if
+            particular features were found to be most statistically significant in the survival of all 
+            viral songs for a given country, these features could be considered the set that corresponds 
+            to song virality in the general sense. We back this assumption with the observation that, 
+            given the amount of data we collected, we have a representative sample over many months 
+            with which we can generalize about song virality. 
+        </p>
+        <p>
+            Specifically, we chose the <a href="http://www.sthda.com/english/wiki/cox-proportional-hazards-model">Cox proportional-hazards model</a>
+            for our analysis. This model is a linear regression model which can assess simultaneously 
+            the effect of several features on survival time. In our case, we define survival time as the 
+            number of days a particular song stays on the viral chart for a given country. 
+        </p>
+        <p>
+            We considered other tests, such as simple linear and logistic regression models. However, 
+            we ultimately decided on a survival analysis in part because it would enable us to more 
+            efficiently test our second hypothesis &mdash; a prediction of song virality on unseen data. 
+            (This hypothesis is not tested in this deliverable.) We chose CoxPH as our particular survival 
+            analysis model because we found it to be the standard model in all the literature 
+            we read. Additionally, in the R stats package we used to implement the model, we discovered 
+            that all available survival analysis tools were variations on CoxPH and ultimately boiled 
+            down to this model under the hood. 
+        </p>
+
+        <h2>Success Metric</h2>
+        <p>
+            We define our success metric as the set of song features that are statistically significant in terms 
+            of song survival for a given set of countries. If this set is identical (or very similar &mdash; 
+            <i>i.e.</i> a set difference no greater than 1), we will consider our hypothesis that viral song 
+            features are identical across countries to be proven. 
+        </p>
+        <p>
+            We chose this metric because of the intuition described above: if a set of songs with similar features 
+            survive for about the same amount of time on charts across countries, the features representing those 
+            songs indicate virality across countries. 
+        </p>
+
+        <h2>Challenges</h2>
+        <p>
+            The only challenge we faced in conducting this analysis was dealing with 'viral gaps'. We encountered
+            a very small number of cases where, for example, Song A was on a chart for the months of January and March,
+            but not February. Therefore, the song was technically viral for two different time periods. However, 
+            because we were considering such a long time period, we conducted our analysis on the total number of days
+            a song was on the viral charts, even if they were not consecutive. While we recognize this is a major 
+            assumption, we encountered no cases in practice where our analysis was impacted by it. 
+        </p>
+
+        <h1>Results</h1>
+        <h2>Visualized Survival Trends and Coefficients per Country</h2>
+        <h3>How to read these charts</h3>
+        <p>
+            Each row contains a CoxPH summary table (on the left) and a survival chart (on the right). The summary table 
+            gives, for each song feature, the survival coefficient of that feature and the p-value for that survival coefficient. 
+            The statistically significant features for song survival in that country are marked with asterisks &mdash; more 
+            asterisks means more statistically significant. For purposes of our analysis, we considered features with 3 asterisks.
+        </p>
+        <p>
+            The Kaplan-Meier chart gives the probability <i>y</i> that a song will remain on the chart for <i>x</i> days, 
+            broken out by song feature. Feature lines which appear "lower" on the curve, then,
+            contribute to faster disappearance from the charts. 
+        </p>
+        <p>
+            The features corresponding to each number on the Kaplan-Meier charts are as follows: <br>
+            0: valence<br>
+            1: acousticness<br>
+            2: danceability<br>
+            3: energy<br>
+            4: instrumentalness<br>
+            5: speechiness<br>
+            6: tempo<br>
+        </p>
+        <div class="text-center">
+            <div class="row">
+                <h3>Global Trends</h3>
+                <div class="col-md-6">
+                        <img src="./images/global cox model summary.png" class="img-responsive">
+                        <p><i>Fig. 1a</i></p>
+                </div>
+                <div class="col-md-6">
+                        <img src="./images/global cox model survplot.png" class="img-responsive">
+                        <p><i>Fig. 1b</i></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>United States</h3>
+                <div class="col-md-6">
+                        <img src="./images/us cox summary.png" class="img-responsive">
+                        <p><i>Fig. 2a</i></p>
+                </div>
+                <div class="col-md-6">
+                        <img src="./images/us kaplan-meier.png" class="img-responsive">
+                        <p><i>Fig. 2b</i></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Japan</h3>
+                <div class="col-md-6">
+                        <img src="./images/japan cox summary.png" class="img-responsive">
+                        <p><i>Fig. 3a</i></p>
+                </div>
+                <div class="col-md-6">
+                        <img src="./images/japan kaplan-meier.png" class="img-responsive">
+                        <p><i>Fig. 3b</i></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>India</h3>
+                <div class="col-md-6">
+                        <img src="./images/india cox summary.png" class="img-responsive">
+                        <p><i>Fig. 4a</i></p>
+                </div>
+                <div class="col-md-6">
+                        <img src="./images/india kaplan-meier.png" class="img-responsive">
+                        <p><i>Fig. 4b</i></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Greece</h3>
+                <div class="col-md-6">
+                        <img src="./images/greece cox summary.png" class="img-responsive">
+                        <p><i>Fig. 5a</i></p>
+                </div>
+                <div class="col-md-6">
+                        <img src="./images/greece kaplan-meier.png" class="img-responsive">
+                        <p><i>Fig. 5b</i></p>
+                </div>
+            </div>
+            
+            <img src="./images/feature_stats_all_countries.png" class="img-responsive">
+            <p><i>Fig. 6: p-values for each song feature across all countries. Compiled max, min, mean, and errors.</i></p>
+        </div>
+
+        <h2>Discussion</h2>
+        <p>
+            Based particularly on the statistical significance table for each song feature for each country, we must 
+            conclude that viral song features vary quite a bit between countries. For this reason, we must
+            deny our hypothesis. We are satisfied with the accuracy of this conclusion, given the amount of data 
+            on which it was based. 
+        </p>
+        <p>
+            We chose to use Kaplan-Meier curves to visualize our result because we felt it best highlighted 
+            <i>at what rate</i>, and not just <i>how much</i>, a feature affected virality. We could have used 
+            bar charts, for example, to show the "weight" each feature placed on a song's survival for a given 
+            country, but this was only tangentially relevant to our hypothesis. Additionally, using a bar chart 
+            would have shown which features were more relevant to a song's survival than others, but not the rate 
+            at which a song died off the charts as a result of one feature over another. 
+        </p>
+        <p>
+            Much like how we provided an explanation of these summaries and charts in this analysis report, we 
+            will do the same for the final poster. 
+        </p>
+        <p>
+            It may appear, based on Fig. 6, that all viral songs share the same general feature set. This 
+            could be evidenced by the fact that certain features have very "short" boxes and error bars, 
+            indicating that these features are important in a viral song's survival.
+            However, we cannot conclude from this that countries share the same viral sets. This is because
+            the chart was created by aggregating all songs across all countries for the time period in question. 
+            Thus, it is clear that some features (such as danceability and instrumentalness) are common across all countries. However, 
+            the variability in other features' p-values indicates we cannot conclude these features are statistically
+            significant in a song's survival. Instead, when the significant feature sets of various countries 
+            are considered individually, we see that they are not in fact the same.
+        </p>
+        <p>
+            When we began this project, we were concerned that we would not have enough granularity in our data to 
+            draw good conclusions about viral feature sets &mdash; that is, we thought that the same specific songs 
+            (not just the same specific features) would appear on every country's charts and confound our analysis. 
+            However, we found in practice that while the same song <i>titles</i> often appeared together on all 
+            countries' charts, the <i>length of time</i> that they remained on the charts varied. Thus, our use of survival 
+            analysis allowed us to determine the features important for a song to become viral in a particular country despite
+            the fact that similar songs appeared in those countries. 
+        </p>
+
+        <h1>Future Directions</h1>
+        <p>
+            Next, we will create a predictive model to anticipate how viral a song will become in a particular country 
+            given its features. We will backtest this model on unseen historical data to demonstrate its effectiveness,
+            and use it on just-released songs to see whether or not those songs will become viral. 
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById('hours-nav').className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <link rel="shortcut icon" href="https://cs.brown.edu/courses/csci1951-a/favicon.ico" type="image/x-icon">
+  <title>CS1951A | Hours</title>
+</head>
+<body>
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Header image--><div id="header-img"></div>
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav"><a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">Home</a><a class="nav-item nav-link" id="prequiz-nav" href="https://cs.brown.edu/courses/csci1951-a/prequiz/">Pre-Quiz</a><a class="nav-item nav-link" id="schedule-nav" href="https://docs.google.com/spreadsheets/d/1-PxBTQKhUL7Uq3hPm9kfYtxHQGCQh6s45azg6r97kc4/edit?usp=sharing" target="_blank">Schedule</a><a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">Slides</a><a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">Assignments</a><a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">Staff</a><a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">Hours</a><a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">Resources</a><a class="nav-item nav-link" id="syllabus-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_syllabus.pdf" target="_blank">Syllabus</a><a class="nav-item nav-link" id="collab-nav" href="https://cs.brown.edu/courses/csci1951-a/res/static/cs1951a_collab.pdf" target="_blank">Collaboration Policy</a><a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/blogs/">Project Blogs</a><a class="nav-item nav-link" id="piazza-nav" href="https://piazza.com/brown/spring2019/cs1951a">Piazza</a></div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Calendar</h1>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8"><iframe id="calendar" class="hidden-md-down" src="https://calendar.google.com/calendar/embed?src=brown.edu_h0fsd70lr4pmn0016bflmpd6fc%40group.calendar.google.com&ctz=America%2FNew_York"  style="border-width:0" width="300" height="600" frameborder="0" scrolling="no"></iframe>
+                    </div>" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe id="mobile-calendar" class="hidden-lg-up" src="https://calendar.google.com/calendar/embed?src=brown.edu_h0fsd70lr4pmn0016bflmpd6fc%40group.calendar.google.com&ctz=America%2FNew_York"  style="border-width:0" width="300" height="600" frameborder="0" scrolling="no"></iframe>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2019 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</body>

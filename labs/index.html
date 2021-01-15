@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById("labs-nav").className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <title>CS1951A | Labs</title>
+</head>
+<body>
+  <div id="page-container">
+  <div id="other-content-container">
+  <!-- Header-->
+  <div class="container-fluid" id="header">
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="https://cs.brown.edu/courses/csci1951-a/">cs1951a</a>
+
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>labs</h1>
+        <p>
+	      Labs are designed to help with assignments and the deliverables for the final project.
+              <br>
+	      <br>
+	      Every student will be assigned a lab slot during shopping period. Details for lab checkoff and attendance can be found
+	      in the syllabus.
+        </p>
+
+        <table class="table table-hover" id="labs-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>January 27 – Febuary 1</td>
+	      <td><a href = "https://drive.google.com/open?id=1n3-kpH4nYBDPa5dXIs1dsIDzYW2Vanxz">Intro to SQL</a></td>
+            </tr>
+            <tr>
+		      <td>Feburary 9 – Febuary 15</td>
+		      <td><a href= "https://drive.google.com/drive/folders/1k7Jr5hpLKXU-F-8xoEBKtXvjwFvYBQuo?usp=sharing">Pandas/Numpy Lab</a></td>
+            </tr>
+            <tr>
+              <td>Feburary 23 – Febuary 29</td>
+			  <td><a href="https://drive.google.com/drive/folders/1ZJMUTbULNaEv7gOV4h2kDjQ0NtoA76i3?usp=sharing">Intro to MapReduce</a></td>
+            </tr>
+            <tr>
+              <td>March 2 – March 7</td> 
+	      <td><a href="https://colab.research.google.com/drive/18dB28EwTU03h9vZ9ALXg0bNknClKoKI_?usp=sharing">Intro to Stats</a></td>
+            </tr>
+            <tr>
+              <td>April 1 Release</td>
+	      <td><a href="https://drive.google.com/drive/folders/1Bf1bbPqHyM2Dnpl2ycoKuqK_rg0Tijkj?usp=sharing">ML Fairness</a></td>
+	    </tr>
+            <tr>
+              <td>April 1 Release</td>
+	      <td><a href="https://drive.google.com/drive/folders/13VNpOtzhJQ57C3CjzoM7U4wXd_ZVXdIS?usp=sharing">Intro to Viz</a></td>
+            </tr>
+            <tr>
+              <td>April 1 Release</td>
+	      <td><a href="https://drive.google.com/drive/folders/1IJ38QyWEX3J14gUFBCw6vN3dBr49tsOR?usp=sharing">Matrix Factorization</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+  </div>
+
+</body>
+</html>

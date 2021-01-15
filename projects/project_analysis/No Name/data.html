@@ -1,0 +1,44 @@
+
+<!-- saved from url=(0064)https://cs.brown.edu/courses/csci1951-a/assignments/stencil.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="./data_files/bootstrap.min.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Project Horus (jx24, hlaseter) - Data Deliverable</h1>
+        </div>
+        <h2> Complete Data Spec <a href="README">Link Here</a></h2>
+        <h2> Complete Data <a href="data/trimmed_data.csv">Link Here</a></h2>
+        <h2> Sample Data <a href="data/example_data.csv">Link Here</a></h2>
+        <h2>Tech Report</h2>
+        <ul>
+            <li><b>Where is the data from?</b></li>
+            <li>We obtained the data from the U.S. census bearau, from the Public Use Microdata Series (PUMS), a series of surveys on personal and housing data for Americans. Our data comes from surveys taken in 2018 in all 50 states. </li>
+            <li>The source is from the U.S. government, so it is very reputable.</li>
+            <li>We took the first 100 entries in our dataset. This is a comparably small sample, making up just over .1% of the entire dataset. Since the cleaning process caused our data to be grouped by state, our sample contains data only from people from Deleware (State code = 10). There are likely a number of factors that will cause this data to be unrepresentative.</li>
+            <li>The data is explicitly public, so there weren't any relevant privacy hurdles. </li>
+            <li><b>How clean is the data? </b></li>
+            <li>We trimmed our full dataset of approximately 3 million down to approximately 800,000 by removing entries where the FOD1P field was null. Our most relevant split will be between male and females; Our dataset is approximately 53% female and 47% male. This difference shouldn't cause any problems. </li>
+            <li>There are a number of missing values in the SCHL, WAGP, WKHP, WKW, YOEP, and OCCP fields. Of these, the zeroes in WAGP are the most relevant, and we may need to remove these entries.</li>
+            <li>There should not be any duplicates, and if there are, they should be negligible.</li>
+            <li>Our data for wages is right-tailed, with a median around 30,000. There is a natural minimum of $0, and the census condenses all numbers 1 million and above to 999,999, so that is the maximum.</li>
+            <li>There are no datatype issues. However, we do need to take steps to translate the coded entries (like FOD1P values, weeks worked) before our analysis.</li>
+            <li>We will likely need to discard our null data, or perhaps reduce the number of attributes we analyze in an effort to reduce the number of nulls. This shouldn't impact our analysis in any way other than reducing our sample size. If this becomes a concern, we may consider taking data from past years as well, but that might introduce an issue of duplication.</li>
+            <li><b>Next Steps?</b></li>
+            <li>The only real challenge we encountered while collecting our data is that the pre-clean data was quite large (>700k rows and >200 cols), which means that it took a bit of time for our processing code to run through and clean our data. After we collected our data we observed that there are quite a bit of null and empty fields, which means that we need to either build a model that can acommodate this or clean the data even further.</li>
+            <li>The next steps we want to perform with our data is that we want to model and visualize the impact gender plays on expected wage of different majors. We want to perform analysis on each major and their expected income, and then seperately model the expected income of each major with regards to male and female sexes. Using tools such as kmeans clustering, we hope to be able to see clear clusters form around majors and genders. We also want to use linear regression or neural networks to model these wage data points and see what impacts gender has on wage.</li>
+        </ul>
+    </div>
+</div>
+
+
+
+</body></html>

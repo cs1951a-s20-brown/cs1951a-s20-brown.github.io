@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Analysis - Stop Trying to Make Fetch Happen
+        </title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <style>
+            #gifdiv{
+                width: auto;
+                height: auto
+                max-height: 200px;
+                display: inline-block;
+
+            }
+            #gif{
+                display: block;
+                width: 65%;
+/*                max-height: 300px;*/
+                height: auto;
+                margin: 10px auto;
+/*                border: 5px solid black;*/       
+            }
+            body{
+                background-color: #fafafa;
+                padding: 5px;
+            }
+            
+            body *{
+                color: #303030;
+                font-family: "Roboto";
+            }
+            h1, h3{
+                text-align: center;
+                margin: 15px 5px;
+            }
+            
+            h1{
+                margin-top:20px;
+            }
+            #members{
+                display: flex;   
+                width: 100%;
+/*                align-content: center;*/
+                justify-content: space-evenly;
+            }
+            h3 span{
+                margin: auto 15px;
+                flex-wrap: wrap;
+                width: 150px;
+            }
+            
+            h4{
+                font-size:30px;
+            }
+            
+            h2{
+                font-size:20px;
+            }
+            #content{
+                width: 80%;
+                height: auto;
+                margin: 0 auto;
+                position: relative;
+            }
+            
+            #allTweets{
+                width: 100%;
+                max-width: 500px;
+                margin: 5px auto;
+                position: relative;
+                display: block;
+            }
+            
+            .math, .math *{
+                font-weight: bold;
+                font-style: italic;
+                font-family: serif;
+            }
+            
+            .code{
+                font-family: monospace;
+                margin-left: 3px;
+                margin-right: 3px;
+                background-color: lightgrey;
+                padding: 3px;
+            }
+            
+            #charts{
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+                grid-template-rows: repeat(3,auto);
+                grid-gap: 5px;
+                width: 100%;
+                margin:10px;
+                
+            }
+            #charts img{
+                max-width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <img id="gif" src="https://thumbs.gfycat.com/HarshMajesticAardvark-size_restricted.gif" alt="Stop Trying to Make Fetch Happen">
+        
+        <h1>A Group Project by:</h1>
+        <h3 id="members">
+            <span>age2</span>
+            <span>ddecastr</span>
+            <span>dsmits</span>
+            <span>dromano</span>
+        </h3>
+        <div id="content">
+            <h4>Background</h4>
+            <p>
+                We are interested in analyzing the spread of slang in 2015 on Twitter. In particular, we are analyizing the months from March through December when there is a statistically significant difference in slang appearance per tweet. The ultimate aim of our exploration is to observe how different slang terms increase and decrease in popularity and how they might have different rates of "catching on."
+            </p>
+
+            <h4>Data</h4>
+            <p>
+                For our analysis of Twitter we utilize our database consisting of 9,905,505 observations, with each observation consisting of a unique id, the date of the tweet, and the text of the tweet itself. We preprocessed the data into a dataframe containing the month and year of each tweet as well as 33 one-hot dummy variables for whether a predetermined slang term occured within the text. This allowed for a more lightweight and easily manipulated representation.
+            </p>
+
+            <h4>Hypothesis</h4>
+                <p>Our hypothesis test investigates statistically significant changes in the usage frequency of a particular test from month to month. In each case, we define the usage per tweet <span class="math">p</span> as our proportion metric. Thus our null hypothesis will be: <span class="math">H<sub>0</sub>: p<sub>1</sub> = p<sub>2</sub></span> and our alternative hypothesis is <span class="math">H<sub>a</sub>: p<sub>1</sub> &#x2260; p<sub>2</sub></span>.
+            </p>
+
+            <h4>
+                Statistical Test
+            </h4>
+            <p>
+                We used <span class="code">statsmodels</span> in Python for statistical testing. Specifically, we use the <span class="code">proportions_ztest</span> function to compare two proportions <span class="math">(occurences of term t in month M)/(total tweets for month M) vs (occurences of term t in month M+1)/(total tweets for month M+1)</span>, as though they were independent. The p-value of this test equates to the p-value of the chi-square test implementation in <span class="code">statsmodels</span>, however we elect to use the proportional z-test as it considers the difference in means (in our case proportions) rather than evaluating whether there is a significant association between categories. For the z-test, our goal is to discern difference in any direction, as we are interested in statistically significant increases and decreases in usage, rather than strictly greater or less than, thus we run the test as the default two-sided test. We deem a result statistically significant if its test statistic has an absolute value greater than <span class="math">1.96</span>, which equates to its test p-value being less than <span class="math">.05</span>.
+            </p>
+
+            <h4>Methdology</h4>
+            <p>
+                Our first-pass statistical test considered slang terms that are believed to have become mainstream in 2015, including celebrity-started terms such as "yolo" and "bless up." Our data is currently limited to most of 2015. This year's 9 terms are "fomo", "fam", "low-key", "netflix and chill", "idfwu", "af", and "rekt". We summed up the appearance of each slang word by month, as well as the total amount of tweets each month, to give us our occurrences and number of observations required for testing. Below is the total distribution of tweets for each month on which we had data in 2015.
+            </p>
+
+            <img id="allTweets" alt="All Tweets" src="https://i.imgur.com/FFZ2ccs.png">
+            
+            <h4>Results</h4>
+            <p>
+                Each of the slang terms experienced at least one month of statistically significant increase or decrease in relative popularity.
+            </p>
+            <ul>
+                <li>
+                "idfwu": Decrease from June to July. Increase from October to November.
+                </li>
+                <li>
+                "af": Decrease from May to June. Decrease from October to November. Increase from November to December.
+                </li>
+                <li>
+                "rekt": Increase from November to December.
+                </li>
+                <li>
+                "fomo": Decrease from June to July. Increase from September to October. Decrease from November to December.
+                </li>
+                <li>
+                "fam": Decrease from March to April. Decrease from April to May. Increase from May to June. Increase from September to October. Decrease from October to November. Increase from November to December.
+                </li>
+                <li>
+                "low-key": Decrease from April to May. Increase from May to June. Increase from June to July. Increase from November to December.
+                </li>
+                <li>
+                "netflix and chill": Increase from May to June. Increase from June to July. Decrease from September to October. Decrease from October to November.
+                </li>
+                <li>
+                "yolo": Decrease from April to May. Increase from October to November. Decrease from November to December.
+                </li>
+                <li>
+                "bless up": Increase from November to December.
+                </li>
+            </ul>
+
+            <p>Below are the relative frequencies for each term in 2015 by month.</p>
+            <div id="charts">
+                <img alt="idfwu Chart" src="https://i.imgur.com/yIP0wul.png">
+                <img alt="af Chart" src="https://i.imgur.com/tbcw3yx.png">
+                <img alt="rekt Chart" src="https://i.imgur.com/d8JphsT.png">
+                <img alt="fomo Chart" src="https://i.imgur.com/63A49Kk.png">
+                <img alt="fam Chart" src="https://i.imgur.com/zqoIsHq.png">
+                <img alt="low-key Chart" src="https://i.imgur.com/ldVLACz.png">
+                <img alt="netflix and chill Chart" src="https://i.imgur.com/V5X1TIG.png">
+                <img alt="yolo Chart" src="https://i.imgur.com/lxcMxGk.png">
+                <img alt="bless up Chart" src="https://i.imgur.com/oqAc1Ld.png">
+            </div>
+            
+            <h4>Analysis</h4>
+            <p>
+                While we see several statistically significant differences in usage between months, only a few exhibit a clear pattern of 'catching on' and then 'falling off'. "Netflix and chill" is the best example of this, as it quickly increases in popularity from May to July, peaks, and then drops in popularity September to November. "Low-key" also exhibits interesting behavior, as it first decreases from April to May, and then increases for consecutive months from May to July, followed by an increase from November to December.
+            </p>
+
+            <h4>Conclusion</h4>
+            <p>
+                Some of our slang terms indicate unique patterns of catching on and falling off, which confirms our hypothesis that each slang term will have different waves of popularity over time. With more and cleaner data, we will soon be able to compare these popularity patterns between social media platforms. 
+            </p>
+            
+            <h4>Deliverable Questions</h4>
+            <h2>
+                Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data?
+            </h2>
+            <p>
+                We used the z-test of proportions because we are comparing two independent proportions. We also considered using the chi-squared test as it is essentially the same significance test, however it is generally used more for testing for association between categorical variables. We measured success as 1 if a slang term shows up in a tweet, whether it is once or multiple times, as it indicates usage. We did not count the aggregate amount of usages because to protect against possible "spamming" of a word. The biggest challenge was keeping a consistent hypothesis with our data limitations. Our raw data files per year are hundreds of GB big, thus we had to narrow our analysis window down from 3 years to 1 year. We restructured our data. See the "Data" section.
+            </p>
+            
+            <h2>
+                What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?
+            </h2>
+            <p>
+                As outlined in our "Analysis" section, certain terms exhibit distinct patterns of catching on and falling off. This leads us to reject the null hypothesis that there is no difference between usage. As detailed in the "Conclusion" section, the data overall fit the patterns that we expected for rapid rdiffusion and use of a term followed by a quick dropoff. We are not yet confident in the results of our overall question due to methodological and experimental setbacks, but we believe that with an augmented data set we will gain a clear picture of whether the timing and rate of slang terms catching on differs between social media platforms. 
+            </p>
+            <h2>
+                For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Were there any challenges visualizing the results, if so, then what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it’s recognize which type your visualization is)?
+            </h2>
+            <p>
+                We used these frequency graphs because they depict a clear snapshot of the distribution of slang terms per month. You can quickly see that some terms exhibit relatively uniform distributions whereas others are distinctly gaussian. By using frequency (rather than gross) metrics, we can control for differences in dataset size from month to month, assuming that the tweets from the shallow stream constitute a representative sample. The primary challenge is that the Y-axes vary drastically between each of the terms since they each have a very different base-rate frequency at which they occured (i.e. "popularity").  
+            </p>
+            
+            <h2>
+                Are there any confounding trends or variables you might be observing?
+            </h2>
+            <p>
+                Since our data only consists of one-hot encoded slang terms as well as their dates, we do not forsee any confounding trends or variables. Our biggest concern is the bias coming from our knowledge of the use cases of each term we are testing on.
+            </p>
+            
+            <h2>Discussion of visualization/explaining your results on a poster and a discussion of future directions.</h2>
+            <p>
+                This analysis is only a supplementary part of our full analysis. Our original goal is to compare how each slang term might spread differently between Twitter and Reddit. It has taken some time to get the hundreds of GB of Reddit comment data into a queryable form. After doing so, we will look to conduct a more in depth cross-analysis for the final project. The visualization will be augmented in order to depict the differences for each term over time in Reddit vs Twitter, and we hope to assemble an interactive visualization which allows for comparison of the "trend" distributions of different terms over time. 
+            </p>
+            
+        </div>
+    </body>
+</html>

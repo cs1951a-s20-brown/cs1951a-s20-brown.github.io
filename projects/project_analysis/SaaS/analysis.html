@@ -1,0 +1,198 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="analysis.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS | Analysis Deliverable</title>
+</head>
+
+<body style="font-family:Trebuchet MS, Helvetica, sans-serif; font-size: 14px;">
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>SAAS - ANALYSIS DELIVERABLE</h1>
+        </div>
+        <div style="border: darkblue dashed 3px; border-radius: 10px; padding: 10px; margin: 10px">
+            <h4>A defined hypothesis or prediction task, with clearly stated metrics for success.</h4>
+            <!-- Answer Example-->
+            Articles that contain the terms, “healthcare”, “woman”, “world”, and “connect” tend to be more liberal 
+            whereas articles that contain the terms, “veteran”, “demand”, “fight”, and “ceo” tend to be more conservative
+            <br>
+            <br>
+            H<sub>0</sub>: In a t-test, there is no statistically significant difference in the frequency of “healthcare”, “woman”, “world”, “connect”, “veteran”, “demand”, “fight”, and “ceo” in liberal versus conservative articles
+            <br>
+            H<sub>A</sub>: In a t-test, there is a statistically significant difference in the frequency of “healthcare”, “woman”, “world”, “connect”, “veteran”, “demand”, “fight”, and “ceo” in liberal versus conservative articles.
+        </div>
+        <div style="border: crimson dashed 3px; border-radius: 10px; padding: 7px; margin: 10px">
+            <h4>Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data?</h4>
+            <!-- Answer Example -->
+            <div class="answer">
+                <div class="paragraph">We used a t-test (a statistical test) because it is useful in finding if there is a statistically significant difference between two groups - in this case, liberal versus conservative articles. We also considered a chi squared test and correlation tests, such as Pearson and Spearman. We ultimately decided to choose the t-test over chi-squared because a t-test compares means in different categories whereas a chi-squared test is categorical, i.e. there are predetermined categories that the data will fall into. In this case, our categories were the political inclination of the media source of the articles, in which articles were labeled from -2 to 2, with negative being liberal and positive being conservative and the magnitude being an indicator of how strong the inclination was. We decided to use a statistical test rather than an ML algorithm because we are conducting hypothesis testing, in which we are inferring relationships between variables, as opposed to making predictions.</div>
+ 
+			     <div class="paragraph">We measured success by determining whether or not we were rejecting the null hypothesis for each of the terms. We set the p-value to be 0.1. If the result from our t-test was less than our set threshold p-value of 0.1, then we rejected the null hypothesis in favour of the alternative hypothesis, indicating that the difference in the number of occurrences of the specific term in liberal vs conservative articles was statistically significant. If our t-test was higher than our set threshold p-value, we accepted the null hypothesis. We used this metric because it was convenient to replicate the test and perform it on any term in the list of the articles’ terms.</div>
+			
+			     <div class="paragraph">To ensure that our test was fair, we used a control term of “Thursday” to show that a word that we thought was politically neutral would not show a statistically significant difference in the number of times it appeared in liberal vs conservative articles.</div>
+ 
+			     <div class="paragraph">A challenge we faced was determining the threshold p-value to use because we found that the p-values generated after performing the t-test on several of the terms fell in the 0.05 to 0.1 range, and using a threshold p-value of 0.05 would lead to the same conclusion for most of the terms chosen in our hypothesis: we would accept the null hypothesis. Similarly, we had to normalize our data because there were six times as many words from liberal articles than conservative articles. Conservative articles were in general underrepresented compared to liberal articles (approximately 1100 liberal articles versus 500 conservative articles). Therefore, we normalized the data to account for this difference; otherwise, the terms would more likely be associated with liberal articles simply because there are about double the number of liberal articles as conservative ones in the dataset.</div>
+        </div>
+
+
+        </div>
+        <div style="border: darkblue dashed 3px; border-radius: 10px; padding: 10px; margin: 10px">
+
+            <h4>What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</h4>
+            <!-- Answer -->
+
+            <div class="answer">
+            
+            <div class="paragraph">Terms with p-values less than our p-value of 0.1 allowed us to reject our null hypothesis in favour of our alternative hypothesis:
+
+            <table style="width:100%">
+                <tr>
+                    <th>Term</th>
+                    <th>P-value</th>
+                </tr>
+                <tr>
+                    <td>connect</td>
+                    <td>0.0838</td>
+                </tr>
+                <tr>
+                    <td>demand</td>
+                    <td>0.0781</td>
+                </tr>
+                <tr>
+                    <td>fight</td>
+                    <td>0.0007</td>
+                </tr>
+                <tr>
+                    <td>veteran</td>
+                    <td>0.0668</td>
+                </tr>
+                <tr>
+                    <td>world</td>
+                    <td>0.0128</td>
+                </tr>
+  
+            </table>
+        </div>
+
+            <div class="paragraph">Terms with p-values greater than our p-value of 0.1 allowed us to accept our null hypothesis:
+
+            <table style="width:100%">
+                <tr>
+                    <th>Term</th>
+                    <th>P-value</th>
+                </tr>
+                <tr>
+                    <td>ceo</td>
+                    <td>0.2135</td>
+                </tr>
+                <tr>
+                    <td>healthcar</td>
+                    <td>0.2604</td>
+                </tr>
+                <tr>
+                    <td>woman</td>
+                    <td>9.938</td>
+                </tr>
+  
+            </table>
+        </div>
+
+            <div class="paragraph">We performed a t-test and calculated a p-value for each of the words. Our results show that five (“connect”, “demand”, “fight”, “veteran”, “world”) out of the eight terms chosen support our alternative hypothesis that there is a statistically significant difference in the frequency of these terms in liberal versus conservative articles. Three out of the eight terms (“ceo”, “healthcar”, “woman”) support our null hypothesis that there is no statistically significant difference in the frequency of these terms in liberal versus conservative articles. Terms such as “connect”, “fight”, “veteran”, and “world” tended to appear more in liberal articles whereas terms such as “demand” tended to appear more in conservative articles. Terms such as “ceo”, “healthcar”, and “woman” are more neutral, not appearing significantly more in liberal or conservative articles. We believe we got these results since terms like “connect” and “world” are often associated with globalism (connecting with other countries, specifically when creating foreign and economic policy), which is a more liberal ideal. In addition, “ceo” and “woman” are both fairly neutral words, not particularly specific to liberal or conservative ideology.</div>
+ 
+			<div class="paragraph">We are fairly confident in our results, but using a p-value less than 0.1 such as 0.05 would indicate that there is a closer relationship between our chosen terms and liberal or conservative articles.</div>
+        </div>
+
+        </div>
+        <div style="border: crimson dashed 3px; border-radius: 10px; padding: 7px; margin: 10px">
+            <h4>For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Where there any challenges visualizing the results, if so, then what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it's recognize which type your visualization is)?</h4>
+            <!-- Answer -->
+
+            <div class="answer">
+            We chose to represent our results with histograms because they clearly display the distribution of the frequencies of our chosen words in liberal and conservative articles. It is also clear to compare the frequency of the words in the five categories (very liberal, liberal, moderate, conservative, and very conservative) with different colors. We could also communicate the results in pie charts displaying the percentage of occurrences of each chosen word in the articles. We did not have any particular challenges visualizing the results since we knew we wanted to visualize them with histograms from the beginning. Our visualizations are standalone but we believe it is important to accompany any figure with a caption to make it extra clear to the reader.</div>
+
+        </div>
+        <div style="border: darkblue dashed 3px; border-radius: 10px; padding: 10px; margin: 10px">
+            <h4>Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!</h4>
+            <!-- Answer -->
+
+            <div class="answer">
+            
+            <div class="paragraph">The Process: <a href="https://drive.google.com/file/d/1WrWpoYTRBkTLk1g7nVt7AlXsNaGOsaq8/view?usp=sharing">View here</a></div>
+
+            <div class="paragraph">
+                Results:
+            <div class="paragraph">
+                <div class="two-figures">
+                <div class="figure">
+                    <img src="./images/ceo.png"/>
+                </div>
+                <div class="figure">
+                    <img src="./images/connect.png"/>
+                </div>
+            </div>
+           
+            <div class="two-figures">
+                <div class="figure">
+                    <img src="./images/demand.png"/>
+                </div>
+                <div class="figure">
+                    <img src="./images/fight.png"/>
+                </div>
+            </div>
+
+            <div class="two-figures">
+          
+                <div class="figure">
+                    <img src="./images/healthcar.png"/>
+                </div>
+          
+                <div class="figure">
+                    <img src="./images/veteran.png"/>
+                </div>
+            </div>
+            <div class="two-figures">
+   
+                <div class="figure">
+                    <img src="./images/woman.png"/>
+                </div>
+   
+                <div class="figure">
+                    <img src="./images/world.png"/>
+                </div>
+            </div>
+            </div>
+        </div>
+            
+        </div>
+
+        </div>
+
+        <div style="border: crimson dashed 3px; border-radius: 10px; padding: 7px; margin: 10px">
+            <h4>If you did a statistics test, are there any confounding trends or variables you might be observing?</h4>
+            <!-- Answer -->
+
+            A possible confounding variable could be that a significant portion of the conservative articles in the dataset were from news sources that typically provide financial articles. Therefore, words such as “fight” that we predicted to be more conservative might not be neutral simply because the sampling of conservative articles was from typically financial sources.
+
+        </div>
+        <div style="border: darkblue dashed 3px; border-radius: 10px; padding: 10px; margin: 10px">
+            <h4>If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model?</h4>
+            <!-- Answer -->
+            N/A
+        </div>
+        <div style="border: crimson dashed 3px; border-radius: 10px; padding: 7px; margin: 10px">
+            <h4>Discussion of visualization/explaining your results on a poster and a discussion of future directions.</h4>
+            <!-- Answer -->
+
+            A possible next step is to perform another test, such as a chi squared test, to support or reject our hypothesis. It would also be insightful to visualize our data using JavaScript D3 especially when we gain more exposure to the framework in the Data Viz assignment.
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

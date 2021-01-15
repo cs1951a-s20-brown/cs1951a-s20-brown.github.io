@@ -1,0 +1,237 @@
+<html><head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    <title>STENCIL</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>[The Commision]&lt;&lt;&lt; DELIVERABLE &gt;&gt;&gt;</h1>
+        </div>
+        <h2> Hypothesis</h2>
+          <h4 style="margin-left:3%"> A defined hypothesis or prediction task, with clearly stated metrics for success </h4>
+            <p style="margin-left:7%"> Our prediction task is to predict the salary of NBA players using their per game statistics. The data set is populated with a number of different statistics ranging from basic to very advanced efficiency metrics. With this prediction task, we aim to analyse and find the statistics which are the best predictors of a player’s salary and then predict the salary for each player in the NBA. In addition, we will use these predictions to try and see whether players in the NBA are overvalued or undervalued based on our models. </p>
+
+            <p style="margin-left:7%"> To judge < our models we will be looking at two metrics. The first is the adjusted R-squared value. This is a metric of success for individual models, as it allows us to verify how accurate our model is. The other metric we will be using is Root Means Squared error (RMSE). This metric for evaluation is used to compare our models. RMSE values do not determine how accurate a model is but rather serve as a great comparator between models </p>
+
+            <p style="margin-left:7%"> We would ideally like to expand by including Mean Absolute Error to also compare our models. This metric is more robust to outliers and would help us gain an intuitive understanding of our models. Our end-goal is to cross-validate our models to see how they would perform on unseen data and test their accuracy.  </p>
+
+
+
+        <h2> Test Method</h2>
+          <h4 style="margin-left:3%"> Why did you use this statistical test or ML algorithm? </h4>
+            <h5 style="margin-left:5%"> Statistics Test: Pearson Correlation </h5>
+              <p style="margin-left:7%"> We made use of the Pearson Correlation to find the linear relations between our independent variables and our prediction variable. This was mainly used for the purpose of feature engineering. With a large dataset and numerous statistics, we had to narrow our statistics down to the least number of features that most affected our prediction and dependent variable (2018_2019_Salary). </p>
+
+              <p style="margin-left:7%"> After selecting the top 8 features ( ['PTS', 'FGA','FG', 'FT', 'MP', 'FTA', 'TOV', '2PA']) with strongest linear correlations with our prediction variable, we also applied the Variance Inflation Factor in order to find the multi-collinearity between these top 8 features and then we further narrowed down the list to 5 features(['PTS', 'FT', 'MP', 'TOV', '2PA'])</p>
+
+              <p style="margin-left:7%"> We would ideally like to expand by including Mean Absolute Error to also compare our models. This metric is more robust to outliers and would help us gain an intuitive understanding of our models. Our end-goal is to cross-validate our models to see how they would perform on unseen data and test their accuracy.  </p>
+
+            <h5 style="margin-left:5%"> ML algorithm: Multiple Linear Regression and Random Forest  </h5>
+              <h6 style="margin-left:6%">	Multiple linear regression  </h6>
+                <p style="margin-left:7%">There are multiple independent variables affecting our dependent variables. After narrowing the features down to 5, we applied Multiple Regression to build a prediction model. We applied this model as it allows us to understand the significance of each variable’s influence on our dependent variable which is ([‘2018_2019_Salary’]). Since we used feature engineering to find the most linearly correlated variables, Multiple Regression was a good model to implement.  </p>
+              <h6 style="margin-left:6%"> Random Forest </h6>
+                <p style="margin-left:7%">	We also wanted to look at a different model so we chose Random Forest. We chose Random Forest because it is a bagging algorithm and it allows a number of decision trees to run independently and aggregates the output at the end. As we are evaluating a number of features in our data set, this model does not rely too heavily on a single feature, therefore making use of all potential predictive features. This model is also a good way to prevent overfitting since it takes a random sample from the training set to split. This randomness allows for a more robust prediction mechanism. </p>
+
+          <h4 style="margin-left:3%"> Which other tests did you consider or evaluate?</h4>
+            <p style="margin-left:7%">We also implemented simple regression on a number of individual features such as Points Per Game, Minutes Played, Age, Free Throws and others. We did this before our feature selection and implemented it on features we thought would affect the Salary. This was part of our initial exploratory analysis.  </p>
+
+            <p style="margin-left:7%">Right now we are basing our two ML models on feature selection with the help of correlation. We are considering running p-tests with all the independent features in our data set and running multiple regression on the selected features to see how our values differ from the features selected through correlation. </p>
+          <h4 style="margin-left:3%"> How did you measure success or failure? </h4>
+            <p style="margin-left:7%">We are measuring success and failure with the use of two metrics: Adjusted R-squared Values and Root Mean Squared Errors. Our goal is to maximise the R-squared values while simultaneously minimising the RMSE values and try to prevent over or underfitting. </p>
+          <h4 style="margin-left:3%"> Why that metric/value? </h4>
+            <p style="margin-left:7%">Adjusted R-squared, helps incorporate the degrees of freedom of a model.  Whereas R-squared only increases when predictors are added to the model, adjusted R-squared will decrease as predictors are added if the increase in model fit does not make up for the loss of degrees of freedom. Likewise, it will increase as predictors are added if the increase in model fit is worthwhile. Since, we are working with a lot of predictor variables, we need to find the most optimum mix of variables that ensure a good fit. </p>
+
+            <p style="margin-left:7%">RMSE is useful because it is an absolute measure of fit whereas R-squared is more relative. It is also in the same unit as the dependent variable which in our case is Salary. In our case we are trying to minimise the RMSE as it will tell us how accurately our model predicts the dependent variable and it is especially important for our task which is a prediction task.</p>
+          <h4 style="margin-left:3%"> What challenges did you face evaluating the model?</h4>
+            <p style="margin-left:7%">One of the biggest challenges with our model evaluation were the low R-squared values. For our multiple-regression model, the R-squared is 0.48 and for Random Forest it is .50. We ran both models on all of our features and then on the selected features. We noticed that the removal of features did not seem to drastically affect our R-squared value, however the removal of certain variables, such as ‘Age’, did dramatically affect the R-squared value.</p>
+          <h4 style="margin-left:3%"> Did you have to clean or restructure your data?</h4>
+            <p style="margin-left:7%">In rudimentary exploratory data analysis, we realised that some of the players had multiple positions listed. We merely had to clean the values of 8 players’ positions. We recognised that if we removed the anomalous players, our R2 value would be higher. However, we thought this would be detrimental to the analysis as we would rather have the model take the entire dataset into account. </p>
+
+            <p style="margin-left:7%">In the random forest implementation and multiple regression, we normalised our data in the training features columns to ensure that our predictions were not affected by outliers present in the data. </p>
+
+
+
+
+
+
+
+
+        <h2> Result Interpretation</h2>
+
+          <h4 style="margin-left:3%"> What is your interpretation of the results? </h4>
+
+            <p style="margin-left:7%">The first interpretation is that the RMSE values for both models are fairly close for the training and testing datasets and which tells us that we are neither overfitting nor underfitting our data. This means that both models can serve as good
+              predictors. </p>
+
+            <p style="margin-left:7%">The adjusted R-squared values are also fairly similar. There is room for improvement for the Adjusted R-Squared to increase the goodness of fit of our predicted Salaries vs Actual salaries. </p>
+
+            <p style="margin-left:7%">The Random forest Training RMSE may suggest that we are slightly overfitting our model. This can be seen in our scatter plots as our prediction values are much closer to predicted values for Multiple Regression than they are for the Random Forest scatter plots. </p>
+
+            <p style="margin-left:7%">Finally, due to the range of salaries in our data set, we decided to normalise our RMSE by dividing them by the difference of max and min salaries in training and testing sets which gave us very low RMSE’s. While on the outset this may suggest that our model predicts values fairly well, there are still wide discrepancies and they need to be addressed which means that for now, this does not yet serve as a conclusive metric for our model. We thought of normalising it using the mean however the mean was greatly skewed as the range is very wide. </p>
+
+            <table style="margin-left:7%">
+              <tr>
+                <th>Metrics</th>
+                <th>Multiple Regression</th>
+                <th>Random Forest</th>
+              </tr>
+              <tr>
+                <td>Testing RMSE</td>
+                <td>6171932.936436578</td>
+                <td>6105915.907470699</td>
+              </tr>
+              <tr>
+                <td>Training RMSE</td>
+                <td>6094521.309191431</td>
+                <td>5746290.89221826</td>
+              </tr>
+              <tr>
+                <td>Adjusted R squared</td>
+                <td>0.485</td>
+                <td>0.496</td>
+              </tr>
+              <tr>
+                <td>Normalised RMSE Test* (using range)</td>
+                <td>0.17</td>
+                <td>0.168</td>
+              </tr>
+              <tr>
+                <td>Normalised RMSE Train* (using range)</td>
+                <td>0.16</td>
+                <td>0.151</td>
+              </tr>
+            </table>
+
+
+
+          <h4 style="margin-left:3%"> Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy?  </h4>
+            <p style="margin-left:7%">We are happy with the current progress we have made in this project. We were able to increase the R-squared value for multiple regression from 0.42 to 0.485 and for random forest from 0.43 to 0.496. This was done after we applied the VIF analysis to reduce our prediction features from 8 to 5.  But we do believe that we can improve it by making use of more tests and hyperparameter tuning. We implemented that in Random Forest to get max_depth, n_estimators values which increased the accuracy. But we could improve it by looking at the <strong> p-values </strong> and using <strong> backward elimination </strong> for Multiple Regression and in Random Forest we could choose more variables by making use of the <strong> feature importance </strong> results.</p>
+
+            <p style="margin-left:7%">Our training and testing RMSE values are fairly close for both the models and that suggests we are not underfitting or overfitting by great magnitudes our models, but we still need to work to get more accurate predictions and less variance.</p>
+
+          <h4 style="margin-left:3%"> For prediction projects, we expect you to argue why you got the accuracy/success metric you have.  </h4>
+            <p style="margin-left:7%"> As can be seen from our scatter plots and bar charts, our models predict a number of values accurately or close to the actual value however for both our models our R-squared values are low(0.485 and 0.496). We may have gotten these values because we may have eliminated independent variables that are statistically significant in predicting our salary. The reason for this may be our narrow approach to feature selection. We selected our features on the basis of Pearson Correlation and further narrowed them down using the VIF analysis. As has been explained later there are some variables such as ‘Age’ that affect that increase the R-squared value but show insignificant correlation. Other factors such as ‘FGA’ and ‘FG’ (field goals and field goals attempts respectively) show great multicollinearity with each other as well as with salary, and were therefore eliminated. We assumed that since ‘FGA’ directly affects ‘FG’ and ‘FG’ translates to ‘Points’, we decided to just keep points as it represents the other two. However, this decision could also have had an independent effect on the salary and may have improved the model. </p>
+
+            <p style="margin-left:7%">In terms of our R-squared value, if we look at the range of salaries, see that they range from $41,850 (Dusty Hannahs) to $38, 074,630( Steph Curry), which is quite a large range. When looking at the range, RMSE values are good indicators as they are towards the bottom rise of range but in absolute terms, it may still be high. This can be explained due to the immense range of salaries we have and the RMSE penalises large errors heavily which can increase its value. Many times the salaries of extremely highly paid players cannot be explained by statistics and are tied to intangibles; based on statistics alone, they may be undervalued and this maginifies our RMSE statistics.  </p>
+
+          <h4 style="margin-left:3%"> Intuitively, how do you react to the results?   </h4>
+            <p style="margin-left:7%">The current features we have selected according to our analysis are generally considered to be the most important when deciding a player’s value. Our analysis determined the choosing of these variables so we are sure that results are good currently. But there are many independent variables that may have a non-linear relation to salary or may affect it which we have not been able to find. The only way to resolve this is to push further analysis to hopefully improve the efficacy of our model.  </p>
+
+
+          <h4 style="margin-left:3%"> Are you confident in the results? </h4>
+            <p style="margin-left:7%">We are confident that the approach we are following is right, but our models could be improved by looking at other methods of analysis for feature engineering and selection. We hope that this will increase the accuracy of our models by decreasing RMSE and increasing adjusted R-squared values. This will allow us to get more sense of the predictions once we plot the residuals and see how overvalued and undervalued each player is.  </p>
+
+
+
+
+
+        <h2> Visualization</h2>
+          <h4 style="margin-left:3%"> For your visualization, why did you pick this graph?</h4>
+            <p style="margin-left:7%"> We decided to use a heatmap as heatmaps are very versatile and efficient in drawing attention to trends. Knowing that a heat maps’ primary use is to display a more generalized view of numeric values, given how large our dataset is, colours are easier to distinguish. We used two heatmaps. Different colours are used to differentiate between negative and positive correlation and their brightness helps distinguish between the magnitude of correlation.  </p>
+            <p style="margin-left:7%"> We then decided to use a histogram to gain sense of the distribution of the variables most correlated with salary. We also used a scatter plot so we could get a general sense of the dataset. We represented our actual and predicted salaries from the ML models by using both scatter plots and bar charts. Bar Charts help us intuitively understand how much is the difference between actual and predicted salaries. The scatter plots help us visualise the R-squared and the goodness of fit of our models. </p>
+          <h4 style="margin-left:3%"> What alternative ways might you communicate the result?  </h4>
+            <p style="margin-left:7%"> We could have displayed the heatmap as a bar chart to see how the variable correlations with salary ranked against each other, but given the number of variables, we thought it would be easier to read the data if it was in heatmap format rather than a bar chart. </p>
+            <p style="margin-left:7%"> Additionally, a lot of variables have multicollinearity which we also could have shown with correlation scatter plots but we selected 7 features and to show multicollinearity between all of them</p>
+          <h4 style="margin-left:3%"> Were there any challenges visualizing the results, if so, then what were they? </h4>
+            <p style="margin-left:7%"> We did not face any challenges visualizing the results as we used graphs we felt were necessary. </p>
+          <h4 style="margin-left:3%"> Will your visualization require text to provide context or is it standalone (either is fine, but it recognises which type your visualization is)?</h4>
+            <p style="margin-left:7%"> Our heatmaps will require text to provide context but our scatter plots and histograms will not. All graphs have axes that are labelled and titles that clearly explain what the graph is showing. </p>
+
+
+
+
+
+
+
+
+        <h2> Results</h2>
+          <h4 style="margin-left:3%"> Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to <a href="https://colab.research.google.com/drive/1WBFtG_S33Rvbd-B8NFiot23VHKkb8F0T">show us your full process so we can evaluate how you conducted the test! </a> </h4>
+          <br>
+            <h5 style="margin-left:5%"> Heatmap 1- Pearson Correlation Values of All Variables </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 1.png" width ="700" height="500"></p>
+            <h5 style="margin-left:5%"> Heatmap 2- The top 8 variables most correlated with salary </h5>   <br>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 2.png" width ="700" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> VIF Table 1 (Top 8 Features)  </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 3.png" width ="500" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> VIF Table 2 (Top 5 Features - Variables with highest values in Table 1 eliminated)  </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 4.png" width ="500" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Density Plots of the Top 5 selected features for regression</h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 5.png" width ="700" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Multiple Linear Regression Bar Plot of actual and predicted values for sample of 50 players </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 6.png" width ="1000" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Multiple Linear Regression  Scatter Plot  with line of best fit </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 7.png" width ="700" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Numerical Values of Evaluation Metrics: Multiple Regression</h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 8.png" width ="800" height="400"></p>  <br>
+
+            <h5 style="margin-left:5%"> Random Forest Bar Plot of actual and predicted values for sample of 50 players </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 9.png" width ="1000" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Random Forest Scatter Plot with line of best fit  </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 10.png" width ="700" height="500"></p>  <br>
+
+            <h5 style="margin-left:5%"> Numerical Values of Evaluation Metrics: Random Forest </h5>
+              <p style="margin-left:7%"> <img src="Graphs/Figure 11.png" width ="800" height="500"></p>  <br>
+
+
+
+
+        <h2> Statistical Test </h2>
+          <h4 style="margin-left:3%"> If you did a statistics test, are there any confounding trends or variables you might be observing?</h4>
+            <p style="margin-left:7%"> We first made a heatmap to see the Pearson correlations of independent variables with each other and to salary. Before choosing our top 10 variables, we first displayed the values of all these correlations. What is very interesting to see is that the correlation of ‘Age’ with almost all variables is in the range 0.00-0.04 and the only variable it greatly affects is Salary (heatmap correlation value is 0.14). Thus, it has no multicollinearity with other variables and this is very surprising. This factor has been explained later. </p>
+
+
+
+
+        <h2> ML Test</h2>
+          <h4 style="margin-left:3%"> If you did a machine learning model, why did you choose this machine learning technique? </h4>
+            <p style="margin-left:7%">The two machine learning models we did were multiple linear regression and random forest. We chose multiple linear regression because it allows us to estimate the association between a given independent variable and the outcome holding all other variables constant. We chose random forest because its predictive performance can compete with the best supervised learning algorithms, and it provides a reliable feature importance estimate.</p>
+          <h4 style="margin-left:3%"> Does your data have any sensitive/protected attributes that could affect your machine learning model?</h4>
+            <p style="margin-left:7%">Yes, this would be age. While age is a variable that can technically take any value, it is somewhat bounded due to the length of a playing career. . Especially in the NBA, it is unheard of for a player 50 or older to be playing. A lot of players are signed from a young age with high salaries, especially rookies; some of them (especially those that are drafted in the first few picks of the first round of the draft) are given lucrative contracts in hope for better performance, despite not having actual game performance statistics in the NBA. If a player is given a high salary upon being signed, this could lead to our models being offset due to the fact that they may have low statistics but still a high salary, whereas for some of the other players in the NBA, their salaries are performance-based. In our random forest model, when we ran the analysis with all the variables just to test, feature importance yielded that age was given the highest importance, despite the fact that its correlation with salary was one of the lowest.</p>
+
+
+        <h2> Results Explanation</h2>
+          <h4 style="margin-left:3%"> Future Direction </h4>
+            <p style="margin-left:7%"> Our first course of action would be to plot residuals of the predictions and create a dataframe to see the difference between actual and predicted salary of each player and see whether they are over or undervalued. </p>
+
+            <p style="margin-left:7%"> Second, we would like to improve the accuracy of our models. This would be done by using <strong> backward elimination and p-test </strong> hyperparameter tuning for Multiple Regression. We would begin by putting all dependent variables and then eliminating them to come up with our final list. For our Random Forest, we would put all the dependent variables again and then use <strong> feature importances </strong>to eliminate variables and come up with a list we feel are good predictors. </p>
+
+            <p style="margin-left:7%"> We would then see if these new tuned models give us better accuracy and predictions and are an upgrade on what we have done currently.  </p>
+            <p style="margin-left:7%"> Lastly, we would also like to implement another regression model such as Lasso, Ridge or Logistical Regression to see if it gives us a better prediction. </p>
+
+
+    </div>
+</div>
+
+
+
+</body></html>

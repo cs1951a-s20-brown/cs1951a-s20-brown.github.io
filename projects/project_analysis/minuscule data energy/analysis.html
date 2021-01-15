@@ -1,0 +1,201 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis</title>
+
+    <style>
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+      }
+
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+    </style>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>[miniscule data energy] ANALYSIS DELIVERABLE</h1>
+        </div>
+
+        <h2> Project Overview and Hypothesis </h2>
+
+          <p> This projects seeks to explore the trends in avocado consumption in
+              the US, in connection with millenials, a group classified as those
+              born between 1980 and 1994.</p>
+
+          <p> Hypothesis: We expect that cities in the United States with a higher proportion
+              of millenials consume more avocados despite prices increases in recent years. </p>
+
+        <h2> Methodology </h2>
+
+          <p> Our analysis consisted of 3 main components: <p>
+
+          <ol>
+            <li> Reorganization and Joining Data
+                 <p>  After finding and cleaning our raw data and reading them into database files, we reorganized, joined, and
+                      did further cleaning in order to best support our
+                      analysis methods </p>
+            </li>
+            <li> Statistical Tests
+                 <p> This entailed computing relevant metrics, statistical tests
+                     to determine the strength of the relationship of our variables,
+                     and regressions. For this checkpoint, we ran some simple OLS regressions.</p>
+            </li>
+            <li> Visualizations
+                  <p> We plotted the raw data, as well as different metrics
+                      that would help us gauge general trends over the years.
+                      We also visualized the outputs of our regression models. </p>
+            </li>
+          </ol>
+
+          <h4> Reorganization and Joining Data </h4>
+
+          <p> Our analysis was dependent on common regions (California, Plains,
+          South Central, Midsouth, Southeast, Great Lakes, Northeast) defined by
+          the Hass Avocado Board for both the avocado consumption data and the demographic data. </p>
+
+          <p> Our raw data composed of the avocado consumption for 2016, 2017, and 2018
+          for cities/states specified in the raw data, as well as the accumulated
+          consumption data for Hass Avocado Board defined regions. Thus, we
+          extracted out the accumulated consumption for the regions specified above, into a new table. </p>
+
+          <p> As for our raw data for demographic, this had data regarding gender, age, and population for
+          each state for each of the years 2016, 2017, and 2018. We first removed the
+          data for Alaska and Hawaii, as these states were not taken into account for the
+          avocado consumption regions. We created a new column called 'region',
+          where we labeled each state with its appropriate region. Then, for each state in region X, we
+          added up population for each age (while keeping gender separated). </p>
+
+          <p> This way, we have a 'region' parameter across our demographic and avocado
+          consumption data that we then used to join the tables and perform analysis. </p>
+
+          <p> We also used population data to compute and store the per capita avocado sales for each region.
+              Running tests on per capita data makes more sense then running tests on lump-sum data because each region has a
+              different number of consumers, which is a confounding variable when analyzing the relationship between
+              the <i>proportion</i> of millenials and number of avocados sold.
+          </p>
+
+          <h4> Statistical Tests </h4>
+
+          <p> We used a simple linear regression because it served as a way to
+            see the extent of effect our independent variable (millennial population
+            percentage) had on our dependent variable (avocados sold per capita), and in what
+            way our input variable impacted the output variable. We considered running a
+            two-sample t-Test, but we had trouble determining which 2 samples, given our
+            current data sets, we would run it on in order to test our hypothesis. Success
+            would be measured by observing the R-squared value and the regression coefficient,
+            as a relatively high R-squared value provides an estimate of the strength of the
+            relationship between our model and the dependent variable and a  positive regression
+            coefficient would indicate that as the value of the independent variable increases,
+            the mean of the dependent variable also tends to increase. <p>
+
+          <p> One challenge we faced while evaluating the model was since our initial data
+            points consisted of 8 regions, it would be hard to control appropriately.
+            Therefore, we may need to restructure our data by trying to get city-level
+            data and then expand our analysis accordingly. <p>
+
+          <p> A summary of our linear regression run on each year is below: (2016, 2017, 2018) </p>
+
+          <div class="row">
+            <div class="column">
+              <img src="2016_reg_summary.png" width=100%>
+            </div>
+            <div class="column">
+              <img src="2017_reg_summary.png" width=100%>
+            </div>
+            <div class="column">
+              <img src="2018_reg_summary.png" width=100%>
+            </div>
+          </div>
+
+          <p> Based on the simple linear regression and the R-squared values,
+            we can see that the variability in millennial population percentage
+            explains a good portion of the variability in the per capita avocados
+            sold data around its mean. Additionally, a positive regression
+            coeffeicient indicates that as our independent variable increases,
+            the mean of the dependent variable also tends to increase.
+        </p>
+
+          <p> One challenge of our project is controlling for confounding variables.
+            Consumer preferences are influenced by a ton of different factors, and age is
+            only one of them. It's also tough to control for variables when our regions
+            cover such large areas.</p>
+
+          <p>
+            We're hoping to analyze these factors more thoroughly in the
+            coming weeks, ideally by finding more fine-grained region data. For now,
+            our tests are more suitable for testing correlation than causation. Perhaps
+            avocado sales are closely tied with disposable income levels and millenials
+            happen to have the highest level of disposable income. Or, pehaps avocado sales
+            are closely linked with the prevalence of "health-campaigns" advertising the
+            fruit as a super-food and millenials happen to be most-targetted. Either way,
+            we think our tests offers some support to our hypothesis, although we can't
+            necessarily claim a causal relationship.
+          </p>
+
+          <h4> Visualization </h4>
+
+          <p>We first made a 3D bar graph to visualize the relationship between avocado sales,
+            region, and year. This is an exploratory plot and gave us a general sense of our
+            avocado data looked like.
+          </p>
+
+          <br><img src="sales_region_year_3d.png" width=60%></img>
+
+          <p> Here, we can see that there appears to be an increasing trend in the average per capital amount of avocados
+          sold each year from 2016-2018. This trend is consistent across all regions.</p>
+
+          <p> Our second figure (below) shows a side-by-side bar graph which also helped
+            us to determine if our hypothesis was sensible.  This figure
+            displays the average avocado sales from 2016-2018, and the average
+            percentage of the region which were millennials from 2016-2018.
+            Here, we can see that it appears that the regions who have slightly
+            greater percentage millennials in their populations purchased more
+            avocados, which supports our hypothesis. </p>
+
+          <br><img src="avocado_percentage_region.png" width=60%></img>
+
+          <p> In the last two figures (below), we have scatter plots which have the population percentage
+          of each region/year grouping (Boomer percentage for the first, Millenial
+          percentage for the second), and the avocado sales for that corresponding region/year.
+          Here, we can see that in the second figure, there does appear to be a positive
+          correlation, while the first figure appears to have even a negative correlation.
+          We could communicate our visualization differently, perhaps by dividing our
+          data by city/state or some smaller matric in order to see various trends, however
+          by region seems to be the most concise and easiest to view. </p>
+
+          <br><img src="avocado_consumption_capita_proportion.png" width=80%></img>
+
+          <br><img src="avocado_proportion_millenial.png" width=60%></img>
+
+          <p> Some challenges we faced when visualizing the results were making sure that
+          both region, year, avocado sales, and population millenial were all
+          incorporated into our visualization so that our goals are easy to understand.
+          Our visualizations may require some context such as what areas of the
+          countries different regions represent as defined by the Hass Avocado Board.
+          However, it should be relatively self-explanatory what trends appears
+          in our visualizations. </p>
+
+    </div>
+</div>
+
+</body>
+</html>

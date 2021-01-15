@@ -1,0 +1,37 @@
+DATA SPEC
+________________________________________________________________________________
+
+Hypothesis:
+The month with the most consecutive cold/hot days is the month with the highest
+(a) residential natural gas consumption and (b) residential electricity
+consumption.
+________________________________________________________________________________
+
+Overview:
+- We will define what constitutes a "cold" or "hot" day based on our data
+- The region we are focusing on are the states of New England: Rhode Island, Connecticut, Massachusetts, Maine, Vermont, New Hampshire
+- Time frame: January 1, 2010 - December 31, 2019
+
+I. Data sources
+
+We collected our data from the following government agencies:
+
+- Temperatures: United States National Centers for Environmental Information
+(NCEI)
+- Residential natural gas consumption & electricity consumption: United States
+Energy Information Administration (EIA)
+
+II. Format of the Data
+Date | New Hampshire (NH) MAX temp | NH MIN temp | NH electricity sales (MM kWh) | NH Natural Gas Consumption (MCF) | ...(same columns for all other states) ...
+
+- Since minimum/maximum temperatures are recorded daily but energy/electricity
+consumption is recorded monthly, we include the monthly energy/electricity
+consumption of each state in the first day of each month.
+- All fields in the table are required. However, since we are only recording
+monthly energy/electricity consumption on the first day of each month, all other
+days of that month will contain empty values.
+
+Link to full data in downloadable form:
+https://drive.google.com/open?id=1bDwDeFI-Z2Y65EfO7xt7fRcnhOqpdX5p
+________________________________________________________________________________
+Daniel Civita, Daniela Haidar, Sharon Alexander, Ascanio di Cellere

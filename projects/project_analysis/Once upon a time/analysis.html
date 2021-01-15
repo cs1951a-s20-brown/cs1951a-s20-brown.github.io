@@ -1,0 +1,148 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Once Upon a Time | Data Deliverable</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Work+Sans&display=swap');   
+
+        * {
+            font-family: 'Work Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: bolder;
+        }
+        h1 {
+            font-size: 80px;
+        }
+        main {
+            margin-top: 50px;
+        }
+        section {
+            margin-bottom: 35px;
+        }
+        section > section {
+            margin-bottom: 15px;
+        }
+        img {
+            width:100%;
+        }
+        figcaption {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <section style="margin-bottom: 50px; border-bottom: 1px solid #eee">
+            <h1>Once Upon a Time</h1>
+            <h2>Analysis Deliverable</h2>
+        </section>
+        <section>
+            <h3 style="border-color: #0083e5">Goal</h3>
+            <p>
+                Our goal is price prediction for 44 companies. For every company, we trained with its corresponding vector in our model and output the result (+1:raise, -1: fall, 0: stay the same). Every companies’ vector has 3 components: history prices (6-dimensional vector), news data (transferred to a 100-dimensional vector with doc2vec) and sentiment value (1-dimensional vector calculated with VADER). If the accuracy of the test set is more than 80%, then we consider the model a success.
+            </p>
+        </section>
+        <section>
+            <h3 style="border-color: #0083e5">Code</h3>
+            <a href="https://drive.google.com/drive/folders/1IvFqngP8qG1cdGuTIcTJ0gObgrmpdQ_5?usp=sharing">Code can be found here.</a>
+        </section>
+        <section>
+            <h3>Method</h3>
+            <p>
+                We chose this model because it’s a classification problem and SVMs can classify more precisely. We’ve also considered the Neural Network. We measure the success with four values: accuracy of test set, F1 score of testing set, recall rate of testing set, and precision of testing set. Setting the parameters is a challenge. We cleaned our data in the data deliverable part. The data doesn’t really have any sensitive attributes that could affect our machine learning model. 
+            </p>
+        </section>
+        <section>
+            <h3>Results</h3>
+            <p>
+                Our results are all measurements of test accuracy. The recall measures the proportion of actual positives that are correctly identified and the F1 score considers both the precision <em>p</em> and the recall <em>r</em> of the test to compute the score: <em>p</em> is the number of correct positive results divided by the number of all positive results returned by the classifier, and <em>r</em> is the number of correct positive results divided by the number of all relevant samples. We are satisfied with our prediction accuracy and confident in the result. The accuracy metric is 80% because we think it’s high enough, while 90% is too high and 70% is too low.
+            </p>
+        </section>
+        <section>
+            <h3>Visualization</h3>
+            <p>
+                The word count image is a quick look at the keyword of news data. The Predict VS test image is a clear visualization of how well our model does (we can see that except for some single points, the rise and fall is basically the same. The parameter of the training model provides some quantization evaluation such as recall rate. We tried to plot the accuracy of every stock with histogram but we’ve got too many stocks so the width of every bin is too narrow. We think our visualization needs some of the text explanation. 
+            </p>
+            <ul>
+                <li>
+                    <b>Word Cloud</b>
+                    <p>
+                        The word cloud shows typical keywords for stock price going up.
+                    </p>
+                    <div class="row">
+                        <img src="./assets/words.png"/>
+                    </div>
+                </li>
+                <li>
+                    <b>Predict vs. Test</b>
+                    <div class="row">
+                        <div class="col">
+                            <figure>
+                                <img src="./assets/ibm.png"/>
+                                <figcaption>IBM</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col">
+                            <figure>
+                                <img src="./assets/fb.png"/>
+                                <figcaption>Facebook</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <figure>
+                                <img src="./assets/cbs.png"/>
+                                <figcaption>CBS</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </li>
+                <li>
+                    <b>Recall Rate</b>
+                    <div class="row">
+                        <img src="./assets/recallrate.png"/>
+                    </div>
+                </li>
+                <li>
+                    <b>Accuracy</b>
+                    <div class="row">
+                        <img src="./assets/accuracy.png"/>
+                    </div>
+                </li>
+                <li>
+                    <b>F1 Score</b>
+                    <div class="row">
+                        <img src="./assets/f1score.png"/>
+                    </div>
+                </li>
+                <li>
+                    <b>Precision</b>
+                    <div class="row">
+                        <img src="./assets/precision.png"/>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Next Steps</h3>
+            <p>
+                We are trying to use more ML algorithms in the future and try to use more ways to visualize.
+            </p>
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+operating_system,total_num_devices,mobile_devices_count,compromised_mobile_device_count,compromised_ratio
+iOS,246,51,0,0.0
+Android,91,13,1,0.0769230769230769
+Windows,5140372,241880,69448,0.287117578964776
+Chrome,47479,2303,3,0.00130264871906209

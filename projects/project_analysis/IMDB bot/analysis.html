@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>IMDB BOT</title>
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Documents</a>
+                </li>
+            </ul>  
+        </div>
+    </nav>
+    <div role="main" class="container">
+      <h1 class="text-center">[IMDB BOT]ANALYSIS DELIVERABLE</h1>
+      <h4>A defined hypothesis or prediction task, with clearly stated metrics for success.</h4>
+        <p>We have been using the IMDb dataset augmented with web scraping to collect data on each movie’s “primary title”, “genres”, “actors”, “directors”, “writers”, “country”, “runtime” and “WorldGross” information. In addition, using Twitter’s API, we performed doing sentiment analysis on the directors and writers by looking at tweets about them and seeing how positive or negative they were, using TextBlob. Our goal is to make a predictive model, taking these features as inputs, to predict the movie’s worldwide gross revenue. The metrics for defining the success of our models are R-squared, MSE, and MAE, as well as plots comparing the actual world gross with predicted ones.</p>
+      <h4>Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate? How did you measure success or failure? Why that metric/value? What challenges did you face evaluating the model? Did you have to clean or restructure your data?</h4>
+        <p>As we just learned about R-squared statistic testing, we want to put it into use, as well as it is a basic and simple measure methond for statistical test. We plotted different pictures about the predicted and actual R^2, mse and mae. Below are some examples how we did the plots. All of the plots use the random forest model. 10-100 refer to number of feature dimensions. </p>     
+        <img src="images/pasted image 0.png" class="img-fluid">
+        <img src="images/pasted image 1.png" class="img-fluid">
+        <img src="images/pasted image 2.png" class="img-fluid">
+        <img src="images/pasted image 3.png" class="img-fluid">
+        <p>Except for the results we got from statistical test, we got all the plots for the actual world gross (prediction values) with actual world gross (actual values), so that we can compare if our model get the good prediction.( and luckily most models we chose are pretty much success except those ones running too slow, all the peaks are matched between predicted values and actual values).</p>
+        <p>The challenge we faced are some models are running really slow and since we need to try different combination with 10 features where are 1024 kinds need to be run, and results are hard to evaluate one by one by combining r-squared, mse, and mae together.</p>         
+        <p>For this statistic part, we do need to clean and reconstruct data. We need to tokenize string features from text to numbers and treat each in string columns as a column. For category columns, we need to vectorize and tokenize based on input max_features (the chosen number of the maximum features number of each column). The number columns and predict columns are fixed. For example, in category columns, there are actors and in each movie there are several actors so we vectorize based on the most several popular actors number we choose and then tokenize them.</p>   
+      <h4>What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?</h4>
+        <p>The several successful models we have implemented are random forest, decision tree, gradient boosting. These methods are notable because (1) they all have a high level of complexity in ML model terms, and (2) they’re essentially all ensemble methods (random forests are ensembles of trees, and gradient boosted models are ensembles of decision boundaries. This suggests that we have a fairly complex relationship between the features and the worldwide revenue and not just a straightforward linear one.</p>
+        <p>When we compare the successful results with those failures we can pretty much see the clear difference by seeing predicted and actual values.</p>
+        <p>For example, the first one is Bayesian Ridge model with max features = 30 and including “actors” and “genres”. The predicted values do not change much as the sample range goes up. Second, for decision tree model with max features = 30, taking all five string features, we can see it predict almost all the peaks; even though there are some differences, we can still see the peaks. Third one is also a gradient boosting but only with genres feature. The last one from Random Forest model is pretty same as gradient boosting, both get good prediction results. With the Kernel Ridge model, we can see with high gross peaks, it predict much accurate, but with those small gross movie it fluctuates a lot, so generally it cannot count as a good prediction. For MLP model, it is similar to Bayesian Ridge, both did not work at all. To conclude, Bayesian, MLP, and Kernel Ridge models are not suitable for our case. Random forest, gradient boosting, and decision tree get good predictions.</p>
+        <img src="images/image1.png" class="img-fluid">
+        <img src="images/image5.png" class="img-fluid">
+        <img src="images/image3.png" class="img-fluid">
+        <img src="images/image4.png" class="img-fluid">
+        <img src="images/image6.png" class="img-fluid">
+        <img src="images/image2.png" class="img-fluid">
+        <img src="images/image7.png" class="img-fluid">
+      <h4>For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Where there any challenges visualizing the results, if so, then what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it's recognize which type your visualization is)?</h4>
+        <p>We can see from above questions, we include different kinds of visualization plots. The first series are plots of R-squared and MSEs changes according to different feature combinations. We can see that, with all five features included, we get a good balance between R-squared and MSEs. The second series of plots are the actual World Gross vs. predicted World Gross. Those plots give us some direct indications about whether out models succeed or not. One can compare the difference between actual revenues and predicted revenues. For this part we don’t need to label any texts since there are clear comparison and tags on the plots</p>   
+      <h4>Full results + graphs (at least 1 stats/ml test and at least 1 visualization). Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!</h4>
+        <p>We get the results with different models and with the different combinations of features included, with/without k-fold method, max features selected number. A sample of the table is as follows, and full csv file are in the folder named model_result.csv. since random forest model we get the most of several best results so we get output with this model for comparison other parameters.</p>
+        <img src="images/image18.png" class="img-fluid">
+        <p>For visualizations, we have implemented different models as stated in preface. There are Multi-layer Perception Rregressor, Gaussian process regression, KernelRidge, AdaBoostRegression, GradientBoostingRegressor, Decision Tree, K nearest Neighbors, and Random Forest. There are in total 66*2 images where half of them include sentiment analysis with writers, directors and actors. The other half does not include those sentiment analysis. Here we choose some of the images representing each model’s result and include sentiment analysis to show our visualization part, full result can be seen in the folder named images.</p>
+        <img src="images/image10.png" class="img-fluid">
+        <img src="images/image9.png" class="img-fluid">
+        <img src="images/image1 (1).png" class="img-fluid">
+        <img src="images/image11.png" class="img-fluid">
+        <img src="images/image8.png" class="img-fluid">
+        <img src="images/image6 (1).png" class="img-fluid">
+      <h4>If you did a statistics test, are there any confounding trends or variables you might be observing?</h4>
+        <p>The variables we are observing are R-squared, MSEs, MAEs, and we split data into training and test sets together test with different machine learning models. When we look at the mse and r-squared plots from random forest from pictures above, we can see R-squared seems does not change much, especially compared the run with all five features included with only one feature included. However, when we look at the mse plots, we can see include all the five features give us better results. It means all those five feature have an influence on world gross prediction result.</p>
+        <p>Afte we increase our k fold times from 3 to 5 then to 10 and also try with and without tokenize to control variables, we can see that r square changes gets more clear. This means k fold increases model predictino correctness and reduces the variance. You can see our new comparison in "Additional" section below. </p>
+		<p>Another question we have is about max features. We can also see from the table below that sometimes increasing max_features does not help our predictin. We suspect that is caused by overfitting. Interesting part is that when increasing max_features from 30 to 40 or 50, model r square decrease, however, it increase again if we change max_feature to 100.</p>
+      <h4>If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model?</h4>
+        <p>Random forest: Constructed by decision trees at training time and output the mean prediction of individual trees. We chose it for our model is because random forest correct the habit of decision tress’ overfitting problem in training set. Another outstanding point is Random Forest could deal with high dimensions, which here means it can dealt with lots of features. It is perfect for our needs as we have 10 features as we added sentiment analysis features. During the training process, different tress are independent, which means they run parallelly. It enhanced the running speed. Besides, after training process, it could give us which features are important and it can detect the mutual influence of each feature.</p>
+        <p>Gradient boosting: Gradient boosting also have the advantage of avoid overfitting. Every step of residual comparably increase the weight of wrong classified instance, and keep the right ones’ weight close to 0, so that later the model can focus on those wrong ones. It is known for observing the features combination so we chose the model for our prediction.</p>
+        <p>Decision tree: This is the first several models we investigated on, but it has the problem of overfitting. After doing research, we found several optimize methods. First, include k-fold, which generally give us better result in any model. Second, using random forest, which using many decision trees.</p>
+        <p>Gaussian process: We first chose this model because we consider doing prediction with probability and we could also get confidence interval and beyond probability. But we found out this model is not efficient when we have many features. That is also the reason why we did get a good result from this model.</p>
+        <p>Ridge regression, We did not get enough result from this model to evaluate this model because it is running really slow. Usually Ridge Regression performs better for medium size datasets. We are considering because our dataset is too big for Ridge kernel.</p>
+      <h4>Discussion of visualization/explaining your results on a poster and a discussion of future directions.</h4>
+        <p>We have been discussing pretty much everything about visualization including the results of each models in the previous questions. Let’s talk about our future expectations:</p>
+        <p>From the visualization part we can see those successful models with predicted world gross and actual world gross can pretty much predict the tendency of peaks with high gross movies. But for some data, we can the predicted ones’ peak but we cannot see the actual ones’ peaks, which makes it difficult to decide at these places if the model predict well. And for small gross movies, every model fluctuates, though Kernel Ridge predict the small gross pretty well. But it runs too slow, if we could figure out how it enhances the efficiency of kernelridge, it will improve out prediction results.</p> 
+      <h4>Additional</h4>
+        <p>After talking to professor about how to deal with the NAN values in each sentiment columns, we decide to add a column to each numerical columns. If there is a sentiment analysis towards that writer, actor or director, then we add value 0 to the column of that_variable_sentiments_isNAN, otherwise add 1. Instead of directly changing NAN values to 0, we did this change to expect less effect cause by turning NAN values to 0. When there is not much comments about this movie is because less people know about it, it does not mean they have no attitude, so that we can find a balance between the movies which are actually good but less people knowing it and the movies are popular but people have more negative attitudes or no attitudes about it. With same movies we could get two result. One is taking every value of the sentiment columns into consideration and just take the ones have sentiment values. It is better than directly take every value into consideration so that the changing NAN values into 0 would not affect that much about prediction result.</p>
+        <p>To investigate that which feature has most significate influence towards prediction result, we used method of controlling the variables. We drew the plots with/ without tokenizing string features, with / without k-fold cross validation method of r-squared, MSEs changes. There are eight photos showing in the following. Without tokening, we could see more obviously which feature has the most effect. For example, compare P6(without token, kfold,r^2) and P2(with token, kfold, r^2), with all other conditions unchanged except token, we can see without token is easier for observing the different features’ influences. In p6, we can see g is the most important feature as r-squared is the highest in single-included feature input, and with all features included, we can best prediction result, which in Random Forest model is above 0.5. The corresponding mse to P6 is P5, we can see mse is the smallest at all feature included input and single-included values at g. Compare P1 and P5, awe can see without token, the features tendency is more obvious.</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>  
+                <img src="images/with_token_rest_kfold_random_forest_mse.png" class="img-fluid">
+                <p>P1</p>
+              </div>  
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>              
+                <img src="images/with_token_rest_kfold_random_forest_rsquare.png" class="img-fluid">
+                <p>P2</p>
+              </div>                  
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/with_token_rest_Nokfold_random_forest_mse.png" class="img-fluid">
+                <p>P3</p>
+              </div>                                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/with_token_rest_Nokfold_random_forest_rsquare.png" class="img-fluid">
+                <p>P4</p>
+              </div>                                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/without_token_rest_kfold_random_forest_mse.png" class="img-fluid">
+                <p>P5</p>
+              </div>                                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/without_token_rest_kfold_random_forest_rsquare.png" class="img-fluid">
+                <p>P6</p>
+              </div>                                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/without_token_rest_Nokfold_random_forest_mse.png" class="img-fluid">
+                <p>P7</p>
+              </div>                                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div>
+                <img src="images/without_token_rest_Nokfold_random_forest_rsquare.png" class="img-fluid">
+                <p>P8</p>
+              </div>                                
+            </div>          
+        </div>
+        <h4>MORE DATA</h4>
+          <p>We added more data compared to last time. We added one column of Country, sentiment analysis of writer, and number of writer to make our model predict better. instead of changing NAN value of sentiment columns, we also make it two columns with 1/0 represent fi the sentiment column is/isn’t  NAN so that we could get rid of the effect of changing NAN to 0.</p>     
+    </div>    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

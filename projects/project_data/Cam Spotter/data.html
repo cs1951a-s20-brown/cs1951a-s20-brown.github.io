@@ -1,0 +1,189 @@
+<html><head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deliverable</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>CamSpotter &lt;&lt;&lt; DATA DELIVERABLE &gt;&gt;&gt;</h1>
+        </div>
+        <h3>Downloadable data in the folder named "downloadable_data" of the handin directory</h3>
+        <h3>Data spec text file is named "data_spec.txt"</h3>
+        <h3>Sample data: "sample_top_android_malware_programs.csv"</h3>
+        <h1>Questions and Responses</h1>
+        <h5>Where is the data from?</h5>
+        <p>
+            <ul>
+                <li>
+                    Nokia Threat Intelligence Report 2019, Kapersky Mobile Malware Evolution 2019
+                    (https://securelist.com/mobile-malware-evolution-2019/96280/), GreyNoise
+                    (https://docs.greynoise.io/#greynoise-api)
+                </li>
+                <li><h5>
+                    How did you collect your data?
+                    <ul>
+                        <li>
+                            From the Nokia and Kapersky sources, we collected data via their graphs and reports.
+                            However, from the GreyNoise source, we wrote a python script that collected that
+                            relevant data using the GreyNoise API.
+                        </li>
+                        <li>
+                            For the scraped image data, we utilized this modified API to scrape Google Images https://github.com/Joeclinton1/google-images-download
+                            for images of a variety of different phones. In our full dataset, we have generated metadata of the types of searches ran
+                            for clarity. For the generated data, we simply used bursts of iPhone photos of desired scenarios with a variety of different people.
+                            We'll likely keep collected burst image data as the semester continues, and we'll likely web scrape again later as well.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    Is the source reputable?
+                    <ul>
+                        <li>
+                            Nokia is a very large telecommunications, IT and consumer electronics company that
+                            has been around since 1865, thus we can say it is reputable. The Kapersky source is
+                            reputable as Kapersky is a multinational cybersecurity and antivirus provider.
+                            Their customers include Microsoft, Intel, IBM, and EMC. GreyNoise is an anti-threat
+                            intelligence that analyzes every server connected to the internet using a network of
+                            honeypots around the globe.
+                        </li>
+                        <li>
+                            We can't realistically make any guarantees about the quality of every image in our data pipeline currently, but as we label
+                            we'll get more familiar and selective with the data we'll actually use to train and test.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    How did you generate the sample? Is it comparably small or large? Is it representative or is
+                    it likely to exhibit some kind of sampling bias?
+                    <ul>
+                        <li>
+                            We generated the sample by taking a few rows randomly from our larger database tables
+                            to ensure we weren’t selecting data with any bias. Given that our tables aren’t that
+                            large, even randomly choosing rows might still result in samples with sampling bias.
+                        </li>
+                    </ul>
+                </h5></li>
+            </ul>
+        </p>
+        <h5>
+            How clean is the data? Does this data contain what you need in order to complete the project you
+            proposed to do? (Each team will have to go about answering this question differently, but use the
+            following questions as a guide. Graphs and tables are highly encouraged if they allow you to answer
+            these questions more succinctly.)
+        </h5>
+        <p>
+            <ul>
+                <li>
+                    Our data across tables tries to use the same formatting. For example,
+                    a lot of the data includes months and years. So we have a general way of how we stored
+                    those across the tables (e.g. no inconsistent abbreviations). As mentioned in the last question
+                    of this document, we had to be realistic with our project goals and update our hypothesis to
+                    be more fitting. As a result our current data does contain what we need in order to complete
+                    this new proposal/hypothesis.
+                </li>
+                <li>
+                    The image data is not yet perfect; we don't expect many duplicates, but as we label we'll get a feel for what
+                    images may need to be removed or duplicated via mirroring/rotation for a more optimal image set.
+                </li>
+                <li><h5>
+                    How many data points are there total? How many are there in each group you care about
+                    (e.g. if you are dividing your data into positive/negative examples, are they split evenly)?
+                    Do you think this is enough data to do what you hope to do?
+                    <ul>
+                        <li>
+                            In terms of the data related to the Kapersky, Nokia, and GreyNoise sources, we
+                            have around 393 data points. While this is sufficient for a basic analysis for
+                            our end goal, we are still looking at adding more data points to our current set of data.
+                        </li>
+                        <li>
+                            In terms of the image data, we have ~2000 images. We look to increase that number to ~10000 before we start
+                            training and testing an image model.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    Are there missing values? Do these occur in fields that are important for your project's goals?
+                    <ul>
+                        <li>
+                            We definitely need more data points relevant to iOS vulnerabilities to accurately make
+                            observations and calculations for the stats portion of this project.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    Are there duplicates? Do these occur in fields that are important for your project's goals?
+                    <ul>
+                        <li>
+                            There are no duplicates in our datasets.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values?
+                    (focus on the fields that are most relevant to your project goals)
+                    <ul>
+                        <li>
+                            The data is pretty uniformly skewed amongst the different operating systems which we collected
+                            data on. However, certain events in the mobile attack/hacking world during certain years or
+                            months led to some outliers in data that represents a number of attacks at a given time.
+                            But generally, the data is fairly uniformly distributed.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    Are there any data type issues (e.g. words in fields that were supposed to be numeric)?
+                    Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them?
+                    <ul>
+                        <li>
+                            We haven’t noticed any data type issues. However, we may have to change data types later
+                            on when we are doing the stats portion of the project.
+                        </li>
+                    </ul>
+                </h5></li>
+                <li><h5>
+                    Do you need to throw any data away? What data? Why? Any reason this might affect the analyses
+                    you are able to run or the conclusions you are able to draw?
+                    <ul>
+                        <li>
+                            We currently don’t think we should have to throw any of our current table data away.
+                        </li>
+                    </ul>
+                </h5></li>
+            </ul>
+        </p>
+        <h5>Summarize any challenges or observations you have made since collecting your data.
+            Then, discuss your next steps and how your data collection has impacted the type of analysis
+            you will perform. (approximately 3-5 sentences)
+        </h5>
+        <p>
+            <ul>
+                <li>
+                    While collecting our data, we found it was actually quite difficult to find really relevant
+                    information to our original hypothesis. In fact, based off the data we did end up collecting
+                    that was generally relevant to our initial goal, our hypothesis had to be slightly changed.
+                    Our new hypothesis focuses on different operating systems and their level of security/vulnerabilities
+                    in mobile devices compared to our original hypothesis: The increase in software updates is directly
+                    related to the decrease in security breaches on mobile devices. And our new hypothesis is:
+                    Different operating systems on mobile devices are more susceptible to attacks than the other.
+                    In particular, we think that Android mobile devices are more prone to attacks than other mobile
+                    operating systems.
+                </li>
+                <li>
+                    Collecting a variety of unique image data proved to be a daunting task before realizing we can generate a
+                    great deal of it. It will be important to generate more data under a variety of different conditions
+                    (lighting, gender, phone type, etc.) to create an image set that can allow a model to perform well.
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+
+</body></html>

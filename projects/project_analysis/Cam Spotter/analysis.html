@@ -1,0 +1,171 @@
+<html><head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Deliverable</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>CamSpotter &lt;&lt;&lt; ANALYSIS DELIVERABLE &gt;&gt;&gt;</h1>
+        </div>
+        <h3>Graph .png/.jpg files located of the handin directory</h3>
+        <h3>Potentially Harmful Application (PHA) csv file in handin directory</h3>
+        <h1>Questions and Responses</h1>
+        <p>
+            <ul>
+                <li><h3>
+                    Updated Hypothesis
+                    <ul>
+                        <li><h4>
+                            The frequency of malware attacks on Android devices is due to newly developed threats that
+                            bypass Androidâ€™s security protocols.
+                        </h4></li>
+                        <li><h4>
+                            Subhyptothese(s):
+                            <ul>
+                                <li><h5>
+                                    Malicious applications have more system permissions than benign applications.
+                                </h5></li>
+                                <li><h5>
+                                    As part of our project exploring mobile phone security and privacy, we are also creating a neural network
+                                    to identify whether an image contains a smart phone that's taking a picture or not. We hypothesize that
+                                    we can achieve 70% accuracy on this predition task.
+                                </h5></li>
+                            </ul>
+                        </h4></li>
+                    </ul>
+                </h3></li>
+                <li><h3>
+                    Why did you use this statistical test or ML algorithm? Which other tests did you consider or evaluate?
+                    How did you measure success or failure? Why that metric/value? What challenges did you face evaluating
+                    the model? Did you have to clean or restructure your data?
+                    <ul>
+                        <li><h4>
+                            Using linear regression, we are able to create a model that gives a relationship between the
+                            independent variables and dependent variables. Analyzing the coefficients of each variable tells
+                            us the relative effect each independent variable has on the dependent variable. This was a good approach
+                            for the problem because the hypothesis sought to find the relationship between an app's features and its
+                            intentions. The data did have to be reorganized as we only wanted to look at the features that were
+                            permissions so we had to restructure the data in drebin215dataset5560malware9476benign.csv to only use
+                            the permissions variables.
+                        </h4></li>
+                        <li><h4>
+                            After labelling the image data from our data deliverable, we then utilized a Convolutional Neural Network (CNN)
+                            to create a model that can learn how to identify phones that are taking a picture. Our idea of success
+                            for this part of the project is to achieve 70% accuracy on the current labelled data (~6000 images).
+                            We faced a few challenges evaluating the model. First, we needed to label the original ~3000 images which was
+                            slightly labor intensive to say the least. In that process, we removed about 300 images from the model
+                            as some images were too blurry, were copies or were graphic designs. Next was the issue of the images themselves.
+                            It turned out to be rather simple to create mirrored images with the same labels, but the issue came in designing
+                            a CNN that could operate with multiple image sizes. We were able to get around this by resizing
+                            images utilizing openCV, but I'd like to test other ways of augmenting our image data before our final handin.
+                            Finally we utilized a standard 80/20 train test split; more details are in the network file.
+                            The results are below:
+                            <ul>
+                                <li><h4>
+                                    The images were labelled according to the prompt: "Is there a smart phone in a position to take a picture in this image?"
+                                    For reference, 73% of our data was labelled yes, while 27% of our data was labelled no.
+                                </h4></li>
+                                <li><h4>
+                                    If the network trained by always guessing <b>yes</b>, the test prediction accuracy was 64%.
+                                </h4></li>
+                                <li><h4>
+                                    If the network trained by always guessing <b>no</b>, the prediction accuracy was 53%.
+                                </h4></li>
+                                <li><h4>
+                                    If the network trained by guessing <b>randomly</b>, the prediction accuracy was 58%%.
+                                </h4></li>
+                                <li><h4>
+                                    If the network trained <b>normally</b> the prediction accuracy was 42%.
+                                </h4></li>
+                            </ul>
+                        </h4></li>
+                    </ul>
+                </h3></li>
+                <li><h3>
+                    What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied
+                    with your prediction accuracy? For prediction projects, we expect you to argue why you got the
+                    accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident
+                    in the results?
+                    <ul>
+                        <li><h4>
+                            From the year_average.jpg and month_year.png graphs, it can be interpreted that the rate of potentially
+                            harmful applications being installed on Android devices increases from the years 2014-2018. The
+                            clustered bar graph PHA_install_rate.png denotes the rate of three active PHAs in 2015-2018. The
+                            interpreted prediction from this graph is that there appears to be an overall decreasing trend in the
+                            efficacy of these PHAs' downloads onto Android devices.
+                        </h4></li>
+                        <li><h4>
+                            From the table in mse_r^2.png, we can see the performance of each of the three models. Without a doubt,
+                            we see that the model that uses only the number of permissions as the independent variable performed
+                            the worst, having an r-squared of nearly 0. It is important to note that the coefficient of the number
+                            of permissions was .0006. These results tells us that there is no correlations between the number of
+                            permissions an app has and whether or not the application is malicious. Thus, one of our hypothesies
+                            was denied.
+                        </h4></li>
+                        <li><h4>
+                            Given the results of our image model, we would fail to accept our image hypothesis. Intuitively, we were
+                            dissapointed by the results, especially given that we could simply guess yes and achieve the best
+                            accuracy. This is most likely due to the limited dataset of our model, as it was difficult to locate
+                            a lot of data characterizing unique phones, faces and images with phones and faces/
+                        </h4></li>
+                    </ul>
+                </h3></li>
+                <li><h3>
+                    For your visualization, why did you pick this graph? What alternative ways might you communicate
+                    the result? Where there any challenges visualizing the results, if so, then what where they?
+                    Will your visualization require text to provide context or is it standalone (either is fine,
+                    but it's recognize which type your visualization is)?
+                    <ul>
+                        <li><h4>
+                            Year_average.jpg and month_year.png employed a simply bar graph since it makes it easy to visualize the
+                            explanatory and response variables. Since we were exploring the yearly trend of three different
+                            PHAs in PHA_install_rate.png, this graph employs a clustered bar graph to contain multiple pieces of
+                            information per year (2015-2018).
+                            
+                            We also wanted to visualize the frequency of permision grants to overprivileged apps to show that there could be other ways that PHAs gain access to Android apps. percent_permission.js is code for a bar chart that shows the information on the kind of permissions granted.
+                        </h4></li>
+                    </ul>
+                </h3></li>
+                <li><h3>
+                    If you did a statistics test, are there any confounding trends or variables you might be observing?
+                    <ul>
+                        <li><h4>
+                            After finding the relationship between number of permissions of an app and whether or not an app is
+                            malicious, we took it a step further by looking at the relatinship between specific permissions
+                            and the intent of an app(malicious or benign). In mse_r^2, there are two columns labled 'All Variables'
+                            and '39/113 Variables'. The 'All Variables' column has statistics of a model where every permission
+                            of the app was an independent variable, while the '39/113 Variables' column has a model that uses
+                            only the 39 permissions that had the coefficients with the highest magnitude in the 'All Variables' model.
+                            In the other table with 'Variable' and 'coefficient' columns, we have the 5 permissions with the
+                            highest magnitude from the 'All Variables' model. While it is expected for the model using all the
+                            variables to perform better, it was interesting to see which permissions had the highest effect on the
+                            dependent variable. We see that 'SEND_SMS', the permission that allows an app to send messages, had the
+                            highest relationship to whether or not an app is malicious while deleting cache files came in second.
+                        </h4></li>
+                    </ul>
+                </h3></li>
+                <li><h3>
+                    If you did a machine learning model, why did you choose this machine learning technique?
+                    Does your data have any sensitive/protected attributes that could affect your machine learning model?
+                    <ul>
+                        <li><h4>
+                            We chose to utilize a CNN for our image model as those have documented success in image recognition tasks.
+                            Attributes that may have affected the model could be the non-realistic scraped images and the fact that
+                            most images were modified from their original format to fit the model.
+                        </h4></li>
+                    </ul>
+                </h3></li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+
+
+</body></html>

@@ -1,0 +1,394 @@
+<html>
+<head>
+    <font size="30"><b>Transportation
+        <font face="verdana" color="red">T</font>
+        <font face="verdana" color="lightsalmon">r</font>
+        <font face="verdana" color="orange">a</font>
+        <font face="verdana" color="yellow">n</font>
+        <font face="verdana" color="green">s</font>
+        <font face="verdana" color="orchid">f</font>
+        <font face="verdana" color="steelblue">o</font>
+        <font face="verdana" color="navy">r</font>
+        <font face="verdana" color="purple">m</font>
+        <font face="verdana" color="pink">a</font>
+        <font face="verdana" color="seagreen">t</font>
+        <font face="verdana" color="wheat">i</font>
+        <font face="verdana" color="maroon">o</font>
+        <font face="verdana" color="slategray">n</font></b>
+    </font><br>
+    Team members: Stephanie Carrero (scarrero), Melia Okura (mokura), Holly Zheng (yzheng40), Becky Mathew (rmathew7)<br>
+    <a href="https://github.com/hollyyuqizheng/transportation-transformation/tree/master/data" target="_blank">Link to GitHub repo</a> <br>
+    <a href="https://drive.google.com/file/d/1DwtqPVg_EgN4x7gevIHhBvR-wzmnCiBb/view?fbclid=IwAR2CWCpUxKT68r7ngo8FI_zwyLaWrJh1heJxqOKAewIbo4LUfg-EeD4LQWQ" target="_blank">Link to Google Drive</a> (New York taxi data) <br>
+    <br>
+</head>
+
+<body>
+    Overview: <br>
+    We want to examine potential relations between use of public versus private transportation. <br>
+    We are focusing on subway rides and taxi rides in New York City and Chicago for this project. <br>
+    Our data is divided based on which city we are examining. <br>
+    This tech report will introduce our datasets on New York City and Chicago separately. <br>
+    For each city, we have data on 3 categories: subway transportation, taxi usage, and population/demographics. <br>
+    <br>
+    To go to each section separately: <br>
+    <ul id="content">
+        <li><a href="#ny_subway">New York MTA subway</a></li>
+        <li><a href="#ny_taxi">New York Yellow Taxi </a></li>
+        <li><a href="#ny_income">New York Income </a></li>
+        <li><a href="#ny_pop">New York Population and Demographics </a></li>
+        <li><a href="#chicago_subway">Chicago Subway </a></li>
+        <li><a href="#chicago_taxi">Chicago Taxi </a></li>
+        <li><a href="#chicago_income">Chicago Income </a></li>
+        <li><a href="#chicago_pop">Chicago Population and Demographics </a></li>
+        <li><a href="#summary">Summary </a></li>
+    </ul>
+
+
+  <ul>
+      <ul>
+          <li id="ny_subway"> <b> New York MTA Subway </b> <a href="#content">Back to top</a> <br>
+              Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/tree/master/data/new_york/ny_turnstile_2019" target="_blank"> data/new_york/ny_turnstile_2019 </a> <br>
+              <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/ny_mta_README.txt" target="_blank">README </a> <br>
+              <ol>
+                  <li>
+                      Source of original data:<br>
+                      <a href="http://web.mta.info/developers/turnstile.html" target="_blank">New York City MTA turnstile usage</a> <br>
+                      <a href="http://web.mta.info/developers/MTA-Subway-Time-historical-data.html" target="_blank">New York City MTA station information</a> <br>
+                      The source is reputable, since the data comes from the official New York public transit website.<br>
+                      We managed to gather monthly cumulative data for 250 subway stations in New York City. <br>
+                  </li>
+                  <li>
+                      Additional considerations while collecting data? <br>
+                      The subway ridership data contains the number of entry and exit at each subway turnstile over 4-hour period on a given day. <br>
+                      The dataset is publicly available from the New York MTA site. In addition, becaue the original dataset only contains the number of turnstile swipes, <br>
+                      the information would not contain identifying information of those that take the New York subway.<br>
+                      <br>
+                  </li>
+                  <li>
+                      How is the data distributed? <br>
+                      The ridership dataset contains data for all MTA stations, and the usage at each station is measured every 4 hours, <br>
+                      so the dataset should have a comprehensive coverage of all subway stations in the city. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any duplicates? Missing values? <br>
+                      We assume that there are not duplicates from the original data from MTA. Each entry is marked by the id of the subway station. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any data type issues? Did you have to throw away any data? <br>
+                      We had issue when matching each turnstile data entry with the location coordinate of the subway station, <br>
+                      because the naming convention in the turnstile dataset is different from the convention in the station info dataset. <br>
+                      For example, a station might be called "Grand Central - 42 St" in one dataset and "Grd Ctrl" in the other one. <br>
+
+                      We managed to fix the above issue by manually editing the station names in one dataset so that the name matches its counterpart in the other dataset. <br>
+                      For example, we replaced ""Times Square"" with ""Times Sq"" so that both datasets have the same naming convention for this location. <br>
+                      Before this fixing, only around 60% of station names match. After the fix, we managed to match around 70% of all the turnstile stations with their coordinates. <br>
+                      For the rest of the stations whose naming conventions across the two original data sources don't match, we decided to ignore those entries from the turnstile data. <br>
+                      <br>
+                  </li>
+            </ol>
+        </li>
+
+        <li id="ny_taxi"> <b> New York Yellow Taxi </b> <a href="#content">Back to top</a> <br>
+            Located at: <a href="https://drive.google.com/file/d/1DwtqPVg_EgN4x7gevIHhBvR-wzmnCiBb/view?fbclid=IwAR2CWCpUxKT68r7ngo8FI_zwyLaWrJh1heJxqOKAewIbo4LUfg-EeD4LQWQ" target="_blank">Google Drive</a> <br>
+            <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/nyc_yellow_taxi_README.txt" target="_blank">README </a> <br>
+            <ol>
+                <li> How did you collect your data? How is the source? <br>
+                    The <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page" target="_blank">data</a> comes from a Freedom of Information Law request on the New York City Taxi and Limousine Commission, so it's reputable. <br>
+                    <br>
+                </li>
+
+                <li>
+                    Additional considerations while collecting data? <br>
+                    Riders were likely not aware of the data collection, but the taxi companies would have been aware of the data collection. <br>
+                    <br>
+                </li>
+                <li>
+                    How is the data distributed? <br>
+                    There are 44 million rows (one for each ride) and 18 columns (different descriptors) of the ride. <br>
+                    We care about the datetime and and the lat/lon information so that we can find daily ridership statistics for different areas in the city. </br>
+                    <br>
+                </li>
+                <li>
+                    Are there any duplicates? Missing values? <br>
+                    There are 47 duplicated rows, which isn't very much compared to the 44 million total rows. <br>
+                    There are missing values in the "congestion surcharge" column, which isn't relevant to our goals. <br>
+                    <br>
+                </li>
+                <li>
+                    Are there any data type issues? Did you have to throw away any data? <br>
+                    The lat/lon data is in float format, which we can crosscheck with OpenStreetMap or other mapping APIs. <br>
+                    We're throwing away data that isn't relevant to our goals, like the "tip amount" column. <br>
+                    <br>
+                </li>
+            </ol>
+        </li>
+
+
+        <li id="ny_pop"> <b> New York Population and Demographics </b> <a href="#content">Back to top</a> <br>
+            Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/NY_Pop_Zip_long_lat.csv" target="_blank"> data/new_york/NY_Pop_Zip_long_lat.csv</a> <br>
+            Sample at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/NY_Pop_Zip_long_lat_sample.csv" target="_blank"> data/new_york/NY_Pop_Zip_long_lat_sample.csv</a> <br>
+            <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/NY_Pop_Zip_long_lat_README.txt" target="_blank">README </a> <br>
+            <ol>
+                <li> How did you collect your data? How is the source? <br>
+                    This population data was publicly available on a New York demographics that is run by Cubit. I scraped the data from the table that is provided on the website. <br>
+                    The source is reputable, since they are making use of Census information to make their tables. <br>
+                    <a href="https://www.newyork-demographics.com/zip_codes_by_population", target="_blank">Original source</a> <br>
+                    <br>
+                </li>
+                <li>
+                    How is the data distributed? <br>
+                    1753 datapoints, because there are 1753 zip codes. I think this will be enough data. As long as we have the right zip codes to map to the zip code information gathered for the public transportation.  <br>
+
+                    <br>
+                </li>
+                <li>
+                    Are there any duplicates? Missing values? <br>
+                    There are no duplicated data points as there is only one population per zip code. <br>
+                    There are no missing values. But there are no zip codes that have 0 people, so I do not know if that information exists and was chosen to be excluded from the set. <br>
+                    <br>
+                </li>
+                <li>
+                    Are there any data type issues? Did you have to throw away any data? <br>
+                    The first dataset that I scraped had some rows with 2 or 3 zipcodes because zip codes with the same population had the same rank and were grouped togther. That is just how the original data table was formatted. <br>
+                    But I went through the data and separated out the rows so there is not a separate row for each zipcode. <br>
+                    It is possible that we have to throw away some data from this set. For one, We took all the zipcodes that were available but some of them might be outside of our scope when we decide on hard boundaries for which  <br>
+                    zipcodes effect our analysis of the New York City Transportation. <br>
+                    <br>
+                </li>
+            </ol>
+        </li>
+
+
+        <li id="ny_income"> <b> New York Income </b> <a href="#content">Back to top</a> <br>
+            Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/new%20york%20income%20data.csv" target="_blank"> data/new_york/new york income data.csv </a> <br>
+            <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/new_york/new_york_income_data_README.txt" target="_blank">README </a> <br>
+            <ol>
+                <li> How did you collect your data? How is the source? <br>
+                    I collected this data by accessing the datasets publicly available on the Zip Atlas and Statistical Atlas website which compile 2010 Census information for each zip code. <br>
+                    Yes, as this information comes from official 2010 census demographics. <br>
+                    <br>
+                </li>
+
+                <li>
+                    Additional considerations while collecting data? <br>
+                    Income demographics may have changed drastically in 10 years due to gentrification, housing price inflation, urban development, and other factors. <br>
+                    <br>
+                </li>
+                <li>
+                    How is the data distributed? <br>
+                    There are 209 zip codes listed, each with longitude and latitude data and average household income. <br>
+                    <br>
+                </li>
+                <li>
+                    Are there any duplicates? Missing values? <br>
+                    There are no duplicated data points. <br>
+                    <br>
+                </li>
+                <li>
+                    Are there any data type issues? Did you have to throw away any data? <br>
+                    The latitude and longitude information is denoted as two numbers separated by commas. This may not be a problem however, as most of our location data is in this format. <br>
+                    Some zip codes denoted the average income as 0. Upon more inspection I found that these zip codes typically denoted an extremely small area, such as a single building or block, <br>
+                    and oftentimes they were already encompassed by a larger zip code. Thus, I deleted any zip codes that were part of a larger zip code. <br>
+                    This should not affect the analyses because the zip code coverage is still comprehensive. <br>
+                    <br>
+                </li>
+            </ol>
+        </li>
+
+      </ul>
+
+
+  </ul>
+
+  <ul>
+      <ul>
+          <li id="chicago_subway"> <b> Chicago CTA subway "L line" </b> <a href="#content">Back to top</a> <br>
+              Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_cta_ridership_cleaned_2019.tsv" target="_blank"> data/chicago/chicago_cta_ridership_cleaned_2019.tsv </a> <br>
+              Sample at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_cta_ridership_sample.tsv" target="_blank"> data/chicago/chicago_cta_ridership_sample.tsv </a> <br>
+              <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_cta_complete_spec.txt" target="_blank">README </a> <br>
+              <ol>
+                  <li> How did you collect your data? How is the source? <br>
+                      The Chicago Transit Authority has publicly available open data sets regarding ridership on its L line train stations <br>
+                      and we were able to access data sets containing information on average monthly train ridership per station. <br>
+                      This dataset tallies ridership information monthly from 2001 through 2019.<br>
+                      The source is reputable; the information comes directly from the Chicago Transit Authority website. <br>
+                      <br>
+                  </li>
+
+                  <li>
+                      Additional considerations while collecting data? <br>
+                      While subway riders are likely not aware of the extent to which this data is collected, it is reasonable in metropolitan cities to assume that <br>
+                      ridership numbers are monitored for the purpose of improving transportation services and deciding on locations for new development. <br>
+                      <br>
+                  </li>
+                  <li>
+                      How is the data distributed? <br>
+                      There are 1717 entries in this dataset, with each entry representing one Chicago subway station's usage frequency for a month. <br>
+                      The dataset covers 143 different subway stations. <br>
+                      There is variation in ridership between train stations but overall the data seems to be generally uniform in how ridership is distributed at each station monthly based on sampling. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any duplicates? Missing values? <br>
+                      There is no duplicate station information. There are no missing values. Each row in the dataset is completely filled. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any data type issues? Did you have to throw away any data? <br>
+                      There do not seem to be any data type issues. All data is consistent with the data type denoted in the column. <br>
+                      One entry from the original ridership dataset contains information about a station in Chicago that does not have a matching station id in the station information set. <br>
+                      We decided to omit this station's entry, since this station appears to only exist in the dataset once for the year 2019.<br>
+                      <br>
+                  </li>
+              </ol>
+          </li>
+
+          <li id="chicago_taxi"> <b> Chicago Taxi </b> <a href="#content">Back to top</a> <br>
+              Sample at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_taxi_2019_01.csv" target="_blank"> data/chicago/chicago_taxi_2019_01.csv </a><br>
+              <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_taxi_README.txt" target="_blank">README </a> <br>
+              <ol>
+                  <li> How did you collect your data? How is the source? <br>
+                      The City of Chicago's data portal has the taxi data publicly available -- we used the Sodapy API to scrape the data. <br>
+                      <a href="https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data" target="_blank"> Original source </a> <br>
+                      The source is reputable. The original data comes from the City of Chicago's offical government data portal. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Additional considerations while collecting data? <br>
+                      I don't think that the taxi riders are aware that the information about their data is being collected, but the taxi companies have partnered with the City of Chicago, <br>
+                      so the drivers know that the ride time/location data is being collected. <br>
+                      <br>
+                  </li>
+                  <li>
+                      How is the data distributed? <br>
+                      There are 2 million rows (one for each ride) and 23 columns (different descriptors of the ride). We mainly care about the datetime and the lat/lon of pick-up and dropoff locations. <br>
+                      We want to find daily ridership in different parts of the city. We have more than 20k rows per day, so I think there's enough information. <br>
+                      The data is not uniform since there are more taxi rides in areas we expect, such as O'Hare International Airport and the Loop (major business and tourism center). <br>
+                      There is a max of 16,513 taxi pickups from the Near North Side (Magnificent Mile and Gold Coast areas), and a min of 1 taxi pickup from the Mount Greenwood neighborhood (far Southwest side). <br>
+                      A CSV <a href="https://en.wikipedia.org/wiki/Community_areas_in_Chicago" target="_blank"> histogram</a> of pickups by community area is in data/chicago/pickups_histogram.csv.<br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any duplicates? Missing values? <br>
+                      There are no completely duplicated rows. There might be partially duplicated information, but it's difficult to tell. <br>
+                      Yes, there are missing values in almost every column. In particular, there are missing values in the pick-up and drop-off lat/lon columns, which is crucial for our analysis. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any data type issues? Did you have to throw away any data? <br>
+                      The datetime format is in "Floating Timestamp" format, which I subscript in order to find the date (for the daily ridership data). The lat/lon data is in float format, which we can crosscheck with OpenStreetMap or other mapping APIs. <br>
+                      We're throwing away data where the lat/lon pickup and drop-off information isn't available. We're going to throw away columns that aren't relevant to our goals. <br>
+                      <br>
+                  </li>
+              </ol>
+          </li>
+
+          <li id="chicago_income"> <b> Chicago Income </b> <a href="#content">Back to top</a> <br>
+              Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_income_data.csv"> data/chicago/chicago_income_data.csv </a> <br>
+              <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/chicago_income_data_README.txt" target="_blank">README </a> <br>
+              <ol>
+                  <li> How did you collect your data? How is the source? <br>
+                      I collected this data by accessing the datasets publicly available on the Zip Atlas website which compile 2010 Census information for each zip code. <br>
+                      The source is reputable, as this information comes from official 2010 census demographics. <br>
+                      <br>
+                  </li>
+
+                  <li>
+                      Additional considerations while collecting data? <br>
+                      Income demographics may have changed drastically in 10 years as new housing developments can be built and gentrification is extremely prevalent. <br>
+                      <br>
+                  </li>
+                  <li>
+                      How is the data distributed? <br>
+                      There are 55 zip codes in Chicago and each row contains information about average household income as well as latitiude and longitude information to map to train stops. <br>
+                      This should be enough data to analyze subway density by zipcode and compare it to income demographics and population. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any duplicates? Missing values? <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any data type issues? Did you have to throw away any data? <br>
+                      The latitude and longitude information is denoted as two numbers separated by commas. This may not be a problem however, as most of our location data is in this format. <br>
+                      <br>
+                  </li>
+              </ol>
+          </li>
+
+          <li id="chicago_pop"> <b> Chicago Population and Demographics </b> <a href="#content">Back to top</a> <br>
+              Located at: <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/Chicago_Pop_ZipCode.csv"> data/chicago/Chicago_Pop_ZipCode.csv </a> <br>
+              <a href="https://github.com/hollyyuqizheng/transportation-transformation/blob/master/data/chicago/Chicago_Pop_ZipCode_README.txt" target="_blank">README </a> <br>
+              <ol>
+                  <li> How did you collect your data? How is the source? <br>
+                      I collected the data by accessing a public dataset available on the Zip Atlas website, which comile 2010 Census infromation for each zip code. <br>
+                      The source is reputable, since it comes from official 2010 census demograpics. <br>
+                      <br>
+                  </li>
+                  <li>
+                      How is the data distributed? <br>
+                      There are 55 data points for Chicago for 55 zipcodes. We care about all of them. I think that this is enough information for this dataset, but it will depend <br>
+                      on how well this information is able to be mapped to the public transportation zip code data.
+                      <br>
+                  </li>
+                  <li>
+                      Are there any duplicates? Missing values? <br>
+                      There are no duplicates, one row for every zip code. <br>
+                      There are no missing values, as every zip code included has a population. However, it is possible that they have excluded zip codes that have no populations, such a non residential areas. <br>
+                      <br>
+                  </li>
+                  <li>
+                      Are there any data type issues? Did you have to throw away any data? <br>
+                      We did not need to throw any data away. <br>
+                      <br>
+                  </li>
+              </ol>
+          </li>
+      </ul>
+
+  </ul>
+
+  <ul id="summary"> <b> General Observations and Next Steps: </b> <a href="#content">Back to top</a>
+      <ul>
+          <li>
+              General observations:
+                <ol>
+                    <li>
+                        Income and demographics data shows how income varies vastly across neighborhoods, even though the cities we are looking at aren't huge size-wise. <br>
+                        In addition, the population data in both cities comes from the 2010 Census. This data will not be the most updated version as we focus on transportation <br>
+                        data from 2019, but the 2010 Census is the source with the closest and most useful information we can get. <br>
+                    </li>
+                    <li>
+                        Subway stations and taxi trips near airports and tourist places are more frequent, as reflected by our datasets. <br>
+                        This is expected because people tend to need public and/or private transport arond these places.<br>
+                    </li>
+                </ol>
+          </li>
+          <li>
+              Our next steps include:
+              <ol>
+                  <li>
+                      We need to match longitude/latitude of transportation data to zipcode. From there, we will have data on number of taxi pickups and subway stations within a small zip code region. <br>
+                      We will also potentially see population zipcode that has no transportation data, or vise-versa, and this result might skew the data that we can model on. <br>
+                  </li>
+                  <li>
+                      Regression tasks: We could hold the number of taxi rides in a certain area as the dependent variable, and the independent variables <br>
+                      would be number of subway stations, population density, and income situation in the same area. <br>
+                  </li>
+                  <li>
+                      Comparisons: <br>
+                      - between the two cities regarding the regression result. <br>
+                      - between different months in the same city <br>
+                      - if we have time, maybe we could also pick locations that are touristy (eg. Times Square) and see if they exhibit different behavior than other ares in the city. <br>
+                  </li>
+              </ol>
+          </li>
+      </ul>
+  </ul>
+
+
+</body>
+
+</html>

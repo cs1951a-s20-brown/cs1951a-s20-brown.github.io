@@ -1,0 +1,216 @@
+SEND_SMS,Manifest Permission
+READ_PHONE_STATE,Manifest Permission
+GET_ACCOUNTS,Manifest Permission
+RECEIVE_SMS,Manifest Permission
+READ_SMS,Manifest Permission
+USE_CREDENTIALS,Manifest Permission
+MANAGE_ACCOUNTS,Manifest Permission
+WRITE_SMS,Manifest Permission
+READ_SYNC_SETTINGS,Manifest Permission
+AUTHENTICATE_ACCOUNTS,Manifest Permission
+WRITE_HISTORY_BOOKMARKS,Manifest Permission
+INSTALL_PACKAGES,Manifest Permission
+CAMERA,Manifest Permission
+WRITE_SYNC_SETTINGS,Manifest Permission
+READ_HISTORY_BOOKMARKS,Manifest Permission
+INTERNET,Manifest Permission
+RECORD_AUDIO,Manifest Permission
+NFC,Manifest Permission
+ACCESS_LOCATION_EXTRA_COMMANDS,Manifest Permission
+WRITE_APN_SETTINGS,Manifest Permission
+BIND_REMOTEVIEWS,Manifest Permission
+READ_PROFILE,Manifest Permission
+MODIFY_AUDIO_SETTINGS,Manifest Permission
+READ_SYNC_STATS,Manifest Permission
+BROADCAST_STICKY,Manifest Permission
+WAKE_LOCK,Manifest Permission
+RECEIVE_BOOT_COMPLETED,Manifest Permission
+RESTART_PACKAGES,Manifest Permission
+BLUETOOTH,Manifest Permission
+READ_CALENDAR,Manifest Permission
+READ_CALL_LOG,Manifest Permission
+SUBSCRIBED_FEEDS_WRITE,Manifest Permission
+READ_EXTERNAL_STORAGE,Manifest Permission
+VIBRATE,Manifest Permission
+ACCESS_NETWORK_STATE,Manifest Permission
+SUBSCRIBED_FEEDS_READ,Manifest Permission
+CHANGE_WIFI_MULTICAST_STATE,Manifest Permission
+WRITE_CALENDAR,Manifest Permission
+MASTER_CLEAR,Manifest Permission
+UPDATE_DEVICE_STATS,Manifest Permission
+WRITE_CALL_LOG,Manifest Permission
+DELETE_PACKAGES,Manifest Permission
+GET_TASKS,Manifest Permission
+GLOBAL_SEARCH,Manifest Permission
+DELETE_CACHE_FILES,Manifest Permission
+WRITE_USER_DICTIONARY,Manifest Permission
+REORDER_TASKS,Manifest Permission
+WRITE_PROFILE,Manifest Permission
+SET_WALLPAPER,Manifest Permission
+BIND_INPUT_METHOD,Manifest Permission
+READ_SOCIAL_STREAM,Manifest Permission
+READ_USER_DICTIONARY,Manifest Permission
+PROCESS_OUTGOING_CALLS,Manifest Permission
+CALL_PRIVILEGED,Manifest Permission
+BIND_WALLPAPER,Manifest Permission
+RECEIVE_WAP_PUSH,Manifest Permission
+DUMP,Manifest Permission
+BATTERY_STATS,Manifest Permission
+ACCESS_COARSE_LOCATION,Manifest Permission
+SET_TIME,Manifest Permission
+WRITE_SOCIAL_STREAM,Manifest Permission
+WRITE_SETTINGS,Manifest Permission
+REBOOT,Manifest Permission
+BLUETOOTH_ADMIN,Manifest Permission
+BIND_DEVICE_ADMIN,Manifest Permission
+WRITE_GSERVICES,Manifest Permission
+KILL_BACKGROUND_PROCESSES,Manifest Permission
+STATUS_BAR,Manifest Permission
+PERSISTENT_ACTIVITY,Manifest Permission
+CHANGE_NETWORK_STATE,Manifest Permission
+RECEIVE_MMS,Manifest Permission
+SET_TIME_ZONE,Manifest Permission
+CONTROL_LOCATION_UPDATES,Manifest Permission
+BROADCAST_WAP_PUSH,Manifest Permission
+BIND_ACCESSIBILITY_SERVICE,Manifest Permission
+ADD_VOICEMAIL,Manifest Permission
+CALL_PHONE,Manifest Permission
+BIND_APPWIDGET,Manifest Permission
+FLASHLIGHT,Manifest Permission
+READ_LOGS,Manifest Permission
+SET_PROCESS_LIMIT,Manifest Permission
+MOUNT_UNMOUNT_FILESYSTEMS,Manifest Permission
+BIND_TEXT_SERVICE,Manifest Permission
+INSTALL_LOCATION_PROVIDER,Manifest Permission
+SYSTEM_ALERT_WINDOW,Manifest Permission
+MOUNT_FORMAT_FILESYSTEMS,Manifest Permission
+CHANGE_CONFIGURATION,Manifest Permission
+CLEAR_APP_USER_DATA,Manifest Permission
+CHANGE_WIFI_STATE,Manifest Permission
+READ_FRAME_BUFFER,Manifest Permission
+ACCESS_SURFACE_FLINGER,Manifest Permission
+BROADCAST_SMS,Manifest Permission
+EXPAND_STATUS_BAR,Manifest Permission
+INTERNAL_SYSTEM_WINDOW,Manifest Permission
+SET_ACTIVITY_WATCHER,Manifest Permission
+WRITE_CONTACTS,Manifest Permission
+BIND_VPN_SERVICE,Manifest Permission
+DISABLE_KEYGUARD,Manifest Permission
+ACCESS_MOCK_LOCATION,Manifest Permission
+GET_PACKAGE_SIZE,Manifest Permission
+MODIFY_PHONE_STATE,Manifest Permission
+CHANGE_COMPONENT_ENABLED_STATE,Manifest Permission
+CLEAR_APP_CACHE,Manifest Permission
+SET_ORIENTATION,Manifest Permission
+READ_CONTACTS,Manifest Permission
+DEVICE_POWER,Manifest Permission
+HARDWARE_TEST,Manifest Permission
+ACCESS_WIFI_STATE,Manifest Permission
+WRITE_EXTERNAL_STORAGE,Manifest Permission
+ACCESS_FINE_LOCATION,Manifest Permission
+SET_WALLPAPER_HINTS,Manifest Permission
+SET_PREFERRED_APPLICATIONS,Manifest Permission
+WRITE_SECURE_SETTINGS,Manifest Permission
+android.intent.action.BOOT_COMPLETED,Intent
+android.intent.action.PACKAGE_REPLACED,Intent
+android.intent.action.SEND_MULTIPLE,Intent
+android.intent.action.TIME_SET,Intent
+android.intent.action.PACKAGE_REMOVED,Intent
+android.intent.action.TIMEZONE_CHANGED,Intent
+android.intent.action.ACTION_POWER_DISCONNECTED,Intent
+android.intent.action.PACKAGE_ADDED,Intent
+android.intent.action.ACTION_SHUTDOWN,Intent
+android.intent.action.PACKAGE_DATA_CLEARED,Intent
+android.intent.action.PACKAGE_CHANGED,Intent
+android.intent.action.NEW_OUTGOING_CALL,Intent
+android.intent.action.SENDTO,Intent
+android.intent.action.CALL,Intent
+android.intent.action.SCREEN_ON,Intent
+android.intent.action.BATTERY_OKAY,Intent
+android.intent.action.PACKAGE_RESTARTED,Intent
+android.intent.action.CALL_BUTTON,Intent
+android.intent.action.SCREEN_OFF,Intent
+intent.action.RUN,Intent
+android.intent.action.SET_WALLPAPER,Intent
+android.intent.action.BATTERY_LOW,Intent
+android.intent.action.ACTION_POWER_CONNECTED,Intent
+mount,Commands signature
+chmod,Commands signature
+remount,Commands signature
+chown,Commands signature
+/system/bin,Commands signature
+/system/app,Commands signature
+class,B=Benign; S=Malware
+transact,API call signature
+onServiceConnected,API call signature
+bindService,API call signature
+attachInterface,API call signature
+ServiceConnection,API call signature
+android.os.Binder,API call signature
+Ljava.lang.Class.getCanonicalName,API call signature
+Ljava.lang.Class.getMethods,API call signature
+Ljava.lang.Class.cast,API call signature
+Ljava.net.URLDecoder,API call signature
+android.content.pm.Signature,API call signature
+android.telephony.SmsManager,API call signature
+getBinder,API call signature
+ClassLoader,API call signature
+Landroid.content.Context.registerReceiver,API call signature
+Ljava.lang.Class.getField,API call signature
+Landroid.content.Context.unregisterReceiver,API call signature
+Ljava.lang.Class.getDeclaredField,API call signature
+getCallingUid,API call signature
+Ljavax.crypto.spec.SecretKeySpec,API call signature
+android.content.pm.PackageInfo,API call signature
+KeySpec,API call signature
+TelephonyManager.getLine1Number,API call signature
+DexClassLoader,API call signature
+HttpGet.init,API call signature
+SecretKey,API call signature
+Ljava.lang.Class.getMethod,API call signature
+System.loadLibrary,API call signature
+android.intent.action.SEND,API call signature
+Ljavax.crypto.Cipher,API call signature
+android.telephony.gsm.SmsManager,API call signature
+TelephonyManager.getSubscriberId,API call signature
+Runtime.getRuntime,API call signature
+Ljava.lang.Object.getClass,API call signature
+Ljava.lang.Class.forName,API call signature
+Binder,API call signature
+IBinder,API call signature
+android.os.IBinder,API call signature
+createSubprocess,API call signature
+URLClassLoader,API call signature
+abortBroadcast,API call signature
+TelephonyManager.getDeviceId,API call signature
+getCallingPid,API call signature
+Ljava.lang.Class.getPackage,API call signature
+Ljava.lang.Class.getDeclaredClasses,API call signature
+PathClassLoader,API call signature
+TelephonyManager.getSimSerialNumber,API call signature
+Runtime.load,API call signature
+TelephonyManager.getCallState,API call signature
+TelephonyManager.getSimCountryIso,API call signature
+sendMultipartTextMessage,API call signature
+PackageInstaller,API call signature
+sendDataMessage,API call signature
+HttpPost.init,API call signature
+Ljava.lang.Class.getClasses,API call signature
+TelephonyManager.isNetworkRoaming,API call signature
+HttpUriRequest,API call signature
+divideMessage,API call signature
+Runtime.exec,API call signature
+TelephonyManager.getNetworkOperator,API call signature
+MessengerService,API call signature
+IRemoteService,API call signature
+SET_ALARM,API call signature
+ACCOUNT_MANAGER,API call signature
+TelephonyManager.getSimOperator,API call signature
+onBind,API call signature
+Process.start,API call signature
+Context.bindService,API call signature
+ProcessBuilder,API call signature
+Ljava.lang.Class.getResource,API call signature
+defineClass,API call signature
+findClass,API call signature
+Runtime.loadLibrary,API call signature

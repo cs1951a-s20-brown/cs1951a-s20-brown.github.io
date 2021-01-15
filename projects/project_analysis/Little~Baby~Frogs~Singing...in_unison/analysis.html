@@ -1,0 +1,86 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Baby Frogs Analysis</title>
+	<link rel="icon" href="images/froggy.png">
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>[Little Baby Frogs Singing]< Analysis Deliverable ></h1>
+        </div>
+
+        <h1> Analysis </h1>
+
+        <h3> Hypothesis </h3>
+
+        <p> We hypothesized that there is a correlation between the perceived gender of the language used in an ad and the demographics the add reaches. 
+        <br/>There are several different factors in a text that we thought might contribute to its ‘genderedness’ - not just explicitly gender-coded words, but also the number of nouns, adverbs, adjectives, and even punctuation (! and ?) used.
+        <br/>We would consider our hypothesis verified if we found a statistically meaningful correlation between any of these language elements and the gender demographics of those reached by the ad.
+        </p>
+
+        <h3> Statistical Analysis </h3>
+
+        <h5> Determining how to analyze our data </h5>
+        <p> While our hypothesis extends beyond political ads, we used political ads because of our awareness of their gender targeting. In order to understand our data as a whole we compared ads across political party as that could have been a contributor to a skew in gendered language. To do this we first used a T Test to determine if the distribution of genders reached was different between Joe Biden ads and Donald Trump ads. We used this test because we deemed it appropriate to determine the relationship between two distributions. 
+
+        <br/>We also used a multiple regression model in order to consider if other facets of the ad are impacting their reach. Indeed, each of the statistics we retrieved through natural language processing each could be considered an independent variable that might contribute to the overall gendering of the advertisement. 
+
+        <br/>To perform both of these tests we needed to do additional preprocessing of the data. This involved calculating the gendered reach of different ads. This data was separated by age group, and we made the decision to combine it into a single factor of “reach.” This is a major limitation of our analysis because we are losing the age component of the data which combined with age might explain more of the linguistic choices present in the ads. 
+        </p>
+
+        <h5> Multiple regression results </h5>
+
+        <img src="images/regression_test_results.png" alt="Regression test results with MSE" width="100%">
+
+        <br/> <br/>
+        <ul>
+            <li> dependent variable: gender demographic bias </li>
+            <li> x1 - number of nouns </li>
+            <li> x2 - number of adverbs </li>
+            <li> x3 - number of adjectives </li>
+            <li> x4 - number of exclamation and question marks </li>
+            <li> x5 - ‘genderedness’ of the text (feminine-coded words/total number of gender-coded words) </li>
+        </ul>
+
+        <h5> Interpretation of results </h5>
+        <p> 
+        We used a two-tailed independent t-test on the proportion of ad viewers that were female for Biden and Trump. Our null hypothesis is that these two gender distributions are the same, and the alternative hypothesis is that the populations’ gender distributions are different. The test resulted in a test statistic of 28.02, 700 degrees of freedom, and a p-value of 2.23e-116. Because of this, we can reject our null hypothesis. The mean percentage of women reached by Biden was 65.4% while for Trump it was 41.3%. This indicates that the ads run by Biden receive significantly more female viewership than the ads run by Trump.
+
+        <br/>From the multiple regression model, we find that all the variables except for punctuation symbols have p-values smaller than 0.05, meaning they are statistically significant. The number of nouns and the ratio of gendered words have both the highest coefficients and the lowest p-values, which we interpret to mean that they have the most bearing on the overall gendering of the ad in a way that correlates with the demographics reached. However, the correlation is not that strong within this data set. Ultimately, this leaves our results somewhat inconclusive. Possibly there is not a noticeable effect, or our analysis of gendered language was simply too narrow. Intuitively, the scatter plots make it seem like there is not much of a trend. The fact there are several data points that have significantly more gender reach than others but equal gendered language ratio suggests that the correlation is not present.</p>
+
+        <h5> Confounding trends </h5>
+        <p> One confounding trend we observed with the multiple regression test is the negative coefficient for the gender bias ratio. This would suggest that the more feminine-gendered the ad, the it was biased in reaching female-identifying people. </p>
+
+        <h3> Visualization of results </h3>
+
+        <p> To understand our data we wanted to get a visual representation of the relationship between ad reach and gendered language. While we planned on using factors in addition to our gendered language bias score, that score we hypothesized would be highly correlated with the gendered reach of the ad. A scatter plot seemed like the logical choice for this kind of visualization because we hoped to see a clear relationship between the gendered language relation to the add reach and we had a lot of unique points to graph. Because we had so many points we have both a normal and a “shake” version of the results. </p>
+
+        <p>Scatter plots legend:
+        <ul>
+            <li>Light gray = equal number of gender coded words were male and female</li>
+            <li>Pink = 50% < of coded words female with higher ratio making darker color</li>
+            <li>Yellow = 50%> of coded words male with higher ratio making darker color</li>
+        </ul>
+        </p>
+
+        <img src="images/reach_vs_language.png" width="100%">
+        <img src="images/reach_vs_language_shake.png" width="100%">
+
+        <h3> Moving forward </h3>
+
+        <p>
+            In explaining our results we would definitely want to showcase our methodology. This would probably include displaying some of the data in the format we got it from facebook and explaining how we used it to calculate the various metrics we tried to run the regression with. We could also show the way we calculated the gendered language ratio including the list of words that fell into each category and a brief summary of the results that paper came from. Finally we could include a table displaying the results of the multiple regression and the scatter plot (probably with shake for clarity of presentation), which would show how there isn’t a very obvious trend in the data.
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>

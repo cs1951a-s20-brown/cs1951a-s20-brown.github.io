@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<article>
+    <header>
+        <h1>Data Checkpoint Report</h1>
+        <h2>nmercha2, jzhu71, jgraves1, ksachan</h2>
+    </header>
+    <h3>Link to Full data:</h3>
+    <a href="https://drive.google.com/open?id=1sz_eSTgZDzixRKszR964aOwfAZ4iR91O">Click for Full Data</a>
+    <h3>Link to Sample data:</h3>
+    <a href="https://drive.google.com/open?id=1obGyNuBqNszssuIt_ZOCKu2UskIx_CO6">Click for Sample Data</a>
+    <h3>Link to Example of Filtering Twitter Accounts</h3>
+    <a href="https://drive.google.com/open?id=1HYvznvVfcMx4mlOeGMxvns5T1IzchFqf">Click for Filter Example</a>
+    <h3>Link to Data Specifications:</h3>
+    <a href="https://drive.google.com/open?id=1XLQkwNwXZR09ljwZd-VwTrqaiHe0Y6vq">Click for README</a>
+    <h3>Where is the data from?</h3>
+    <p>
+        The bulk of our data is from Twitter, and includes information on the followers of The Boston Globe, The Providence Journal, The Pawtucket Times, Uprise RI, The Brown Daily Herald, The American Spectator and AlterNet, as well as information on the other accounts that those users follow. We also have external information on the twitter accounts of political figures, sourced from Pablo Barbera.
+    </p>
+
+    <h3>How did you collect your data?</h3>
+    <p>Our data on the twitter accounts of political figures was provided by Pablo Barbera, and we collected our Twitter data using the premium Twitter API and the Python package tweepy.</p>
+    <h3>Is the source reputable?</h3>
+    <p>
+        Pablo Barbera is a reputable researcher who has done significant work in rating political figures based on partisanship. The Twitter data is reflective of the social media site, and so contains many real accounts as well as plenty of bot and corporate accounts.
+    </p>
+    <h3> How did you generate the sample? Is it comparably small or large? Is it representative or is it likely to exhibit some kind of sampling bias?</h3>
+    <p>We generated the sample by writing a SQL query that generated a table of twitter handles, the account username, the newspaper(s) they follow, and the relevant political accounts they follow, and selecting 100 tuples uniform randomly. The data itself is unbiased because we collected all of the followers of every major newspaper, so we didn't sample at this step of the collection process.</p>
+    <h3>Are there any other considerations you took into account when collecting your data?</h3>
+    <p>
+        Yes, because we are basing the bulk of our project on Twitter data, we are taking extra precautions to protect user privacy while handling the PII data we collected. We believe that newspapers and political figures forgo some level of personal privacy, and so we are not anonymizing these accouts, but we will fully anonymize the user accounts in our analysis and will delete any non-anonymous data after we are done with our project. This data is certainly potentially skewed, because an unknown percentage of the data is from bot or corporate accounts rather than real users. We are currently considering unbiased metrics we could use to remove these accounts from our data set.</p>
+    <h3>How clean is the data? Does this data contain what you need in order to complete the project you proposed to do?</h3>
+    <p>
+        The data from the Twitter Premium API is very clean, because Twitter returns very structured JSON from its API endpoints. Additionally, because user handles and screen names are not relevant to our analysis, we don't have to worry about preprocessing them in any way. This data set is sufficient for the purpouses of our project, but our project would benefit from a more comprehensive list of political figures' twitter accounts with associated partisanship scores.</p>
+    <h3>Are there missing values? Do these occur in fields that are important for your project's goals?</h3>
+    <p>
+        Yes, some of our political figures are missing an associated partisanship score. Partisanship scores are important to our overall project, so we are currently considering workarounds.</p>
+
+    <h3>Are there duplicates? Do these occur in fields that are important for your project's goals?</h3>
+    <p>
+        There are duplicates in our data set for two reasons. One, two users in table one may overlap in who they follow. Two, a user in table one may follow more than one newspaper. However, this duplication does not affect our analysis.</p>
+    <h3>How is the data distributed? Is it uniform or skewed? Are there outliers? What are the min/max values?</h3>
+    <p>
+        Filtering for a single newspaper, our data is uniform and unbiased, at least as samplings of Twitter followers. In table one, we collect all followers for a single newspaper, and in table two we uniformly random sample from the accounts a user in table one follows. Our data is certainly skewed when it is considered as a sampling of broader newspaper readership. It is skewed towards the types of people who would make a Twitter account and follow a newspaper. There is broader reasearch into the ways Twitter is misrepresentative; this is outside the scope of our project. Outliers and min/max values are not yet discernible in this stage of our project.</p>
+
+    <h3>Are there any data type issues? Where are these coming from? How will you fix them?</h3>
+    <p>
+        We do not have data type issues at the time; what we are most concerned with is the relationship between two users, which either exists or does not, and our data is very clean, type wise.</p>
+    <h3>Do you need to throw any data away? What data? Why? Any reason this might affect the analyses you are able to run or the conclusions you are able to draw?</h3>
+    <p>
+        There is a potential that we will try to throw away some of the Twitter accounts we have collected if we can find a consistent way to filter out bot or corporate accounts. If we are not able to do this, we will simply have to qualify in our results that our analysis is for all followers of a newspaper, not neccesarily just real, user accounts. Currently we're using several parameters to determine what kinds of Twitter users to throw out: </p>
+    <ul>
+        <li>Handle doesn't contain any of the 1,000 most common words - this removes a lot of the companies/groups with titles such as "The Great Diner".</li>
+        <li>No two upper case letters in a row - removes a lot of spam accounts such as "REFGA". This currently doesn't work with "MD" or "II".</li>
+        <li>not protected - so we can collect data on them.</li>
+        <li>not verified - because we want typical Twitter users.</li>
+        <li>25+ friends -to maximize the likelihood that they follow a politician and aren't spam - we needed to add this constraint to speed up our code because the rate limiting makes all queries very slow.</li>
+        <li>No special characters or numbers - also removes several spam accounts.</li>
+    </ul>
+    <h3>What are challenges or observations you have made since collecting your data? How will your data collection affect the type of analysis you will perform?</h3>
+    <p>The most significant challenge in our data collection was the limitations that Twitter places on its API endpoints. We were limited in how quickly we could collect user data, which limited the overall scope of our project. For example, we had originally wanted to include The New York Times in the list of papers we considered, but dropped it because it has over 40 million Twitter followers and there was no feasable way we would be able to collect that data in the time allocated. One observation we have made is that, anecdotally, Uprise RI seems to have a more genuine Twitter following while The Pawtucket Times is followed by more corporate accounts. We described out process to filter out genuine accounts above, but we still need to generate a more comprehensive list of political accounts with associated partisanship scores. We also need to compare our data to some baseline measures of newspaper partisanship we have encountered when reading previous research on the topic.</p>
+</article>
+
+</html>

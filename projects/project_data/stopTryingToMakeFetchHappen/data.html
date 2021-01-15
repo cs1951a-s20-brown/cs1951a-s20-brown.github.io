@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Data Report - Stop Trying to Make Fetch Happen
+        </title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <style>
+            #gifdiv{
+                width: auto;
+                height: auto
+                max-height: 200px;
+                display: inline-block;
+
+
+            }
+            #gif{
+                display: block;
+                width: 65%;
+/*                max-height: 300px;*/
+                height: auto;
+                margin: 10px auto;
+/*                border: 5px solid black;*/
+            }
+            body{
+                background-color: #fafafa;
+                padding: 5px;
+            }
+
+            body *{
+                color: #303030;
+                font-family: "Roboto";
+            }
+            h1, h3{
+                text-align: center;
+                margin: 15px 5px;
+            }
+
+            h1{
+                margin-top:20px;
+            }
+            #members{
+                display: flex;
+                width: 100%;
+/*                align-content: center;*/
+                justify-content: space-evenly;
+            }
+            h3 span{
+                margin: auto 15px;
+                flex-wrap: wrap;
+                width: 150px;
+            }
+            .subquestion{
+                position: relative;
+                margin-left: 30px;
+            }
+            .subquestion img{
+                border: 1px solid #303030;
+                width: 200px;
+                height: 150px;
+                margin: 5px 15px;
+                position:relative;
+/*                display: inline;*/
+            }
+            .subquestion div{
+                width: 235.2px;
+                height: auto;
+                display: inline-block;
+                position:relative;
+                padding: none;
+            }
+            .subquestion div span{
+                display: block;
+/*                margin: none;*/
+                position: relative;
+                margin: 0 auto;
+                width: inherit;
+                text-align: center;
+            }
+            #holder{
+                width: 100%;
+                margin: 0 auto;
+/*                position: absolute;*/
+                display: inline-block;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+
+        <img id="gif" src="https://media0.giphy.com/media/5G98t8QjqBLK8/source.gif" alt="Stop Trying to Make Fetch Happen">
+
+        <h1>A Group Project by:</h1>
+        <h3 id="members">
+            <span class="name" data-swapped="false" data-name="Augie Ge" data-un="age2">Augie Ge</span>
+            <span class="name" data-swapped="false" data-name="Daniel de Castro" data-un="ddecastr">Daniel de Castro</span>
+            <span class="name" data-swapped="false" data-name="Daniel Smits" data-un="dsmits">Daniel Smits</span>
+            <span class="name" data-swapped="false" data-name="David Romano" data-un="dromano">David Romano</span>
+        </h3>
+        <script>
+            function nameswap(e){
+                var t = e.target;
+                if(t.dataset.swapped=="true"){
+                    t.innerHTML = t.dataset.name;
+                    t.dataset.swapped="false";
+                }
+                else{
+                    t.innerHTML= t.dataset.un;
+                    t.dataset.swapped="true";
+                }
+            }
+            var names = document.getElementsByClassName("name");
+            Array.from(names).forEach(el=>el.onmouseover=nameswap)
+            Array.from(names).forEach(el=>el.onmouseout=nameswap)
+
+            console.log(names);
+        </script>
+
+        <div class="pair">
+
+            <h4 class="question">
+                1. Where is the data from?
+            </h4>
+            <div class="answer">
+                <p>
+                    &emsp; Our data is from historical
+                        <a href="https://www.twitter.com" target="_blank">Twitter</a>
+                            (<a href="https://archive.org/details/twitterstream" target="_blank">shallow stream grab</a>)
+                    and
+                        <a href="https://www.reddit.com" target="_blank">Reddit</a>
+                            (<a href="http://files.pushshift.io/reddit/" target="_blank">pushshift archive</a>)
+                    archives as well as custom-scraped activity information from
+                         <a href="https://www.urbandictionary.com/define.php?term=Urban%20Dictionary" target="_blank">UrbanDictionary</a>
+                    in order to compare past empirical usages of slang with historical tweets, posts, and comments from Twitter and Reddit. The slang terms were compiled through a query of the most popular slang from each of the years and filtered based on homphonic and semantic confounds. <br/><br/>
+
+                    The links to our current full data are here: <br/>
+                    (<a href="https://drive.google.com/file/d/1G6HTjacISMyAF56oXdkCuqkDxBE-3g02/view?usp=sharing" target="_blank">Reddit full data</a>) <br/>
+                    (<a href="https://drive.google.com/file/d/1LSgx9KfNeKbMvOXYuIdKDlhTFzw1o9EQ/view?usp=sharing" target="_blank">Twitter database</a>)
+
+                </p>
+
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        A. How did we collect the data?
+                    </h4>
+                    <p>
+                        &emsp; We collected our data by downloading the public Twitter and Reddit archives from from 2012 through 2015. In addition, we scraped UrbanDictionary using a custom script built with BeauitfulSoup4 to extract information about the "activity" of different slang terms. This will allow us to plot the populatiry and inception of each slang terms across the social media platforms Reddit and Twitter and then cross-reference this to the the search activity on UrbanDictionary.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        B. Is the source reputable?
+                    </h4>
+                    <p>
+                        &emsp; Yes, Twitter and Reddit are by definition reputable since they are the ground truth; we are analyzing the emergence of slang terms on <em>these social media platforms</em> over time. Slang terms may emerge through other platforms or media (such as in person or on MySpace), but ultimately we are interested in which of these two platforms is quicker to catch on. Both the Twitter and Reddit datasets exist for public usage and access, while Urban Dictionary is a go-to resource for understanding new slang terms and their usage.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        C. How did we generate the sample?
+                    </h4>
+                    <p>
+                        &emsp; We elected to investigate the relatively narrow timeframe because of the huge number of daily posts, tweets, and comments on these social media platforms. We chose 2012-2015 because, despite the dozens of GB of data from Twitter and Reddit, we felt like it represented a sufficient timeframe in which slang terms would ermerge, peak, and fall. To the best of our knowledge, these archives are representative of these platforms insasmuch as they encapsulates all the public posts and tweets from this time.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        D. What other considerations have we taken into account?
+                    </h4>
+                    <p>
+                        &emsp; Ultimately, we accounted for practical constrains on storage and processing. Given our limited resources, we had to choose a small but representative timeframe from the dozens of Gibibytes (yes, Gibibytes) of information available from these platforms. We elected a timeframe which was modern enough to observe relevant (identified) slang while historict enough that the data was manageable.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="pair">
+            <h4 class="question">
+                2. How clean is the data?
+            </h4>
+            <div class="answer">
+                &emsp; The data contained a lot of additional unnecessary information which we cleaned out, for example by filtering for only English-language tweets. Since our data comes frmo an archive, the metadata is already formatted correctly. The main consideration was the "quality" of the text: in order to account for alternate spellings, we are lowercasing all of the data and developped a search algorithm which compares multiple orthographic variants of each slang term (e.g. "rekt" and "wrecked").
+            </div>
+            <div class="answer">
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        A. How many data points are there?
+                    </h4>
+                    <p>
+                        &emsp; There are millions of tweets, posts, and comments contained in over 200GB of data and we cherry-picked a sample of 45 slang terms distributed across 2012-2015. Despite the sparsity of any one term, there is certainly enough to get a representative smaple of each slang's usage over time.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        B. Are there missing values?
+                    </h4>
+                    <p>
+                        &emsp; We do not have access to private tweets/posts and this is only a shallow grab of all the public data, but we are not missing any data which is critical to our future analyses.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        C. Are there duplicates?
+                    </h4>
+                    <p>
+                        &emsp; There are no duplicates. We are interested in the frequency and emergence of slang on social media, so repeated or content-identical tweets are still important data. Some of the Urban Dictionary activity data was sparse (due to low activity).
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        D. How was the data distributed?
+                    </h4>
+                    <p>
+                        &emsp; From our initial analysis of UrbanDictionary activity, the data is skewed. This is to be expected since we would expect the lifecycle of a slang term to be an intial spike, peek, and then gradual decline as it falls out of popularity. A typical example of this can be seen in the following activity graphs:
+                    </p>
+                    <div id="holder">
+                        <div>
+                            <img alt="squad activity" src="https://i.imgur.com/EJ6SwE3.png"/>
+                            <span>squad</span>
+                        </div>
+                        <div>
+                            <img alt="ratchet activity" src="https://i.imgur.com/jP7kGt6.png"/>
+                            <span>ratchet</span>
+                        </div>
+                        <div>
+                            <img alt="bae activity" src="https://i.imgur.com/7HiKaAm.png"/>
+                            <span>bae</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        E. Any datatype issues?
+                    </h4>
+                    <p>
+                        &emsp; Not that we are aware of. All the texts are strings, all the dates are valid timestamps, and the scraped activity information is correctly converted to strings and floats.
+                    </p>
+                </div>
+                <div class="subquestion">
+                    <h4 class="subquestion">
+                        F. Do we need to throw any data away?
+                    </h4>
+                    <p>
+                        &emsp; We are filtering for only English-language tweets (by provided Twitter metadata).
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="pair">
+            <h4 class="question">
+                3. Summarize challenges. What are our next steps? How clean is the data?
+            </h4>
+            <div class="answer">
+                &emsp; The biggest challenge that we have faced has been the actual data collection. We are observing all twitter and reddit posts and comments from the years 2012-2015. This amounts to over 200 GB of data that we have had to process and parse for English. For analysis we will have to process this even further in order to find counts of slang terms categorized by month. We plan to do this by using a big data framework such as MapReduce. Using word counts, we will analyze distributions of slang terms over different time frames in order to perform hypothesis testing and answer different questions involving how slang formulates and spreads.
+            </div>
+            <h4 class="question">
+                4. What are some hypothesis tests we plan to carry out?
+            </h4>
+            <div class="answer">
+                &emsp; The basis of our statistical analysis will be determining months for where there are statistically significant differences in slang usage to see if we can find out a specific month when a slang term caught on and died off. Ie if there was no statistically
+                significant increase from January 2013 to February 2013 but there was a statistically significant increase from February 2013 to March 2013 then we would say that the slang term caught on in February. <br/> <br/>
+                &emsp; Does slang appear more on Twitter or Reddit first? We hypothesize that slang on Reddit catches on a month earlier compared Twitter. <br/>
+                &emsp; Null hypothesis: Slang does not start on either platform first. <br/> <br/>
+                &emsp; Do certain slang words have a shorter shelf life than others? We hypothesize that certain slang words do have a shorter shelf life than others. <br/>
+                &emsp; Null hypothesis: Slang terms all have the same shelf life. <br/> <br/>
+                &emsp; How long does it usually take for a celebrity-started slang term such as "YOLO" (Drake) or "bless-up" (DJ Khaled) to catch on vs a non-celebrity slang term? We hypothesize that
+                it takes less time for a celebrity-started slang term to catch on (for reference, consider in the above graphics how "bae" caught on faster than "squad"). <br/>
+                &emsp; Null hypothesis: Celebrity-originated slang terms take the same amount of time to catch on than non-celebrity slang terms.
+            </div>
+        </div>
+
+    </body>
+</html>

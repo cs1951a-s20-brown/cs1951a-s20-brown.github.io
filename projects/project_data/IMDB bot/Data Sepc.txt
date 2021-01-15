@@ -1,0 +1,70 @@
+
+
+The movies from IMDB database were used in our IMDB box office prediction project. It joins with the sentiment analysis score of directors.
+
+----------------------------------------------------------------------------
+
+I. Where the movies information are from
+The movies information is completely from IMDB movies library, a public database on IMDB.
+The sentiment analysis is based on the data analysis for Twitter's tweets.
+
+II. Format of the movies
+
+Each line contains the information of one movie. Below is an example:
+
+{tconst: tt0016906, primaryTitle: Frivolinas, isAdult: 0, startYear: 2014, runtimeMin: 88, genres: Comedy, averageRating: 5.6, numVotes: 14, actors: Juan Belmonte, 
+budget: 0, grossUSA: 0, worldGross: 0, directors: nm0136068, writers: Nah, director sentiments: 0.053}
+
+a. tconst - movie ID(TEXT)
+            The movie ID on IMDB database
+
+b. primaryTitle - the title of movie(TEXT)
+		 The official English title of this movie on IMDB database
+
+c. isAdult - 0 or 1(INTEGER)
+            Is the movie a NC-17 movie? If isAdult=0, this means that this movie is not a NC-17 movie on film rating system.
+            If isAdult=1, this means that this movie is a NC-17 movie.
+
+d. startYear - the released year of this movie(INTEGER)
+
+e. runtimeMin - the length of movie(TEXT)
+
+f. genres - the genres of movie(TEXT)
+            The genres of movies are based on IMDB database.
+
+g. averageRating - the average rating of this movie(TEXT)
+                   The scale range of rating is 0-10 on IMDB database.
+
+h. numVotes - the total number of users who effictively rated this movie(REAL)
+
+i. actors - the primary cast who perform in this movie(TEXT)
+                  We picked the top five primary actors or actresses in the cast list of this movie on IMDB.
+
+j. budget - the total budget of filmmaking(INTEGER)
+            The "0" means that the budget of this movie can not be found on IMDB database. The currency unit of budget is U.S dollar.
+
+k. grossUSA - the total box office of this movie in USA(INTEGER)
+	      The "0" means that the box office of this movie can not be found on IMDB database or it was not released in USA.
+
+l. worldGross - the total box office of this movie in the world(INTEGER)
+                The "0" means that the box office of this movie can not be found on IMDB database.
+
+m. directors - the name of directors(TEXT)
+               The name of directors will match another table of cast information on IMDB database which contains the information of directors. 
+
+n. writers - the name of writers(TEXT)
+             The ids of writers will match another table of staff information on IMDB database which contains the information of writers. "Nah"
+             means that it doesn't indicate who the writer is or if there is a writer for this movie on IMDB database.
+
+o. director sentiments - the parameters show that sentiment analysis score to this director.
+                         The scale range is -1 to 1. The score over 0 means public is basically positive to this director. The score under 0 means
+			 The public is basically negative to this director.
+				
+
+----------------------------------------------------------------------------
+
+IMDB Bot
+03/10/2020
+   
+
+              

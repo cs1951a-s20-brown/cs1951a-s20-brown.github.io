@@ -1,0 +1,248 @@
+N,REGION,ST,SCHG,SCHL,SEX,WAGP,WKHP,WKW,YOEP,FOD1P,FOD2P,OCCP,Degree,Degree 2,Occupation
+1,3,10,,22.0,1,37000.0,60.0,1.0,-1.0,4901.0,,420.0,Philosophy religion,No Degree,Manager
+4,3,10,,22.0,1,37000.0,60.0,1.0,-1.0,4901.0,,420.0,Philosophy religion,No Degree,Manager
+7,3,10,,22.0,1,37000.0,60.0,1.0,-1.0,4901.0,,420.0,Philosophy religion,No Degree,Manager
+10,3,10,,22.0,1,37000.0,60.0,1.0,-1.0,4901.0,,420.0,Philosophy religion,No Degree,Manager
+26,3,10,,23.0,2,180000.0,60.0,1.0,25.0,5098.0,,3090.0,Physical Sciences,No Degree,Medical
+29,3,10,,21.0,1,140000.0,40.0,1.0,-1.0,6200.0,,630.0,Business,No Degree,Manager
+34,3,10,,22.0,2,30000.0,40.0,1.0,6.0,6207.0,,2205.0,Business,No Degree,Social Worker
+35,3,10,,21.0,1,50000.0,38.0,1.0,-1.0,5301.0,,910.0,Criminal Justice and Fire Protection,No Degree,Manager
+36,3,10,16.0,21.0,2,45000.0,40.0,1.0,-1.0,6206.0,,2634.0,Business,No Degree,Social Worker
+38,3,10,,21.0,1,100000.0,40.0,1.0,16.0,5501.0,,705.0,Social Sciences,No Degree,Manager
+39,3,10,,23.0,1,65000.0,45.0,1.0,-1.0,5506.0,,2100.0,Social Sciences,No Degree,Social Worker
+40,3,10,,21.0,2,50000.0,35.0,1.0,5.0,4101.0,,2861.0,Parks rec,No Degree,Social Worker
+41,3,10,,21.0,1,38000.0,40.0,1.0,-1.0,6201.0,6203.0,1050.0,Business,Business,Computer Science
+42,3,10,,22.0,2,30000.0,35.0,2.0,-1.0,2300.0,,2016.0,Education,No Degree,Social Worker
+46,3,10,,21.0,2,70000.0,40.0,1.0,-1.0,4000.0,,350.0,Interdisciplinary Science,No Degree,Manager
+49,3,10,,21.0,2,65000.0,40.0,1.0,-1.0,5301.0,,2145.0,Criminal Justice and Fire Protection,No Degree,Social Worker
+50,3,10,15.0,21.0,2,6900.0,12.0,1.0,-1.0,6005.0,6004.0,4720.0,Fine Arts,Fine Arts,Food
+51,3,10,,21.0,2,160000.0,50.0,1.0,-1.0,5301.0,,3255.0,Criminal Justice and Fire Protection,No Degree,Medical
+54,3,10,,23.0,1,250000.0,40.0,1.0,-1.0,5003.0,,3090.0,Physical Sciences,No Degree,Medical
+55,3,10,,21.0,1,1500.0,8.0,4.0,-1.0,2105.0,,8950.0,Computer science,No Degree,Production
+56,3,10,,21.0,2,30000.0,40.0,1.0,-1.0,6203.0,,5400.0,Business,No Degree,Clerks
+57,3,10,,21.0,1,55000.0,40.0,1.0,-1.0,6103.0,,1108.0,Medical,No Degree,Computer Science
+58,3,10,,22.0,2,67000.0,40.0,1.0,-1.0,6203.0,,2310.0,Business,No Degree,Social Worker
+59,3,10,,21.0,1,33000.0,50.0,1.0,-1.0,5301.0,,3930.0,Criminal Justice and Fire Protection,No Degree,Medical
+61,3,10,,21.0,1,120000.0,42.0,1.0,-1.0,4101.0,,4820.0,Parks rec,No Degree,Food
+63,3,10,,23.0,2,32000.0,32.0,1.0,-1.0,2300.0,,2320.0,Education,No Degree,Social Worker
+64,3,10,,21.0,2,65000.0,40.0,1.0,-1.0,2001.0,,2145.0,Communication technologies,No Degree,Social Worker
+65,3,10,,21.0,1,55000.0,67.0,1.0,-1.0,3301.0,,3230.0,Literature,No Degree,Medical
+67,3,10,,23.0,1,125000.0,52.0,1.0,-1.0,2311.0,,2025.0,Education,No Degree,Social Worker
+68,3,10,,21.0,1,50000.0,40.0,1.0,-1.0,3402.0,,20.0,Liberal arts,No Degree,Manager
+69,3,10,,22.0,2,476000.0,70.0,1.0,19.0,5507.0,,3330.0,Social Sciences,No Degree,Medical
+70,3,10,,22.0,1,103000.0,40.0,1.0,19.0,2400.0,,3255.0,Engineering,No Degree,Medical
+71,3,10,,22.0,2,55000.0,45.0,1.0,-1.0,5301.0,,2012.0,Criminal Justice and Fire Protection,No Degree,Social Worker
+72,3,10,,21.0,2,47600.0,40.0,1.0,-1.0,2901.0,,5165.0,family consumer Sciences,No Degree,Clerks
+73,3,10,,21.0,2,50000.0,35.0,1.0,-1.0,6107.0,,3255.0,Medical,No Degree,Medical
+74,3,10,,24.0,2,120000.0,50.0,1.0,-1.0,3600.0,,230.0,Biology,No Degree,Manager
+76,3,10,,21.0,1,65000.0,40.0,1.0,-1.0,6207.0,,1410.0,Business,No Degree,Computer Science
+77,3,10,,22.0,2,35000.0,50.0,1.0,-1.0,2300.0,,4965.0,Education,No Degree,Food
+78,3,10,,22.0,1,100000.0,40.0,1.0,-1.0,2414.0,,1460.0,Engineering,No Degree,Computer Science
+79,3,10,,23.0,2,80000.0,30.0,1.0,-1.0,4101.0,,3160.0,Parks rec,No Degree,Medical
+80,3,10,,21.0,1,5000.0,1.0,6.0,-1.0,2405.0,2304.0,4760.0,Engineering,Education,Food
+81,3,10,,22.0,2,5500.0,35.0,1.0,-1.0,6102.0,,3230.0,Medical,No Degree,Medical
+82,3,10,,21.0,2,89000.0,40.0,1.0,-1.0,6203.0,,540.0,Business,No Degree,Manager
+83,3,10,16.0,21.0,2,30000.0,42.0,5.0,-1.0,2304.0,,2310.0,Education,No Degree,Social Worker
+84,3,10,,21.0,1,49000.0,40.0,1.0,-1.0,6203.0,,800.0,Business,No Degree,Manager
+85,3,10,,22.0,1,90000.0,40.0,1.0,13.0,2408.0,,1006.0,Engineering,No Degree,Computer Science
+87,3,10,,22.0,1,70000.0,40.0,1.0,-1.0,2300.0,,2310.0,Education,No Degree,Social Worker
+88,3,10,,21.0,2,80000.0,40.0,1.0,-1.0,6203.0,,440.0,Business,No Degree,Manager
+89,3,10,15.0,21.0,1,25000.0,40.0,1.0,-1.0,2304.0,,8740.0,Education,No Degree,Production
+90,3,10,,22.0,2,130000.0,40.0,1.0,-1.0,3600.0,,1760.0,Biology,No Degree,Computer Science
+91,3,10,,21.0,2,40000.0,45.0,1.0,-1.0,5200.0,,2014.0,Psychology,No Degree,Social Worker
+92,3,10,,21.0,1,62000.0,48.0,1.0,-1.0,6207.0,,565.0,Business,No Degree,Manager
+93,3,10,,21.0,2,35000.0,40.0,1.0,-1.0,4007.0,,4110.0,Interdisciplinary Science,No Degree,Food
+95,3,10,,21.0,1,140000.0,50.0,1.0,-1.0,5301.0,,3930.0,Criminal Justice and Fire Protection,No Degree,Medical
+97,3,10,,21.0,1,10000.0,25.0,4.0,-1.0,5200.0,,9410.0,Psychology,No Degree,transportation
+100,3,10,,21.0,1,270000.0,48.0,1.0,-1.0,6201.0,,120.0,Business,No Degree,Manager
+101,3,10,,21.0,2,70000.0,42.0,1.0,-1.0,6201.0,,440.0,Business,No Degree,Manager
+102,3,10,,21.0,1,10000.0,30.0,1.0,-1.0,6199.0,,5240.0,Medical,No Degree,Clerks
+103,3,10,,21.0,2,49000.0,20.0,1.0,-1.0,6107.0,,3255.0,Medical,No Degree,Medical
+107,3,10,,21.0,1,230000.0,25.0,1.0,-1.0,5901.0,,9030.0,Transportation,No Degree,transportation
+110,3,10,,21.0,1,25000.0,40.0,1.0,41.0,5200.0,,4251.0,Psychology,No Degree,Food
+112,3,10,,21.0,1,26800.0,40.0,1.0,-1.0,6206.0,,4251.0,Business,No Degree,Food
+113,3,10,,22.0,2,70000.0,45.0,1.0,-1.0,2310.0,,2310.0,Education,No Degree,Social Worker
+114,3,10,,21.0,1,476000.0,45.0,1.0,-1.0,6203.0,,4850.0,Business,No Degree,Food
+115,3,10,,22.0,2,121000.0,45.0,1.0,-1.0,6203.0,,110.0,Business,No Degree,Manager
+116,3,10,,22.0,2,90000.0,48.0,1.0,-1.0,6201.0,,440.0,Business,No Degree,Manager
+117,3,10,,21.0,1,70000.0,40.0,1.0,-1.0,1303.0,,3725.0,environmental work,No Degree,Medical
+118,3,10,,22.0,2,65000.0,40.0,1.0,-1.0,2304.0,2310.0,2310.0,Education,Education,Social Worker
+121,3,10,,22.0,1,25000.0,40.0,4.0,-1.0,3401.0,,4000.0,Liberal arts,No Degree,Food
+122,3,10,,21.0,1,110000.0,40.0,1.0,-1.0,2102.0,,1106.0,Computer science,No Degree,Computer Science
+123,3,10,,21.0,1,70000.0,45.0,1.0,33.0,5506.0,,4330.0,Social Sciences,No Degree,Food
+124,3,10,15.0,23.0,2,90000.0,40.0,1.0,-1.0,6100.0,,3255.0,Medical,No Degree,Medical
+125,3,10,,21.0,1,44000.0,50.0,1.0,-1.0,2314.0,,2320.0,Education,No Degree,Social Worker
+126,3,10,,21.0,2,45000.0,40.0,1.0,-1.0,2314.0,,2320.0,Education,No Degree,Social Worker
+127,3,10,,21.0,1,25000.0,50.0,3.0,3.0,2400.0,,1760.0,Engineering,No Degree,Computer Science
+131,3,10,,22.0,1,150000.0,25.0,1.0,-1.0,2412.0,,440.0,Engineering,No Degree,Manager
+137,3,10,,21.0,1,90000.0,40.0,1.0,-1.0,2105.0,,1240.0,Computer science,No Degree,Computer Science
+138,3,10,,22.0,1,103000.0,40.0,1.0,-1.0,6107.0,,3255.0,Medical,No Degree,Medical
+139,3,10,,22.0,2,115000.0,40.0,1.0,-1.0,6201.0,,800.0,Business,No Degree,Manager
+140,3,10,,21.0,1,95000.0,40.0,1.0,-1.0,6206.0,,52.0,Business,No Degree,Manager
+141,3,10,,22.0,2,4000.0,2.0,6.0,-1.0,6000.0,2314.0,2360.0,Fine Arts,Education,Social Worker
+147,3,10,,21.0,2,50000.0,35.0,1.0,-1.0,3301.0,,5240.0,Literature,No Degree,Clerks
+148,3,10,,21.0,2,30000.0,40.0,1.0,-1.0,6100.0,5403.0,136.0,Medical,Public work,Manager
+149,3,10,,24.0,2,20000.0,40.0,4.0,1.0,5098.0,,1760.0,Physical Sciences,No Degree,Computer Science
+150,3,10,,22.0,2,63000.0,20.0,1.0,-1.0,2300.0,,3255.0,Education,No Degree,Medical
+151,3,10,,21.0,1,70000.0,40.0,1.0,-1.0,2300.0,,2310.0,Education,No Degree,Social Worker
+152,3,10,,21.0,2,39300.0,30.0,3.0,-1.0,6402.0,,630.0,History,No Degree,Manager
+153,3,10,,21.0,1,2500.0,16.0,5.0,-1.0,6402.0,,2320.0,History,No Degree,Social Worker
+154,3,10,,22.0,2,98000.0,45.0,1.0,-1.0,2306.0,,2320.0,Education,No Degree,Social Worker
+156,3,10,,22.0,2,500.0,5.0,6.0,-1.0,6402.0,2309.0,2310.0,History,Education,Social Worker
+160,3,10,,22.0,1,200000.0,50.0,1.0,-1.0,6207.0,,700.0,Business,No Degree,Manager
+162,3,10,,21.0,2,270.0,1.0,6.0,39.0,6004.0,,2310.0,Fine Arts,No Degree,Social Worker
+163,3,10,,21.0,1,60000.0,40.0,1.0,-1.0,6201.0,,800.0,Business,No Degree,Manager
+165,3,10,,21.0,2,90000.0,40.0,1.0,28.0,6206.0,,910.0,Business,No Degree,Manager
+167,3,10,,21.0,1,85000.0,55.0,1.0,-1.0,6206.0,,2710.0,Business,No Degree,Social Worker
+168,3,10,,22.0,1,120000.0,65.0,1.0,-1.0,2400.0,,1320.0,Engineering,No Degree,Computer Science
+170,3,10,,22.0,2,76000.0,40.0,1.0,-1.0,2300.0,,2310.0,Education,No Degree,Social Worker
+171,3,10,,22.0,2,5000.0,50.0,6.0,-1.0,2304.0,,710.0,Education,No Degree,Manager
+172,3,10,,22.0,2,84000.0,40.0,1.0,-1.0,2304.0,,2310.0,Education,No Degree,Social Worker
+174,3,10,,22.0,2,54000.0,40.0,1.0,-1.0,2313.0,,2310.0,Education,No Degree,Social Worker
+175,3,10,,21.0,1,105000.0,55.0,1.0,-1.0,1401.0,,220.0,architecture,No Degree,Manager
+176,3,10,,21.0,2,23000.0,40.0,1.0,-1.0,4101.0,,4700.0,Parks rec,No Degree,Food
+177,3,10,,24.0,2,82000.0,40.0,3.0,-1.0,6200.0,2399.0,2310.0,Business,Education,Social Worker
+178,3,10,,21.0,1,44100.0,40.0,1.0,-1.0,2300.0,,6230.0,Education,No Degree,Forestry
+179,3,10,,22.0,2,65000.0,55.0,1.0,-1.0,3600.0,,4700.0,Biology,No Degree,Food
+180,3,10,,22.0,2,28000.0,40.0,1.0,-1.0,5507.0,,2014.0,Social Sciences,No Degree,Social Worker
+181,3,10,,22.0,2,20000.0,25.0,3.0,16.0,5505.0,6402.0,4500.0,Social Sciences,History,Food
+182,3,10,,21.0,1,50000.0,60.0,1.0,16.0,6203.0,,4000.0,Business,No Degree,Food
+184,3,10,16.0,21.0,1,33300.0,40.0,1.0,-1.0,3401.0,,4850.0,Liberal arts,No Degree,Food
+185,3,10,,21.0,2,10000.0,20.0,1.0,-1.0,2310.0,,5240.0,Education,No Degree,Clerks
+186,3,10,,21.0,2,37000.0,38.0,1.0,-1.0,6203.0,6207.0,800.0,Business,Business,Manager
+187,3,10,,23.0,1,200000.0,45.0,1.0,-1.0,6205.0,,2100.0,Business,No Degree,Social Worker
+188,3,10,,21.0,2,10000.0,36.0,4.0,-1.0,6107.0,4101.0,3255.0,Medical,Parks rec,Medical
+189,3,10,,22.0,1,70000.0,35.0,3.0,-1.0,4101.0,,3150.0,Parks rec,No Degree,Medical
+190,3,10,,21.0,2,59000.0,40.0,1.0,-1.0,5301.0,,630.0,Criminal Justice and Fire Protection,No Degree,Manager
+191,3,10,16.0,22.0,2,89000.0,40.0,1.0,-1.0,5502.0,6402.0,2310.0,Social Sciences,History,Social Worker
+192,3,10,,22.0,2,149000.0,40.0,1.0,-1.0,2304.0,,1980.0,Education,No Degree,Computer Science
+193,3,10,,22.0,1,150000.0,40.0,1.0,18.0,3606.0,,137.0,Biology,No Degree,Manager
+194,3,10,,22.0,2,120000.0,40.0,1.0,18.0,3601.0,,565.0,Biology,No Degree,Manager
+196,3,10,,21.0,1,108000.0,40.0,1.0,-1.0,5503.0,,3820.0,Social Sciences,No Degree,Medical
+200,3,10,16.0,22.0,2,44000.0,40.0,1.0,-1.0,5404.0,,630.0,Public work,No Degree,Manager
+203,3,10,,22.0,1,27900.0,40.0,1.0,5.0,2102.0,,9142.0,Computer science,No Degree,transportation
+204,3,10,,22.0,2,31400.0,40.0,1.0,5.0,6203.0,,4700.0,Business,No Degree,Food
+206,3,10,16.0,22.0,2,53000.0,38.0,1.0,-1.0,3600.0,,2310.0,Biology,No Degree,Social Worker
+207,3,10,15.0,21.0,1,27000.0,38.0,1.0,-1.0,3700.0,,7750.0,Math,No Degree,Repairers
+208,3,10,,21.0,1,96000.0,40.0,1.0,3.0,2102.0,,1021.0,Computer science,No Degree,Computer Science
+209,3,10,,21.0,1,30000.0,45.0,1.0,-1.0,1901.0,6203.0,310.0,communications,Business,Manager
+210,3,10,,22.0,2,68000.0,40.0,1.0,-1.0,3600.0,,3300.0,Biology,No Degree,Medical
+211,3,10,,22.0,1,70000.0,40.0,1.0,-1.0,6000.0,,2320.0,Fine Arts,No Degree,Social Worker
+212,3,10,,21.0,2,30000.0,40.0,1.0,-1.0,2309.0,,2040.0,Education,No Degree,Social Worker
+219,3,10,,23.0,1,38000.0,25.0,1.0,50.0,3600.0,,3090.0,Biology,No Degree,Medical
+222,3,10,,22.0,1,476000.0,46.0,1.0,-1.0,6004.0,,1305.0,Fine Arts,No Degree,Computer Science
+224,3,10,,21.0,2,10000.0,27.0,3.0,-1.0,6203.0,,4720.0,Business,No Degree,Food
+225,3,10,,21.0,1,65000.0,45.0,1.0,-1.0,1301.0,,440.0,environmental work,No Degree,Manager
+226,3,10,,23.0,1,75000.0,30.0,4.0,-1.0,5506.0,,2100.0,Social Sciences,No Degree,Social Worker
+227,3,10,,21.0,2,4100.0,25.0,3.0,-1.0,2307.0,,2300.0,Education,No Degree,Social Worker
+228,3,10,,21.0,1,55000.0,50.0,1.0,-1.0,6207.0,6206.0,2320.0,Business,Business,Social Worker
+229,3,10,16.0,21.0,2,65000.0,60.0,1.0,-1.0,3301.0,,51.0,Literature,No Degree,Manager
+230,3,10,,21.0,2,23000.0,60.0,1.0,-1.0,2300.0,,4340.0,Education,No Degree,Food
+231,3,10,,21.0,1,110000.0,60.0,1.0,-1.0,6203.0,,4840.0,Business,No Degree,Food
+232,3,10,16.0,22.0,2,65000.0,40.0,1.0,-1.0,6102.0,,3230.0,Medical,No Degree,Medical
+233,3,10,,21.0,1,13000.0,32.0,1.0,-1.0,6402.0,,9620.0,History,No Degree,transportation
+235,3,10,,21.0,1,60000.0,40.0,1.0,-1.0,2408.0,,7000.0,Engineering,No Degree,Repairers
+236,3,10,,21.0,2,30000.0,40.0,4.0,-1.0,5003.0,,1970.0,Physical Sciences,No Degree,Computer Science
+237,3,10,,23.0,2,120000.0,30.0,1.0,-1.0,6107.0,,3010.0,Medical,No Degree,Medical
+238,3,10,,21.0,2,2000.0,20.0,6.0,-1.0,5003.0,,520.0,Physical Sciences,No Degree,Manager
+239,3,10,,22.0,1,94000.0,40.0,1.0,-1.0,6203.0,,110.0,Business,No Degree,Manager
+241,3,10,,21.0,2,20000.0,37.0,3.0,-1.0,3202.0,,2003.0,Legal,No Degree,Social Worker
+242,3,10,,21.0,2,55000.0,40.0,1.0,-1.0,1103.0,,3300.0,farming agri,No Degree,Medical
+243,3,10,16.0,22.0,1,25000.0,40.0,1.0,-1.0,5200.0,,2545.0,Psychology,No Degree,Social Worker
+244,3,10,,21.0,2,37000.0,40.0,1.0,-1.0,6006.0,,6200.0,Fine Arts,No Degree,Forestry
+245,3,10,,21.0,1,39000.0,40.0,1.0,-1.0,2102.0,,1021.0,Computer science,No Degree,Computer Science
+248,3,10,,22.0,2,60000.0,60.0,1.0,-1.0,6203.0,,4920.0,Business,No Degree,Food
+249,3,10,,22.0,1,90000.0,60.0,1.0,-1.0,5301.0,,3870.0,Criminal Justice and Fire Protection,No Degree,Medical
+252,3,10,,21.0,1,150000.0,41.0,1.0,-1.0,2602.0,5507.0,160.0,Linguistics,Social Sciences,Manager
+256,3,10,,21.0,2,10000.0,20.0,4.0,-1.0,2309.0,,9130.0,Education,No Degree,transportation
+257,3,10,,21.0,1,50000.0,20.0,4.0,-1.0,6108.0,,3050.0,Medical,No Degree,Medical
+258,3,10,,21.0,1,80000.0,40.0,1.0,-1.0,6007.0,,2634.0,Fine Arts,No Degree,Social Worker
+259,3,10,,22.0,2,68000.0,40.0,1.0,-1.0,3301.0,,2840.0,Literature,No Degree,Social Worker
+260,3,10,,23.0,2,13200.0,40.0,1.0,31.0,2408.0,,5240.0,Engineering,No Degree,Clerks
+261,3,10,,21.0,1,60000.0,40.0,1.0,1.0,5003.0,,2710.0,Physical Sciences,No Degree,Social Worker
+262,3,10,,21.0,1,87000.0,40.0,1.0,-1.0,2102.0,,1021.0,Computer science,No Degree,Computer Science
+263,3,10,,22.0,2,5000.0,40.0,2.0,-1.0,5200.0,,2002.0,Psychology,No Degree,Social Worker
+265,3,10,,21.0,2,45000.0,38.0,1.0,1.0,2100.0,,2180.0,Computer science,No Degree,Social Worker
+266,3,10,,21.0,2,2000.0,40.0,6.0,-1.0,3301.0,,5400.0,Literature,No Degree,Clerks
+267,3,10,,21.0,1,5000.0,4.0,6.0,-1.0,6002.0,,2360.0,Fine Arts,No Degree,Social Worker
+268,3,10,,21.0,1,47000.0,40.0,1.0,-1.0,6206.0,,3870.0,Business,No Degree,Medical
+269,3,10,,22.0,2,135000.0,45.0,1.0,-1.0,6203.0,,10.0,Business,No Degree,Manager
+270,3,10,,22.0,1,130000.0,45.0,1.0,-1.0,2306.0,,230.0,Education,No Degree,Manager
+271,3,10,,21.0,2,107000.0,40.0,1.0,-1.0,6105.0,,3300.0,Medical,No Degree,Medical
+272,3,10,16.0,21.0,2,3600.0,20.0,6.0,-1.0,6103.0,,5740.0,Medical,No Degree,Clerks
+273,3,10,16.0,21.0,2,25000.0,30.0,1.0,-1.0,1303.0,,1610.0,environmental work,No Degree,Computer Science
+274,3,10,,21.0,1,1900.0,8.0,6.0,-1.0,5507.0,,5220.0,Social Sciences,No Degree,Clerks
+275,3,10,,21.0,2,197000.0,40.0,1.0,-1.0,1501.0,,2180.0,ethnic civ studies,No Degree,Social Worker
+277,3,10,,21.0,2,270000.0,40.0,1.0,-1.0,6206.0,,110.0,Business,No Degree,Manager
+278,3,10,,21.0,2,476000.0,40.0,1.0,-1.0,1301.0,5003.0,10.0,environmental work,Physical Sciences,Manager
+279,3,10,,23.0,2,40000.0,30.0,1.0,-1.0,6100.0,,3160.0,Medical,No Degree,Medical
+280,3,10,,22.0,2,10000.0,20.0,5.0,-1.0,2306.0,,2014.0,Education,No Degree,Social Worker
+283,3,10,,22.0,2,60000.0,37.0,4.0,-1.0,2304.0,,1530.0,Education,No Degree,Computer Science
+284,3,10,,21.0,1,55000.0,40.0,1.0,-1.0,1401.0,,1108.0,architecture,No Degree,Computer Science
+286,3,10,,21.0,2,32000.0,40.0,1.0,-1.0,2901.0,,5740.0,family consumer Sciences,No Degree,Clerks
+290,3,10,,22.0,2,83000.0,55.0,1.0,-1.0,2310.0,,5940.0,Education,No Degree,Clerks
+291,3,10,,21.0,2,9000.0,40.0,4.0,-1.0,1901.0,3301.0,2850.0,communications,Literature,Social Worker
+292,3,10,,22.0,2,38800.0,40.0,1.0,-1.0,1901.0,,2722.0,communications,No Degree,Social Worker
+293,3,10,,22.0,1,38200.0,45.0,4.0,-1.0,2313.0,5200.0,2320.0,Education,Psychology,Social Worker
+294,3,10,,21.0,1,147000.0,50.0,1.0,57.0,5301.0,,4760.0,Criminal Justice and Fire Protection,No Degree,Food
+297,3,10,,21.0,2,93000.0,40.0,1.0,-1.0,3301.0,,440.0,Literature,No Degree,Manager
+299,3,10,,21.0,2,35000.0,40.0,2.0,-1.0,6203.0,,5860.0,Business,No Degree,Clerks
+300,3,10,,21.0,1,75000.0,56.0,1.0,-1.0,6203.0,,102.0,Business,No Degree,Manager
+301,3,10,,21.0,2,57000.0,45.0,3.0,-1.0,2304.0,,5860.0,Education,No Degree,Clerks
+302,3,10,16.0,22.0,2,90000.0,35.0,4.0,-1.0,2304.0,2310.0,2310.0,Education,Education,Social Worker
+305,3,10,,24.0,1,30000.0,35.0,1.0,-1.0,2100.0,,2205.0,Computer science,No Degree,Social Worker
+306,3,10,,22.0,1,80000.0,37.0,1.0,-1.0,1199.0,,2300.0,farming agri,No Degree,Social Worker
+308,3,10,,21.0,1,72000.0,40.0,1.0,-1.0,2102.0,,1021.0,Computer science,No Degree,Computer Science
+311,3,10,,22.0,1,119000.0,50.0,1.0,-1.0,2414.0,,1021.0,Engineering,No Degree,Computer Science
+312,3,10,,21.0,1,150000.0,50.0,1.0,-1.0,6201.0,,410.0,Business,No Degree,Manager
+314,3,10,,22.0,2,2000.0,4.0,6.0,-1.0,3600.0,,2350.0,Biology,No Degree,Social Worker
+315,3,10,,23.0,1,476000.0,75.0,1.0,-1.0,5506.0,,2100.0,Social Sciences,No Degree,Social Worker
+317,3,10,,22.0,2,86000.0,40.0,1.0,-1.0,5507.0,,2310.0,Social Sciences,No Degree,Social Worker
+318,3,10,,24.0,2,476000.0,43.0,1.0,31.0,2400.0,,120.0,Engineering,No Degree,Manager
+319,3,10,,24.0,1,476000.0,45.0,1.0,33.0,2400.0,,1760.0,Engineering,No Degree,Computer Science
+321,3,10,,21.0,2,98000.0,40.0,1.0,21.0,5200.0,,1720.0,Psychology,No Degree,Computer Science
+324,3,10,,21.0,2,35000.0,40.0,1.0,-1.0,6211.0,,725.0,Business,No Degree,Manager
+325,3,10,,21.0,2,60000.0,45.0,1.0,-1.0,6203.0,,110.0,Business,No Degree,Manager
+326,3,10,,22.0,2,44000.0,40.0,1.0,-1.0,2311.0,,2003.0,Education,No Degree,Social Worker
+327,3,10,,21.0,2,75000.0,35.0,1.0,-1.0,6200.0,6207.0,2145.0,Business,Business,Social Worker
+330,3,10,,21.0,1,72000.0,50.0,1.0,-1.0,1101.0,,4850.0,farming agri,No Degree,Food
+331,3,10,,23.0,1,65000.0,60.0,1.0,-1.0,5301.0,,2100.0,Criminal Justice and Fire Protection,No Degree,Social Worker
+334,3,10,,22.0,1,97000.0,50.0,1.0,-1.0,6201.0,,800.0,Business,No Degree,Manager
+335,3,10,,21.0,1,80000.0,50.0,1.0,-1.0,6200.0,,4700.0,Business,No Degree,Food
+336,3,10,,21.0,2,30000.0,60.0,1.0,-1.0,2300.0,,2310.0,Education,No Degree,Social Worker
+337,3,10,,21.0,1,50000.0,60.0,1.0,-1.0,3401.0,,5860.0,Liberal arts,No Degree,Clerks
+339,3,10,,21.0,1,33000.0,40.0,1.0,-1.0,1903.0,,9645.0,communications,No Degree,transportation
+341,3,10,,22.0,2,70000.0,60.0,1.0,-1.0,5200.0,,2205.0,Psychology,No Degree,Social Worker
+343,3,10,,21.0,1,200000.0,40.0,1.0,-1.0,5200.0,,4850.0,Psychology,No Degree,Food
+344,3,10,,22.0,2,150000.0,40.0,1.0,-1.0,6102.0,,350.0,Medical,No Degree,Manager
+348,3,10,,21.0,2,100000.0,50.0,1.0,-1.0,6107.0,,3645.0,Medical,No Degree,Medical
+349,3,10,,21.0,1,55000.0,40.0,1.0,-1.0,3600.0,,1108.0,Biology,No Degree,Computer Science
+351,3,10,,22.0,2,160000.0,40.0,1.0,-1.0,5506.0,,51.0,Social Sciences,No Degree,Manager
+352,3,10,16.0,23.0,2,32000.0,50.0,1.0,-1.0,5403.0,,2006.0,Public work,No Degree,Social Worker
+354,3,10,,21.0,2,42700.0,45.0,1.0,-1.0,2304.0,,2310.0,Education,No Degree,Social Worker
+355,3,10,,21.0,2,101000.0,45.0,1.0,-1.0,3600.0,,1760.0,Biology,No Degree,Computer Science
+356,3,10,,21.0,1,105000.0,40.0,1.0,-1.0,5200.0,,350.0,Psychology,No Degree,Manager
+358,3,10,,21.0,2,2000.0,25.0,6.0,-1.0,1104.0,,1745.0,farming agri,No Degree,Computer Science
+359,3,10,,22.0,1,80000.0,40.0,1.0,-1.0,2405.0,,1430.0,Engineering,No Degree,Computer Science
+360,3,10,,21.0,1,4000.0,40.0,6.0,-1.0,2499.0,,1430.0,Engineering,No Degree,Computer Science
+361,3,10,,22.0,1,225000.0,50.0,1.0,-1.0,5506.0,,440.0,Social Sciences,No Degree,Manager
+365,3,10,,22.0,1,110000.0,60.0,1.0,-1.0,5200.0,,2014.0,Psychology,No Degree,Social Worker
+366,3,10,16.0,21.0,2,25000.0,25.0,2.0,-1.0,6107.0,3600.0,3255.0,Medical,Biology,Medical
+367,3,10,,23.0,2,191000.0,65.0,1.0,-1.0,5506.0,5501.0,2100.0,Social Sciences,Social Sciences,Social Worker
+368,3,10,15.0,21.0,2,66000.0,40.0,1.0,-1.0,6107.0,,3230.0,Medical,No Degree,Medical
+369,3,10,15.0,21.0,1,105000.0,55.0,1.0,-1.0,5501.0,,220.0,Social Sciences,No Degree,Manager
+371,3,10,,21.0,2,26000.0,35.0,1.0,-1.0,6107.0,,5240.0,Medical,No Degree,Clerks
+375,3,10,,21.0,2,150000.0,45.0,1.0,-1.0,6108.0,,3050.0,Medical,No Degree,Medical
+376,3,10,,21.0,1,90000.0,40.0,1.0,-1.0,2414.0,,1360.0,Engineering,No Degree,Computer Science
+378,3,10,,21.0,2,46000.0,35.0,1.0,60.0,5403.0,,2310.0,Public work,No Degree,Social Worker
+379,3,10,,21.0,1,30000.0,37.0,1.0,-1.0,5503.0,,3930.0,Social Sciences,No Degree,Medical
+380,3,10,,21.0,2,30000.0,40.0,1.0,-1.0,5506.0,,5400.0,Social Sciences,No Degree,Clerks
+381,3,10,,24.0,2,72000.0,40.0,1.0,-1.0,3301.0,,2205.0,Literature,No Degree,Social Worker
+382,3,10,,21.0,1,40000.0,40.0,1.0,-1.0,3301.0,,1032.0,Literature,No Degree,Computer Science
+383,3,10,16.0,21.0,2,476000.0,40.0,1.0,-1.0,6203.0,,3649.0,Business,No Degree,Medical
+384,3,10,15.0,21.0,2,35000.0,37.0,3.0,-1.0,5404.0,,2545.0,Public work,No Degree,Social Worker
+385,3,10,,22.0,1,69000.0,38.0,1.0,23.0,6203.0,,845.0,Business,No Degree,Manager
+386,3,10,,22.0,2,45000.0,38.0,1.0,14.0,6203.0,,630.0,Business,No Degree,Manager
+387,3,10,,21.0,2,35000.0,38.0,1.0,-1.0,1100.0,1303.0,6010.0,farming agri,environmental work,Forestry
+388,3,10,16.0,22.0,1,32000.0,38.0,1.0,-1.0,1105.0,,2545.0,farming agri,No Degree,Social Worker
+392,3,10,,21.0,1,92000.0,40.0,1.0,1.0,3202.0,,1021.0,Legal,No Degree,Computer Science

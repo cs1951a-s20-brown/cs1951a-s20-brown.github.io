@@ -1,0 +1,98 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deliverable</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="page-header center">
+            <h1>Data Deliverable: undecided</h1>
+        </div>
+        <h1>Tech report</h1>
+
+            <p> Important: Our file submission contains README.txt and the sample data. The link to the final data is in README.txt
+
+        <h6>Data source:</h6>
+
+        <p> Most of our data are borrowed from the following worldbank website:
+        <br> https://data.worldbank.org
+        <br> We also collect some data from the following website:
+        <br> https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-income-people.html
+        <br> https://data.oecd.org/hha/household-savings.htm#indicator-chart
+
+        <h6>Method of data collection:</h6>
+
+        <p> We download the csv.file from those websites, use join command and other functions in panda to bind those data between tables.
+
+        <h6>Reputable source confirmation:</h6>
+
+        <p> Worldbank.org is a highly regarded organization that collects several important features from each country, for more than half a century. The World Bank works closely with the Bank’s regions and Global Practices, maintaining professional standards in the collection, compilation and dissemination of data, ensuring quality data for data users.
+
+        <p> Much of the data comes from the statistical systems of countries, and the quality of global data depends on how well these national systems perform. Hence, we are convinced that the data collected are trustable.
+
+        <h6>Sample generation:</h6>
+
+        <p> When we generated the sample, we called the sample function for dataframes in panda. We took a random 10% sample of all the countries, assessing the factors that we care, e.g. savings, population density, gender ratio, educational level, etc. The sample is comparatively small compared to the rest of the data, however, the randomization should assure that the sample is an approximate representation of the entire data. There should not be a sampling bias.
+
+        <h6>Data cleaning:</h6>
+
+        <p> We collected the data from all of the country in the world. For each country, we collected a number of features that help answers our hypothesis, within a time frame that occurred, e.g. data between 2000-2018. Depending on how well our model can produce an answer to our hypothesis by the current given data for each countries, our data also contains data by each continent, since we have assumed some countries in the same continent may have similar features between them. The use of this data would be inspected in the next stages of our final project. Lastly, if it is necessary, we would like to subdivide the data into smaller data sets for more precise data representation.
+        <br> This way, we are not over cleaning our data and the current data should contain all the information necessary to complete the project.
+
+        <p> As you can see from the raw csv data file through the final data link, there are many datas from the early 1950 to late 1990s that are missing for most of the countries. However, this is not a huge problem since we are only concerned with the data from the past two decades.
+        As for the problem with having duplicate primary key values, we were at first worried that the data could have contained several different names for the same country, or dirty data that have, for example, abbreviated and non-abbreviated country names within the same data. 
+        Later we find out there is no such problem here. The Worldbank.org website is nice enough to solve this problem for us.
+        
+        But later we find irrelevant data that we have scraped: line 259 is “world”, the country name for line 61 to 65 are  “East Asia & Pacific (excluding high income)”, “Early-demographic dividend”’,”East Asia & Pacific”, “Europe & Central Asia (excluding high income)”,”Europe & Central ECS” respectively, which we believe that they are not countries, and will not be considered in our model. (But we can regard them as average data within a single continent.)
+        We use drop function in pandas to drop any data that we will not require in future inspections and calculations.
+
+        Overall the data is sufficiently clean.
+
+        <h4>Data specifics</h4>
+
+        <h6>Data points:</h6>
+
+        <p> We approximately have 200 countries, with 12 features, from years 2000 to 2018 inclusive. Hence around 45,600, and this should be enough to find the conclusion for our hypothesis. If we were to group by features, we have about 4000 datapoints per group. Positive and negative data should be split into equal sizes. There are only a small number of missing data points, e.g. a feature recorded in year 2000 in a less developed countries, which may cause a slight skew, however it should not drastically change our results. We can also come up with a makeshift if it deters us frmo our project goal. There are no duplicates.
+
+        <h6>Outliers: What are the min/max values? (focus on the fields that are most relevant to your project goals)</h6>
+
+        <p> We print out the picture of saving_rate by matplotlib, and it seems that there are no single outliers along the country factors.
+
+        <h6>Data type issues: (e.g. words in fields that were supposed to be numeric)? Where are these coming from? (E.g. a bug in your scraper? User input?) How will you fix them?</h6>
+
+        <p>  There are quite a lot of attributes whose values are not numerical, such as the education level, i.e. the value is a string. We can use dummy variables (or equivalently saying one-hot encoding in ML). For example, we set four different columns for the educational level, then set the value 1 if the person belongs to the category, and set the value to be 0 if the person does not.
+
+        <h6>Data waste: </h6>
+
+        <p> Only a very small amount of data waste, due to the reliable data produced by the World bank.
+
+        <h6>Challenges:</h6>
+
+        <p> An explicit problem here coudl be that our data may contain too many columns. This may cause the running time of our model to be relatively long.
+        <p> We also have a lot of attributes here, which may cause overfitting problem if we use line regression model to our data. We will test the multicollinearity of our models in the later checkpoint. Thus we can do something like Tikhonov Regularization as a stability to control the fitting-stability trade-off.
+        <p> In our first meeting with Professor Ellie, she pointed out that we can turn to some data of each cities or counties instead of countries. But it turns out that those data are quite difficult to find online. Thus we are thinking about doing various of hypothesis for our models instead.
+        This will be specifically stated in the following stages of the final project.
+
+
+        <h6>Next steps: how your data collection has impacted the type of analysis you will perform. (approximately 3-5 sentences)</h6>
+        <p> Since we collected data from all the years 2000-2018, and we believe that all those columns are highly correlated to each other. (This is the main reason why we believe our data might cause multicollinearity if we do simple regression). Thus we can apply some time-series models such as ARMA or ARIMA, to explore how saving rates or other attributes change along the time_axis.
+        <p> We want to test various of hypothesis on our models, here are some of our current thinking, those thoughts might be changed in the following checkpoints.
+        <br>~ Whether the data will change significantly along the time-axis?
+        <br>~ Whether the saving rates will be significantly different for different continent categories?
+        <br>~ Whether the saving rates will be significantly different among different age intervals?
+        <br>~ Build a regression (Or maybe logistic regression model) for all the attributes in our database, are there any features which does not contribute too much on the saving_rates? And can we delete them from our table, equivalently saying, how much loss will it take to delete it from the table?
+
+
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

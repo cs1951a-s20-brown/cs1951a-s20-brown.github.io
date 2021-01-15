@@ -1,0 +1,82 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#team</title>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="page-header center">
+
+          <a href="https://ichef.bbci.co.uk/news/320/cpsprodpb/486D/production/_99314581_gettyimages-491487278-1.jpg">
+       <img src="https://ichef.bbci.co.uk/news/320/cpsprodpb/486D/production/_99314581_gettyimages-491487278-1.jpg" >
+          </a>
+      <h1 style="color:#5cadff; text-shadow: 2px 2px #0d3c69;">#team</h1>
+      <h4 style="color:gray">Analyzing how triggering and activism events impact hashtag activism</h4>
+      </div>
+      <br>
+
+       <h2> Project Background </h2>
+           <b>Goal:</b>  Analyze how events related to social movements affect the intensity of hashtag activism around the time of those events. We plan to compare the effect of triggering and activism events.<br>
+           <b>Terminology:</b> <u>Triggering events-</u> scandals/shootings, <u>Activism events-</u> marches/protests.<br>
+           <b>Movements:</b> #MeToo, BlackLivesMatter, Gun Violence <br>
+           <b>Google Drive Directory:</b> <a href="https://drive.google.com/drive/folders/1AFAUQl0CRxp9UpC8_1uFMSFLgZ2v02qr?usp=sharing">Located here.</a>
+
+       <h2> Hypothesis & Approach </h2>
+          <p> We believe that triggering events will cause a greater increase in hashtag usage than activism events.
+            . We will be using percent changes one day before and one day after an event in order to measure the increase, coupled with t-tests to determine statistical significance.</p>
+
+
+      <h2> Data Visualization </h2>
+        <p> In order to get a sense of what the data looked like, we quickly graphed the below scatter plot, which plots the hashtag usage over time for all of the movements (where green is Black Lives Matter, blue is MeToo, and orange is Gun Violence). </p>
+          <img style="width: 100%;" src="http://drive.google.com/uc?export=view&id=1Sf09F1rk1VSvZohvKDNBqiLtyrqQBzus">
+        <p> Then, we separated the data by movement and plotted the hashtag usage over time, with vertical lines plotted on the days that events took place.</p>
+         <img style="width: 100%;" src="http://drive.google.com/uc?export=view&id=1voO0lsFTNfYIltY27-JL6DyMTWPPk989">
+         <img style="width: 100%;" src="http://drive.google.com/uc?export=view&id=1PXY1N1JEl1E0Rc3XufwDjP0x3Z0S5mtM">
+         <img style="width: 100%;" src="http://drive.google.com/uc?export=view&id=11k3tYp0rHfvBii1tayYeptV34cD5eDJZ">
+
+
+       <h2> Visualization Choices </h2>
+        <p> We visualized the tweet counts per day for each movement using line graphs since each line graph would clearly visualize significant tweet count changes. We also decided to use a box plot to visualize the percent changes between our control group, triggering events, and activist events for each of our movements since they are easy to read and allow for a straight-forward comparison between the percent changes of our different event types for each movement. Another way we could have communicated these results is through a histogram, but we decided against it because in a histogram, the x-axis would show the percent changes, but since the percent changes varied significantly in our data it would be difficult to illustrate. We experienced some difficulty with visualizing our data since we discovered multiple tweet count peaks in our gun violence line graph that we did not classify as an event. Looking more into these unknown peaks, we discovered that some of these events were not associated with the gun violence movement and decided to perform cleaning on these specific days. We needed to clean the tweet counts for these days because we calculated a control group percent change by randomly sampling days where no events occurred. If we did clean these unknown peaks, they could have inaccurately affected the percent changes we collected and visualized. Our visualization requires text to acknowledge that the percent change calculated is for one day before an event and one day after an event. </p>
+
+
+      <h2> T-Test Analysis </h2>
+            <p> We used a t-test to evaluate the differences in the percent change for triggering and activism events. We used a t-test instead of a z-test because our data was taken as a sample of the 20 most impactful triggering and activism events from the population of events relating to each movement. We also considered using linear regression to determine the correlation between triggering and activism events with the percent change in number of tweets, however, after speaking with Ellie, we decided that this may be unnecessary at this time. Since we used a t-test, we measured the results of our test by evaluating the p-value and t-statistic between the percent changes of triggering vs control, activism vs control, and triggering vs activism. We compared these results to a significance level of 0.05 because it is a standard significance level when conducting t-tests. One challenge that we found when evaluating our model was that we obtained spikes in our graphs when displaying the number of tweets using a given hashtag even though those days did not have any significant event around them. After looking these dates up online, we found that other large, unrelated events that used the same hashtag as the movements we analyzed occurred on those days. This impacted the tweet count and percent change for these movements, so we replaced these peaks with the tweet count from the previous day.
+ </p>
+          <img style="width: 80%;" src="http://drive.google.com/uc?export=view&id=1kCL7Adi1EkSAExMcHUUNStk3melxhYf9"><br>
+
+          <br><p> Box plots for Percent Change: </p>
+            <img style="width: 80%;" src="http://drive.google.com/uc?export=view&id=1NLujBfRIQ-YDiNWfVMVVnr1yyyEezngz">
+            <img style="width: 80%;" src="http://drive.google.com/uc?export=view&id=1a0ZDO-XLJh0sTWcewCk7CLWcWqSJRzi5">
+            <img style="width: 80%;" src="http://drive.google.com/uc?export=view&id=1MG7YMgAYUCmAjHr-UAr5BKwH97E499-D">
+
+
+
+
+       <h2> Interpretation of Results </h2>
+         <p> Our results show that we fail to reject the null hypothesis, which is that there is no difference between percentage changes before and after an event based on event type (triggering vs. activism). In other words, there is not enough evidence to conclude that there is a difference in the impact of triggering vs. activism events in regards to tweet count. Intuitively, this outcome makes sense because triggering events, such as sexual assault cases, could have similar effects to activism events, such as the Women’s March, on people’s passion for a movement, and thus, their number of tweets. We originally thought that the passion ignited by triggering events would be stronger than that of activism events and would result in a stronger impact by triggering events on tweet counts, but it turns out that there is not a significant difference. This may be because the organized nature of activism events, such as protests, similarly contributes to tweet counts as the anger stemmed from triggering events. </p>
+         <p>Our results also included a control group to test if triggering and activism events actually have an impact on tweet counts compared to days without events. We found that there is only a significant difference between percent changes for days with triggering events vs. days without events for the Gun Violence movement. Therefore, our results do not indicate that events actually have an impact on tweet counts in most cases. </p>
+         <p>We are confident in the results, as we found that, although there isn’t a significant difference between impacts of triggering vs. activism events, this can be explained by intuition that the passion ignited by triggering and activism events are similar. However, we were surprised to not find a significant impact by events in general on hashtag usage in most cases, since we would think that events should have an impact on tweets about movements, especially for social media heavy movements, such as MeToo. This might be because large events would have a stronger impact, and most of our events tend to be smaller. Therefore, since our testing failed to take into account the magnitude of each event, the impact of large events on hashtag usage may have been overshadowed by the lack of impact by smaller events.
+         </p>
+
+
+
+       <h2> Confounding Trends </h2>
+         <p> As mentioned earlier, one confounding variable we observed was when another large, unrelated event used the same hashtag as one of the hashtags that we were analyzing. This affected the tweet count and percent change for these events, so we manually had to replace these days with the tweet count from the previous day. Another confounding trend or variable that we might be observing is Twitter’s fluctuating user population. For example, if one day sees a larger increase in the number of Twitter users than normal, there is a greater chance that there will be a significant increase in the percent change of the number of tweets for a given movement for that day. Finally, the influence of popular Twitter users may also distort our results. For example, since popular users are more likely to have their tweets retweeted, if a popular user tweets using a given hashtag, we may have spikes in our results that are not solely as a result of a triggering or activism event.
+ </p>
+
+ <h2> How to Proceed to Final Presentation </h2>
+   <p> We will include a table for our t-statistic and p-values for triggering vs control, activism vs control, and triggering vs activism. These relationships will also be displayed on our poster using a boxplot that shows the percent change in tweet count for each movement.  We will also include a separate line graph for the date vs tweet count of each of our movements to show when the number of tweets for a movement’s hashtag had large fluctuations. We plan on accompanying our graphs with text describing our project’s hypothesis, goal, data, and future implications.
+</p>
+
+
+
+    </div>
+</div>
+</body>
+</html>
