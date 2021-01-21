@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cs.brown.edu/courses/csci1951-a/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById('resources-nav').className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cs.brown.edu/courses/csci1951-a/style/main.css">
+  <title>CS1951A | Getting Started With Python</title>
+</head>
+<body>
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Header image-->
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#">CS1951A</a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="https://cs.brown.edu/courses/csci1951-a/">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="https://cs.brown.edu/courses/csci1951-a/slides/">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="https://cs.brown.edu/courses/csci1951-a/assignments/">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="https://cs.brown.edu/courses/csci1951-a/labs/">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="https://cs.brown.edu/courses/csci1951-a/staff/">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="https://cs.brown.edu/courses/csci1951-a/hours/">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="https://cs.brown.edu/courses/csci1951-a/resources/">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="https://cs.brown.edu/courses/csci1951-a/projects/">final projects</a>
+          </div>
+
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Getting Started With Python</h1>
+        <p>
+          In this course, we will be using Python 3.7.
+          The department machines already have Python 3.7 installed and have all
+          of the packages that we need.
+          If we ever need an additional package, we will be setting up a CS1951A
+          virtualenv and providing instructions on how to use it.
+          Ultimately all code <strong>must</strong> run on the department machines, as that
+          is how you will be grading your code.
+          If you install auxilliary packages for your own use, please make sure that
+          they exist on the department machines as well.
+        </p>
+        <br />
+
+        <h4>If you are familiar with 
+          <tt>brew/macports/apt-get/yum</tt>
+        </h4>
+        <p>
+          You may install Python 3.7 and similar packages via your package manager
+          of choice.
+          Python modules may be instaled using 
+          <tt>pip</tt>/
+          <tt>pip3</tt>.
+        </p>
+        <br />
+  
+        <h4>If you are not familiar with package managers or want an all-in-one solution</h4>
+        <p>We recommend using <a href="https://www.anaconda.com/distribution">Anaconda</a>,
+          a complete Python 3.7 distribution containing most (if not all) the packages
+          that we will need this semester.
+          <strong>Note:</strong> Please install the Python 3.7 version, not Python 2.7.
+        </p>
+
+        <br/>
+        <h4>I'm on Windows and everything is breaking! Help!</h4>
+        <p>
+          We've been known to have some issues with Windows in the past.
+          Many times all of our packages will work through the new Windows 10 Bash subsystem
+          or Cygwin.
+          However, compatibility is <strong>not</strong> guaranteed.
+          If you encounter problems, we recommend using either a department machine or a VM.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2019 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+</body>

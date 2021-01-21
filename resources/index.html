@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="CS1951A">
+  <meta name="description" content="Website for Brown CS1951A">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha256-gL1ibrbVcRIHKlCO5OXOPC/lZz/gpdApgQAzskqqXp8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./../js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        document.getElementById('resources-nav').className += ' active';
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="./../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./../style/main.css">
+  <title>CS1951A | Resources</title>
+</head>
+<body>
+  <div id="page-container">
+  <div id="other-content-container">
+  <!-- Header-->
+   <div class="container-fluid" id="header">
+    <!-- Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="#navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="./../">cs1951a</a>
+      <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link" id="home-nav" href="./../index.html">home</a>
+              <a class="nav-item nav-link" id="slides-nav" href="./../slides/index.html">lectures</a>
+              <a class="nav-item nav-link" id="assignments-nav" href="./../assignments/index.html">assignments</a>
+              <a class="nav-item nav-link" id="labs-nav" href="./../labs/index.html">labs</a>
+              <a class="nav-item nav-link" id="staff-nav" href="./../staff/index.html">staff</a>
+              <a class="nav-item nav-link" id="hours-nav" href="./../hours/index.html">hours</a>
+              <a class="nav-item nav-link" id="resources-nav" href="./../resources/index.html">documents</a>
+              <a class="nav-item nav-link" id="blogs-nav" href="./../projects/index.html">final projects</a>
+          </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container" id="copy">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="resources">
+            <h1>resources</h1>
+
+            <div class="pre-quiz">
+                <h4>pre-quiz</h4>
+                <p>
+                  The official prequisites for this course are CS 16, 18, or 19;
+                  one of CS 32 or CS 33 is strongly recomended.
+                  That being said, we are open to students from a variety of different
+                  academic backgrounds.
+                  These quizzes are designed to assess how prepared you are to engage with the
+                  material presented in CS1951A. Note that these quizzes are <strong>NOT GRADED</strong>.
+                </p>
+
+                <div class="quiz">
+                    <p class="quiz-desc">
+                      First is a programming portion that tests your knowledge of Python:
+                    </p>
+                     <p id="python-quiz"><a target="_blank" href="./../prequiz/programming.html"> &gt;&gt; Python pre-quiz &lt;&lt;</a></p>
+                    <p class="quiz-desc">
+                      The second is a statistics pre-quiz is designed to test your knowledge of
+                      probability and statistics:
+                    </p>
+                    <p id="stats-quiz"><a target="_blank" href="./../prequiz/stats.html"> &gt;&gt; Stats pre-quiz &lt;&lt;</a></p>
+                </div>
+                <p>
+                  Please don't be worried or discouraged if you find these quizzes to be difficult. The pre-quizzes are just available as
+                  resources to help you understand what kind of material you will be exposed to in CS1951A.
+                </p>
+            </div>
+
+            <div class="python">
+                <h4>python</h4>
+                <p> Here are some helpful resources for setting up Python on your computer and learning Python.</p>
+                <ul>
+                  <li><a href="./../resources/python.html">Installing and setting up Python</a></li>
+                  <li><a href="https://docs.python.org/3/tutorial/">Official Python 3 tutorial</a></li>
+                  <li><a href="http://interactivepython.org/runestone/static/pythonds/index.html">Problem Solving with Algorithms and Data Structures using Python</a></li>
+                  <li><a href="https://repl.it/">Online, interactive Python interpreter</a></li>
+                  <li><a href="https://github.com/ehmatthes/pcc/releases/download/v1.0.0/beginners_python_cheat_sheet_pcc_all.pdf">Beginner's Python cheatsheet (PDF)</a></li>
+                  <li><a href="http://cheatsheets.quantecon.org/">Vector/Matrix operations in numpy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="course-documents">
+            <h1>course materials</h1>
+
+            <h6>Course Syllabus</h6>
+            <p ><a target="_blank" href="./../res/static/cs1951a_syllabus.pdf"> Syllabus</a></p>
+
+            <h6>Collaboration Policy</h6>
+            <p ><a target="_blank" href="./../res/static/cs1951a_collab.pdf"> Collaboration Policy</a></p>
+
+            <h6>Piazza</h6>
+            <p ><a target="_blank" href="https://piazza.com/class/k5h89a3pcse6s0"> Piazza</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="container-fluid" id="footer">
+    <div class="container">
+      <p>&copy; 2020 CS1951A Staff | Computer Science Department | Brown University </p>
+    </div>
+  </div>
+  </div>
+
+</body>
+</html>
